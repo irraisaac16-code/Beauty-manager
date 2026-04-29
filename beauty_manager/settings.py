@@ -41,6 +41,10 @@ SECURE_HSTS_PRELOAD = True
 CSRF_COOKIE_SECURE = False  # Set to True in production with HTTPS
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_TRUSTED_ORIGINS = [
+    'https://beauty-manager-production.up.railway.app',
+    'https://*.up.railway.app',
+]
 
 # Session Security
 SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
