@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Manager - Salon de Beauté</title>
+    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body style="background: linear-gradient(135deg, #f6f3ff 0%, #fff9e6 50%, #f6f3ff 100%); position: relative; min-height: 100vh;">
+    <!-- Background decorative elements -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden;">
+        <!-- Large decorative circles -->
+        <div style="position: absolute; top: -10%; right: -5%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, rgba(124,58,237,0.05) 50%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -15%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, rgba(251,191,36,0.05) 50%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; top: 40%; left: 50%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, rgba(124,58,237,0.03) 50%, transparent 70%); border-radius: 50%;"></div>
+        
+        <!-- Small decorative elements -->
+        <div style="position: absolute; top: 20%; left: 20%; width: 60px; height: 60px; background: rgba(251,191,36,0.1); border-radius: 50%; transform: rotate(45deg);"></div>
+        <div style="position: absolute; top: 70%; right: 25%; width: 40px; height: 40px; background: rgba(124,58,237,0.1); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 30%; left: 30%; width: 80px; height: 80px; background: rgba(251,191,36,0.08); border-radius: 50%; transform: rotate(-30deg);"></div>
+        
+        <!-- Subtle pattern overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 25% 25%, rgba(124,58,237,0.03) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251,191,36,0.03) 0%, transparent 50%);"></div>
+    </div>
+
+    <!-- Cosmetic universe background images -->
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; overflow: hidden;">
+        <!-- Luxury cosmetics -->
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=200&fit=crop&crop=center" alt="Luxury cosmetics" style="position: absolute; top: 15%; right: 15%; width: 140px; height: 140px; opacity: 0.2; border-radius: 50%; object-fit: cover; filter: hue-rotate(280deg) saturate(1.4) brightness(1.1); box-shadow: 0 8px 32px rgba(124,58,237,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&h=200&fit=crop&crop=center" alt="Makeup products" style="position: absolute; bottom: 20%; right: 10%; width: 120px; height: 120px; opacity: 0.18; border-radius: 50%; object-fit: cover; filter: hue-rotate(45deg) saturate(1.6) brightness(1.2); box-shadow: 0 8px 32px rgba(251,191,36,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=200&h=200&fit=crop&crop=center" alt="Nail polish collection" style="position: absolute; top: 60%; left: 5%; width: 100px; height: 100px; opacity: 0.16; border-radius: 50%; object-fit: cover; filter: hue-rotate(320deg) saturate(1.3) brightness(1.1); box-shadow: 0 8px 32px rgba(147,51,234,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=200&h=200&fit=crop&crop=center" alt="Skincare products" style="position: absolute; bottom: 10%; left: 20%; width: 110px; height: 110px; opacity: 0.19; border-radius: 50%; object-fit: cover; filter: hue-rotate(30deg) saturate(1.5) brightness(1.1); box-shadow: 0 8px 32px rgba(245,158,11,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=200&h=200&fit=crop&crop=center" alt="Makeup brushes" style="position: absolute; top: 25%; left: 10%; width: 90px; height: 90px; opacity: 0.17; border-radius: 50%; object-fit: cover; filter: hue-rotate(260deg) saturate(1.2) brightness(1.1); box-shadow: 0 8px 32px rgba(139,92,246,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        
+        <!-- Additional cosmetic elements -->
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=200&h=200&fit=crop&crop=center" alt="Perfume bottles" style="position: absolute; top: 45%; right: 5%; width: 80px; height: 80px; opacity: 0.15; border-radius: 50%; object-fit: cover; filter: hue-rotate(340deg) saturate(1.3) brightness(1.1); box-shadow: 0 8px 32px rgba(168,85,247,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=200&h=200&fit=crop&crop=center" alt="Beauty accessories" style="position: absolute; bottom: 35%; right: 25%; width: 85px; height: 85px; opacity: 0.14; border-radius: 50%; object-fit: cover; filter: hue-rotate(15deg) saturate(1.6) brightness(1.1); box-shadow: 0 8px 32px rgba(251,191,36,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=200&h=200&fit=crop&crop=center" alt="Cosmetic packaging" style="position: absolute; top: 80%; left: 15%; width: 75px; height: 75px; opacity: 0.13; border-radius: 50%; object-fit: cover; filter: hue-rotate(300deg) saturate(1.2) brightness(1.1); box-shadow: 0 8px 32px rgba(124,58,237,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&h=200&fit=crop&crop=center" alt="Beauty tools" style="position: absolute; top: 10%; left: 35%; width: 95px; height: 95px; opacity: 0.16; border-radius: 50%; object-fit: cover; filter: hue-rotate(50deg) saturate(1.4) brightness(1.1); box-shadow: 0 8px 32px rgba(251,191,36,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=200&h=200&fit=crop&crop=center" alt="Luxury beauty products" style="position: absolute; bottom: 45%; left: 8%; width: 70px; height: 70px; opacity: 0.12; border-radius: 50%; object-fit: cover; filter: hue-rotate(270deg) saturate(1.1) brightness(1.1); box-shadow: 0 8px 32px rgba(147,51,234,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=200&h=200&fit=crop&crop=center" alt="Cosmetic ingredients" style="position: absolute; top: 35%; right: 30%; width: 65px; height: 65px; opacity: 0.11; border-radius: 50%; object-fit: cover; filter: hue-rotate(25deg) saturate(1.5) brightness(1.1); box-shadow: 0 8px 32px rgba(245,158,11,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200&h=200&fit=crop&crop=center" alt="Premium cosmetics" style="position: absolute; bottom: 25%; right: 5%; width: 105px; height: 105px; opacity: 0.15; border-radius: 50%; object-fit: cover; filter: hue-rotate(290deg) saturate(1.3) brightness(1.1); box-shadow: 0 8px 32px rgba(139,92,246,0.25); backdrop-filter: blur(2px);" onerror="this.style.display='none';">
+    </div>
+
+    <header class="text-center" style="background:transparent;">
+        <div class="container">
+            <div style="display:flex;align-items:center;justify-content:center;margin-bottom:2.8rem;">
+                <span style="font-family:'Segoe UI', 'Roboto', Arial, sans-serif;font-weight:900;font-size:2.8rem;letter-spacing:-1px;">
+                    <span class="highlight-yellow" style="color:#fbbf24;">Beauty</span> <span class="highlight-violet" style="color:#7c3aed;">Manager</span>
+                </span>
+            </div>
+            <h1 class="hero-title">
+                Le meilleur endroit pour <span class="highlight-violet" style="margin-right:0.5rem;">gérer</span> et <span style="color:#22223b;">réserver</span> vos soins <span class="highlight-yellow" style="color:#fbbf24;margin-top:1.2rem;display:inline-block;">beauté</span>
+            </h1>
+            <p style="font-size:1.2rem; color:#555; max-width:600px; margin:2rem auto 2rem auto;">Découvrez une plateforme moderne, intuitive et colorée pour les salons de beauté en Côte d'Ivoire. Réservez, payez, gérez vos rendez-vous et profitez d'une expérience unique !</p>
+            <div style="margin-top:2rem;text-align:center;">
+                <a href="/inscription/client/" class="btn bg-secondary" style="margin-right:2rem;" onmouseover="this.style.background='#f59e0b'; this.style.color='#fff';" onmouseout="this.style.background='#fbbf24'; this.style.color='#fff';">Inscription Client</a>
+                <a href="/connexion/" class="btn" style="margin-right:2rem;">Se connecter</a>
+                <a href="/inscription/coiffeuse/" class="btn bg-secondary" style="background:#fbbf24; color:#ffffff;">Inscription Esthéticienne</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <section class="section-block" style="background: transparent;">
+            <h2 class="text-center" style="margin-bottom:3rem; font-size: 2.5rem; font-weight: 700; color: #333;">Qui sommes nous ?</h2>
+            <div class="container" style="text-align:center; max-width:800px; margin:0 auto;">
+                <div style="background: linear-gradient(135deg, rgba(124,58,237,0.1) 0%, rgba(251,191,36,0.1) 100%); padding:2rem; border-radius:20px; margin-bottom:2rem;">
+                    <h3 style="color:#7c3aed; font-size:1.8rem; margin-bottom:1rem; font-weight: 600;">
+                        <i class="fas fa-heart" style="margin-right:0.5rem;"></i>
+                        Notre Histoire
+                    </h3>
+                    <p style="font-size:1.3rem; line-height:1.7; color:#555;">
+                        Née de la passion pour la beauté et l'innovation technologique, <strong>Beauty Manager</strong> est le fruit d'une vision audacieuse : 
+                        révolutionner l'expérience beauté en Côte d'Ivoire. Notre plateforme est née du constat simple que la beauté mérite 
+                        une approche moderne, intuitive et personnalisée.
+                    </p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(244,114,182,0.1) 100%); padding:2rem; border-radius:20px; margin-bottom:2rem;">
+                    <h3 style="color:#fbbf24; font-size:1.8rem; margin-bottom:1rem; font-weight: 600;">
+                        <i class="fas fa-eye" style="margin-right:0.5rem;"></i>
+                        Notre Mission
+                    </h3>
+                    <p style="font-size:1.3rem; line-height:1.7; color:#555;">
+                        Nous connectons les talents de la beauté avec ceux qui recherchent l'excellence. Notre mission est de créer 
+                        un écosystème où chaque client trouve son esthéticienne idéale, où chaque professionnelle développe son activité, 
+                        et où la beauté devient accessible à tous, partout en Côte d'Ivoire.
+                    </p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(244,114,182,0.1) 0%, rgba(124,58,237,0.1) 100%); padding:2rem; border-radius:20px; margin-bottom:2rem;">
+                    <h3 style="color:#f472b6; font-size:1.8rem; margin-bottom:1rem; font-weight: 600;">
+                        <i class="fas fa-star" style="margin-right:0.5rem;"></i>
+                        Notre Vision
+                    </h3>
+                    <p style="font-size:1.3rem; line-height:1.7; color:#555;">
+                        Devenir la référence incontournable de la beauté digitale en Afrique de l'Ouest. Nous rêvons d'un monde où 
+                        la technologie sert la beauté, où chaque rendez-vous est une expérience unique, et où l'innovation rime 
+                        avec tradition et excellence.
+                    </p>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(124,58,237,0.1) 100%); padding:2rem; border-radius:20px;">
+                    <h3 style="color:#10b981; font-size:1.8rem; margin-bottom:1rem; font-weight: 600;">
+                        <i class="fas fa-handshake" style="margin-right:0.5rem;"></i>
+                        Nos Valeurs
+                    </h3>
+                    <p style="font-size:1.3rem; line-height:1.7; color:#555;">
+                        <strong>Excellence</strong> dans chaque interaction, <strong>Innovation</strong> dans nos solutions, 
+                        <strong>Confiance</strong> en nos partenaires, et <strong>Engagement</strong> envers notre communauté. 
+                        Ces valeurs guident chaque décision et façonnent l'expérience Beauty Manager.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-block" style="background: transparent;">
+            <h2 class="text-center" style="margin-bottom:3rem; font-size: 2.5rem; font-weight: 700; color: #333;">Nos fonctionnalités interactives</h2>
+            <div class="container" style="text-align:center;">
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-calendar-check" style="font-size:3rem;color:#7c3aed;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Réservation en ligne</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Réservez vos soins en quelques clics avec notre calendrier interactif</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-credit-card" style="font-size:3rem;color:#fbbf24;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Paiement mobile</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Payez facilement depuis votre mobile money</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-users-cog" style="font-size:3rem;color:#7c3aed;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Gestion des rôles</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Accès personnalisé selon votre profil : Admin, Esthéticienne ou Client</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-envelope-open-text" style="font-size:3rem;color:#fbbf24;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Notifications</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Recevez des alertes pour vos rendez-vous et les validations de compte</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-tachometer-alt" style="font-size:3rem;color:#7c3aed;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Tableaux de bord</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Suivez vos activités et gérez votre planning en temps réel</p>
+                </div>
+            </div>
+        </section>
+        <section class="section-block" style="background: transparent;">
+            <h2 class="text-center" style="margin-bottom:3rem; font-size: 2.5rem; font-weight: 700; color: #333;">Pourquoi nous choisir ?</h2>
+            <div class="container" style="text-align:center;">
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-medal" style="font-size:3rem;color:#7c3aed;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Excellence garantie</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Nos esthéticiennes certifiées et expérimentées s'engagent à vous offrir des soins de qualité professionnelle, adaptés à vos besoins spécifiques</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-stopwatch" style="font-size:3rem;color:#fbbf24;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Gain de temps précieux</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Plus de files d'attente ! Réservez en ligne, payez en avance et arrivez à l'heure de votre rendez-vous. Votre temps est précieux, nous le respectons</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-lock" style="font-size:3rem;color:#7c3aed;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Sécurité et transparence</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Paiements sécurisés, données protégées et transparence totale sur les tarifs. Votre confiance est notre priorité absolue</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1.5rem;min-width:280px;max-width:320px;padding:2rem;background:white;border-radius:15px;box-shadow:0 4px 20px rgba(0,0,0,0.1);transition:transform 0.3s ease;">
+                    <i class="fas fa-user-friends" style="font-size:3rem;color:#fbbf24;margin-bottom:1rem;display:block;text-align:center;"></i>
+                    <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Expérience personnalisée</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.6;">Choisissez votre esthéticienne préférée, consultez son planning et créez une relation de confiance durable. Votre beauté, votre choix</p>
+                </div>
+            </div>
+        </section>
+        
+
+        
+        <section class="section-block" style="background: transparent;">
+            <h2 class="text-center" style="margin-bottom:3rem;">Nos Chiffres Clés</h2>
+            <div class="container" style="text-align:center;">
+                <div class="card-feature" style="display:inline-block;margin:1rem;max-width:200px;">
+                    <h2 style="font-size:2.5rem;color:#7c3aed;margin:0;">500+</h2>
+                    <h3>Clients Satisfaits</h3>
+                    <p>Utilisateurs qui nous font confiance pour leurs soins beauté</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1rem;max-width:200px;">
+                    <h2 style="font-size:2.5rem;color:#fbbf24;margin:0;">50+</h2>
+                    <h3>Esthéticiennes Partenaires</h3>
+                    <p>Professionnelles qualifiées et expérimentées</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1rem;max-width:200px;">
+                    <h2 style="font-size:2.5rem;color:#f472b6;margin:0;">1000+</h2>
+                    <h3>Réservations</h3>
+                    <p>Rendez-vous traités avec succès via notre plateforme</p>
+                </div>
+                <div class="card-feature" style="display:inline-block;margin:1rem;max-width:200px;">
+                    <h2 style="font-size:2.5rem;color:#10b981;margin:0;">98%</h2>
+                    <h3>Taux de Satisfaction</h3>
+                    <p>Clients qui recommandent nos services</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Horaires d'Ouverture -->
+        <section class="section-block" style="background: transparent; margin: 4rem 0;">
+            <h2 class="text-center" style="margin-bottom:3rem; font-size: 2.5rem; font-weight: 700; color: #333;">
+                <i class="fas fa-clock" style="margin-right: 0.5rem; color: #7c3aed;"></i>
+                Horaires d'Ouverture
+            </h2>
+            
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <div style="background: linear-gradient(135deg, rgba(124,58,237,0.05) 0%, rgba(251,191,36,0.05) 100%); padding: 3rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    
+                    <!-- Horaires principaux -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #7c3aed;">
+                            <h3 style="color: #7c3aed; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 600;">
+                                <i class="fas fa-sun" style="margin-right: 0.5rem;"></i>
+                                Lundi - Vendredi
+                            </h3>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Matin :</strong> 08h00 - 12h00
+                            </p>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Après-midi :</strong> 14h00 - 19h00
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #fbbf24;">
+                            <h3 style="color: #fbbf24; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 600;">
+                                <i class="fas fa-star" style="margin-right: 0.5rem;"></i>
+                                Samedi
+                            </h3>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Matin :</strong> 08h00 - 12h00
+                            </p>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Après-midi :</strong> 14h00 - 18h00
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 1.5rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-left: 4px solid #10b981;">
+                            <h3 style="color: #10b981; font-size: 1.3rem; margin-bottom: 1rem; font-weight: 600;">
+                                <i class="fas fa-moon" style="margin-right: 0.5rem;"></i>
+                                Dimanche
+                            </h3>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Matin :</strong> 09h00 - 12h00
+                            </p>
+                            <p style="font-size: 1.1rem; color: #555; margin: 0.5rem 0;">
+                                <strong>Après-midi :</strong> Fermé
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Informations importantes -->
+                    <div style="background: linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(124,58,237,0.1) 100%); padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                        <h4 style="color: #7c3aed; font-size: 1.2rem; margin-bottom: 1rem; font-weight: 600;">
+                            <i class="fas fa-info-circle" style="margin-right: 0.5rem;"></i>
+                            Informations Importantes
+                        </h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <div style="display: flex; align-items: center; margin: 0.5rem 0;">
+                                <i class="fas fa-utensils" style="color: #fbbf24; margin-right: 0.5rem; font-size: 1.1rem;"></i>
+                                <span style="font-size: 1rem; color: #555;">Pause déjeuner : 12h00 - 13h30</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0.5rem 0;">
+                                <i class="fas fa-calendar-alt" style="color: #7c3aed; margin-right: 0.5rem; font-size: 1.1rem;"></i>
+                                <span style="font-size: 1rem; color: #555;">Réservation recommandée</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin: 0.5rem 0;">
+                                <i class="fas fa-clock" style="color: #10b981; margin-right: 0.5rem; font-size: 1.1rem;"></i>
+                                <span style="font-size: 1rem; color: #555;">Dernière prise : 1h avant fermeture</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Conseils Beauté -->
+        <section class="section-block" style="background: transparent; margin: 4rem 0;">
+            <h2 class="text-center" style="margin-bottom:3rem; font-size: 2.5rem; font-weight: 700; color: #333;">
+                <i class="fas fa-spa" style="margin-right: 0.5rem; color: #f472b6;"></i>
+                Conseils Beauté & Bien-être
+            </h2>
+            
+            <div class="container" style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    
+                    <!-- Conseil 1 -->
+                    <div style="background: linear-gradient(135deg, rgba(124,58,237,0.05) 0%, rgba(251,191,36,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #7c3aed;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #7c3aed; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-leaf" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #7c3aed; font-size: 1.4rem; font-weight: 600; margin: 0;">Soins de la Peau</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Hydratation quotidienne :</strong> Appliquez votre crème hydratante matin et soir pour maintenir une peau saine et éclatante.
+                        </p>
+                        <div style="background: rgba(124,58,237,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #7c3aed; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Choisissez des produits adaptés à votre type de peau et n'oubliez pas la protection solaire même en ville !
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conseil 2 -->
+                    <div style="background: linear-gradient(135deg, rgba(251,191,36,0.05) 0%, rgba(244,114,182,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #fbbf24;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #fbbf24; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-cut" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #fbbf24; font-size: 1.4rem; font-weight: 600; margin: 0;">Coiffure & Styling</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Entretien régulier :</strong> Une coupe tous les 6-8 semaines maintient la santé de vos cheveux et préserve leur forme.
+                        </p>
+                        <div style="background: rgba(251,191,36,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #fbbf24; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Utilisez des produits sans sulfates pour préserver la couleur et la texture naturelle de vos cheveux.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conseil 3 -->
+                    <div style="background: linear-gradient(135deg, rgba(244,114,182,0.05) 0%, rgba(124,58,237,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #f472b6;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #f472b6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-palette" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #f472b6; font-size: 1.4rem; font-weight: 600; margin: 0;">Maquillage & Beauté</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Base parfaite :</strong> Préparez votre peau avec un primer adapté pour un maquillage qui dure toute la journée.
+                        </p>
+                        <div style="background: rgba(244,114,182,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #f472b6; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Nettoyez vos pinceaux régulièrement et remplacez vos produits de maquillage tous les 6-12 mois.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conseil 4 -->
+                    <div style="background: linear-gradient(135deg, rgba(16,185,129,0.05) 0%, rgba(251,191,36,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #10b981;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #10b981; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-heart" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #10b981; font-size: 1.4rem; font-weight: 600; margin: 0;">Bien-être & Relaxation</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Rituel beauté :</strong> Prenez le temps de vous détendre pendant vos soins. La relaxation améliore l'efficacité des traitements.
+                        </p>
+                        <div style="background: rgba(16,185,129,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #10b981; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Pratiquez la respiration profonde pendant vos soins pour maximiser les bienfaits relaxants.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conseil 5 -->
+                    <div style="background: linear-gradient(135deg, rgba(139,92,246,0.05) 0%, rgba(124,58,237,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #8b5cf6;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #8b5cf6; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-hand-sparkles" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #8b5cf6; font-size: 1.4rem; font-weight: 600; margin: 0;">Soins des Mains & Pieds</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Hydratation régulière :</strong> Appliquez une crème hydratante sur vos mains après chaque lavage pour prévenir la sécheresse.
+                        </p>
+                        <div style="background: rgba(139,92,246,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #8b5cf6; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Portez des gants pour les tâches ménagères et utilisez un gommage hebdomadaire pour des mains douces.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conseil 6 -->
+                    <div style="background: linear-gradient(135deg, rgba(245,158,11,0.05) 0%, rgba(251,191,36,0.05) 100%); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-top: 4px solid #f59e0b;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <div style="background: #f59e0b; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem;">
+                                <i class="fas fa-seedling" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <h3 style="color: #f59e0b; font-size: 1.4rem; font-weight: 600; margin: 0;">Routine Naturelle</h3>
+                        </div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 1rem;">
+                            <strong>Ingrédients naturels :</strong> Privilégiez les produits contenant des ingrédients naturels comme l'aloe vera, l'huile de coco ou l'argile.
+                        </p>
+                        <div style="background: rgba(245,158,11,0.1); padding: 1rem; border-radius: 10px;">
+                            <h4 style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 600;">💡 Conseil Pro :</h4>
+                            <p style="font-size: 1rem; color: #555; margin: 0;">
+                                Testez toujours les nouveaux produits sur une petite zone de peau avant utilisation complète.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call-to-action pour les conseils -->
+                <div style="text-align: center; margin-top: 3rem;">
+                    <div style="background: linear-gradient(135deg, rgba(124,58,237,0.1) 0%, rgba(251,191,36,0.1) 100%); padding: 2rem; border-radius: 20px;">
+                        <h3 style="color: #7c3aed; font-size: 1.5rem; margin-bottom: 1rem; font-weight: 600;">
+                            <i class="fas fa-lightbulb" style="margin-right: 0.5rem;"></i>
+                            Besoin de Conseils Personnalisés ?
+                        </h3>
+                        <p style="font-size: 1.1rem; color: #555; margin-bottom: 1.5rem;">
+                            Nos esthéticiennes expertes sont là pour vous accompagner dans votre routine beauté personnalisée.
+                        </p>
+                        <a href="/inscription/client/" class="btn" style="background: linear-gradient(135deg, #7c3aed 0%, #fbbf24 100%); color: white; padding: 1rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; display: inline-block; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <i class="fas fa-calendar-check" style="margin-right: 0.5rem;"></i>
+                            Prendre Rendez-vous
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section-block white text-center" style="background: transparent;">
+            <h2 class="hero-title" style="font-size:1.3rem; color:#a855f7;">Prêt(e) à vivre l'expérience Beauty Manager ?</h2>
+            <div style="text-align:center;">
+                <a href="/inscription/client/" class="btn bg-secondary" style="font-size:1.2rem;">Créer mon compte</a>
+            </div>
+        </section>
+    </main>
+    <footer class="text-center" style="margin:2rem 0 1rem 0; color:#aaa; font-size:0.95rem;">
+        &copy; 2025 Beauty Manager - Salon de Beauté en Côte d'Ivoire
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,429 @@
+{% extends 'manager/base.html' %}
+{% load price_filters %}
+{% load static %}
+
+{% block title %}Dashboard Admin - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <h1><i class="fas fa-chart-line"></i> Dashboard Administrateur</h1>
+        <p>Bienvenue dans votre espace de gestion</p>
+    </div>
+
+    <!-- Statistiques générales -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ total_reservations }}</h3>
+                    <p>Total Réservations</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ reservations_aujourd_hui }}</h3>
+                    <p>Réservations Aujourd'hui</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ coiffeuses_actives }}</h3>
+                    <p>Esthéticiennes Actives</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ clients_actifs }}</h3>
+                    <p>Clients Actifs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions rapides et Réservations en attente -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-tasks"></i> Actions Rapides</h3>
+                </div>
+                <div class="card-body">
+                    <div class="action-buttons">
+                        <a href="{% url 'reservation_admin' %}" class="btn btn-primary">
+                            <i class="fas fa-list"></i> Gérer les Réservations
+                        </a>
+                        <a href="{% url 'validation_coiffeuses' %}" class="btn btn-warning">
+                            <i class="fas fa-user-check"></i> Valider Esthéticiennes
+                            {% if coiffeuses_en_attente %}
+                                <span class="badge badge-light">{{ coiffeuses_en_attente.count }}</span>
+                            {% endif %}
+                        </a>
+                        <a href="{% url 'services_list' %}" class="btn btn-success">
+                            <i class="fas fa-concierge-bell"></i> Gérer les Services
+                        </a>
+                        <a href="{% url 'profil_utilisateur' %}" class="btn btn-info">
+                            <i class="fas fa-user"></i> Mon Profil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Réservations en Attente</h3>
+                </div>
+                <div class="card-body">
+                    <div class="stat-highlight">
+                        <h2>{{ reservations_en_attente }}</h2>
+                        <p>Réservations nécessitant une attention</p>
+                        {% if reservations_en_attente > 0 %}
+                            <a href="{% url 'reservation_admin' %}?statut=en_attente" class="btn btn-sm btn-warning">
+                                Voir les détails
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rendez-vous récents -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Rendez-vous Récents</h3>
+                </div>
+                <div class="card-body">
+                    {% if rdv_recents %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Heure</th>
+                                        <th>Client</th>
+                                        <th>Esthéticienne</th>
+                                        <th>Service</th>
+                                        <th>Statut</th>
+                                        <th>Montant</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rdv in rdv_recents %}
+                                    <tr>
+                                        <td>{{ rdv.date|date:"d/m/Y" }}</td>
+                                        <td>{{ rdv.heure|time:"H:i" }}</td>
+                                        <td>{{ rdv.client.user.username }}</td>
+                                        <td>{{ rdv.coiffeuse.user.username }}</td>
+                                        <td>{{ rdv.service.name }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ rdv.statut|yesno:'success,warning,info,danger' }}">
+                                                {{ rdv.get_statut_display }}
+                                            </span>
+                                        </td>
+                                        <td>{{ rdv.montant|floatformat:0 }} FCFA</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">Aucun rendez-vous récent.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-user-clock"></i> Esthéticiennes en Attente</h3>
+                </div>
+                <div class="card-body">
+                    {% if coiffeuses_en_attente %}
+                        {% for coiffeuse in coiffeuses_en_attente %}
+                            <div class="coiffeuse-item">
+                                <div class="coiffeuse-avatar">
+                                    {% if coiffeuse.profile_image %}
+                                        <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="profile-image">
+                                    {% else %}
+                                        <div class="profile-placeholder">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="coiffeuse-info">
+                                    <h5>{{ coiffeuse.user.username }}</h5>
+                                    <p>{{ coiffeuse.user.email }}</p>
+                                    <p><i class="fas fa-phone"></i> {{ coiffeuse.phone|default:"Non renseigné" }}</p>
+                                </div>
+                                <div class="coiffeuse-actions">
+                                    <form method="post" action="{% url 'validation_coiffeuses' %}" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="coiffeuse_id" value="{{ coiffeuse.id }}">
+                                        <button type="submit" name="action" value="valider" class="btn btn-sm btn-success">
+                                            <i class="fas fa-check"></i> Valider
+                                        </button>
+                                        <button type="submit" name="action" value="rejeter" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-times"></i> Rejeter
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-muted">Aucune esthéticienne en attente de validation.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Version: 3.0 - Nouveau layout avec cartes côte à côte */
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.dashboard-header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.stat-content p {
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.stat-highlight {
+    text-align: center;
+    padding: 2rem;
+}
+
+.stat-highlight h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin: 0;
+}
+
+.stat-highlight p {
+    color: #666;
+    margin: 1rem 0;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.coiffeuse-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.coiffeuse-avatar {
+    flex-shrink: 0;
+}
+
+.profile-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #7c3aed;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+}
+
+.profile-placeholder {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    border: 3px solid #7c3aed;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+}
+
+.coiffeuse-info {
+    flex: 1;
+}
+
+.coiffeuse-info h5 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.coiffeuse-info p {
+    margin: 0.25rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.coiffeuse-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.badge-light {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+@media (max-width: 768px) {
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .action-buttons .btn {
+        justify-content: center;
+    }
+}
+</style>
+{% endblock %} 

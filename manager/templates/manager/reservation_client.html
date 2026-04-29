@@ -1,0 +1,1068 @@
+{% extends 'manager/base.html' %}
+
+{% block title %}Réservation - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- En-tête de la page -->
+    <div class="reservation-header">
+        <div class="header-content">
+            <h1>
+                <i class="fas fa-calendar-plus"></i>
+                <span>Nouvelle Réservation</span>
+            </h1>
+            <p>Réservez votre créneau et profitez de nos services de beauté</p>
+        </div>
+    </div>
+
+    <!-- Section d'information pour les nouvelles réservations -->
+    {% if messages %}
+        <div class="messages-section">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <i class="fas fa-info-circle"></i>
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <!-- Formulaire de réservation -->
+        <div class="col-lg-8">
+            <div class="reservation-form-card">
+                <div class="form-card-header">
+                    <div class="header-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <div class="header-text">
+                        <h2>Détails de la Réservation</h2>
+                        <p>Remplissez les informations ci-dessous pour votre rendez-vous</p>
+                    </div>
+                </div>
+                
+                <div class="form-card-body">
+                    <form method="post" id="reservation-form" class="modern-form">
+                        {% csrf_token %}
+                        
+                        <!-- Première ligne : Esthéticienne et Service -->
+                        <div class="form-row">
+                                                         <div class="form-group col-md-6">
+                                 <div class="input-wrapper">
+                                                                         <label for="coiffeuse-select" class="floating-label">
+                                        Coiffeuse
+                                    </label>
+                                     <div class="custom-select-wrapper">
+                                                                                 <div class="custom-select-display" id="coiffeuse-display">
+                                            <span class="placeholder">Sélectionnez une coiffeuse</span>
+                                        </div>
+                                        <div class="custom-select-options" id="coiffeuse-options">
+                                            <div class="custom-select-option" data-value="">
+                                                <span class="coiffeuse-name">Sélectionnez une coiffeuse</span>
+                                            </div>
+                                            {% for coiffeuse in coiffeuses %}
+                                                <div class="custom-select-option" data-value="{{ coiffeuse.id }}">
+                                                    {% if coiffeuse.profile_image %}
+                                                        <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="coiffeuse-avatar">
+                                                    {% else %}
+                                                        <div class="coiffeuse-avatar default">
+                                                            <i class="fas fa-user"></i>
+                                                        </div>
+                                                    {% endif %}
+                                                    <span class="coiffeuse-name">{{ coiffeuse.user.username }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <select name="coiffeuse" id="id_coiffeuse" style="display: none;">
+                                            <option value="">Sélectionnez une coiffeuse</option>
+                                            {% for coiffeuse in coiffeuses %}
+                                                <option value="{{ coiffeuse.id }}">{{ coiffeuse.user.username }}</option>
+                                            {% endfor %}
+                                        </select>
+                                     </div>
+                                                                         {% if form.coiffeuse.errors %}
+                                        <div class="error-message">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.coiffeuse.errors }}
+                                        </div>
+                                    {% endif %}
+                                 </div>
+                             </div>
+                            
+                            <div class="form-group col-md-6">
+                                <div class="input-wrapper">
+                                    <label for="{{ form.service.id_for_label }}" class="floating-label">
+                                    </label>
+                                    {{ form.service }}
+                                    {% if form.service.errors %}
+                                        <div class="error-message">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.service.errors }}
+                                        </div>
+                                    {% endif %}
+                                    <small class="form-hint" id="service-info"></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Deuxième ligne : Date et Heure -->
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="input-wrapper">
+                                    <label for="{{ form.date.id_for_label }}" class="floating-label">
+                                    </label>
+                                    {{ form.date }}
+                                    {% if form.date.errors %}
+                                        <div class="error-message">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.date.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                                <div class="input-wrapper">
+                                    <label for="{{ form.heure.id_for_label }}" class="floating-label">
+                                    </label>
+                                    {{ form.heure }}
+                                    {% if form.heure.errors %}
+                                        <div class="error-message">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.heure.errors }}
+                                        </div>
+                                    {% endif %}
+                                    <small class="form-hint">
+                                        <i class="fas fa-info-circle"></i>
+                                        Les réservations se font par créneaux de 30 minutes de 8h00 à 18h30
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <div class="input-wrapper">
+                                    <label for="{{ form.notes.id_for_label }}" class="floating-label">
+                                    </label>
+                                    {{ form.notes }}
+                                    {% if form.notes.errors %}
+                                        <div class="error-message">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.notes.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Boutons d'action -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-calendar-check"></i>
+                                Confirmer la Réservation
+                            </button>
+                            <a href="{% url 'dashboard_client' %}" class="btn btn-secondary btn-lg">
+                                <i class="fas fa-arrow-left"></i>
+                                Retour au Dashboard
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Informations et aide -->
+        <div class="col-lg-4">
+            <div class="info-sidebar">
+                                                  <!-- Remarques Importantes -->
+                 <div class="info-card">
+                     <div class="card-body">
+                     <div class="card-body">
+                         <!-- Horaires d'ouverture -->
+                         <div class="section">
+                             <h4>Horaires d'Ouverture</h4>
+                             <div class="schedule-item">
+                                 <span class="day">Lundi - Vendredi</span>
+                                 <span class="time">8h00 - 19h00</span>
+                             </div>
+                             <div class="schedule-item">
+                                 <span class="day">Samedi</span>
+                                 <span class="time">8h00 - 18h00</span>
+                             </div>
+                             <div class="schedule-item">
+                                 <span class="day">Dimanche</span>
+                                 <span class="time">Fermé</span>
+                             </div>
+                         </div>
+                         
+                         <!-- Conseils -->
+                         <div class="section">
+                             <h4>Conseils</h4>
+                                                           <ul class="tips-list">
+                                  <li>Arrivez 10 minutes avant votre rendez-vous</li>
+                                  <li>Annulez au moins 24h à l'avance si nécessaire</li>
+                                  <li>Préparez vos questions pour l'esthéticienne</li>
+                                  <li>Apportez une pièce d'identité si demandé</li>
+                              </ul>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* En-tête de la page */
+.reservation-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.reservation-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+  .reservation-header h1 {
+     font-size: 2.5rem;
+     font-weight: 700;
+     margin-bottom: 0.5rem;
+     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+     text-align: center !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     gap: 0.75rem;
+     flex-wrap: wrap;
+     width: 100% !important;
+     margin-left: auto !important;
+     margin-right: auto !important;
+  }
+  
+  .reservation-header h1 i {
+     font-size: 2.2rem;
+     flex-shrink: 0;
+  }
+  
+  .reservation-header h1 span {
+     text-align: center !important;
+     flex: 1;
+     min-width: 0;
+  }
+  
+  .reservation-header p {
+     font-size: 1.1rem;
+     opacity: 0.9;
+     margin: 0;
+     text-align: center;
+  }
+
+/* Cartes principales */
+.reservation-form-card,
+.reservations-history-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Espacement entre les cartes */
+.reservation-form-card {
+    margin-right: 2rem;
+}
+
+.reservations-history-card {
+    margin-left: 1rem;
+}
+
+/* En-têtes des cartes */
+.form-card-header,
+.history-card-header {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.header-text h2,
+.header-text h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.header-text p {
+    margin: 0.25rem 0 0 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+/* Corps des cartes */
+.form-card-body,
+.history-card-body {
+    padding: 2rem;
+}
+
+/* Formulaire moderne */
+.modern-form {
+    max-width: 100%;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    flex: 1;
+    position: relative;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.floating-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem 1rem 0 1rem;
+    font-size: 0.875rem;
+    color: #374151;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.25rem;
+}
+
+.floating-label i {
+    font-size: 1rem;
+    color: #7c3aed;
+    margin-right: 0.75rem;
+}
+
+/* Styles pour les champs de formulaire */
+.modern-form select,
+.modern-form input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    color: #1f2937;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.5rem;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.modern-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    color: #1f2937;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.025em;
+    margin-bottom: 0.5rem;
+}
+
+.modern-form select:focus,
+.modern-form input:focus,
+.modern-form textarea:focus {
+    outline: none;
+    border-color: #7c3aed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.modern-form select:hover,
+.modern-form input:hover,
+.modern-form textarea:hover {
+    border-color: #d1d5db;
+    background: white;
+}
+
+/* Messages d'erreur */
+.error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: #fef2f2;
+    border-radius: 8px;
+    border-left: 3px solid #dc2626;
+    line-height: 1.5;
+}
+
+.error-message i {
+    color: #dc2626;
+}
+
+/* Indices de formulaire */
+.form-hint {
+    color: #4b5563;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    line-height: 1.5;
+}
+
+/* Carte d'information sur le prix */
+.price-info-card {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+}
+
+.price-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.price-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.price-amount {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.currency {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Bouton de réservation */
+.form-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-reserve {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    min-width: 200px;
+    justify-content: center;
+}
+
+
+
+/* Liste des réservations */
+.reservations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.reservation-item {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+
+
+.reservation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.reservation-header h5 {
+    margin: 0;
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-en_attente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-confirmé {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-payé {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-annulé {
+    background: #dc2626;
+    color: white;
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.detail-row i {
+    color: #7c3aed;
+    width: 16px;
+    text-align: center;
+}
+
+.reservation-actions {
+    margin-top: 1rem;
+}
+
+.btn-pay {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+
+
+/* État vide */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+    margin: 1rem 0 0.5rem 0;
+    color: #374151;
+    font-weight: 600;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reservation-header h1 {
+        font-size: 2rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .form-card-header,
+    .history-card-header {
+        padding: 1.5rem;
+    }
+    
+    .form-card-body,
+    .history-card-body {
+        padding: 1.5rem;
+    }
+    
+    .btn-reserve {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .reservation-header {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Effets de focus améliorés */
+.modern-form select:focus,
+.modern-form input:focus,
+.modern-form textarea:focus {
+    outline: none;
+    border-color: #7c3aed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Nouveaux styles pour les créneaux */
+.time-slots-info {
+    margin-top: 1rem;
+}
+
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.time-slot {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.form-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.form-hint i {
+    color: #3b82f6;
+}
+
+/* Amélioration du style du select pour l'heure */
+#id_heure {
+    background-color: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#id_heure:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    outline: none;
+}
+
+#id_heure option {
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+/* Responsive pour les créneaux */
+@media (max-width: 768px) {
+    .time-slots-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .time-slot {
+        font-size: 0.75rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Styles pour le select personnalisé des esthéticiennes avec photos */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-display {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.custom-select-display:hover {
+    border-color: #d1d5db;
+}
+
+.custom-select-display.active {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+/* Suppression de la flèche */
+
+.custom-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select-options.show {
+    display: block;
+}
+
+.custom-select-option {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.custom-select-option:hover {
+    background-color: #f9fafb;
+}
+
+.custom-select-option.selected {
+    background-color: #7c3aed;
+    color: white;
+}
+
+.coiffeuse-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid #e5e7eb;
+}
+
+.coiffeuse-avatar.default {
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 12px;
+}
+
+.coiffeuse-name {
+    font-weight: 500;
+    flex: 1;
+}
+
+ /* Masquer le select original */
+ #id_coiffeuse {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+ 
+ /* Styles pour les sections dans la carte Remarques Importantes */
+ .section {
+     margin-bottom: 1.5rem;
+ }
+ 
+ .section:last-child {
+     margin-bottom: 0;
+ }
+ 
+ .section h4 {
+     color: #374151;
+     font-weight: 600;
+     font-size: 1rem;
+     margin-bottom: 0.75rem;
+     border-bottom: 2px solid #e5e7eb;
+     padding-bottom: 0.5rem;
+ }
+</style>
+
+<script>
+// Script pour la gestion du formulaire
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des erreurs de formulaire
+    const form = document.getElementById('reservation-form');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    form.addEventListener('submit', function(e) {
+        // Désactiver le bouton pour éviter les soumissions multiples
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
+    });
+    
+    // Affichage des informations du service
+    const serviceSelect = document.getElementById('id_service');
+    const serviceInfo = document.getElementById('service-info');
+    
+    if (serviceSelect) {
+        serviceSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            if (selectedOption.value) {
+                // Ici vous pourriez ajouter une logique pour récupérer les détails du service
+                serviceInfo.textContent = `Service sélectionné : ${selectedOption.text}`;
+            } else {
+                serviceInfo.textContent = '';
+            }
+        });
+    }
+    
+    // Gestion du select personnalisé pour les coiffeuses
+    const coiffeuseDisplay = document.getElementById('coiffeuse-display');
+    const coiffeuseOptions = document.getElementById('coiffeuse-options');
+    const coiffeuseSelect = document.getElementById('id_coiffeuse');
+    
+    if (coiffeuseDisplay && coiffeuseOptions && coiffeuseSelect) {
+        // Gestion des clics sur l'affichage
+        coiffeuseDisplay.addEventListener('click', function() {
+            const isActive = coiffeuseDisplay.classList.contains('active');
+            
+            // Fermer tous les autres selects
+            document.querySelectorAll('.custom-select-display').forEach(d => {
+                d.classList.remove('active');
+                d.nextElementSibling.classList.remove('show');
+            });
+            
+            if (!isActive) {
+                coiffeuseDisplay.classList.add('active');
+                coiffeuseOptions.classList.add('show');
+            }
+        });
+        
+        // Gestion des clics sur les options
+        coiffeuseOptions.addEventListener('click', function(e) {
+            const option = e.target.closest('.custom-select-option');
+            if (option) {
+                const value = option.dataset.value;
+                const name = option.querySelector('.coiffeuse-name').textContent;
+                const avatar = option.querySelector('.coiffeuse-avatar');
+                
+                // Mettre à jour l'affichage
+                if (value === '') {
+                    coiffeuseDisplay.innerHTML = '<span class="placeholder">Sélectionnez une coiffeuse</span>';
+                } else {
+                    if (avatar.tagName === 'IMG') {
+                        coiffeuseDisplay.innerHTML = `
+                            <img src="${avatar.src}" alt="Photo de ${name}" class="coiffeuse-avatar">
+                            <span class="coiffeuse-name">${name}</span>
+                        `;
+                    } else {
+                        coiffeuseDisplay.innerHTML = `
+                            <div class="coiffeuse-avatar default">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="coiffeuse-name">${name}</span>
+                        `;
+                    }
+                }
+                
+                // Mettre à jour le select original
+                coiffeuseSelect.value = value;
+                coiffeuseSelect.dispatchEvent(new Event('change'));
+                
+                // Fermer le dropdown
+                coiffeuseDisplay.classList.remove('active');
+                coiffeuseOptions.classList.remove('show');
+            }
+        });
+        
+        // Fermer le dropdown en cliquant ailleurs
+        document.addEventListener('click', function(e) {
+            const wrapper = coiffeuseDisplay.closest('.custom-select-wrapper');
+            if (!wrapper.contains(e.target)) {
+                coiffeuseDisplay.classList.remove('active');
+                coiffeuseOptions.classList.remove('show');
+            }
+        });
+    }
+});
+</script>
+
+<style>
+/* Styles pour la section des messages */
+.messages-section {
+    margin-bottom: 2rem;
+}
+
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+.alert i {
+    font-size: 1.1rem;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .alert {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .btn-close {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+</style>
+{% endblock %} 

@@ -1,0 +1,267 @@
+{% extends 'manager/base.html' %}
+{% load price_filters %}
+
+{% block title %}Confirmer Paiement Espèces - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-money-bill-wave"></i> Confirmer Paiement Espèces</h1>
+        <p>Confirmez que le client a effectivement payé en espèces</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-check"></i> Détails de la Réservation</h3>
+                </div>
+                <div class="card-body">
+                    <div class="reservation-details">
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-user"></i> Client :
+                            </div>
+                            <div class="detail-value">{{ reservation.client.user.username }}</div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-cut"></i> Service :
+                            </div>
+                            <div class="detail-value">{{ reservation.service.name }}</div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-calendar"></i> Date :
+                            </div>
+                            <div class="detail-value">{{ reservation.date|date:"l d F Y" }}</div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-clock"></i> Heure :
+                            </div>
+                            <div class="detail-value">{{ reservation.heure|time:"H:i" }}</div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-money-bill-wave"></i> Montant :
+                            </div>
+                            <div class="detail-value">{{ reservation.montant|floatformat:0 }} FCFA</div>
+                        </div>
+                        
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-info-circle"></i> Statut :
+                            </div>
+                            <div class="detail-value">
+                                <span class="badge badge-warning">{{ reservation.get_statut_display }}</span>
+                            </div>
+                        </div>
+                        
+                        {% if reservation.notes %}
+                        <div class="detail-row">
+                            <div class="detail-label">
+                                <i class="fas fa-sticky-note"></i> Notes :
+                            </div>
+                            <div class="detail-value">{{ reservation.notes }}</div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="payment-confirmation-section">
+                        <div class="alert alert-info">
+                            <h5><i class="fas fa-info-circle"></i> Instructions</h5>
+                            <p>Vérifiez que le client a bien payé <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> en espèces avant de confirmer.</p>
+                        </div>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="confirmation-buttons">
+                                <button type="submit" class="btn btn-success btn-lg">
+                                    <i class="fas fa-check"></i> Confirmer le Paiement
+                                </button>
+                                <a href="{% url 'reservation_coiffeuse' %}" class="btn btn-secondary btn-lg">
+                                    <i class="fas fa-arrow-left"></i> Retour au Planning
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border-radius: 15px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1.5rem;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #495057;
+    font-weight: 600;
+}
+
+.reservation-details {
+    margin-bottom: 2rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail-label i {
+    color: #7c3aed;
+    width: 20px;
+}
+
+.detail-value {
+    font-weight: 500;
+    color: #212529;
+}
+
+.payment-confirmation-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e9ecef;
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+    border: 1px solid #bee5eb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.alert-info h5 {
+    color: #0c5460;
+    margin-bottom: 1rem;
+}
+
+.alert-info p {
+    margin: 0;
+    color: #0c5460;
+}
+
+.confirmation-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838, #1ea085);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    border: none;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #5a6268, #343a40);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+}
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #ffc107, #ffb300);
+    color: #212529;
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .confirmation-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-lg {
+        width: 100%;
+    }
+}
+</style>
+{% endblock %} 

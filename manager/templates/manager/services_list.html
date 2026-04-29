@@ -1,0 +1,212 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block title %}Gestion des services{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="section-title">Gestion des services</h1>
+    <div class="mb-4 flex-center">
+        <a href="{% url 'service_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un service</a>
+    </div>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="services-list">
+        {% if services %}
+            <table class="table-services">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Durée</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for service in services %}
+                    <tr class="{% if not service.is_active %}service-inactive{% endif %}">
+                        <td>{{ service.name }}</td>
+                        <td>{{ service.description|truncatechars:50 }}</td>
+                        <td>{{ service.price }} FCFA</td>
+                        <td>{{ service.duration }} min</td>
+                        <td>
+                            {% if service.is_active %}
+                                <span class="badge badge-success">Actif</span>
+                            {% else %}
+                                <span class="badge badge-danger">Inactif</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'service_update' service.id %}" class="btn-action" title="Modifier"><i class="fas fa-edit"></i></a>
+                            <a href="{% url 'service_toggle_active' service.id %}" class="btn-action" title="Activer/Désactiver"><i class="fas fa-toggle-on"></i></a>
+                            <a href="{% url 'service_delete' service.id %}" class="btn-action text-danger" title="Supprimer"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucun service enregistré pour le moment.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.container { 
+    max-width: 900px; 
+    margin: 2rem auto; 
+    background: rgba(255,255,255,0.95); 
+    border-radius: 1rem; 
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08); 
+    padding: 2rem; 
+}
+
+.section-title { 
+    text-align: center; 
+    font-size: 2.5rem; 
+    margin-bottom: 2rem; 
+    font-weight: 700; 
+    letter-spacing: 1px; 
+    color: #333;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.table-services {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.table-services th, 
+.table-services td { 
+    padding: 1rem; 
+    border-bottom: 1px solid #eee; 
+    text-align: left; 
+}
+
+.table-services th { 
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    font-weight: 600;
+}
+
+.table-services tr:hover {
+    background-color: #f8f9fa;
+}
+
+.service-inactive { 
+    opacity: 0.6; 
+}
+
+.badge { 
+    padding: 0.3em 0.8em; 
+    border-radius: 1em; 
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.badge-success { 
+    background: #10b981; 
+    color: #fff; 
+}
+
+.badge-danger { 
+    background: #ef4444; 
+    color: #fff; 
+}
+
+.btn { 
+    display: inline-block; 
+    padding: 0.75rem 1.5rem; 
+    border-radius: 0.5rem; 
+    text-decoration: none; 
+    font-weight: 600; 
+    margin-right: 0.5rem; 
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary { 
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff; 
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+.btn-action {
+    display: inline-block;
+    padding: 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.btn-action:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+.btn-action.text-danger:hover {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.messages li {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+.messages .success {
+    background: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.messages .error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c2c7;
+}
+
+.messages .warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+</style>
+{% endblock %} 

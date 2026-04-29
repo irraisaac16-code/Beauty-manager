@@ -1,0 +1,28 @@
+Confirmation de Réservation - Beauty Manager
+
+Bonjour {{ client_name }},
+
+Nous sommes ravis de vous confirmer votre réservation. Voici les détails de votre rendez-vous :
+
+SERVICE : {{ service_name }}
+COIFFEUSE : {{ coiffeuse_name }}
+DATE : {{ date }}
+HEURE : {{ heure }}
+MONTANT : {{ montant }}€
+
+INSTRUCTIONS IMPORTANTES :
+- Veuillez arriver 10 minutes avant votre rendez-vous
+- Apportez une pièce d'identité si nécessaire
+- En cas d'annulation, contactez-nous au moins 24h à l'avance
+
+Pour modifier ou annuler votre réservation, connectez-vous à votre espace client :
+http://localhost:8000
+
+Nous vous remercions de votre confiance et nous vous attendons avec impatience !
+
+Cordialement,
+L'équipe Beauty Manager
+
+---
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

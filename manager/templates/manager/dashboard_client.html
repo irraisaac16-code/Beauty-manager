@@ -1,0 +1,877 @@
+{% extends 'manager/base.html' %}
+{% load price_filters %}
+
+{% block title %}Dashboard Client - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <!-- Photo de profil au lieu du texte -->
+        <div class="profile-image-section">
+            {% if user_profile.profile_image %}
+                <img src="{{ user_profile.profile_image.url }}" alt="Photo de profil" class="profile-image">
+            {% else %}
+                <div class="no-profile-image">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            {% endif %}
+        </div>
+        <p><strong>Bienvenue {{ user_profile.user.username }} !</strong></p>
+    </div>
+
+
+
+    <!-- Mes réservations -->
+    <div class="reservations-card">
+        <div class="card-header">
+            <h3><i class="fas fa-calendar-alt"></i> Mes Réservations</h3>
+            <p>Gérez vos rendez-vous et suivez leur statut</p>
+        </div>
+        <div class="card-body">
+            
+            {% if reservations %}
+                <div class="reservations-grid">
+                    {% for reservation in reservations %}
+                        <div class="reservation-card">
+                            <div class="reservation-card-header">
+                                <div class="reservation-date">
+                                    <div class="date-icon">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                    <div class="date-info">
+                                        <span class="date">{{ reservation.date|date:"d/m/Y" }}</span>
+                                        <span class="time">{{ reservation.heure|time:"H:i" }}</span>
+                                    </div>
+                                </div>
+                                <div class="status-badge status-{{ reservation.statut }}">
+                                    <i class="fas fa-circle"></i>
+                                    {{ reservation.get_statut_display }}
+                                </div>
+                            </div>
+                            
+                            <div class="reservation-card-body">
+                                <div class="service-section">
+                                    <div class="service-icon">
+                                        <i class="fas fa-cut"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <h4>{{ reservation.service.name }}</h4>
+                                        <p>{{ reservation.service.duration }} minutes</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="reservation-details">
+                                    <div class="detail-item coiffeuse-info">
+                                        <div class="coiffeuse-photo">
+                                            {% if reservation.coiffeuse.profile_image %}
+                                                <img src="{{ reservation.coiffeuse.profile_image.url }}" alt="Photo de {{ reservation.coiffeuse.user.username }}" class="coiffeuse-image">
+                                            {% else %}
+                                                <div class="coiffeuse-no-image">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <div class="coiffeuse-details">
+                                            <span class="coiffeuse-name">{{ reservation.coiffeuse.user.username }}</span>
+                                            <span class="coiffeuse-label">Esthéticienne</span>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="price">{{ reservation.montant|floatformat:0 }} FCFA</span>
+                                    </div>
+                                    {% if reservation.notes %}
+                                        <div class="detail-item">
+                                            <span>{{ reservation.notes|truncatechars:50 }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="reservation-actions">
+                                    {% if reservation.statut == 'en_attente' %}
+                                        {% if reservation.payment_method == 'cash' %}
+                                            <div class="payment-info">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span>Paiement en espèces - En attente de confirmation</span>
+                                            </div>
+                                        {% else %}
+                                            <a href="{% url 'simulate_payment' reservation.id %}" class="action-btn pay-btn">
+                                                <i class="fas fa-credit-card"></i>
+                                                <span>Payer</span>
+                                            </a>
+                                        {% endif %}
+                                        <a href="{% url 'modifier_reservation' reservation.id %}" class="action-btn edit-btn">
+                                            <i class="fas fa-edit"></i>
+                                            <span>Modifier</span>
+                                        </a>
+                                        <a href="{% url 'annuler_reservation' reservation.id %}" class="action-btn cancel-btn">
+                                            <i class="fas fa-times"></i>
+                                            <span>Annuler</span>
+                                        </a>
+                                    {% elif reservation.statut == 'confirmé' %}
+                                        <a href="{% url 'modifier_reservation' reservation.id %}" class="action-btn edit-btn">
+                                            <i class="fas fa-edit"></i>
+                                            <span>Modifier</span>
+                                        </a>
+                                        <a href="{% url 'annuler_reservation' reservation.id %}" class="action-btn cancel-btn">
+                                            <i class="fas fa-times"></i>
+                                            <span>Annuler</span>
+                                        </a>
+                                    {% elif reservation.statut == 'payé' %}
+                                        <div class="status-confirmed">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Payé</span>
+                                        </div>
+                                    {% else %}
+                                        <div class="status-info">
+                                            <i class="fas fa-info-circle"></i>
+                                            <span>{{ reservation.get_statut_display }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-calendar-times"></i>
+                    </div>
+                    <h3>Aucune réservation</h3>
+                    <p>Vous n'avez pas encore de réservation. Commencez par en créer une !</p>
+                    <a href="{% url 'reservation_client' %}" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus"></i> Réserver maintenant
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Section d'action rapide -->
+        <div class="quick-actions-section">
+            <div class="quick-actions-header">
+                <h3><i class="fas fa-bolt"></i> Actions Rapides</h3>
+                <p>Accédez rapidement aux fonctionnalités principales</p>
+            </div>
+            <div class="quick-actions-grid">
+                <a href="{% url 'reservation_client' %}" class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <div class="quick-action-content">
+                        <h4>Nouvelle Réservation</h4>
+                        <p>Prendre un nouveau rendez-vous</p>
+                    </div>
+                </a>
+                <a href="{% url 'profil_utilisateur' %}" class="quick-action-card">
+                    <div class="quick-action-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="quick-action-content">
+                        <h4>Mon Profil</h4>
+                        <p>Gérer mes informations</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+/* Styles de base */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0 0.75rem 0;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+    border-radius: 15px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.dashboard-header p {
+    margin: 0;
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+
+
+/* Nouvelle disposition CSS Grid pour occuper toute la surface */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    height: 400px;
+}
+
+.actions-card,
+.info-card,
+.reservations-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.actions-card:hover,
+.info-card:hover,
+.reservations-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.reservations-card {
+    grid-column: 1 / -1;
+    height: auto;
+    min-height: 400px;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px 15px 0 0;
+    text-align: center;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.card-header i {
+    margin-right: 0.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.btn-info {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6b7280, #4b5563);
+    color: white;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.info-item i {
+    color: #7c3aed;
+    margin-right: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.info-item span {
+    color: #333;
+}
+
+/* Section des réservations */
+.reservations-section {
+    margin-top: 2rem;
+}
+
+.reservations-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.reservations-header {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.reservations-header h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.reservations-header p {
+    margin: 0.5rem 0 0 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.reservations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.reservation-card {
+    background: #f8fafc;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reservation-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.reservation-card-header {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.reservation-date {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.date-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.date-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-info .date {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1.1rem;
+}
+
+.date-info .time {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-badge i {
+    font-size: 0.6rem;
+}
+
+.status-en_attente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-confirmé {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-payé {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-annulé {
+    background: #dc2626;
+    color: white;
+}
+
+.status-terminé {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.reservation-card-body {
+    padding: 1.5rem;
+}
+
+.service-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.service-details h4 {
+    margin: 0;
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.service-details p {
+    margin: 0.25rem 0 0 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.reservation-details {
+    margin-bottom: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.detail-item i {
+    color: #7c3aed;
+    width: 16px;
+    text-align: center;
+}
+
+.detail-item span {
+    color: #374151;
+}
+
+.detail-item .price {
+    font-weight: 600;
+    color: #10b981;
+}
+
+/* Styles pour la photo de la coiffeuse */
+.coiffeuse-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.coiffeuse-photo {
+    flex-shrink: 0;
+}
+
+.coiffeuse-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #7c3aed;
+    box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
+}
+
+.coiffeuse-no-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #7c3aed;
+    color: #6c757d;
+}
+
+.coiffeuse-no-image i {
+    font-size: 1.2rem;
+}
+
+.coiffeuse-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.coiffeuse-name {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+}
+
+.coiffeuse-label {
+    color: #6b7280;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.reservation-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.pay-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+
+.pay-btn:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: white;
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.cancel-btn:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+}
+
+.status-confirmed {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f3f4f6;
+    color: #6b7280;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.payment-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #fef3c7;
+    color: #92400e;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.empty-state .empty-icon {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    margin: 1rem 0;
+    color: #333;
+}
+
+.empty-state p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Styles pour la photo de profil */
+.profile-image-section {
+    text-align: center;
+    margin-bottom: 0.25rem;
+    padding: 0.5rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #7c3aed;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+}
+
+.no-profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e9ecef, #dee2e6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #7c3aed;
+    color: #6c757d;
+    margin: 0 auto;
+}
+
+    .no-profile-image i {
+        font-size: 4rem;
+    }
+
+    /* Section d'actions rapides */
+    .quick-actions-section {
+        margin-top: 2rem;
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .quick-actions-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .quick-actions-header h3 {
+        color: #333;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .quick-actions-header p {
+        color: #666;
+        margin: 0;
+    }
+
+    .quick-actions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .quick-action-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 10px;
+        text-decoration: none;
+        color: #333;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .quick-action-card:hover {
+        background: #e9ecef;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: #7c3aed;
+        text-decoration: none;
+        color: #333;
+    }
+
+    .quick-action-icon {
+        background: linear-gradient(135deg, #7c3aed, #a855f7);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-right: 1rem;
+    }
+
+    .quick-action-content h4 {
+        margin: 0 0 0.25rem 0;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .quick-action-content p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 1rem;
+    }
+    
+    .reservations-card {
+        grid-column: 1;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+    
+
+    
+    .profile-image,
+    .no-profile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .no-profile-image i {
+        font-size: 3rem;
+    }
+    
+    .reservations-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .reservation-card-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .reservation-actions {
+        justify-content: center;
+    }
+    
+    .action-btn {
+        flex: 1;
+        justify-content: center;
+        min-width: 120px;
+    }
+    
+    .service-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .reservations-header {
+        padding: 1.5rem;
+    }
+    
+    .reservations-header h3 {
+        font-size: 1.5rem;
+    }
+}
+</style>
+{% endblock %} 

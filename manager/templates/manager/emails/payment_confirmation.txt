@@ -1,0 +1,25 @@
+Paiement Confirmé - Beauty Manager
+
+Bonjour {{ client_name }},
+
+Nous vous confirmons que votre paiement a été traité avec succès !
+
+DÉTAILS DE LA TRANSACTION :
+Service : {{ service_name }}
+Date : {{ date }}
+Heure : {{ heure }}
+Montant payé : {{ montant }}€
+Méthode de paiement : Wave Mobile Money
+
+Votre rendez-vous est maintenant confirmé !
+
+Nous vous attendons avec impatience pour votre rendez-vous. N'oubliez pas d'arriver 10 minutes avant l'heure prévue.
+
+En cas de question ou de modification, n'hésitez pas à nous contacter.
+
+Cordialement,
+L'équipe Beauty Manager
+
+---
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

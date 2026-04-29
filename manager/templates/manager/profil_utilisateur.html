@@ -1,0 +1,229 @@
+{% extends 'manager/base.html' %}
+{% load price_filters %}
+
+{% block title %}Mon Profil - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="profile-header">
+        <h1><i class="fas fa-user-circle"></i> Mon Profil</h1>
+        <p>Gérez vos informations personnelles</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Informations du profil -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-user"></i> Informations Personnelles</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Image de profil -->
+                    <div class="profile-image-display">
+                        {% if user_profile.profile_image %}
+                            <img src="{{ user_profile.profile_image.url }}" alt="Photo de profil" class="profile-image">
+                        {% else %}
+                            <div class="no-profile-image">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="profile-info">
+                        <div class="info-row">
+                            <label><strong>Nom d'utilisateur :</strong></label>
+                            <span>{{ user_profile.user.username }}</span>
+                        </div>
+                        <div class="info-row">
+                            <label><strong>Prénom :</strong></label>
+                            <span>{{ user_profile.user.first_name|default:"Non renseigné" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <label><strong>Nom :</strong></label>
+                            <span>{{ user_profile.user.last_name|default:"Non renseigné" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <label><strong>Email :</strong></label>
+                            <span>{{ user_profile.user.email }}</span>
+                        </div>
+                        <div class="info-row">
+                            <label><strong>Téléphone :</strong></label>
+                            <span>{{ user_profile.phone|default:"Non renseigné" }}</span>
+                        </div>
+                        <div class="info-row">
+                            <label><strong>Membre depuis :</strong></label>
+                            <span>{{ user_profile.user.date_joined|date:"d/m/Y" }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions mt-4">
+                        <a href="{% url 'modifier_profil' %}" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Modifier le Profil
+                        </a>
+                        <a href="{% url 'changer_mot_de_passe' %}" class="btn btn-warning">
+                            <i class="fas fa-key"></i> Changer le Mot de Passe
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.profile-header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #7c3aed;
+}
+
+.info-row label {
+    font-weight: 600;
+    color: #495057;
+    margin: 0;
+}
+
+.info-row span {
+    color: #6c757d;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.stat-content h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.stat-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.badge-primary {
+    background-color: #7c3aed;
+    color: white;
+}
+
+    /* Styles pour l'affichage de l'image de profil */
+    .profile-image-display {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 1rem;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #7c3aed;
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .profile-image:hover {
+        transform: scale(1.05);
+    }
+
+    .no-profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e9ecef, #dee2e6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 5px solid #7c3aed;
+        color: #6c757d;
+        margin: 0 auto;
+    }
+
+    .no-profile-image i {
+        font-size: 4rem;
+    }
+
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+    
+    .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+}
+</style>
+{% endblock %} 

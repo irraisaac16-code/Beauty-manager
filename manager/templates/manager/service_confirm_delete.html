@@ -1,0 +1,42 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% block title %}Supprimer un service{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="titre-section">Supprimer le service</h1>
+    <div class="card card-warning">
+        <h2>{{ service.name }}</h2>
+        <p>Description : {{ service.description }}</p>
+        <p>Prix : <strong>{{ service.price }} FCFA</strong></p>
+        <p>Durée : <strong>{{ service.duration }} min</strong></p>
+        {% if reservations_count > 0 %}
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                Ce service a <strong>{{ reservations_count }}</strong> réservation(s) liée(s). Il sera désactivé et non supprimé.
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                <i class="fas fa-trash-alt"></i>
+                Cette action est irréversible. Voulez-vous vraiment supprimer ce service ?
+            </div>
+        {% endif %}
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Confirmer</button>
+            <a href="{% url 'services_list' %}" class="btn btn-secondary ml-3"><i class="fas fa-arrow-left"></i> Annuler</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.container { max-width: 500px; margin: 2rem auto; background: rgba(255,255,255,0.97); border-radius: 1rem; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 2rem; }
+.section-title { text-align: center; font-size: 2rem; margin-bottom: 1.5rem; font-weight: 700; letter-spacing: 1px; }
+.alert { background: #fffbea; color: #b7791f; border: 1px solid #f6e05e; border-radius: 0.7em; padding: 1em 1.2em; font-size: 1.1em; }
+.btn { display: inline-block; padding: 0.4em 1em; border-radius: 0.5em; text-decoration: none; font-weight: 500; margin-right: 0.3em; transition: box-shadow 0.2s; box-shadow: 0 2px 8px rgba(56,178,172,0.08); }
+.btn-danger { background: #e53e3e; color: #fff; }
+.btn-secondary { background: #4a5568; color: #fff; }
+.btn:hover { box-shadow: 0 4px 16px rgba(56,178,172,0.15); filter: brightness(0.97); }
+</style>
+{% endblock %} 

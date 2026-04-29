@@ -1,0 +1,738 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% load math_filters %}
+
+{% block title %}Bilan Annuel - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="bilan-container">
+    <!-- Header du bilan -->
+    <div class="bilan-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-chart-bar"></i> Bilan Annuel</h1>
+                <p>{{ periode }}</p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'bilan_hebdomadaire' %}" class="btn-secondary">
+                    <i class="fas fa-chart-line"></i> Bilan Hebdomadaire
+                </a>
+                <a href="{% url 'bilan_mensuel' %}" class="btn-secondary">
+                    <i class="fas fa-calendar-alt"></i> Bilan Mensuel
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistiques principales -->
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ total_reservations }}</h3>
+                <p>Total Réservations</p>
+            </div>
+        </div>
+        
+        <div class="stat-card success">
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ reservations_confirmees }}</h3>
+                <p>Réservations Confirmées</p>
+            </div>
+        </div>
+        
+        <div class="stat-card warning">
+            <div class="stat-icon">
+                <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ reservations_payees }}</h3>
+                <p>Réservations Payées</p>
+            </div>
+        </div>
+        
+        <div class="stat-card info">
+            <div class="stat-icon">
+                <i class="fas fa-coins"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ chiffre_affaires|floatformat:0 }}</h3>
+                <p>Chiffre d'Affaires (FCFA)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <div class="content-grid">
+            <!-- Graphique des réservations par mois -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-area"></i> Réservations par Mois</h3>
+                    <p>Répartition des réservations sur l'année</p>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <div class="chart-bars">
+                            {% for mois in mois_annee %}
+                            <div class="chart-bar">
+                                <div class="bar-label">{{ mois.mois }}</div>
+                                <div class="bar-container">
+                                    <div class="bar" style="height: {% if total_reservations > 0 %}{{ mois.nb_reservations|percentage:total_reservations }}{% else %}0{% endif %}%"></div>
+                                </div>
+                                <div class="bar-value">{{ mois.nb_reservations }}</div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top coiffeuses -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-trophy"></i> Top Coiffeuses</h3>
+                    <p>Les coiffeuses les plus actives de l'année</p>
+                </div>
+                <div class="card-body">
+                    {% if top_coiffeuses %}
+                        <div class="ranking-list">
+                            {% for coiffeuse in top_coiffeuses %}
+                            <div class="ranking-item">
+                                <div class="ranking-position">{{ forloop.counter }}</div>
+                                <div class="ranking-content">
+                                    <h4>{{ coiffeuse.coiffeuse__user__username }}</h4>
+                                    <p>{{ coiffeuse.nb_reservations }} réservations</p>
+                                </div>
+                                <div class="ranking-amount">
+                                    {{ coiffeuse.total_montant|floatformat:0 }} FCFA
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-user-friends"></i>
+                            <p>Aucune réservation cette année</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Top services -->
+        <div class="content-card">
+            <div class="card-header">
+                <h3><i class="fas fa-concierge-bell"></i> Top Services</h3>
+                <p>Les services les plus demandés de l'année</p>
+            </div>
+            <div class="card-body">
+                {% if top_services %}
+                    <div class="services-grid">
+                        {% for service in top_services %}
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <div class="service-content">
+                                <h4>{{ service.service__name }}</h4>
+                                <p>{{ service.nb_reservations }} réservations</p>
+                                <div class="service-amount">
+                                    {{ service.total_montant|floatformat:0 }} FCFA
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-concierge-bell"></i>
+                        <p>Aucun service réservé cette année</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Dernières réservations -->
+        <div class="content-card">
+            <div class="card-header">
+                <h3><i class="fas fa-clock"></i> Dernières Réservations</h3>
+                <p>Les réservations récentes de l'année</p>
+            </div>
+            <div class="card-body">
+                {% if reservations_annee %}
+                    <div class="reservations-list">
+                        {% for reservation in reservations_annee %}
+                        <div class="reservation-item">
+                            <div class="reservation-date">
+                                <div class="date-day">{{ reservation.date|date:"d" }}</div>
+                                <div class="date-month">{{ reservation.date|date:"F" }}</div>
+                            </div>
+                            <div class="reservation-details">
+                                <h4>{{ reservation.service.name }}</h4>
+                                <p>{{ reservation.client.user.username }} → {{ reservation.coiffeuse.user.username }}</p>
+                                <span class="time-badge">{{ reservation.heure|time:"H:i" }}</span>
+                            </div>
+                            <div class="reservation-status">
+                                <span class="status-badge status-{{ reservation.statut }}">
+                                    {{ reservation.get_statut_display }}
+                                </span>
+                            </div>
+                            <div class="reservation-amount">
+                                {{ reservation.montant|floatformat:0 }} FCFA
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <p>Aucune réservation cette année</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Bilan Container */
+.bilan-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 2rem 0;
+}
+
+/* Header du bilan */
+.bilan-header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.header-left h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-left h1 i {
+    color: #7c3aed;
+    font-size: 2.2rem;
+}
+
+.header-left p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Grille de statistiques */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-light));
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card.primary {
+    --accent-color: #7c3aed;
+    --accent-color-light: #a855f7;
+}
+
+.stat-card.success {
+    --accent-color: #10b981;
+    --accent-color-light: #34d399;
+}
+
+.stat-card.warning {
+    --accent-color: #f59e0b;
+    --accent-color-light: #fbbf24;
+}
+
+.stat-card.info {
+    --accent-color: #3b82f6;
+    --accent-color-light: #60a5fa;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-content p {
+    color: #64748b;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Contenu principal */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.content-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-header h3 i {
+    color: #7c3aed;
+}
+
+.card-header p {
+    margin: 0.5rem 0 0 0;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Graphique */
+.chart-container {
+    padding: 1rem 0;
+}
+
+.chart-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    height: 300px;
+    gap: 0.5rem;
+}
+
+.chart-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.bar-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.bar-container {
+    width: 100%;
+    height: 200px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.bar-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 0.5rem;
+}
+
+/* Ranking */
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.ranking-item:hover {
+    background: #e2e8f0;
+    transform: translateX(4px);
+}
+
+.ranking-position {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #7c3aed;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.ranking-content {
+    flex: 1;
+}
+
+.ranking-content h4 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.ranking-content p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.ranking-amount {
+    font-weight: 600;
+    color: #10b981;
+    font-size: 0.9rem;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.service-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.service-card:hover {
+    background: #e2e8f0;
+    transform: translateY(-4px);
+}
+
+.service-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem auto;
+}
+
+.service-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.service-content p {
+    margin: 0 0 0.5rem 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.service-amount {
+    font-weight: 600;
+    color: #10b981;
+    font-size: 0.9rem;
+}
+
+/* Réservations List */
+.reservations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.reservation-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.reservation-item:hover {
+    background: #e2e8f0;
+}
+
+.reservation-date {
+    text-align: center;
+    min-width: 60px;
+}
+
+.date-day {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+.date-month {
+    font-size: 0.8rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.reservation-details {
+    flex: 1;
+}
+
+.reservation-details h4 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.reservation-details p {
+    margin: 0 0 0.5rem 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.time-badge {
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.reservation-status {
+    margin-left: auto;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-en_attente {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-confirmé {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-payé {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-annulé {
+    background: #dc2626;
+    color: white;
+}
+
+.reservation-amount {
+    font-weight: 600;
+    color: #10b981;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .header-left h1 {
+        font-size: 2rem;
+    }
+    
+    .header-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-bars {
+        flex-direction: column;
+        height: auto;
+        gap: 0.5rem;
+    }
+    
+    .chart-bar {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .bar-container {
+        width: 100px;
+        height: 20px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %} 

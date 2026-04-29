@@ -1,0 +1,521 @@
+{% extends 'manager/base.html' %}
+{% load price_filters %}
+
+{% block title %}Dashboard Esthéticienne - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <div class="header-profile">
+            {% if user_profile.profile_image %}
+                <img src="{{ user_profile.profile_image.url }}" alt="Photo de profil" class="header-profile-image">
+            {% else %}
+                <div class="header-no-profile-image">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            {% endif %}
+        </div>
+        <p><strong>Bienvenue {{ user_profile.user.username }} !</strong></p>
+    </div>
+
+
+
+    <!-- Actions rapides et Rendez-vous d'aujourd'hui -->
+    <div class="dashboard-grid">
+        <div class="actions-card">
+            <div class="card-header">
+                <h3><i class="fas fa-tasks"></i> Actions Rapides</h3>
+            </div>
+            <div class="card-body">
+                <div class="action-buttons">
+                    <a href="{% url 'reservation_coiffeuse' %}" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i> Voir Mon Planning
+                    </a>
+                    <a href="{% url 'profil_utilisateur' %}" class="btn btn-info">
+                        <i class="fas fa-user"></i> Mon Profil
+                    </a>
+                    <a href="{% url 'logout' %}" class="btn btn-secondary">
+                        <i class="fas fa-sign-out-alt"></i> Se Déconnecter
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="today-card">
+            <div class="card-header">
+                <h3><i class="fas fa-calendar-day"></i> Rendez-vous d'Aujourd'hui</h3>
+            </div>
+            <div class="card-body">
+                {% if rdv_aujourd_hui %}
+                    <div class="timeline">
+                        {% for rdv in rdv_aujourd_hui %}
+                            <div class="timeline-item">
+                                <div class="timeline-time">
+                                    <span class="time">{{ rdv.heure|time:"H:i" }}</span>
+                                    <span class="duration">{{ rdv.service.duration }} min</span>
+                                </div>
+                                <div class="timeline-content">
+                                    <div class="rdv-header">
+                                        <h4>{{ rdv.service.name }}</h4>
+                                        <span class="badge badge-{{ rdv.statut|yesno:'success,warning,info,danger' }}">
+                                            {{ rdv.get_statut_display }}
+                                        </span>
+                                    </div>
+                                    <div class="rdv-details">
+                                        <p><i class="fas fa-user"></i> <strong>Client :</strong> {{ rdv.client.user.username }}</p>
+                                        <p><i class="fas fa-phone"></i> <strong>Téléphone :</strong> {{ rdv.client.phone|default:"Non renseigné" }}</p>
+                                        <p><i class="fas fa-money-bill-wave"></i> <strong>Prix :</strong> {{ rdv.montant|floatformat:0 }} FCFA</p>
+                                        {% if rdv.notes %}
+                                            <p><i class="fas fa-sticky-note"></i> <strong>Notes :</strong> {{ rdv.notes }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h3>Aucun rendez-vous aujourd'hui</h3>
+                        <p>Profitez de cette journée libre !</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Prochains Rendez-vous -->
+    <div class="upcoming-card">
+        <div class="card-header">
+            <h3><i class="fas fa-calendar-week"></i> Prochains Rendez-vous</h3>
+        </div>
+        <div class="card-body">
+            {% if rdv_a_venir %}
+                <div class="upcoming-rdv">
+                    {% for rdv in rdv_a_venir %}
+                        <div class="upcoming-item">
+                            <div class="upcoming-date">
+                                <span class="day">{{ rdv.date|date:"d" }}</span>
+                                <span class="month">{{ rdv.date|date:"M" }}</span>
+                            </div>
+                            <div class="upcoming-info">
+                                <h5>{{ rdv.service.name }}</h5>
+                                <p><i class="fas fa-clock"></i> {{ rdv.heure|time:"H:i" }}</p>
+                                <p><i class="fas fa-user"></i> {{ rdv.client.user.username }}</p>
+                                <span class="badge badge-{{ rdv.statut|yesno:'success,warning,info,danger' }}">
+                                    {{ rdv.get_statut_display }}
+                                </span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state-small">
+                    <i class="fas fa-calendar-times"></i>
+                    <p>Aucun rendez-vous à venir</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: white;
+    border-radius: 15px;
+}
+
+.header-profile {
+    margin-bottom: 1rem;
+}
+
+.header-profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.header-profile-image:hover {
+    transform: scale(1.05);
+}
+
+.header-no-profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    margin: 0 auto;
+}
+
+.header-no-profile-image i {
+    font-size: 3rem;
+}
+
+.dashboard-header p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.4rem;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+/* Nouvelle disposition CSS Grid pour occuper toute la surface */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    height: 400px;
+}
+
+.actions-card,
+.today-card,
+.upcoming-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.actions-card:hover,
+.today-card:hover,
+.upcoming-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.upcoming-card {
+    grid-column: 1 / -1;
+    height: auto;
+    min-height: 300px;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.card-header i {
+    margin-right: 0.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.stat-content p {
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.timeline {
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 80px;
+    top: 60px;
+    bottom: -15px;
+    width: 2px;
+    background: #e9ecef;
+}
+
+.timeline-time {
+    flex-shrink: 0;
+    width: 80px;
+    text-align: center;
+    margin-right: 1rem;
+}
+
+.timeline-time .time {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+.timeline-time .duration {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.timeline-content {
+    flex: 1;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    border-left: 4px solid #7c3aed;
+}
+
+.rdv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.rdv-header h4 {
+    margin: 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.rdv-details p {
+    margin: 0.25rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.rdv-details i {
+    color: #7c3aed;
+    margin-right: 0.5rem;
+    width: 16px;
+}
+
+.upcoming-rdv {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.upcoming-item {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.upcoming-item:hover {
+    transform: translateX(5px);
+}
+
+.upcoming-date {
+    text-align: center;
+    margin-right: 1rem;
+    min-width: 50px;
+}
+
+.upcoming-date .day {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+.upcoming-date .month {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.upcoming-info h5 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-weight: 600;
+}
+
+.upcoming-info p {
+    margin: 0.25rem 0;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.upcoming-info i {
+    color: #7c3aed;
+    margin-right: 0.5rem;
+    width: 12px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    margin: 1rem 0;
+    color: #333;
+}
+
+.empty-state p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.empty-state-small {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+.empty-state-small i {
+    font-size: 2rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 1rem;
+    }
+    
+    .upcoming-card {
+        grid-column: 1;
+    }
+    
+    .header-profile-image,
+    .header-no-profile-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .header-no-profile-image i {
+        font-size: 2.5rem;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .action-buttons .btn {
+        justify-content: center;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline-time {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .upcoming-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .upcoming-date {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %} 

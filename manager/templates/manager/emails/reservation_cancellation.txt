@@ -1,0 +1,28 @@
+Annulation de Réservation - Beauty Manager
+
+Bonjour {{ client_name }},
+
+Nous vous informons que votre réservation a été annulée.
+
+DÉTAILS DE LA RÉSERVATION ANNULÉE :
+Service : {{ service_name }}
+Coiffeuse : {{ coiffeuse_name }}
+Date : {{ date }}
+Heure : {{ heure }}
+
+INFORMATIONS IMPORTANTES :
+- Le créneau a été libéré pour d'autres clients
+- Si vous aviez déjà payé, un remboursement sera effectué
+- Vous pouvez créer une nouvelle réservation à tout moment
+
+Pour créer une nouvelle réservation, connectez-vous à votre espace client :
+http://localhost:8000
+
+Nous vous remercions de votre compréhension.
+
+Cordialement,
+L'équipe Beauty Manager
+
+---
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

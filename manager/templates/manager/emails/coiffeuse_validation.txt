@@ -1,0 +1,30 @@
+Compte Validé - Beauty Manager
+
+Bonjour {{ coiffeuse_name }},
+
+FÉLICITATIONS !
+
+Votre compte coiffeuse a été validé avec succès par notre équipe d'administration.
+
+VOUS POUVEZ MAINTENANT :
+- Accéder à votre espace coiffeuse
+- Consulter votre planning de rendez-vous
+- Gérer vos disponibilités
+- Recevoir des notifications de nouvelles réservations
+
+PROCHAINES ÉTAPES :
+1. Connectez-vous à votre espace coiffeuse
+2. Complétez votre profil avec vos informations
+3. Définissez vos horaires de disponibilité
+4. Commencez à recevoir des réservations !
+
+Accédez à votre espace : http://localhost:8000
+
+Nous sommes ravis de vous compter parmi notre équipe de professionnels !
+
+Cordialement,
+L'équipe Beauty Manager
+
+---
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

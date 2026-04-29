@@ -1,0 +1,434 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+
+{% block title %}Validation des Esthéticiennes{% endblock %}
+
+{% block extra_css %}
+<style>
+    .validation-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #ffffff;
+        min-height: 100vh;
+    }
+
+    body {
+        background: #f8fafc;
+        color: #1f2937;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .section-header h1 {
+        color: #1f2937;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-header h2 {
+        color: #374151;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .section-header i {
+        color: #7c3aed;
+        margin-right: 10px;
+    }
+
+    .section-header p {
+        color: #6b7280;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    .estheticienne-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .estheticienne-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .estheticienne-card.validated {
+        border-left: 4px solid #10b981;
+    }
+
+    .validated-container {
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        border: 2px solid #10b981;
+        border-radius: 16px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+    }
+
+    .validated-container-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .validated-container-header h2 {
+        color: #374151;
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .validated-container-header i {
+        color: #7c3aed;
+        margin-right: 10px;
+    }
+
+    .estheticienne-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        text-align: center;
+    }
+
+    .estheticienne-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #7c3aed;
+        color: white;
+        font-size: 40px;
+    }
+
+    .estheticienne-avatar img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .estheticienne-info h3 {
+        margin: 0 0 10px 0;
+        color: #374151;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .estheticienne-email {
+        color: #6b7280;
+        margin: 0 0 8px 0;
+        font-size: 0.9rem;
+    }
+
+    .estheticienne-phone {
+        color: #6b7280;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
+    .estheticienne-phone i {
+        margin-right: 5px;
+        color: #7c3aed;
+    }
+
+    
+    .estheticienne-details {
+        padding: 15px 20px;
+        background: #f9fafb;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 12px;
+    }
+
+    .detail-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .detail-item .label {
+        font-weight: 500;
+        color: #374151;
+        margin-bottom: 4px;
+    }
+
+    .detail-item .value {
+        color: #6b7280;
+        font-size: 0.9rem;
+    }
+
+    .badge {
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .badge-warning {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    .badge-success {
+        background: #d1fae5;
+        color: #059669;
+    }
+
+    .estheticienne-actions {
+        padding: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .validation-form {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    .btn-success {
+        background: #10b981;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background: #059669;
+        transform: translateY(-1px);
+    }
+
+    .btn-danger {
+        background: #ef4444;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background: #dc2626;
+        transform: translateY(-1px);
+    }
+
+    .btn-lg {
+        font-size: 1rem;
+        padding: 14px 28px;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6b7280;
+    }
+
+    .empty-state i {
+        font-size: 4rem;
+        color: #d1d5db;
+        margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+        margin-bottom: 10px;
+        color: #374151;
+    }
+
+    .empty-state p {
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .section-header h1 {
+            font-size: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .estheticienne-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .estheticienne-avatar {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+
+        .estheticienne-actions {
+            flex-direction: column;
+        }
+
+        .validation-form {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="validation-container">
+    <div class="section-header">
+        <h1><i class="fas fa-user-check"></i> Validation des Esthéticiennes</h1>
+        <p>Gérez les demandes d'inscription des esthéticiennes</p>
+    </div>
+
+    <!-- Coiffeuses en attente de validation -->
+    {% if coiffeuses_en_attente %}
+        <div class="section-header">
+            <h2><i class="fas fa-clock"></i> Esthéticiennes en attente de validation</h2>
+        </div>
+        <div class="row">
+            {% for coiffeuse in coiffeuses_en_attente %}
+                <div class="col-md-3">
+                    <div class="estheticienne-card">
+                        <div class="estheticienne-header">
+                            <div class="estheticienne-avatar">
+                                {% if coiffeuse.profile_image %}
+                                    <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="profile-image">
+                                {% else %}
+                                    <i class="fas fa-user"></i>
+                                {% endif %}
+                            </div>
+                            <div class="estheticienne-info">
+                                <h3>{{ coiffeuse.user.username }}</h3>
+                                <p class="estheticienne-email">{{ coiffeuse.user.email }}</p>
+                                <p class="estheticienne-phone">
+                                    <i class="fas fa-phone"></i>
+                                    {{ coiffeuse.phone|default:"Téléphone non renseigné" }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="estheticienne-details">
+                            <div class="detail-item">
+                                <span class="label">Date d'inscription :</span>
+                                <span class="value">{{ coiffeuse.user.date_joined|date:"d/m/Y" }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Statut :</span>
+                                <span class="badge badge-warning">En attente de validation</span>
+                            </div>
+                        </div>
+                        
+                        <div class="estheticienne-actions">
+                            <form method="post" action="{% url 'validation_coiffeuses' %}" class="validation-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="coiffeuse_id" value="{{ coiffeuse.id }}">
+                                
+                                <button type="submit" name="action" value="valider" class="btn btn-success btn-lg">
+                                    <i class="fas fa-check"></i> Valider
+                                </button>
+                                
+                                <button type="submit" name="action" value="rejeter" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-times"></i> Rejeter
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class="fas fa-clock"></i>
+            <h3>Aucune esthéticienne en attente</h3>
+            <p>Toutes les demandes d'inscription ont été traitées.</p>
+        </div>
+    {% endif %}
+
+    <!-- Coiffeuses validées -->
+    {% if coiffeuses_validees %}
+        <div class="validated-container">
+            <div class="validated-container-header">
+                <h2><i class="fas fa-check-circle"></i> Esthéticiennes validées</h2>
+            </div>
+            <div class="row">
+                {% for coiffeuse in coiffeuses_validees %}
+                    <div class="col-md-3">
+                        <div class="estheticienne-card validated">
+                            <div class="estheticienne-header">
+                                <div class="estheticienne-avatar">
+                                    {% if coiffeuse.profile_image %}
+                                        <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="profile-image">
+                                    {% else %}
+                                        <i class="fas fa-user-check"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="estheticienne-info">
+                                    <h3>{{ coiffeuse.user.username }}</h3>
+                                    <p class="estheticienne-email">{{ coiffeuse.user.email }}</p>
+                                    <p class="estheticienne-phone">
+                                        <i class="fas fa-phone"></i>
+                                        {{ coiffeuse.phone|default:"Téléphone non renseigné" }}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="estheticienne-details">
+                                <div class="detail-item">
+                                    <span class="label">Date d'inscription :</span>
+                                    <span class="value">{{ coiffeuse.user.date_joined|date:"d/m/Y" }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="label">Statut :</span>
+                                    <span class="badge badge-success">Validée</span>
+                                </div>
+                            </div>
+                            
+                            <div class="estheticienne-actions">
+                                <a href="{% url 'supprimer_coiffeuse' coiffeuse.id %}" class="btn btn-danger btn-lg">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if not coiffeuses_en_attente and not coiffeuses_validees %}
+        <div class="empty-state">
+            <i class="fas fa-users"></i>
+            <h3>Aucune esthéticienne enregistrée</h3>
+            <p>Les esthéticiennes qui s'inscrivent apparaîtront ici pour validation.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 
