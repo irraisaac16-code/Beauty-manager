@@ -50,6 +50,12 @@
         </div>
 
         <div class="login-card">
+            <div class="test-account-banner">
+                <h4><i class="fas fa-user-shield"></i> Compte Admin de Test</h4>
+                <p>Pour tester toutes les fonctionnalités de l'application :</p>
+                <p><strong>Identifiant :</strong> <code>admin_test</code> | <strong>Mot de passe :</strong> <code>AdminTest123!</code></p>
+            </div>
+
             <form method="post" id="login-form">
                 {% csrf_token %}
                 
@@ -162,6 +168,32 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     margin-bottom: 2rem;
+}
+
+.test-account-banner {
+    background: #f5f3ff;
+    border: 1px solid #d8b4fe;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.test-account-banner h4 {
+    margin: 0 0 0.5rem 0;
+    color: #6d28d9;
+}
+
+.test-account-banner p {
+    margin: 0.2rem 0;
+    color: #4b5563;
+    font-size: 0.92rem;
+}
+
+.test-account-banner code {
+    background: #ede9fe;
+    color: #5b21b6;
+    border-radius: 6px;
+    padding: 0.1rem 0.35rem;
 }
 
 .form-group {
@@ -352,6 +384,16 @@
 }
 
 @media (max-width: 768px) {
+    .login-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .login-header,
+    .login-card,
+    .login-benefits {
+        padding: 1.25rem;
+    }
+
     .login-header h1 {
         font-size: 2rem;
     }

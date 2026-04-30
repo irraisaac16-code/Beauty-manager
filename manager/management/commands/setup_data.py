@@ -84,19 +84,46 @@ class Command(BaseCommand):
             else:
                 self.stdout.write(f'Service existant: {service.name}')
         
-        # Créer un profil admin si nécessaire
-        try:
-            admin_user = User.objects.get(username='irra')
-            admin_role = Role.objects.get(name='admin')
-            admin_profile, created = UserProfile.objects.get_or_create(
-                user=admin_user,
-                defaults={'role': admin_role, 'phone': ''}
-            )
-            if created:
-                self.stdout.write('Profil admin créé pour irra')
-            else:
-                self.stdout.write('Profil admin existant pour irra')
-        except User.DoesNotExist:
-            self.stdout.write('Utilisateur admin non trouvé')
+        # Créer un identifiant admin de test pour les démonstrations
+        admin_role = Role.objects.get(name='admin')
+        admin_test_user, created = User.objects.get_or_create(
+            username='admin_test',
+            defaults={
+                'email': 'admin_test@beauty-manager.local',
+                'is_active': True,
+                'is_staff': True,
+                'is_superuser': True,
+            }
+        )
+        if created:
+            admin_test_user.set_password('AdminTest123!')
+            admin_test_user.save()
+            self.stdout.write('Utilisateur admin_test créé')
+        else:
+            self.stdout.write('Utilisateur admin_test existant')
+            # Garantit que le compte de test reste pleinement administrateur
+            has_changed = False
+            if not admin_test_user.is_active:
+                admin_test_user.is_active = True
+                has_changed = True
+            if not admin_test_user.is_staff:
+                admin_test_user.is_staff = True
+                has_changed = True
+            if not admin_test_user.is_superuser:
+                admin_test_user.is_superuser = True
+                has_changed = True
+            if has_changed:
+                admin_test_user.save()
+                self.stdout.write('Privilèges admin_test synchronisés')
+
+        admin_test_profile, created = UserProfile.objects.get_or_create(
+            user=admin_test_user,
+            defaults={'role': admin_role, 'phone': ''}
+        )
+        if not created and admin_test_profile.role != admin_role:
+            admin_test_profile.role = admin_role
+            admin_test_profile.save(update_fields=['role'])
+        self.stdout.write('Profil admin_test prêt')
+        self.stdout.write("Identifiant de test admin: username='admin_test' / password='AdminTest123!'")
         
         self.stdout.write(self.style.SUCCESS('Initialisation terminée avec succès!')) 
