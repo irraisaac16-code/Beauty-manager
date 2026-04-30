@@ -1,5 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load static %}
+{% load price_filters %}
 {% block title %}Gestion des services{% endblock %}
 {% block content %}
 <div class="container">
@@ -32,7 +33,7 @@
                     <tr class="{% if not service.is_active %}service-inactive{% endif %}">
                         <td>{{ service.name }}</td>
                         <td>{{ service.description|truncatechars:50 }}</td>
-                        <td>{{ service.price }} FCFA</td>
+                        <td>{{ service.price|format_price_fcfa }}</td>
                         <td>{{ service.duration }} min</td>
                         <td>
                             {% if service.is_active %}

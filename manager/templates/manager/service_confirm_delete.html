@@ -1,5 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load static %}
+{% load price_filters %}
 {% block title %}Supprimer un service{% endblock %}
 {% block content %}
 <div class="container">
@@ -7,7 +8,7 @@
     <div class="card card-warning">
         <h2>{{ service.name }}</h2>
         <p>Description : {{ service.description }}</p>
-        <p>Prix : <strong>{{ service.price }} FCFA</strong></p>
+        <p>Prix : <strong>{{ service.price|format_price_fcfa }}</strong></p>
         <p>Durée : <strong>{{ service.duration }} min</strong></p>
         {% if reservations_count > 0 %}
             <div class="alert alert-warning">
