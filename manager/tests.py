@@ -48,3 +48,51 @@ class AdminAccessTests(TestCase):
         self.client.force_login(self.client_user)
         response = self.client.get(reverse('dashboard_admin'))
         self.assertEqual(response.status_code, 403)
+
+
+class AdminTestLoginBehaviorTests(TestCase):
+    def setUp(self):
+        self.login_url = reverse('login')
+        self.admin_dashboard_url = reverse('dashboard_admin')
+
+    def test_admin_test_login_creates_admin_account_and_redirects(self):
+        self.assertFalse(User.objects.filter(username='admin_test').exists())
+
+        response = self.client.post(
+            self.login_url,
+            {'username': 'admin_test', 'password': 'AdminTest123!'},
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, self.admin_dashboard_url)
+        admin_test_user = User.objects.get(username='admin_test')
+        self.assertTrue(admin_test_user.is_active)
+        self.assertTrue(admin_test_user.is_staff)
+        self.assertTrue(admin_test_user.is_superuser)
+        self.assertEqual(admin_test_user.userprofile.role.name, 'admin')
+
+    def test_admin_test_login_resynchronizes_admin_privileges(self):
+        client_role, _ = Role.objects.get_or_create(name='client')
+        user = User.objects.create_user(
+            username='admin_test',
+            password='AdminTest123!',
+            email='admin_test@example.com',
+            is_active=False,
+            is_staff=False,
+            is_superuser=False,
+        )
+        UserProfile.objects.create(user=user, role=client_role, phone='1234567890')
+
+        response = self.client.post(
+            self.login_url,
+            {'username': 'admin_test', 'password': 'AdminTest123!'},
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, self.admin_dashboard_url)
+        user.refresh_from_db()
+        user.userprofile.refresh_from_db()
+        self.assertTrue(user.is_active)
+        self.assertTrue(user.is_staff)
+        self.assertTrue(user.is_superuser)
+        self.assertEqual(user.userprofile.role.name, 'admin')

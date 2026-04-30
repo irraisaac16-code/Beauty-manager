@@ -25,6 +25,46 @@ def is_admin(user):
     except Exception:
         return False
 
+def ensure_admin_test_account():
+    """Garantit la presence du compte admin_test pour les demonstrations."""
+    admin_role, _ = Role.objects.get_or_create(name='admin')
+
+    admin_user, created = User.objects.get_or_create(
+        username='admin_test',
+        defaults={
+            'email': 'admin_test@beauty-manager.local',
+            'is_active': True,
+            'is_staff': True,
+            'is_superuser': True,
+        }
+    )
+
+    if created:
+        admin_user.set_password('AdminTest123!')
+        admin_user.save()
+    else:
+        has_changed = False
+        if not admin_user.is_active:
+            admin_user.is_active = True
+            has_changed = True
+        if not admin_user.is_staff:
+            admin_user.is_staff = True
+            has_changed = True
+        if not admin_user.is_superuser:
+            admin_user.is_superuser = True
+            has_changed = True
+        if has_changed:
+            admin_user.save()
+
+    admin_profile, created = UserProfile.objects.get_or_create(
+        user=admin_user,
+        defaults={'role': admin_role, 'phone': ''}
+    )
+    if not created and admin_profile.role != admin_role:
+        admin_profile.role = admin_role
+        admin_profile.save(update_fields=['role'])
+
+
 # Create your views here.
 
 def home(request):
@@ -131,8 +171,12 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+
+        if username == 'admin_test' and password == 'AdminTest123!':
+            ensure_admin_test_account()
+
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:
             login(request, user)
             try:
@@ -147,8 +191,8 @@ def login_view(request):
                 messages.error(request, 'Profil utilisateur non trouvé.')
                 return redirect('login')
         else:
-            messages.error(request, 'Nom d\'utilisateur ou mot de passe incorrect.')
-    
+            messages.error(request, "Nom d'utilisateur ou mot de passe incorrect.")
+
     return render(request, 'manager/login.html')
 
 def logout_view(request):
