@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Beauty Manager{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="{% static 'manager/favicon.svg' %}">
     <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -194,7 +195,12 @@
     <nav class="navbar">
         <div class="container">
             <a href="{% url 'home' %}" class="navbar-brand"><span style="color: #fbbf24 !important;">Beauty</span><span style="color: #7c3aed !important;"> Manager</span></a>
-            <div class="navbar-nav">
+            <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbar-nav" id="navbarNav">
                 {% if user.is_authenticated %}
                     {% if user.userprofile.role.name == 'admin' %}
                         <a href="{% url 'dashboard_admin' %}" class="nav-link">Dashboard Admin</a>
@@ -231,8 +237,27 @@
     <footer class="footer">
         <div class="container">
             <p style="text-align: center; margin: 0; padding: 1rem 0;">&copy; 2025 Beauty Manager. Tous droits réservés.</p>
+            <p style="text-align: center; margin: 0; padding-bottom: 1rem; font-size: 0.9rem; color: #aaa;">
+                Auteur du site : Irra Isaac Tialougbeu
+                <img src="https://cdn-icons-png.flaticon.com/512/1250/1250681.png" alt="Icône auteur" style="width: 20px; height: 20px; vertical-align: middle; margin-left: 0.5rem;">
+            </p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navbarNav = document.getElementById('navbarNav');
+
+            if (navToggle && navbarNav) {
+                navToggle.addEventListener('click', function () {
+                    const isOpen = navbarNav.classList.toggle('open');
+                    navToggle.classList.toggle('active');
+                    navToggle.setAttribute('aria-expanded', isOpen);
+                });
+            }
+        });
+    </script>
 
     {% block extra_js %}{% endblock %}
 </body>
