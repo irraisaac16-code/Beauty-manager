@@ -28,6 +28,7 @@ def is_admin(user):
 def ensure_admin_test_account():
     """Garantit la presence du compte admin_test pour les demonstrations."""
     admin_role, _ = Role.objects.get_or_create(name='admin')
+    client_role, _ = Role.objects.get_or_create(name='client')
 
     admin_user, created = User.objects.get_or_create(
         username='admin_test',
@@ -44,6 +45,9 @@ def ensure_admin_test_account():
         admin_user.save()
     else:
         has_changed = False
+        if admin_user.email != 'admin_test@beauty-manager.local':
+            admin_user.email = 'admin_test@beauty-manager.local'
+            has_changed = True
         if not admin_user.is_active:
             admin_user.is_active = True
             has_changed = True
@@ -63,6 +67,35 @@ def ensure_admin_test_account():
     if not created and admin_profile.role != admin_role:
         admin_profile.role = admin_role
         admin_profile.save(update_fields=['role'])
+
+    # Verrouillage fort: desactiver tous les autres comptes admin.
+    other_admin_users = User.objects.filter(
+        Q(is_staff=True) | Q(is_superuser=True) | Q(userprofile__role__name='admin')
+    ).exclude(username='admin_test').distinct()
+
+    for other_user in other_admin_users:
+        has_changed = False
+
+        if other_user.is_staff:
+            other_user.is_staff = False
+            has_changed = True
+        if other_user.is_superuser:
+            other_user.is_superuser = False
+            has_changed = True
+        if other_user.is_active:
+            other_user.is_active = False
+            has_changed = True
+
+        if has_changed:
+            other_user.save(update_fields=['is_staff', 'is_superuser', 'is_active'])
+
+        try:
+            other_profile = other_user.userprofile
+            if other_profile.role == admin_role:
+                other_profile.role = client_role
+                other_profile.save(update_fields=['role'])
+        except UserProfile.DoesNotExist:
+            continue
 
 
 # Create your views here.
@@ -169,7 +202,7 @@ def register_coiffeuse(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        username = request.POST.get('username', '').strip()
         password = request.POST.get('password')
 
         if username == 'admin_test' and password == 'AdminTest123!':
@@ -178,6 +211,18 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
+            # Verrouillage: seul admin_test peut se connecter en tant qu'admin.
+            if (
+                hasattr(user, 'userprofile')
+                and user.userprofile.role.name == 'admin'
+                and user.username != 'admin_test'
+            ):
+                messages.error(
+                    request,
+                    "Accès admin refusé. Utilisez uniquement l'identifiant admin_test.",
+                )
+                return redirect('login')
+
             login(request, user)
             try:
                 profile = user.userprofile
@@ -963,6 +1008,11 @@ def modifier_profil(request):
 @login_required
 def changer_mot_de_passe(request):
     """Changer le mot de passe"""
+    # Regle metier: le compte admin ne peut pas changer son mot de passe.
+    if hasattr(request.user, 'userprofile') and request.user.userprofile.role.name == 'admin':
+        messages.error(request, "Le mot de passe de l'administrateur ne peut pas être modifié.")
+        return redirect('profil_utilisateur')
+
     if request.method == 'POST':
         current_password = request.POST.get('current_password')
         new_password = request.POST.get('new_password')

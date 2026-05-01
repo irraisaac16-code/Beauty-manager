@@ -60,9 +60,11 @@
                         <a href="{% url 'modifier_profil' %}" class="btn btn-primary">
                             <i class="fas fa-edit"></i> Modifier le Profil
                         </a>
+                        {% if user_profile.role.name != 'admin' %}
                         <a href="{% url 'changer_mot_de_passe' %}" class="btn btn-warning">
                             <i class="fas fa-key"></i> Changer le Mot de Passe
                         </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
