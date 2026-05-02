@@ -1,206 +1,242 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beauty Manager - Plateforme SaaS</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg: #0b1020;
-            --bg-soft: #121a2e;
-            --card: rgba(255, 255, 255, 0.06);
-            --text: #eef2ff;
-            --muted: #c7d2fe;
-            --violet: #8b5cf6;
-            --amber: #fbbf24;
-            --line: rgba(255, 255, 255, 0.14);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            background: radial-gradient(circle at 10% 10%, #1b2440 0%, var(--bg) 42%, #070b16 100%);
-            color: var(--text);
-            line-height: 1.5;
-        }
-        .wrap { width: min(1120px, 92%); margin: 0 auto; }
-        .topbar {
-            position: sticky; top: 0; z-index: 10;
-            backdrop-filter: blur(10px);
-            background: rgba(11, 16, 32, 0.72);
-            border-bottom: 1px solid var(--line);
-        }
-        .topbar .wrap {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 0;
-        }
-        .logo { font-weight: 800; letter-spacing: -0.5px; font-size: 1.3rem; }
-        .logo .a { color: var(--amber); }
-        .logo .b { color: #c4b5fd; }
-        .btn {
-            display: inline-block; text-decoration: none; border-radius: 12px;
-            padding: 0.8rem 1.1rem; font-weight: 700; transition: .2s ease;
-        }
-        .btn-main { background: linear-gradient(135deg, var(--violet), #6d28d9); color: #fff; }
-        .btn-main:hover { transform: translateY(-1px); }
-        .btn-alt { border: 1px solid var(--line); color: var(--text); }
-        .btn-alt:hover { background: rgba(255,255,255,.06); }
-        .hero {
-            padding: 4.2rem 0 3.2rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 1.4rem;
-            align-items: center;
-        }
-        .badge {
-            display: inline-block; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
-            background: rgba(251,191,36,.16); color: #fde68a; border: 1px solid rgba(251,191,36,.34);
-            border-radius: 999px; padding: .4rem .8rem;
-        }
-        h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: .9rem 0 .9rem; line-height: 1.1; }
-        .hero p { color: var(--muted); max-width: 640px; font-size: 1.03rem; }
-        .cta { margin-top: 1.3rem; display: flex; gap: .75rem; flex-wrap: wrap; }
-        .panel {
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            background: linear-gradient(155deg, rgba(139,92,246,.18), rgba(251,191,36,.08));
-            padding: 1rem;
-        }
-        .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-        .kpi {
-            background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem;
-        }
-        .kpi h3 { margin: .15rem 0; font-size: 1.4rem; }
-        .kpi p { margin: 0; color: var(--muted); font-size: .88rem; }
-        section { padding: 1.4rem 0; }
-        h2 { font-size: 1.8rem; margin-bottom: .8rem; }
-        .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
-        .card {
-            background: var(--card); border: 1px solid var(--line);
-            border-radius: 16px; padding: 1rem;
-        }
-        .card i { color: #c4b5fd; font-size: 1.25rem; }
-        .card h3 { margin: .55rem 0 .35rem; font-size: 1.07rem; }
-        .card p { margin: 0; color: var(--muted); font-size: .92rem; }
-        .stats {
-            display: grid; grid-template-columns: repeat(4,1fr); gap: .8rem; margin-top: .6rem;
-        }
-        .stat {
-            text-align: center; border: 1px solid var(--line); border-radius: 14px; padding: .95rem;
-            background: rgba(255,255,255,0.03);
-        }
-        .stat strong { display:block; font-size:1.4rem; color:#fde68a; }
-        .final-cta {
-            margin: 2.2rem 0 2.5rem; padding: 1.4rem; border-radius: 20px;
-            border: 1px solid rgba(139,92,246,.36);
-            background: linear-gradient(130deg, rgba(139,92,246,.16), rgba(251,191,36,.12));
-            text-align: center;
-        }
-        .final-cta p { color: var(--muted); margin: .5rem 0 1.1rem; }
-        footer {
-            text-align: center; color: #a5b4fc; padding: 1rem 0 2rem; font-size: .88rem;
-        }
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; }
-            .grid3 { grid-template-columns: 1fr 1fr; }
-            .stats { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 640px) {
-            .grid3 { grid-template-columns: 1fr; }
-            .stats { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <header class="topbar">
-        <div class="wrap">
-            <div class="logo"><span class="a">Beauty</span> <span class="b">Manager</span></div>
-            <a href="/connexion/" class="btn btn-alt">Se connecter</a>
+{% extends 'manager/base.html' %}
+
+{% block title %}Accueil - Beauty Manager{% endblock %}
+
+{% block content %}
+<div class="home-bg">
+    <div class="blur-orb orb-1"></div>
+    <div class="blur-orb orb-2"></div>
+    <div class="blur-orb orb-3"></div>
+</div>
+
+<header class="home-hero">
+    <div class="container">
+        <span class="home-badge">Plateforme SaaS beauté</span>
+        <h1 class="hero-title">
+            Gérez votre salon avec une expérience
+            <span class="highlight-violet">moderne</span> et
+            <span class="highlight-yellow">cohérente</span>
+        </h1>
+        <p>
+            Réservations, paiements et suivi d'activité dans une seule application.
+            Beauty Manager aide les salons à gagner du temps, structurer leur équipe
+            et améliorer l'expérience client.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'register_client' %}" class="btn">Créer mon compte</a>
+            <a href="{% url 'login' %}" class="btn bg-secondary">Se connecter</a>
+            <a href="{% url 'register_coiffeuse' %}" class="btn">Inscription Esthéticienne</a>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main class="wrap">
-        <section class="hero">
-            <div>
-                <span class="badge">SaaS pour salon de beauté</span>
-                <h1>Gérez votre salon de beauté comme une entreprise moderne.</h1>
-                <p>
-                    Réservations, paiements, notifications et suivi d'activité dans une seule plateforme.
-                    Conçue pour les salons en Côte d'Ivoire avec une expérience simple, rapide et premium.
-                </p>
-                <div class="cta">
-                    <a href="/inscription/client/" class="btn btn-main">Créer mon compte</a>
-                    <a href="/inscription/coiffeuse/" class="btn btn-alt">Inscription Esthéticienne</a>
-                </div>
+<main class="container">
+    <section class="section-block white">
+        <h2 class="text-center">Fonctionnalités clés</h2>
+        <div class="features-grid">
+            <article class="card-feature">
+                <i class="fas fa-calendar-check feature-icon"></i>
+                <h3>Réservation en ligne</h3>
+                <p>Planifiez rapidement les rendez-vous et évitez les conflits d'agenda.</p>
+            </article>
+            <article class="card-feature">
+                <i class="fas fa-money-check-alt feature-icon"></i>
+                <h3>Paiement simplifié</h3>
+                <p>Encaissez facilement et suivez les paiements depuis un tableau centralisé.</p>
+            </article>
+            <article class="card-feature">
+                <i class="fas fa-users-cog feature-icon"></i>
+                <h3>Gestion des rôles</h3>
+                <p>Admin, esthéticienne et client disposent d'espaces adaptés à leurs besoins.</p>
+            </article>
+            <article class="card-feature">
+                <i class="fas fa-bell feature-icon"></i>
+                <h3>Notifications</h3>
+                <p>Recevez des alertes pour les rendez-vous et les actions importantes.</p>
+            </article>
+            <article class="card-feature">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>Tableaux de bord</h3>
+                <p>Pilotez votre salon avec des indicateurs de performance clairs.</p>
+            </article>
+            <article class="card-feature">
+                <i class="fas fa-shield-alt feature-icon"></i>
+                <h3>Contrôle sécurisé</h3>
+                <p>Accès maîtrisés et gestion fiable des profils utilisateurs.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <h2 class="text-center">Nos chiffres clés</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>500+</h3>
+                <p>Clients satisfaits</p>
             </div>
-            <div class="panel">
-                <div class="kpis">
-                    <div class="kpi"><p>Réservations / mois</p><h3>+1 000</h3></div>
-                    <div class="kpi"><p>Taux de satisfaction</p><h3>98%</h3></div>
-                    <div class="kpi"><p>Professionnelles actives</p><h3>50+</h3></div>
-                    <div class="kpi"><p>Clients actifs</p><h3>500+</h3></div>
-                </div>
+            <div class="stat-card">
+                <h3>50+</h3>
+                <p>Esthéticiennes partenaires</p>
             </div>
-        </section>
-
-        <section>
-            <h2>Fonctionnalités clés</h2>
-            <div class="grid3">
-                <article class="card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>Réservation en ligne</h3>
-                    <p>Planifiez les rendez-vous en quelques clics avec un calendrier intuitif.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Paiement mobile</h3>
-                    <p>Paiements simples et sécurisés pour une expérience client fluide.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Gestion des rôles</h3>
-                    <p>Accès adaptés pour admin, esthéticiennes et clients.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-bell"></i>
-                    <h3>Notifications</h3>
-                    <p>Rappels automatiques pour réduire les absences et mieux organiser le planning.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Tableaux de bord</h3>
-                    <p>Suivez vos performances et prenez des décisions basées sur vos chiffres.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Sécurité & fiabilité</h3>
-                    <p>Données protégées et contrôle d'accès strict pour votre activité.</p>
-                </article>
+            <div class="stat-card">
+                <h3>1000+</h3>
+                <p>Réservations traitées</p>
             </div>
-        </section>
-
-        <section>
-            <h2>Pourquoi choisir Beauty Manager ?</h2>
-            <div class="stats">
-                <div class="stat"><strong>500+</strong><span>Clients satisfaits</span></div>
-                <div class="stat"><strong>50+</strong><span>Esthéticiennes partenaires</span></div>
-                <div class="stat"><strong>1000+</strong><span>Réservations traitées</span></div>
-                <div class="stat"><strong>98%</strong><span>Taux de recommandation</span></div>
+            <div class="stat-card">
+                <h3>98%</h3>
+                <p>Taux de satisfaction</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="final-cta">
-            <h2>Prêt(e) à accélérer votre salon ?</h2>
-            <p>Lancez votre espace Beauty Manager et centralisez toute votre gestion au même endroit.</p>
-            <a href="/inscription/client/" class="btn btn-main">Commencer maintenant</a>
-        </section>
-    </main>
+    <section class="section-block white text-center">
+        <h2>Prêt(e) à passer au niveau supérieur ?</h2>
+        <p class="cta-text">
+            Adoptez Beauty Manager et donnez à votre salon une organisation professionnelle.
+        </p>
+        <a href="{% url 'register_client' %}" class="btn">Commencer maintenant</a>
+    </section>
+</main>
 
-    <footer>
-        &copy; 2025 Beauty Manager - Salon de Beauté en Côte d'Ivoire<br>
-        Auteur du site : Irra Isaac Tialougbeu
-    </footer>
-</body>
-</html>
+<style>
+.home-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blur-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.4;
+}
+
+.orb-1 {
+    width: 320px;
+    height: 320px;
+    top: -80px;
+    right: -30px;
+    background: #a855f7;
+}
+
+.orb-2 {
+    width: 260px;
+    height: 260px;
+    bottom: -90px;
+    left: -40px;
+    background: #fbbf24;
+}
+
+.orb-3 {
+    width: 180px;
+    height: 180px;
+    top: 45%;
+    left: 52%;
+    background: #f472b6;
+}
+
+.home-hero {
+    background: transparent;
+    text-align: center;
+    padding-top: 2.2rem;
+}
+
+.home-badge {
+    display: inline-block;
+    background: #ede9fe;
+    color: #6d28d9;
+    border: 1px solid #d8b4fe;
+    border-radius: 999px;
+    padding: 0.35rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.home-hero p {
+    max-width: 760px;
+    margin: 1rem auto 1.5rem auto;
+    color: #4b5563;
+    font-size: 1.08rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 1.8rem;
+    color: #7c3aed;
+    margin-bottom: 0.6rem;
+}
+
+.card-feature p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.2rem;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 12px rgba(168, 85, 247, 0.08);
+    text-align: center;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #7c3aed;
+}
+
+.stat-card p {
+    margin: 0.25rem 0 0;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+.cta-text {
+    max-width: 640px;
+    margin: 0.7rem auto 1.3rem auto;
+    color: #4b5563;
+}
+
+@media (max-width: 900px) {
+    .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+    .features-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+</style>
+{% endblock %}
