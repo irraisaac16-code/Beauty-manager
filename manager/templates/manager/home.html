@@ -95,19 +95,18 @@
         h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: .9rem 0 .9rem; line-height: 1.1; }
         .hero p { color: var(--muted); max-width: 640px; font-size: 1.03rem; }
         .cta { margin-top: 1.3rem; display: flex; gap: .75rem; flex-wrap: wrap; }
-        .panel {
+        .hero-visual {
             border: 1px solid rgba(224, 195, 252, 0.45);
             border-radius: 20px;
-            background: linear-gradient(155deg, rgba(224, 195, 252, 0.42), rgba(252, 235, 182, 0.38));
-            padding: 1rem;
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.12);
+            line-height: 0;
         }
-        .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-        .kpi {
-            background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem;
+        .hero-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
-        .kpi h3 { margin: .15rem 0; font-size: 1.4rem; }
-        .kpi p { margin: 0; color: var(--muted); font-size: .88rem; }
         section { padding: 1.4rem 0; }
         h2 { font-size: 1.8rem; margin-bottom: .8rem; }
         .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
@@ -169,13 +168,8 @@
                     <a href="/inscription/coiffeuse/" class="btn btn-alt">Inscription Esthéticienne</a>
                 </div>
             </div>
-            <div class="panel">
-                <div class="kpis">
-                    <div class="kpi"><p>Réservations / mois</p><h3>+1 000</h3></div>
-                    <div class="kpi"><p>Taux de satisfaction</p><h3>98%</h3></div>
-                    <div class="kpi"><p>Professionnelles actives</p><h3>50+</h3></div>
-                    <div class="kpi"><p>Clients actifs</p><h3>500+</h3></div>
-                </div>
+            <div class="hero-visual">
+                <img src="{% static 'manager/hero-salon.png' %}" alt="Esthéticienne au travail avec une cliente dans un salon de beauté" loading="lazy" decoding="async">
             </div>
         </section>
 
