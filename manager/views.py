@@ -211,6 +211,7 @@ def register_coiffeuse(request):
     
     return render(request, 'manager/register_coiffeuse.html', {'form': form})
 
+@never_cache
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()

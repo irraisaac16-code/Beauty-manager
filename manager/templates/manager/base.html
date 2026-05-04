@@ -353,13 +353,27 @@
         a.navbar-brand.brand-wordmark-nav .brand-wordmark__manager {
             color: #6d28d9 !important;
         }
+        a.navbar-brand.navbar-brand-plain {
+            font-weight: 700 !important;
+            letter-spacing: normal !important;
+            color: var(--text) !important;
+            gap: 0.35rem;
+        }
+        a.navbar-brand.navbar-brand-plain:hover {
+            color: var(--violet) !important;
+        }
+        .navbar-accueil-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="navbar-brand brand-wordmark-nav"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></a>
+            <a href="{% url 'home' %}" class="navbar-brand {% block navbar_brand_class %}brand-wordmark-nav{% endblock %}">{% block navbar_brand %}<span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>{% endblock %}</a>
             <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>
