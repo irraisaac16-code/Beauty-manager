@@ -65,19 +65,15 @@
             background: radial-gradient(circle, rgba(224, 195, 252, 0.42) 0%, rgba(248, 247, 255, 0.22) 45%, rgba(255, 255, 255, 0) 72%);
         }
         .wrap { width: min(1120px, 92%); margin: 0 auto; }
-        .topbar {
-            position: sticky; top: 0; z-index: 10;
-            backdrop-filter: blur(14px);
-            background: rgba(255, 255, 255, 0.55);
-            border-bottom: 1px solid rgba(224, 195, 252, 0.35);
+        .hero-brand {
+            margin: 0 0 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+            line-height: 1.2;
         }
-        .topbar .wrap {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 0;
-        }
-        .logo { font-weight: 800; letter-spacing: -0.5px; font-size: 1.3rem; }
-        .logo .a { color: var(--esth-accent); }
-        .logo .b { color: #6d28d9; }
+        .hero-brand .a { color: var(--esth-accent); }
+        .hero-brand .b { color: #6d28d9; }
         .btn {
             display: inline-block; text-decoration: none; border-radius: 12px;
             padding: 0.8rem 1.1rem; font-weight: 700; transition: .2s ease;
@@ -97,13 +93,13 @@
             box-shadow: 0 10px 18px rgba(217, 119, 6, 0.28);
         }
         .hero {
-            padding: 4.2rem 0 3.2rem;
+            padding: 3rem 0 3.2rem;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
             gap: 1.4rem;
             align-items: center;
         }
-        h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: .9rem 0 .9rem; line-height: 1.1; }
+        h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: 0 0 .9rem; line-height: 1.1; }
         .hero p { color: var(--muted); max-width: 640px; font-size: 1.03rem; }
         .cta {
             margin-top: 1.3rem;
@@ -188,15 +184,10 @@
     </style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="wrap">
-            <div class="logo"><span class="a">Beauty</span> <span class="b">Manager</span></div>
-        </div>
-    </header>
-
     <main class="wrap">
         <section class="hero">
             <div>
+                <p class="hero-brand" aria-label="Beauty Manager"><span class="a">Beauty</span> <span class="b">Manager</span></p>
                 <h1>Gérez votre salon de beauté comme une entreprise moderne.</h1>
                 <p>
                     Réservations, paiements, notifications et suivi d'activité dans une seule plateforme.
