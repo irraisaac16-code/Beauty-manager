@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.core.exceptions import PermissionDenied
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import never_cache
 from datetime import datetime, timedelta
 import logging
 import locale
@@ -100,6 +101,7 @@ def ensure_admin_test_account():
 
 # Create your views here.
 
+@never_cache
 def home(request):
     return render(request, 'manager/home.html')
 
