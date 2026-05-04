@@ -371,6 +371,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+    {% block navbar %}
     <nav class="navbar">
         <div class="container">
             <a href="{% url 'home' %}" class="navbar-brand {% block navbar_brand_class %}brand-wordmark-nav{% endblock %}">{% block navbar_brand %}<span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>{% endblock %}</a>
@@ -396,6 +397,7 @@
             </div>
         </div>
     </nav>
+    {% endblock %}
 
     <main class="main-content theme-reg">
         {% if messages %}
