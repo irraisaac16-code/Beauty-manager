@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.cache import never_cache
+from django.conf import settings as django_settings
 from datetime import datetime, timedelta
 import logging
 import locale
@@ -103,7 +104,15 @@ def ensure_admin_test_account():
 
 @never_cache
 def home(request):
-    return render(request, 'manager/home.html')
+    return render(
+        request,
+        'manager/home.html',
+        {
+            'hero_cache_buster': getattr(
+                django_settings, 'HERO_IMAGE_CACHE_BUSTER', '1'
+            ),
+        },
+    )
 
 def register_client(request):
     if request.method == 'POST':

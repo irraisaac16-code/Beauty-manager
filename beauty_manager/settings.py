@@ -172,6 +172,10 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' if not DEBUG else 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
+# Incrémenter (ou définir HERO_IMAGE_CACHE_BUSTER sur Railway) après remplacement du hero
+# pour éviter que le navigateur garde l’ancienne image (même URL en DEBUG).
+HERO_IMAGE_CACHE_BUSTER = config('HERO_IMAGE_CACHE_BUSTER', default='2')
+
 # Media files (Uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
