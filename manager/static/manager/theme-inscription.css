@@ -658,10 +658,20 @@ main.theme-reg .btn-primary:hover {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.1rem;
 }
+
+/* 2 × 2 cards (ex. « Pourquoi s'inscrire » sur inscription client) */
+.reg-grid2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+}
+
 @media (max-width: 960px) {
     .reg-grid3 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
+    .reg-grid2x2 { grid-template-columns: 1fr; }
+
     .reg-grid3 { grid-template-columns: 1fr; }
 
     .login-test-credentials {
