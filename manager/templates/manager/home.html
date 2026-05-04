@@ -185,7 +185,7 @@
     <header class="topbar">
         <div class="wrap">
             <div class="logo"><span class="a">Beauty</span> <span class="b">Manager</span></div>
-            <a href="/connexion/" class="btn btn-alt">Se connecter</a>
+            <a href="{% url 'login' %}" class="btn btn-alt">Se connecter</a>
         </div>
     </header>
 
@@ -198,8 +198,9 @@
                     Conçue pour les salons en Côte d'Ivoire avec une expérience simple, rapide et premium.
                 </p>
                 <div class="cta">
-                    <a href="/inscription/client/" class="btn btn-main">Créer mon compte</a>
-                    <a href="/inscription/coiffeuse/" class="btn btn-esth">Inscription Esthéticienne</a>
+                    <a href="{% url 'register_client' %}" class="btn btn-main">Créer mon compte</a>
+                    <a href="{% url 'register_coiffeuse' %}" class="btn btn-esth">Inscription Esthéticienne</a>
+                    <a href="{% url 'login' %}" class="btn btn-alt">Se connecter</a>
                 </div>
             </div>
             <div class="panel panel-image">
@@ -258,7 +259,7 @@
         <section class="final-cta">
             <h2>Prêt(e) à accélérer votre salon ?</h2>
             <p>Lancez votre espace Beauty Manager et centralisez toute votre gestion au même endroit.</p>
-            <a href="/inscription/client/" class="btn btn-main">Commencer maintenant</a>
+            <a href="{% url 'register_client' %}" class="btn btn-main">Commencer maintenant</a>
         </section>
     </main>
 
