@@ -17,6 +17,7 @@
             --muted: #64748b;
             --violet: #7c3aed;
             --amber: #d97706;
+            --esth-accent: #d97706;
             --line: rgba(124, 58, 237, 0.14);
         }
         * { box-sizing: border-box; }
@@ -75,7 +76,7 @@
             padding: 1rem 0;
         }
         .logo { font-weight: 800; letter-spacing: -0.5px; font-size: 1.3rem; }
-        .logo .a { color: var(--amber); }
+        .logo .a { color: var(--esth-accent); }
         .logo .b { color: #6d28d9; }
         .btn {
             display: inline-block; text-decoration: none; border-radius: 12px;
@@ -85,6 +86,16 @@
         .btn-main:hover { transform: translateY(-1px); }
         .btn-alt { border: 1px solid var(--line); color: var(--text); background: rgba(255, 255, 255, 0.55); }
         .btn-alt:hover { background: rgba(255, 255, 255, 0.85); }
+        .btn-esth {
+            background: linear-gradient(135deg, var(--esth-accent), #f59e0b);
+            color: #fff;
+            border: 1px solid rgba(180, 83, 9, 0.25);
+            box-shadow: 0 6px 14px rgba(217, 119, 6, 0.22);
+        }
+        .btn-esth:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 18px rgba(217, 119, 6, 0.28);
+        }
         .hero {
             padding: 4.2rem 0 3.2rem;
             display: grid;
@@ -102,13 +113,25 @@
             padding: 1rem;
             box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
         }
+        .panel-image {
+            padding: 0.45rem;
+        }
+        .hero-image-wrap {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #eceff5;
+            border: 1px solid var(--line);
+        }
         .hero-image {
             width: 100%;
+            height: 100%;
             display: block;
-            border-radius: 14px;
             object-fit: cover;
-            min-height: 280px;
-            border: 1px solid var(--line);
+            object-position: center 24%;
+            transform: scale(1);
+            transform-origin: center;
         }
         .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
         .kpi {
@@ -149,6 +172,8 @@
             .hero { grid-template-columns: 1fr; }
             .grid3 { grid-template-columns: 1fr 1fr; }
             .stats { grid-template-columns: 1fr 1fr; }
+            .hero-image-wrap { aspect-ratio: 16 / 9; }
+            .hero-image { transform: scale(1); object-position: center 22%; }
         }
         @media (max-width: 640px) {
             .grid3 { grid-template-columns: 1fr; }
@@ -174,11 +199,13 @@
                 </p>
                 <div class="cta">
                     <a href="/inscription/client/" class="btn btn-main">Créer mon compte</a>
-                    <a href="/inscription/coiffeuse/" class="btn btn-alt">Inscription Esthéticienne</a>
+                    <a href="/inscription/coiffeuse/" class="btn btn-esth">Inscription Esthéticienne</a>
                 </div>
             </div>
-            <div class="panel">
-                <img src="{% static 'manager/home-hero.png' %}" alt="Coiffeuse et cliente dans un salon" class="hero-image">
+            <div class="panel panel-image">
+                <div class="hero-image-wrap">
+                    <img src="{% static 'manager/home-hero.png' %}" alt="Coiffeuse et cliente dans un salon" class="hero-image">
+                </div>
             </div>
         </section>
 
