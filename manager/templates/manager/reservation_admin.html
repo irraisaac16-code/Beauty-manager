@@ -1,26 +1,30 @@
 {% extends 'manager/base.html' %}
 {% load price_filters %}
+{% load static %}
 
 {% block title %}Gestion des Réservations - Beauty Manager{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
 <!-- Token CSRF caché pour les requêtes AJAX -->
 <div style="display: none;">
     {% csrf_token %}
 </div>
-<div class="container">
-    <!-- Header professionnel -->
-    <div class="admin-header">
+<div class="admin-dashboard">
+    <div class="dashboard-header">
         <div class="header-content">
-            <div class="header-title">
+            <div class="header-left">
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
                 <h1><i class="fas fa-calendar-alt"></i> Gestion des Réservations</h1>
                 <p>Panneau d'administration complet pour la gestion des rendez-vous</p>
             </div>
-            <div class="header-actions">
-                <!-- Boutons supprimés pour simplifier l'interface -->
-            </div>
         </div>
     </div>
+
+    <div class="main-content">
 
     <!-- Statistiques avancées -->
     <div class="stats-dashboard">
@@ -242,6 +246,7 @@
                 <p>Aucune réservation ne correspond aux critères de recherche actuels.</p>
             </div>
         {% endif %}
+    </div>
     </div>
 </div>
 

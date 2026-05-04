@@ -4,18 +4,10 @@
 {% block title %}Validation des Esthéticiennes{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
 <style>
-    .validation-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #ffffff;
-        min-height: 100vh;
-    }
-
-    body {
-        background: #f8fafc;
-        color: #1f2937;
+    .admin-dashboard .validation-inner {
+        width: 100%;
     }
 
     .section-header {
@@ -302,11 +294,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="validation-container">
-    <div class="section-header">
-        <h1><i class="fas fa-user-check"></i> Validation des Esthéticiennes</h1>
-        <p>Gérez les demandes d'inscription des esthéticiennes</p>
+<div class="admin-dashboard">
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <h1><i class="fas fa-user-check"></i> Validation des Esthéticiennes</h1>
+                <p>Gérez les demandes d'inscription des esthéticiennes</p>
+            </div>
+        </div>
     </div>
+    <div class="main-content">
+    <div class="validation-inner">
 
     <!-- Coiffeuses en attente de validation -->
     {% if coiffeuses_en_attente %}
@@ -430,5 +429,7 @@
             <p>Les esthéticiennes qui s'inscrivent apparaîtront ici pour validation.</p>
         </div>
     {% endif %}
+    </div>
+    </div>
 </div>
 {% endblock %} 

@@ -2,9 +2,30 @@
 {% load static %}
 {% load price_filters %}
 {% block title %}Gestion des services{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1 class="section-title">Gestion des services</h1>
+<div class="admin-dashboard">
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <h1><i class="fas fa-concierge-bell"></i> Gestion des services</h1>
+                <p>Modifier les services disponibles pour vos clientes</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+    <div class="content-card">
+        <div class="card-header">
+            <h3><i class="fas fa-list"></i> Catalogue</h3>
+            <p>Ajoutez, modifiez ou désactivez des prestations</p>
+        </div>
+        <div class="card-body">
     <div class="mb-4 flex-center">
         <a href="{% url 'service_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un service</a>
     </div>
@@ -54,6 +75,9 @@
         {% else %}
             <p>Aucun service enregistré pour le moment.</p>
         {% endif %}
+    </div>
+        </div>
+    </div>
     </div>
 </div>
 {% endblock %}

@@ -1,15 +1,26 @@
 {% extends 'manager/base.html' %}
 {% load price_filters %}
+{% load static %}
 
 {% block title %}Mon Profil - Beauty Manager{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="profile-header">
-        <h1><i class="fas fa-user-circle"></i> Mon Profil</h1>
-        <p>Gérez vos informations personnelles</p>
+<div class="admin-dashboard">
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <h1><i class="fas fa-user-circle"></i> Mon Profil</h1>
+                <p>Gérez vos informations personnelles</p>
+            </div>
+        </div>
     </div>
 
+    <div class="main-content">
     <div class="row justify-content-center">
         <!-- Informations du profil -->
         <div class="col-md-8">
@@ -70,33 +81,10 @@
             </div>
         </div>
     </div>
-
-
+    </div>
 </div>
 
 <style>
-.profile-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem 0;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
-    color: white;
-    border-radius: 15px;
-    margin-bottom: 2rem;
-}
-
-.profile-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
-.profile-header p {
-    margin: 0.5rem 0 0 0;
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
 .profile-info {
     display: flex;
     flex-direction: column;
@@ -213,10 +201,6 @@
     }
 
 @media (max-width: 768px) {
-    .profile-header h1 {
-        font-size: 2rem;
-    }
-    
     .info-row {
         flex-direction: column;
         align-items: flex-start;
