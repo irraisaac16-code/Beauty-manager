@@ -95,8 +95,8 @@
         .hero {
             padding: 3rem 0 3.2rem;
             display: grid;
-            grid-template-columns: 1fr 1.28fr;
-            gap: 1.4rem;
+            grid-template-columns: 1.42fr 0.76fr;
+            gap: 1.5rem;
             align-items: center;
         }
         h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: 0 0 .9rem; line-height: 1.1; }
@@ -104,7 +104,7 @@
         .cta {
             margin-top: 1.3rem;
             display: flex;
-            gap: .75rem;
+            gap: .65rem;
             flex-wrap: wrap;
             align-items: center;
         }
@@ -169,6 +169,22 @@
         .final-cta p { color: var(--muted); margin: .5rem 0 1.1rem; }
         footer {
             text-align: center; color: var(--muted); padding: 1rem 0 2rem; font-size: .88rem;
+        }
+        @media (min-width: 901px) {
+            .hero .panel.panel-image {
+                justify-self: end;
+                width: 100%;
+                max-width: 100%;
+                transform: translateX(0.6rem);
+            }
+            .cta {
+                flex-wrap: nowrap;
+                gap: 0.55rem;
+            }
+            .hero .btn {
+                padding: 0.72rem 0.82rem;
+                font-size: 0.9rem;
+            }
         }
         @media (max-width: 900px) {
             .hero { grid-template-columns: 1fr; }
