@@ -26,7 +26,7 @@ main.theme-reg h2 {
 .reg-hero {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
-    gap: 1.4rem;
+    gap: 1.65rem;
     align-items: start;
     padding: 2.5rem 0 1.5rem;
 }
@@ -36,9 +36,15 @@ main.theme-reg h2 {
     align-items: center;
 }
 
+.reg-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
 .reg-intro h1 {
     font-size: clamp(1.85rem, 3vw, 2.75rem);
-    margin: 0 0 0.75rem;
+    margin: 0;
     line-height: 1.12;
     color: var(--reg-text);
     font-weight: 800;
@@ -54,7 +60,7 @@ main.theme-reg h2 {
 }
 
 .reg-validation-notice {
-    margin: 1.25rem 0 0;
+    margin: 0;
     max-width: 520px;
     display: flex;
     align-items: flex-start;
@@ -90,7 +96,7 @@ main.theme-reg h2 {
 }
 
 .reg-intro-cta {
-    margin-top: 1.25rem;
+    margin-top: 0;
 }
 
 .reg-panel {
@@ -110,8 +116,8 @@ main.theme-reg h2 {
 }
 
 .reg-section {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
     border-bottom: 1px solid rgba(124, 58, 237, 0.1);
 }
 
@@ -138,11 +144,11 @@ main.theme-reg h2 {
 .reg-form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.35rem;
 }
 
 .reg-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .reg-group:last-child {
@@ -151,7 +157,7 @@ main.theme-reg h2 {
 
 .reg-group label {
     display: block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.55rem;
     color: var(--reg-text);
     font-weight: 600;
     font-size: 0.9rem;
@@ -209,7 +215,7 @@ main.theme-reg h2 {
     display: flex;
     align-items: flex-start;
     gap: 0.65rem;
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.05rem;
 }
 
 .reg-check input {
@@ -238,8 +244,8 @@ main.theme-reg h2 {
 .reg-actions {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+    gap: 1rem;
+    margin-top: 1.75rem;
 }
 
 .reg-submit {
@@ -279,12 +285,15 @@ main.theme-reg h2 {
 }
 
 .reg-benefits {
-    padding: 1.25rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    padding: 1.75rem 0 0;
 }
 
 .reg-benefits-heading {
     font-size: 1.65rem;
-    margin: 0 0 1rem;
+    margin: 0;
     color: var(--reg-text);
     font-weight: 700;
 }
@@ -292,7 +301,7 @@ main.theme-reg h2 {
 .reg-grid-coif {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.9rem;
+    gap: 1.1rem;
 }
 
 .reg-card {
@@ -652,7 +661,7 @@ main.theme-reg .btn-primary:hover {
 .reg-grid3 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.9rem;
+    gap: 1.1rem;
 }
 @media (max-width: 960px) {
     .reg-grid3 { grid-template-columns: repeat(2, 1fr); }
