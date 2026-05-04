@@ -5,540 +5,1359 @@
 {% block title %}Dashboard Admin - Beauty Manager{% endblock %}
 
 {% block content %}
-<div class="container admin-shell">
-    <section class="grid-top">
-        <article class="panel hero">
-            <div class="hero-text">
-                <p class="eyebrow">Espace Admin</p>
-                <h1>Bonjour {{ request.user.username }}</h1>
-                <p>Pilotage complet du salon : réservations, validations et performance.</p>
-                <a href="{% url 'reservation_admin' %}" class="hero-cta">Voir les réservations</a>
+<div class="admin-dashboard">
+    <!-- Header professionnel -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-shield-alt"></i> Dashboard Administrateur</h1>
+                <p>Gestion centralisée de votre salon de beauté</p>
             </div>
-            <div class="hero-icon"><i class="fas fa-shield-alt"></i></div>
-        </article>
 
-        <article class="panel transactions">
-            <div class="panel-title">
-                <h2>Transactions</h2>
-                <small>Mois en cours</small>
+        </div>
+    </div>
+
+    <!-- Statistiques principales -->
+    <div class="stats-grid">
+        <div class="stat-card primary">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-check"></i>
             </div>
-            <div class="kpi-row">
-                <div class="kpi-item violet">
-                    <i class="fas fa-calendar-check"></i>
-                    <div>
-                        <span>Réservations</span>
-                        <strong>{{ total_reservations }}</strong>
+            <div class="stat-content">
+                <h3>{{ total_reservations }}</h3>
+                <p>Total Réservations</p>
+                
+            </div>
+        </div>
+        
+        <div class="stat-card success">
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ reservations_aujourd_hui }}</h3>
+                <p>Réservations Aujourd'hui</p>
+                
+            </div>
+        </div>
+        
+        <div class="stat-card warning">
+            <div class="stat-icon">
+                <i class="fas fa-user-friends"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ coiffeuses_actives }}</h3>
+                <p>Esthéticiennes Actives</p>
+                
+            </div>
+        </div>
+        
+        <div class="stat-card info">
+            <div class="stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ clients_actifs }}</h3>
+                <p>Clients Actifs</p>
+                
+            </div>
+        </div>
+        
+        <div class="stat-card payment">
+            <div class="stat-icon">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ reservations_payees }}</h3>
+                <p>Réservations Payées</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Section principale -->
+    <div class="main-content">
+        <div class="content-grid">
+            <!-- Actions rapides -->
+            <div class="content-card actions-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> Actions Rapides</h3>
+                    <p>Accès direct aux fonctionnalités principales</p>
+                </div>
+                <div class="card-body">
+                    <div class="actions-grid">
+                        <a href="{% url 'reservation_admin' %}" class="action-btn primary">
+                            <div class="action-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>Gérer les Réservations</h4>
+                                <p>Voir et modifier toutes les réservations</p>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'validation_coiffeuses' %}" class="action-btn warning">
+                            <div class="action-icon">
+                                <i class="fas fa-user-check"></i>
+                                {% if coiffeuses_en_attente %}
+                                    <span class="notification-badge">{{ coiffeuses_en_attente.count }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="action-content">
+                                <h4>Valider Esthéticiennes</h4>
+                                <p>Approuver les nouvelles esthéticiennes</p>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'services_list' %}" class="action-btn success">
+                            <div class="action-icon">
+                                <i class="fas fa-concierge-bell"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>Gérer les Services</h4>
+                                <p>Modifier les services disponibles</p>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        
+                                                 <a href="{% url 'profil_utilisateur' %}" class="action-btn info">
+                             <div class="action-icon">
+                                 <i class="fas fa-user-cog"></i>
+                             </div>
+                             <div class="action-content">
+                                 <h4>Mon Profil</h4>
+                                 <p>Gérer vos informations personnelles</p>
+                             </div>
+                             <div class="action-arrow">
+                                 <i class="fas fa-arrow-right"></i>
+                             </div>
+                         </a>
                     </div>
                 </div>
-                <div class="kpi-item green">
-                    <i class="fas fa-users"></i>
-                    <div>
-                        <span>Clients</span>
-                        <strong>{{ clients_actifs }}</strong>
-                    </div>
+            </div>
+
+            <!-- Alertes et notifications -->
+            <div class="content-card alerts-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Alertes</h3>
+                    <p>Points nécessitant votre attention</p>
                 </div>
-                <div class="kpi-item amber">
-                    <i class="fas fa-cut"></i>
-                    <div>
-                        <span>Esthéticiennes</span>
-                        <strong>{{ coiffeuses_actives }}</strong>
+                <div class="card-body">
+                    <div class="alert-item urgent">
+                        <div class="alert-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>{{ reservations_en_attente }} Réservations en Attente</h4>
+                            <p>Nécessitent une validation ou un suivi</p>
+                        </div>
+                        {% if reservations_en_attente > 0 %}
+                            <a href="{% url 'reservation_admin' %}" class="alert-action">
+                                Voir détails
+                            </a>
+                        {% endif %}
                     </div>
+                    
+                    {% if coiffeuses_en_attente %}
+                    <div class="alert-item warning">
+                        <div class="alert-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>{{ coiffeuses_en_attente.count }} Esthéticiennes en Attente</h4>
+                            <p>En attente de validation</p>
+                        </div>
+                        <a href="{% url 'validation_coiffeuses' %}" class="alert-action">
+                            Valider
+                        </a>
+                    </div>
+                    {% endif %}
                 </div>
-                <div class="kpi-item blue">
-                    <i class="fas fa-wallet"></i>
-                    <div>
-                        <span>Revenus</span>
-                        <strong>{{ total_revenue|floatformat:0 }} FCFA</strong>
-                    </div>
-                </div>
             </div>
-        </article>
-    </section>
 
-    <section class="grid-overview">
-        <article class="panel weekly">
-            <div class="panel-title">
-                <h2>Weekly Overview</h2>
-                <small>Activité récente</small>
-            </div>
-            <div class="overview-stat">
-                <strong>{{ reservations_aujourd_hui }}</strong>
-                <span>réservations aujourd'hui</span>
-            </div>
-            <div class="fake-bars">
-                <span style="--h: 22"></span>
-                <span style="--h: 35"></span>
-                <span style="--h: 48"></span>
-                <span style="--h: 30"></span>
-                <span style="--h: 60"></span>
-                <span style="--h: 40"></span>
-                <span style="--h: 68"></span>
-            </div>
-        </article>
+        </div>
 
-        <article class="panel earning">
-            <div class="panel-title">
-                <h2>Total Earning</h2>
-                <small>{{ total_revenue|floatformat:0 }} FCFA</small>
+        <!-- Liste des clients actifs -->
+        <div class="content-card clients-card">
+            <div class="card-header">
+                <h3><i class="fas fa-users"></i> Clients Actifs</h3>
+                <p>Liste de tous les clients enregistrés ({{ clients_actifs }})</p>
             </div>
-            <ul class="mini-list">
-                {% for service in top_services %}
-                    <li>
-                        <span>{{ service.service__name }}</span>
-                        <strong>{{ service.revenue|default:0|floatformat:0 }} FCFA</strong>
-                    </li>
-                {% empty %}
-                    <li><span>Aucun service</span><strong>0 FCFA</strong></li>
-                {% endfor %}
-            </ul>
-        </article>
+            <div class="card-body">
+                {% if clients_liste %}
+                    <div class="clients-grid">
+                        {% for client in clients_liste %}
+                        <div class="client-card">
+                            <div class="client-avatar">
+                                {% if client.profile_image %}
+                                    <img src="{{ client.profile_image.url }}" alt="Photo de {{ client.user.username }}" class="client-image">
+                                {% else %}
+                                    <div class="client-no-image">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="client-info">
+                                <h4 class="client-name">{{ client.user.username }}</h4>
+                                <p class="client-email">{{ client.user.email }}</p>
+                                {% if client.phone %}
+                                    <p class="client-phone"><i class="fas fa-phone"></i> {{ client.phone }}</p>
+                                {% endif %}
+                                <div class="client-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <span>{{ client.reservation_set.count }} RDV</span>
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>Inscrit le {{ client.user.date_joined|date:"d/m/Y" }}</span>
+                                    </span>
+                                </div>
+                            </div>
 
-        <article class="panel compact">
-            <p>En attente</p>
-            <strong>{{ reservations_en_attente }}</strong>
-            <small>réservations</small>
-        </article>
-
-        <article class="panel compact">
-            <p>Payées</p>
-            <strong>{{ reservations_payees }}</strong>
-            <small>réservations</small>
-        </article>
-    </section>
-
-    <section class="grid-main">
-        <article class="panel performance">
-            <div class="panel-title">
-                <h2>Performance</h2>
-                <small>Services les plus demandés</small>
-            </div>
-            <div class="radar-placeholder">
-                <div class="shape"></div>
-            </div>
-            <div class="legend">
-                <span><i class="dot violet"></i> Réservations</span>
-                <span><i class="dot cyan"></i> Revenus</span>
-            </div>
-        </article>
-
-        <article class="panel actions">
-            <div class="panel-title">
-                <h2>Actions rapides</h2>
-                <small>Administration</small>
-            </div>
-            <a href="{% url 'validation_coiffeuses' %}" class="quick-action">
-                <span>Valider esthéticiennes</span>
-                <strong>{{ coiffeuses_en_attente.count }}</strong>
-            </a>
-            <a href="{% url 'services_list' %}" class="quick-action">
-                <span>Gérer les services</span>
-                <strong>Ouvrir</strong>
-            </a>
-            <a href="{% url 'bilan_mensuel' %}" class="quick-action">
-                <span>Bilan mensuel</span>
-                <strong>Voir</strong>
-            </a>
-            <a href="{% url 'profil_utilisateur' %}" class="quick-action">
-                <span>Mon profil</span>
-                <strong>Gérer</strong>
-            </a>
-        </article>
-    </section>
-
-    <section class="grid-bottom">
-        <article class="panel split-list">
-            <div class="panel-title">
-                <h2>Top services</h2>
-                <small>Volume des ventes</small>
-            </div>
-            <ul class="country-list">
-                {% for service in top_services %}
-                <li>
-                    <div>
-                        <strong>{{ service.service__name }}</strong>
-                        <small>{{ service.total }} réservations</small>
-                    </div>
-                    <span>{{ service.revenue|default:0|floatformat:0 }} FCFA</span>
-                </li>
-                {% empty %}
-                <li>
-                    <div>
-                        <strong>Aucune donnée</strong>
-                        <small>Pas de réservations</small>
-                    </div>
-                    <span>0 FCFA</span>
-                </li>
-                {% endfor %}
-            </ul>
-        </article>
-
-        <article class="panel users">
-            <div class="panel-title">
-                <h2>Clients actifs</h2>
-                <small>{{ clients_actifs }} utilisateurs</small>
-            </div>
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Utilisateur</th>
-                            <th>Email</th>
-                            <th>Inscription</th>
-                            <th>RDV</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for client in clients_liste|slice:":8" %}
-                        <tr>
-                            <td>{{ client.user.username }}</td>
-                            <td>{{ client.user.email }}</td>
-                            <td>{{ client.user.date_joined|date:"d/m/Y" }}</td>
-                            <td>{{ client.reservation_set.count }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="4">Aucun client actif</td>
-                        </tr>
+                        </div>
                         {% endfor %}
-                    </tbody>
-                </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Aucun client actif</h3>
+                        <p>Aucun client n'est actuellement enregistré dans le système.</p>
+                    </div>
+                {% endif %}
             </div>
-        </article>
-    </section>
+        </div>
+
+        <!-- Tableau des rendez-vous récents -->
+        <div class="content-card table-card">
+            <div class="card-header">
+                <h3><i class="fas fa-calendar-alt"></i> Rendez-vous Récents</h3>
+                <p>Dernières réservations du salon</p>
+            </div>
+            <div class="card-body">
+                {% if rdv_recents %}
+                    <div class="table-container">
+                        <table class="modern-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Heure</th>
+                                    <th>Client</th>
+                                    <th>Esthéticienne</th>
+                                    <th>Service</th>
+                                    <th>Statut</th>
+                                    <th>Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rdv in rdv_recents %}
+                                <tr class="table-row">
+                                    <td>
+                                        <div class="date-cell">
+                                            <span class="date-day">{{ rdv.date|date:"d" }}</span>
+                                            <span class="date-month">{{ rdv.date|date:"M" }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="time-badge">{{ rdv.heure|time:"H:i" }}</span>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span>{{ rdv.client.user.username }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar coiffeuse">
+                                                <i class="fas fa-cut"></i>
+                                            </div>
+                                            <span>{{ rdv.coiffeuse.user.username }}</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="service-name">{{ rdv.service.name }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-{{ rdv.statut }}">
+                                            {{ rdv.get_statut_display }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="price-badge">{{ rdv.montant|floatformat:0 }} FCFA</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-times"></i>
+                        <h4>Aucun rendez-vous récent</h4>
+                        <p>Les nouveaux rendez-vous apparaîtront ici</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Carte Bilan centrée -->
+        <div class="bilan-container">
+            <div class="content-card bilan-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> Bilan</h3>
+                    <p>Analyses et rapports de performance</p>
+                </div>
+                <div class="card-body">
+                    <div class="bilan-grid">
+                        <a href="{% url 'bilan_hebdomadaire' %}" class="bilan-btn hebdomadaire">
+                            <div class="bilan-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="bilan-content">
+                                <h4>Bilan Hebdomadaire</h4>
+                                <p>Analyser les performances de la semaine</p>
+                            </div>
+                            <div class="bilan-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'bilan_mensuel' %}" class="bilan-btn mensuel">
+                            <div class="bilan-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="bilan-content">
+                                <h4>Bilan Mensuel</h4>
+                                <p>Vue d'ensemble du mois</p>
+                            </div>
+                            <div class="bilan-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                        
+                        <a href="{% url 'bilan_annuel' %}" class="bilan-btn annuel">
+                            <div class="bilan-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="bilan-content">
+                                <h4>Bilan Annuel</h4>
+                                <p>Analyse complète de l'année</p>
+                            </div>
+                            <div class="bilan-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-.admin-shell {
-    padding: 1.2rem 0 2.5rem;
-    font-family: "Inter", sans-serif;
+/* Dashboard Admin Professionnel - Version 3.0 */
+.admin-dashboard {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 2rem 0;
 }
 
-.admin-shell section {
-    display: grid;
-    gap: 0.9rem;
-    margin-bottom: 0.9rem;
+/* Header professionnel */
+.dashboard-header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
 }
 
-.grid-top {
-    grid-template-columns: 1fr 2fr;
+.dashboard-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
 }
 
-.grid-overview {
-    grid-template-columns: 1.2fr 1.2fr 1fr 1fr;
+.header-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 3rem;
+    position: relative;
+    z-index: 1;
+    text-align: center;
 }
 
-.grid-main {
-    grid-template-columns: 1.3fr 1fr;
+.header-left h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
 }
 
-.grid-bottom {
-    grid-template-columns: 1fr 1.8fr;
+.header-left h1 i {
+    color: #7c3aed;
+    font-size: 2.2rem;
 }
 
-.panel {
-    background: #ffffff;
-    border: 1px solid #e8e9f1;
+.header-left p {
+    margin: 0.5rem 0 0 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.quick-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.quick-stat {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
-    padding: 0.95rem;
-    box-shadow: 0 2px 10px rgba(22, 27, 45, 0.05);
+    backdrop-filter: blur(10px);
 }
 
-.panel-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.8rem;
-}
-
-.panel-title h2 {
-    margin: 0;
-    font-size: 0.96rem;
-    color: #2a2f42;
-    font-weight: 600;
-}
-
-.panel-title small {
-    color: #959cb2;
-    font-size: 0.78rem;
-}
-
-.hero {
-    background: linear-gradient(140deg, #6f42f5, #9663ff);
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 156px;
-}
-
-.hero .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.7rem;
-    margin: 0 0 0.35rem 0;
-    opacity: 0.85;
-}
-
-.hero h1 {
-    margin: 0;
-    font-size: 1.28rem;
-}
-
-.hero p {
-    margin: 0.4rem 0 0.75rem;
-    font-size: 0.84rem;
-    opacity: 0.92;
-}
-
-.hero-cta {
-    display: inline-block;
-    padding: 0.5rem 0.85rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.82rem;
-}
-
-.hero-icon {
-    font-size: 1.85rem;
-    opacity: 0.65;
-}
-
-.kpi-row {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.6rem;
-}
-
-.kpi-item {
-    border-radius: 10px;
-    padding: 0.62rem;
-    display: flex;
-    gap: 0.55rem;
-    align-items: center;
-}
-
-.kpi-item i {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.85);
-}
-
-.kpi-item span {
+.quick-stat .stat-number {
     display: block;
-    font-size: 0.7rem;
-    opacity: 0.85;
-}
-
-.kpi-item strong {
-    font-size: 0.9rem;
-}
-
-.kpi-item.violet { background: #f3ebff; color: #5f31c8; }
-.kpi-item.green { background: #e9fbef; color: #14804a; }
-.kpi-item.amber { background: #fff6dd; color: #a46b00; }
-.kpi-item.blue { background: #eaf3ff; color: #255fbe; }
-
-.overview-stat {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0.8rem;
-}
-
-.overview-stat strong {
-    font-size: 1.35rem;
-    color: #2d3345;
-}
-
-.overview-stat span {
-    color: #8a91a8;
-    font-size: 0.82rem;
-}
-
-.fake-bars {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    align-items: end;
-    gap: 0.35rem;
-    height: 76px;
-}
-
-.fake-bars span {
-    display: block;
-    border-radius: 9px;
-    background: linear-gradient(180deg, #8758ff, #5a34cb);
-    height: calc(var(--h) * 1px);
-}
-
-.mini-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.mini-list li {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.42rem 0;
-    border-bottom: 1px solid #f0f1f5;
-    font-size: 0.82rem;
-}
-
-.compact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-}
-
-.compact p,
-.compact small {
-    margin: 0;
-    color: #8a91a8;
-}
-
-.compact strong {
-    margin: 0.2rem 0;
-    font-size: 1.35rem;
-    color: #2d3345;
-}
-
-.radar-placeholder {
-    height: 150px;
-    display: grid;
-    place-items: center;
-}
-
-.shape {
-    width: 118px;
-    height: 118px;
-    background: radial-gradient(circle at 30% 35%, #45c8ff, #7648f6);
-    clip-path: polygon(50% 0%, 95% 35%, 80% 100%, 20% 100%, 5% 35%);
-    opacity: 0.85;
-}
-
-.legend {
-    display: flex;
-    gap: 0.8rem;
-    font-size: 0.82rem;
-    color: #8a91a8;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 0.3rem;
-}
-
-.dot.violet { background: #7648f6; }
-.dot.cyan { background: #37c6ff; }
-
-.quick-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: #2d3345;
-    background: #f7f8fc;
-    border: 1px solid #eceef5;
-    border-radius: 9px;
-    padding: 0.62rem 0.72rem;
-    margin-bottom: 0.48rem;
-    font-size: 0.86rem;
-    transition: all 0.18s ease;
-}
-
-.quick-action:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(83, 51, 170, 0.11);
-    border-color: #dfd8fb;
-}
-
-.quick-action strong {
+    font-size: 1.8rem;
+    font-weight: 700;
     color: #7c3aed;
 }
 
-.country-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.quick-stat .stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
-.country-list li {
+
+
+/* Grille de statistiques */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour la section des clients actifs */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.client-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0.48rem 0;
-    border-bottom: 1px solid #f0f1f5;
+    gap: 1rem;
+    border: 1px solid #e5e7eb;
 }
 
-.country-list strong {
-    font-size: 0.88rem;
-    color: #2d3345;
+.client-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: #3b82f6;
 }
 
-.country-list small {
-    display: block;
-    color: #8a91a8;
+.client-avatar {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.country-list span {
-    font-size: 0.85rem;
+.client-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.client-no-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.client-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.client-name {
+    font-size: 1.1rem;
     font-weight: 600;
-    color: #3f4f78;
+    color: #1e293b;
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.table-wrap {
+.client-email {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin: 0 0 0.5rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.client-phone {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.client-stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.8rem;
+    color: #64748b;
+    background: #f8fafc;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.stat-item i {
+    color: #3b82f6;
+    font-size: 0.75rem;
+}
+
+.client-actions {
+    flex-shrink: 0;
+}
+
+.action-btn.small {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn.small:hover {
+    transform: scale(1.1);
+}
+
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-color-light));
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.stat-card.primary {
+    --accent-color: #7c3aed;
+    --accent-color-light: #a855f7;
+}
+
+.stat-card.success {
+    --accent-color: #10b981;
+    --accent-color-light: #34d399;
+}
+
+.stat-card.warning {
+    --accent-color: #f59e0b;
+    --accent-color-light: #fbbf24;
+}
+
+.stat-card.info {
+    --accent-color: #3b82f6;
+    --accent-color-light: #60a5fa;
+}
+
+.stat-card.payment {
+    --accent-color: #10b981;
+    --accent-color-light: #34d399;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-content h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-content p {
+    color: #64748b;
+    font-weight: 500;
+    margin: 0 0 1rem 0;
+}
+
+.stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Contenu principal */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.content-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.content-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.card-header h3 i {
+    color: #7c3aed;
+}
+
+.card-header p {
+    margin: 0.5rem 0 0 0;
+    color: #64748b;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Actions rapides */
+.actions-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+.action-btn:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: white;
+}
+
+.action-btn.warning {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: white;
+}
+
+.action-btn.success {
+    background: linear-gradient(135deg, #10b981, #34d399);
+    color: white;
+}
+
+.action-btn.info {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+}
+
+.action-icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.action-content {
+    flex: 1;
+}
+
+.action-content h4 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.action-content p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+.action-arrow {
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover .action-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Alertes */
+.alert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.alert-item.urgent {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-left: 4px solid #f59e0b;
+}
+
+.alert-item.warning {
+    background: linear-gradient(135deg, #fef2f2, #fecaca);
+    border-left: 4px solid #ef4444;
+}
+
+.alert-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.alert-item.urgent .alert-icon {
+    background: #f59e0b;
+}
+
+.alert-item.warning .alert-icon {
+    background: #ef4444;
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-content h4 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.alert-content p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.alert-action {
+    padding: 0.5rem 1rem;
+    background: white;
+    color: #7c3aed;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.alert-action:hover {
+    background: #7c3aed;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Tableau moderne */
+.table-card {
+    margin-top: 2rem;
+}
+
+.table-container {
     overflow-x: auto;
 }
 
-.users table {
+.modern-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.users th,
-.users td {
-    font-size: 0.8rem;
+.modern-table th {
+    background: #f8fafc;
+    padding: 1rem;
     text-align: left;
-    padding: 0.5rem;
-    border-bottom: 1px solid #f0f1f5;
-    color: #3f4f78;
-}
-
-.users th {
-    color: #8a91a8;
     font-weight: 600;
-    font-size: 0.74rem;
+    color: #374151;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.modern-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.table-row {
+    transition: all 0.3s ease;
+}
+
+.table-row:hover {
+    background: #f8fafc;
+    transform: scale(1.01);
+}
+
+.date-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-day {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #7c3aed;
+}
+
+.date-month {
+    font-size: 0.8rem;
+    color: #6b7280;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
 }
 
-@media (max-width: 1100px) {
-    .grid-top,
-    .grid-overview,
-    .grid-main,
-    .grid-bottom {
-        grid-template-columns: 1fr;
-    }
+.time-badge {
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
 
-    .kpi-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7c3aed;
+    font-size: 0.8rem;
+}
+
+.user-avatar.coiffeuse {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.service-name {
+    font-weight: 600;
+    color: #374151;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-en_attente {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-confirmé {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-payé {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-annulé {
+    background: #dc2626;
+    color: white;
+}
+
+.price-badge {
+    background: #f0fdf4;
+    color: #166534;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* État vide */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #6b7280;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #d1d5db;
+    margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+    margin: 1rem 0 0.5rem 0;
+    color: #374151;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 640px) {
-    .kpi-row {
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+    
+    .header-left h1 {
+        font-size: 2rem;
+    }
+    
+    .quick-stats {
+        gap: 1rem;
+    }
+    
+    .stats-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .action-btn {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .action-content {
+        text-align: center;
+    }
+    
+    .modern-table {
+        font-size: 0.9rem;
+    }
+    
+    .modern-table th,
+    .modern-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Carte Bilan pleine largeur */
+.bilan-container {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.bilan-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    width: 100%;
+}
+
+.bilan-card .card-header {
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bilan-card .card-header h3 {
+    color: white;
+}
+
+.bilan-card .card-header p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.bilan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.bilan-btn {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.bilan-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    color: white;
+    text-decoration: none;
+}
+
+.bilan-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.bilan-btn.hebdomadaire .bilan-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bilan-btn.mensuel .bilan-icon {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bilan-btn.annuel .bilan-icon {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.bilan-content {
+    flex: 1;
+}
+
+.bilan-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.bilan-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+.bilan-arrow {
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.bilan-btn:hover .bilan-arrow {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+.content-card {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.content-card:nth-child(1) { animation-delay: 0.5s; }
+.content-card:nth-child(2) { animation-delay: 0.6s; }
+
+/* Styles pour les notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 1000;
+    animation: slideInRight 0.3s ease;
+    max-width: 400px;
+}
+
+.notification-success {
+    border-left: 4px solid #10b981;
+}
+
+.notification-error {
+    border-left: 4px solid #ef4444;
+}
+
+.notification-info {
+    border-left: 4px solid #3b82f6;
+}
+
+.notification i:first-child {
+    font-size: 1.2rem;
+}
+
+.notification-success i:first-child {
+    color: #10b981;
+}
+
+.notification-error i:first-child {
+    color: #ef4444;
+}
+
+.notification-info i:first-child {
+    color: #3b82f6;
+}
+
+.notification span {
+    flex: 1;
+    color: #374151;
+    font-size: 0.9rem;
+}
+
+.notification button {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+}
+
+.notification button:hover {
+    color: #6b7280;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 </style>
+
+<script>
+// Fonction pour afficher les détails d'un client
+function viewClientDetails(clientId) {
+    // Pour l'instant, afficher une alerte
+    // Plus tard, cela pourrait ouvrir un modal avec les détails du client
+    alert(`Détails du client #${clientId}\n\nCette fonctionnalité sera développée pour afficher les détails complets du client, son historique de réservations, etc.`);
+}
+
+// Fonction pour afficher les notifications
+function showNotification(message, type = 'info') {
+    // Créer l'élément de notification
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${message}</span>
+        <button onclick="this.parentElement.remove()">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+    
+    // Ajouter au body
+    document.body.appendChild(notification);
+    
+    // Supprimer automatiquement après 5 secondes
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.remove();
+        }
+    }, 5000);
+}
+</script>
 {% endblock %} 
