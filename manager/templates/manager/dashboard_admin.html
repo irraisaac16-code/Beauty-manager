@@ -10,6 +10,7 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
                 <h1><i class="fas fa-shield-alt"></i> Dashboard Administrateur</h1>
                 <p>Gestion centralisée de votre salon de beauté</p>
             </div>
@@ -405,10 +406,14 @@
     backdrop-filter: blur(8px);
 }
 
+.admin-dashboard .header-left .brand-wordmark {
+    text-align: center;
+}
+
 .admin-dashboard .header-left h1 {
     font-size: clamp(1.6rem, 3vw, 2.25rem);
     font-weight: 800;
-    margin: 0;
+    margin: 0.35rem 0 0;
     display: flex;
     align-items: center;
     justify-content: center;

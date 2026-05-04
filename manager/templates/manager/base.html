@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=5">
+    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -323,13 +323,42 @@
                 padding: 0.65rem 0.85rem !important;
             }
         }
+
+        /* Wordmark page d'accueil : Beauty (ambre) + Manager (violet profond) */
+        .brand-wordmark {
+            margin: 0 0 0.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            font-size: clamp(1.15rem, 2vw, 1.45rem);
+            line-height: 1.2;
+        }
+        .brand-wordmark__beauty {
+            color: var(--esth-accent);
+        }
+        .brand-wordmark__manager {
+            color: #6d28d9;
+        }
+        a.navbar-brand.brand-wordmark-nav {
+            font-weight: 800 !important;
+            letter-spacing: -0.03em !important;
+            gap: 0.15rem;
+        }
+        a.navbar-brand.brand-wordmark-nav:hover {
+            text-decoration: none !important;
+        }
+        a.navbar-brand.brand-wordmark-nav .brand-wordmark__beauty {
+            color: var(--esth-accent) !important;
+        }
+        a.navbar-brand.brand-wordmark-nav .brand-wordmark__manager {
+            color: #6d28d9 !important;
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="navbar-brand"><span style="color: #d97706 !important;">Beauty</span><span style="color: #7c3aed !important;"> Manager</span></a>
+            <a href="{% url 'home' %}" class="navbar-brand brand-wordmark-nav"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></a>
             <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>
