@@ -31,14 +31,14 @@ img {
 
 /* Styles pour la navbar */
 .navbar {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(224, 195, 252, 0.35);
   padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 20px rgba(168, 85, 247, 0.1);
+  box-shadow: 0 2px 20px rgba(124, 58, 237, 0.08);
 }
 
 .navbar .container {
@@ -205,9 +205,20 @@ img {
 
 body {
   min-height: 100vh;
-  background: #f8f7fa;
-  color: #22223b;
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  /* Aligné avec la page d'accueil (lavande → crème → doré) */
+  background:
+    radial-gradient(100% 80% at 0% 0%, rgba(224, 195, 252, 0.55) 0%, transparent 55%),
+    radial-gradient(90% 70% at 100% 100%, rgba(252, 235, 182, 0.65) 0%, transparent 50%),
+    linear-gradient(
+      to bottom,
+      #E0C3FC 0%,
+      #F8F7FF 22%,
+      #ffffff 48%,
+      #FFF9E5 76%,
+      #FCEBB6 100%
+    );
+  color: #1e293b;
+  font-family: Inter, 'Segoe UI', 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
   position: relative;
