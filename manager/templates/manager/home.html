@@ -73,9 +73,17 @@
             letter-spacing: -0.03em;
             font-size: clamp(2rem, 4.2vw, 2.75rem);
             line-height: 1.12;
+            color: #6d28d9;
         }
-        .hero-brand .a { color: var(--esth-accent); }
-        .hero-brand .b { color: #6d28d9; }
+        @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+            .hero-brand {
+                color: transparent;
+                background: linear-gradient(90deg, var(--esth-accent) 0 44%, #6d28d9 44%);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
         .btn {
             display: inline-block; text-decoration: none; border-radius: 12px;
             padding: 0.8rem 1.1rem; font-weight: 700; transition: .2s ease;
@@ -239,7 +247,7 @@
     <main class="wrap">
         <section class="hero">
             <div>
-                <p class="hero-brand" aria-label="Beauty Manager"><span class="a">Beauty</span> <span class="b">Manager</span></p>
+                <p class="hero-brand">Beauty Manager</p>
                 <h1>Gérez votre salon de beauté comme une entreprise moderne.</h1>
                 <p>
                     Réservations, paiements, notifications et suivi d'activité dans une seule plateforme.
