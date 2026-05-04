@@ -102,6 +102,14 @@
             padding: 1rem;
             box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
         }
+        .hero-image {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+            object-fit: cover;
+            min-height: 280px;
+            border: 1px solid var(--line);
+        }
         .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
         .kpi {
             background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem;
@@ -170,12 +178,7 @@
                 </div>
             </div>
             <div class="panel">
-                <div class="kpis">
-                    <div class="kpi"><p>Réservations / mois</p><h3>+1 000</h3></div>
-                    <div class="kpi"><p>Taux de satisfaction</p><h3>98%</h3></div>
-                    <div class="kpi"><p>Professionnelles actives</p><h3>50+</h3></div>
-                    <div class="kpi"><p>Clients actifs</p><h3>500+</h3></div>
-                </div>
+                <img src="{% static 'manager/home-hero.png' %}" alt="Coiffeuse et cliente dans un salon" class="hero-image">
             </div>
         </section>
 
