@@ -105,7 +105,13 @@
         }
         h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: .9rem 0 .9rem; line-height: 1.1; }
         .hero p { color: var(--muted); max-width: 640px; font-size: 1.03rem; }
-        .cta { margin-top: 1.3rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+        .cta {
+            margin-top: 1.3rem;
+            display: flex;
+            gap: .75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
         .panel {
             border: 1px solid rgba(224, 195, 252, 0.45);
             border-radius: 20px;
@@ -198,8 +204,8 @@
                 </p>
                 <div class="cta">
                     <a href="{% url 'register_client' %}" class="btn btn-main">Créer mon compte</a>
+                    <a href="{% url 'login' %}" class="btn btn-main">Se connecter</a>
                     <a href="{% url 'register_coiffeuse' %}" class="btn btn-esth">Inscription Esthéticienne</a>
-                    <a href="{% url 'login' %}" class="btn btn-alt">Se connecter</a>
                 </div>
             </div>
             <div class="panel panel-image">
