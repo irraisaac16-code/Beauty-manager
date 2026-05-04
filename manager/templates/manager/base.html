@@ -5,12 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Beauty Manager{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3050/3050185.png">
     <link rel="shortcut icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3050/3050185.png">
-    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Styles Bootstrap-like */
@@ -127,14 +124,14 @@
         
         /* Styles temporaires pour la navbar */
         .navbar {
-            background: rgba(255, 255, 255, 0.55) !important;
-            backdrop-filter: blur(14px) !important;
-            border-bottom: 1px solid rgba(224, 195, 252, 0.35) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px) !important;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1) !important;
             padding: 1rem 0 !important;
             position: sticky !important;
             top: 0 !important;
             z-index: 1000 !important;
-            box-shadow: 0 2px 20px rgba(124, 58, 237, 0.08) !important;
+            box-shadow: 0 2px 20px rgba(168, 85, 247, 0.1) !important;
         }
         
         .navbar .container {
@@ -293,9 +290,9 @@
                     <a href="{% url 'profil_utilisateur' %}" class="nav-link">Mon Profil</a>
                     <a href="{% url 'logout' %}" class="nav-link">Déconnexion</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="nav-link nav-link-connect">Connexion</a>
+                    <a href="{% url 'login' %}" class="nav-link">Connexion</a>
                     <a href="{% url 'register_client' %}" class="nav-link">Inscription Client</a>
-                    <a href="{% url 'register_coiffeuse' %}" class="nav-link nav-link-amber">Inscription Esthéticienne</a>
+                                            <a href="{% url 'register_coiffeuse' %}" class="nav-link">Inscription Esthéticienne</a>
                 {% endif %}
             </div>
         </div>
