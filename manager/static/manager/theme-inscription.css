@@ -31,6 +31,11 @@ main.theme-reg h2 {
     padding: 2.5rem 0 1.5rem;
 }
 
+/* Inscription client / esthéticienne : colonne intro centrée verticalement au panneau formulaire */
+.reg-page--signup .reg-hero {
+    align-items: center;
+}
+
 .reg-intro h1 {
     font-size: clamp(1.85rem, 3vw, 2.75rem);
     margin: 0 0 0.75rem;
