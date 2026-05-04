@@ -319,6 +319,9 @@ def dashboard_admin(request):
     reservations_aujourd_hui = Reservation.objects.filter(date=today).count()
     reservations_en_attente = Reservation.objects.filter(statut='en_attente').count()
     reservations_payees = Reservation.objects.filter(statut='payé').count()
+    total_revenue = Reservation.objects.filter(statut='payé').aggregate(
+        total=Sum('montant')
+    )['total'] or 0
     coiffeuses_actives = UserProfile.objects.filter(role__name='coiffeuse', user__is_active=True).count()
     clients_actifs = UserProfile.objects.filter(role__name='client', user__is_active=True).count()
     
@@ -338,17 +341,24 @@ def dashboard_admin(request):
         role__name='client',
         user__is_active=True
     ).select_related('user').order_by('user__username')
+
+    top_services = Reservation.objects.values('service__name').annotate(
+        total=Count('id'),
+        revenue=Sum('montant')
+    ).order_by('-total')[:5]
     
     context = {
         'total_reservations': total_reservations,
         'reservations_aujourd_hui': reservations_aujourd_hui,
         'reservations_en_attente': reservations_en_attente,
         'reservations_payees': reservations_payees,
+        'total_revenue': total_revenue,
         'coiffeuses_actives': coiffeuses_actives,
         'clients_actifs': clients_actifs,
         'rdv_recents': rdv_recents,
         'coiffeuses_en_attente': coiffeuses_en_attente,
         'clients_liste': clients_liste,
+        'top_services': top_services,
     }
     return render(request, 'manager/dashboard_admin.html', context)
 
