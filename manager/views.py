@@ -108,8 +108,8 @@ def register_client(request):
         # Créer une copie des données POST et définir le rôle
         post_data = request.POST.copy()
         post_data['role'] = 'client'
-        
-        form = SecureUserRegistrationForm(post_data)
+
+        form = SecureUserRegistrationForm(post_data, request.FILES)
         if form.is_valid():
             try:
                 # Vérifier si l'utilisateur existe déjà
@@ -129,8 +129,8 @@ def register_client(request):
                 user.is_active = True
                 user.save()
                 
-                # Créer le profil utilisateur
-                role = Role.objects.get(name='client')
+                # Créer le profil utilisateur (rôle créé si base neuve sans setup_data)
+                role, _ = Role.objects.get_or_create(name='client')
                 UserProfile.objects.create(
                     user=user,
                     role=role,
@@ -180,7 +180,7 @@ def register_coiffeuse(request):
             user.save()
             
             # Créer le profil utilisateur
-            role = Role.objects.get(name='coiffeuse')
+            role, _ = Role.objects.get_or_create(name='coiffeuse')
             user_profile = UserProfile.objects.create(
                 user=user,
                 role=role,
@@ -379,7 +379,7 @@ def reservation_client(request):
     reservations = Reservation.objects.filter(client=user_profile).order_by('-date', '-heure')
     
     # Récupérer uniquement les coiffeuses pour le formulaire
-    role_coiffeuse = Role.objects.get(name='coiffeuse')
+    role_coiffeuse, _ = Role.objects.get_or_create(name='coiffeuse')
     coiffeuses = UserProfile.objects.filter(role=role_coiffeuse).select_related('user')
     
     context = {
