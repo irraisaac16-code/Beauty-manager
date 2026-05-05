@@ -38,6 +38,20 @@ main.theme-reg h2 {
     gap: 1.35rem;
 }
 
+.reg-brand {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 0.25rem;
+}
+
+.reg-brand img {
+    display: block;
+    height: clamp(56px, 8vw, 92px);
+    width: auto;
+    max-width: min(520px, 100%);
+    object-fit: contain;
+}
+
 .reg-intro h1 {
     font-size: clamp(1.85rem, 3vw, 2.75rem);
     margin: 0;
