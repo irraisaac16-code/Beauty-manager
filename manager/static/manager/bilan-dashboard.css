@@ -1,0 +1,392 @@
+/* Styles spécifiques aux pages Bilan (hebdo / mensuel / annuel)
+   S'appuie sur admin-dashboard.css pour le layout, cartes, stats, etc. */
+
+.admin-dashboard .header-actions {
+    margin-top: 1.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+}
+
+.admin-dashboard .header-actions .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--adm-text);
+    border: 1px solid var(--adm-line);
+    background: rgba(255, 255, 255, 0.88);
+    font-weight: 700;
+}
+
+.admin-dashboard .header-actions .action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.12);
+    text-decoration: none;
+    color: var(--adm-text);
+}
+
+.admin-dashboard .header-actions .action-btn i {
+    color: #7c3aed;
+}
+
+/* Charts */
+.admin-dashboard .chart-container {
+    padding: 0.25rem 0;
+}
+
+.admin-dashboard .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-dashboard .chart-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 800;
+    color: var(--adm-text);
+}
+
+.admin-dashboard .chart-title i {
+    color: #7c3aed;
+}
+
+.admin-dashboard .chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--adm-muted);
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.admin-dashboard .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-dashboard .legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+.admin-dashboard .chart-bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.9rem;
+    height: 260px;
+    padding: 0.25rem 0.15rem;
+}
+
+.admin-dashboard .chart-bar {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.admin-dashboard .bar-info {
+    text-align: center;
+}
+
+.admin-dashboard .bar-label {
+    font-size: 0.88rem;
+    font-weight: 900;
+    color: var(--adm-text);
+    text-transform: capitalize;
+}
+
+.admin-dashboard .bar-date {
+    font-size: 0.75rem;
+    color: var(--adm-muted);
+    font-weight: 700;
+}
+
+.admin-dashboard .bar-container {
+    width: 100%;
+    height: 170px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+}
+
+.admin-dashboard .bar-background {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    background: linear-gradient(180deg, rgba(237, 233, 254, 0.55), rgba(252, 231, 243, 0.32));
+}
+
+.admin-dashboard .bar-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    background: linear-gradient(180deg, #7c3aed 0%, #a855f7 100%);
+    box-shadow: 0 10px 20px rgba(124, 58, 237, 0.18);
+    overflow: hidden;
+}
+
+.admin-dashboard .bar-tooltip {
+    position: absolute;
+    left: 50%;
+    top: -52px;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #fff;
+    padding: 0.5rem 0.65rem;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+}
+
+.admin-dashboard .bar-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #0f172a;
+}
+
+.admin-dashboard .chart-bar:hover .bar-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.admin-dashboard .bar-stats {
+    text-align: center;
+}
+
+.admin-dashboard .bar-value {
+    font-size: 1.02rem;
+    font-weight: 900;
+    color: var(--adm-text);
+}
+
+.admin-dashboard .bar-percentage {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--adm-muted);
+}
+
+.admin-dashboard .chart-summary {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    padding: 0.95rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.admin-dashboard .summary-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--adm-text);
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.admin-dashboard .summary-item i {
+    color: #7c3aed;
+}
+
+/* Ranking / lists */
+.admin-dashboard .ranking-list,
+.admin-dashboard .reservations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-dashboard .ranking-item,
+.admin-dashboard .reservation-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.95rem;
+    border-radius: 14px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.admin-dashboard .ranking-position {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    flex-shrink: 0;
+}
+
+.admin-dashboard .ranking-amount,
+.admin-dashboard .reservation-amount,
+.admin-dashboard .service-amount {
+    font-weight: 900;
+    color: #059669;
+    font-size: 0.92rem;
+}
+
+.admin-dashboard .ranking-content h4,
+.admin-dashboard .reservation-details h4,
+.admin-dashboard .service-content h4 {
+    margin: 0 0 0.2rem;
+    font-weight: 900;
+    color: var(--adm-text);
+    font-size: 0.98rem;
+}
+
+.admin-dashboard .ranking-content p,
+.admin-dashboard .reservation-details p,
+.admin-dashboard .service-content p {
+    margin: 0;
+    color: var(--adm-muted);
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+/* Services grid */
+.admin-dashboard .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.9rem;
+}
+
+.admin-dashboard .service-card {
+    display: flex;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(124, 58, 237, 0.12);
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.admin-dashboard .service-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Reservation badges */
+.admin-dashboard .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: 0.78rem;
+    background: rgba(224, 231, 255, 0.85);
+    color: #3730a3;
+    border: 1px solid rgba(99, 102, 241, 0.18);
+}
+
+.admin-dashboard .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+}
+
+.admin-dashboard .status-en_attente {
+    background: rgba(254, 243, 199, 0.95);
+    color: #92400e;
+    border-color: rgba(217, 119, 6, 0.18);
+}
+.admin-dashboard .status-confirmé {
+    background: rgba(219, 234, 254, 0.95);
+    color: #1e40af;
+    border-color: rgba(59, 130, 246, 0.2);
+}
+.admin-dashboard .status-payé {
+    background: rgba(209, 250, 229, 0.95);
+    color: #065f46;
+    border-color: rgba(16, 185, 129, 0.22);
+}
+.admin-dashboard .status-annulé {
+    background: rgba(254, 226, 226, 0.95);
+    color: #b91c1c;
+    border-color: rgba(248, 113, 113, 0.25);
+}
+
+/* Empty state */
+.admin-dashboard .empty-state {
+    text-align: center;
+    padding: 2.2rem 1rem;
+    color: var(--adm-muted);
+}
+
+.admin-dashboard .empty-state i {
+    font-size: 2.5rem;
+    color: rgba(124, 58, 237, 0.22);
+    margin-bottom: 0.75rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .admin-dashboard .content-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard .chart-bars {
+        flex-direction: column;
+        height: auto;
+        align-items: stretch;
+    }
+    .admin-dashboard .chart-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .admin-dashboard .bar-container {
+        height: 18px;
+        width: 120px;
+        flex: 0 0 auto;
+    }
+    .admin-dashboard .bar-fill { border-radius: 999px; }
+    .admin-dashboard .bar-background { border-radius: 999px; }
+    .admin-dashboard .bar-tooltip { display: none; }
+    .admin-dashboard .services-grid { grid-template-columns: 1fr; }
+}
+
