@@ -1,8 +1,8 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 {% load static %}
 
-{% block title %}Mon Profil - Beautix{% endblock %}
+{% block title %}Mon Profil - Beauty Manager{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
@@ -13,9 +13,9 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
                 <h1><i class="fas fa-user-circle"></i> Mon Profil</h1>
-                <p>GÃ©rez vos informations personnelles</p>
+                <p>Gérez vos informations personnelles</p>
             </div>
         </div>
     </div>
@@ -46,20 +46,20 @@
                             <span>{{ user_profile.user.username }}</span>
                         </div>
                         <div class="info-row">
-                            <label><strong>PrÃ©nom :</strong></label>
-                            <span>{{ user_profile.user.first_name|default:"Non renseignÃ©" }}</span>
+                            <label><strong>Prénom :</strong></label>
+                            <span>{{ user_profile.user.first_name|default:"Non renseigné" }}</span>
                         </div>
                         <div class="info-row">
                             <label><strong>Nom :</strong></label>
-                            <span>{{ user_profile.user.last_name|default:"Non renseignÃ©" }}</span>
+                            <span>{{ user_profile.user.last_name|default:"Non renseigné" }}</span>
                         </div>
                         <div class="info-row">
                             <label><strong>Email :</strong></label>
                             <span>{{ user_profile.user.email }}</span>
                         </div>
                         <div class="info-row">
-                            <label><strong>TÃ©lÃ©phone :</strong></label>
-                            <span>{{ user_profile.phone|default:"Non renseignÃ©" }}</span>
+                            <label><strong>Téléphone :</strong></label>
+                            <span>{{ user_profile.phone|default:"Non renseigné" }}</span>
                         </div>
                         <div class="info-row">
                             <label><strong>Membre depuis :</strong></label>
@@ -213,4 +213,3 @@
 }
 </style>
 {% endblock %} 
-

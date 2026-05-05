@@ -1,12 +1,12 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 
-{% block title %}Changer le Mot de Passe - Beautix{% endblock %}
+{% block title %}Changer le Mot de Passe - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="password-header">
         <h1><i class="fas fa-key"></i> Changer le Mot de Passe</h1>
-        <p>SÃ©curisez votre compte avec un nouveau mot de passe</p>
+        <p>Sécurisez votre compte avec un nouveau mot de passe</p>
     </div>
 
     <div class="row justify-content-center">
@@ -33,7 +33,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <small class="form-text text-muted">Entrez votre mot de passe actuel pour vÃ©rification.</small>
+                            <small class="form-text text-muted">Entrez votre mot de passe actuel pour vérification.</small>
                         </div>
 
                         <div class="form-group">
@@ -72,7 +72,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <small class="form-text text-muted">RÃ©pÃ©tez le nouveau mot de passe pour confirmation.</small>
+                            <small class="form-text text-muted">Répétez le nouveau mot de passe pour confirmation.</small>
                         </div>
 
                         <div class="form-actions">
@@ -87,16 +87,16 @@
                 </div>
             </div>
 
-            <!-- Conseils de sÃ©curitÃ© -->
+            <!-- Conseils de sécurité -->
             <div class="card mt-4">
                 <div class="card-header">
-                    <h4><i class="fas fa-shield-alt"></i> Conseils de SÃ©curitÃ©</h4>
+                    <h4><i class="fas fa-shield-alt"></i> Conseils de Sécurité</h4>
                 </div>
                 <div class="card-body">
                     <div class="security-tips">
                         <div class="tip-item">
                             <i class="fas fa-check-circle text-success"></i>
-                            <span>Utilisez au moins 8 caractÃ¨res</span>
+                            <span>Utilisez au moins 8 caractères</span>
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-check-circle text-success"></i>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-check-circle text-success"></i>
-                            <span>Ã‰vitez les mots de passe Ã©vidents</span>
+                            <span>Évitez les mots de passe évidents</span>
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-check-circle text-success"></i>
@@ -359,14 +359,14 @@ function validateForm() {
     }
     
     if (newPassword.length < 8) {
-        alert('Le mot de passe doit contenir au moins 8 caractÃ¨res !');
+        alert('Le mot de passe doit contenir au moins 8 caractères !');
         return false;
     }
     
     return true;
 }
 
-// Ã‰vÃ©nements
+// Événements
 document.getElementById('new_password').addEventListener('input', function() {
     checkPasswordStrength(this.value);
 });

@@ -1,18 +1,18 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 
 {% block navbar %}{% endblock %}
 
-{% block title %}Inscription EsthÃ©ticienne - Beautix{% endblock %}
+{% block title %}Inscription Esthéticienne - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="reg-page">
     <div class="reg-wrap">
         <section class="reg-hero">
             <div class="reg-intro">
-                <h1>Inscription esthÃ©ticienne</h1>
+                <h1>Inscription esthéticienne</h1>
                 <p>
-                    Rejoignez le rÃ©seau Beautix : proposez vos services, gÃ©rez vos rendez-vous
-                    et dÃ©veloppez votre activitÃ© avec une interface pensÃ©e pour les professionnelles de la beautÃ©.
+                    Rejoignez le réseau Beauty Manager : proposez vos services, gérez vos rendez-vous
+                    et développez votre activité avec une interface pensée pour les professionnelles de la beauté.
                 </p>
 
                 <div class="reg-validation-notice" role="status">
@@ -22,25 +22,25 @@
                     <div>
                         <strong>Validation requise</strong>
                         <p>
-                            Votre compte sera activÃ© aprÃ¨s validation par l'administrateur.
-                            Vous recevrez une notification par email une fois votre demande approuvÃ©e.
+                            Votre compte sera activé après validation par l'administrateur.
+                            Vous recevrez une notification par email une fois votre demande approuvée.
                         </p>
                     </div>
                 </div>
 
                 <div class="reg-intro-cta">
                     <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
-                        <i class="fas fa-arrow-left"></i> Retour Ã  l'accueil
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
                     </a>
                 </div>
 
                 <section class="reg-benefits">
-                    <h2 class="reg-benefits-heading">Pourquoi rejoindre Beautix ?</h2>
+                    <h2 class="reg-benefits-heading">Pourquoi rejoindre Beauty Manager ?</h2>
                     <div class="reg-grid2x2">
                         <article class="reg-card">
                             <i class="fas fa-calendar-alt"></i>
-                            <h3>Gestion simplifiÃ©e</h3>
-                            <p>GÃ©rez vos rendez-vous et votre planning facilement</p>
+                            <h3>Gestion simplifiée</h3>
+                            <p>Gérez vos rendez-vous et votre planning facilement</p>
                         </article>
                         <article class="reg-card">
                             <i class="fas fa-chart-line"></i>
@@ -50,12 +50,12 @@
                         <article class="reg-card">
                             <i class="fas fa-bell"></i>
                             <h3>Notifications</h3>
-                            <p>Soyez informÃ©e des nouveaux rendez-vous</p>
+                            <p>Soyez informée des nouveaux rendez-vous</p>
                         </article>
                         <article class="reg-card">
                             <i class="fas fa-star"></i>
-                            <h3>RÃ©putation</h3>
-                            <p>DÃ©veloppez votre rÃ©putation en ligne</p>
+                            <h3>Réputation</h3>
+                            <p>Développez votre réputation en ligne</p>
                         </article>
                     </div>
                 </section>
@@ -89,13 +89,13 @@
                                     {% if form.email.errors %}
                                         <div class="reg-error">{{ form.email.errors.0 }}</div>
                                     {% endif %}
-                                    <small class="reg-hint">Votre email sera utilisÃ© pour les notifications</small>
+                                    <small class="reg-hint">Votre email sera utilisé pour les notifications</small>
                                 </div>
                             </div>
 
                             <div class="reg-group">
                                 <label for="{{ form.phone.id_for_label }}">
-                                    <i class="fas fa-phone"></i> NumÃ©ro de tÃ©lÃ©phone
+                                    <i class="fas fa-phone"></i> Numéro de téléphone
                                 </label>
                                 {{ form.phone }}
                                 {% if form.phone.errors %}
@@ -112,7 +112,7 @@
                                 {% if form.profile_image.errors %}
                                     <div class="reg-error">{{ form.profile_image.errors.0 }}</div>
                                 {% endif %}
-                                <small class="reg-hint">RecommandÃ© pour vous identifier auprÃ¨s des clientes</small>
+                                <small class="reg-hint">Recommandé pour vous identifier auprès des clientes</small>
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@
                                     {% if form.password1.errors %}
                                         <div class="reg-error">{{ form.password1.errors.0 }}</div>
                                     {% endif %}
-                                    <small class="reg-hint">Minimum 8 caractÃ¨res</small>
+                                    <small class="reg-hint">Minimum 8 caractères</small>
                                 </div>
 
                                 <div class="reg-group">
@@ -137,7 +137,7 @@
                                     {% if form.password2.errors %}
                                         <div class="reg-error">{{ form.password2.errors.0 }}</div>
                                     {% endif %}
-                                    <small class="reg-hint">RÃ©pÃ©tez votre mot de passe</small>
+                                    <small class="reg-hint">Répétez votre mot de passe</small>
                                 </div>
                             </div>
                         </div>
@@ -147,21 +147,21 @@
                                 <input type="checkbox" id="terms" name="terms" required>
                                 <label for="terms">
                                     J'accepte les <a href="#" class="reg-link">conditions d'utilisation</a> et la
-                                    <a href="#" class="reg-link">politique de confidentialitÃ©</a> *
+                                    <a href="#" class="reg-link">politique de confidentialité</a> *
                                 </label>
                             </div>
 
                             <div class="reg-check">
                                 <input type="checkbox" id="professional" name="professional" required>
                                 <label for="professional">
-                                    Je confirme Ãªtre une professionnelle de la coiffure / beautÃ© *
+                                    Je confirme être une professionnelle de la coiffure / beauté *
                                 </label>
                             </div>
 
                             <div class="reg-check">
                                 <input type="checkbox" id="newsletter" name="newsletter">
                                 <label for="newsletter">
-                                    Je souhaite recevoir les offres et nouveautÃ©s par email
+                                    Je souhaite recevoir les offres et nouveautés par email
                                 </label>
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                                 <i class="fas fa-user-plus"></i> Soumettre ma candidature
                             </button>
                             <a href="{% url 'login' %}" class="reg-btn reg-btn-alt reg-btn-wide">
-                                <i class="fas fa-sign-in-alt"></i> DÃ©jÃ  un compte ? Se connecter
+                                <i class="fas fa-sign-in-alt"></i> Déjà un compte ? Se connecter
                             </a>
                         </div>
                     </form>
@@ -227,19 +227,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (professional && !professional.checked) {
                 e.preventDefault();
-                alert('Veuillez confirmer que vous Ãªtes une professionnelle de la coiffure / beautÃ©.');
+                alert('Veuillez confirmer que vous êtes une professionnelle de la coiffure / beauté.');
                 professional.focus();
                 return false;
             }
 
             if (password1 && password1.value.length < 8) {
                 e.preventDefault();
-                alert('Le mot de passe doit contenir au moins 8 caractÃ¨res.');
+                alert('Le mot de passe doit contenir au moins 8 caractères.');
                 password1.focus();
                 return false;
             }
 
-            if (!confirm('Soumettre votre candidature ? Votre compte sera activÃ© aprÃ¨s validation par l\'administrateur.')) {
+            if (!confirm('Soumettre votre candidature ? Votre compte sera activé après validation par l\'administrateur.')) {
                 e.preventDefault();
                 return false;
             }
@@ -248,4 +248,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
-

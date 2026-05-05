@@ -1,4 +1,4 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load static %}
 {% load price_filters %}
 {% block title %}Gestion des services{% endblock %}
@@ -12,7 +12,7 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
                 <h1><i class="fas fa-concierge-bell"></i> Gestion des services</h1>
                 <p>Modifier les services disponibles pour vos clientes</p>
             </div>
@@ -23,7 +23,7 @@
     <div class="content-card">
         <div class="card-header">
             <h3><i class="fas fa-list"></i> Catalogue</h3>
-            <p>Ajoutez, modifiez ou dÃ©sactivez des prestations</p>
+            <p>Ajoutez, modifiez ou désactivez des prestations</p>
         </div>
         <div class="card-body">
     <div class="mb-4 flex-center">
@@ -44,7 +44,7 @@
                         <th>Nom</th>
                         <th>Description</th>
                         <th>Prix</th>
-                        <th>DurÃ©e</th>
+                        <th>Durée</th>
                         <th>Statut</th>
                         <th>Actions</th>
                     </tr>
@@ -65,7 +65,7 @@
                         </td>
                         <td>
                             <a href="{% url 'service_update' service.id %}" class="btn-action" title="Modifier"><i class="fas fa-edit"></i></a>
-                            <a href="{% url 'service_toggle_active' service.id %}" class="btn-action" title="Activer/DÃ©sactiver"><i class="fas fa-toggle-on"></i></a>
+                            <a href="{% url 'service_toggle_active' service.id %}" class="btn-action" title="Activer/Désactiver"><i class="fas fa-toggle-on"></i></a>
                             <a href="{% url 'service_delete' service.id %}" class="btn-action text-danger" title="Supprimer"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -73,7 +73,7 @@
                 </tbody>
             </table>
         {% else %}
-            <p>Aucun service enregistrÃ© pour le moment.</p>
+            <p>Aucun service enregistré pour le moment.</p>
         {% endif %}
     </div>
         </div>

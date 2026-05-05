@@ -1,30 +1,30 @@
-﻿Compte ValidÃ© - Beautix
+Compte Validé - Beauty Manager
 
 Bonjour {{ coiffeuse_name }},
 
-FÃ‰LICITATIONS !
+FÉLICITATIONS !
 
-Votre compte coiffeuse a Ã©tÃ© validÃ© avec succÃ¨s par notre Ã©quipe d'administration.
+Votre compte coiffeuse a été validé avec succès par notre équipe d'administration.
 
 VOUS POUVEZ MAINTENANT :
-- AccÃ©der Ã  votre espace coiffeuse
+- Accéder à votre espace coiffeuse
 - Consulter votre planning de rendez-vous
-- GÃ©rer vos disponibilitÃ©s
-- Recevoir des notifications de nouvelles rÃ©servations
+- Gérer vos disponibilités
+- Recevoir des notifications de nouvelles réservations
 
-PROCHAINES Ã‰TAPES :
-1. Connectez-vous Ã  votre espace coiffeuse
-2. ComplÃ©tez votre profil avec vos informations
-3. DÃ©finissez vos horaires de disponibilitÃ©
-4. Commencez Ã  recevoir des rÃ©servations !
+PROCHAINES ÉTAPES :
+1. Connectez-vous à votre espace coiffeuse
+2. Complétez votre profil avec vos informations
+3. Définissez vos horaires de disponibilité
+4. Commencez à recevoir des réservations !
 
-AccÃ©dez Ã  votre espace : http://localhost:8000
+Accédez à votre espace : http://localhost:8000
 
-Nous sommes ravis de vous compter parmi notre Ã©quipe de professionnels !
+Nous sommes ravis de vous compter parmi notre équipe de professionnels !
 
 Cordialement,
-L'Ã©quipe Beautix
+L'équipe Beauty Manager
 
 ---
-Cet email a Ã©tÃ© envoyÃ© automatiquement. Merci de ne pas y rÃ©pondre.
-Â© 2024 Beautix. Tous droits rÃ©servÃ©s. 
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

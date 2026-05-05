@@ -1,9 +1,9 @@
-﻿// Fichier JavaScript pour Beautix
-// Ce fichier permet Ã  GitHub de dÃ©tecter l'utilisation de JavaScript dans le projet
+// Fichier JavaScript pour Beauty Manager
+// Ce fichier permet à GitHub de détecter l'utilisation de JavaScript dans le projet
 
-console.log("Beautix - JavaScript loaded");
+console.log("Beauty Manager - JavaScript loaded");
 
-// Fonction exemple pour les rÃ©servations
+// Fonction exemple pour les réservations
 function toggleReservationDetails(id) {
     const element = document.getElementById(id);
     if (element) {

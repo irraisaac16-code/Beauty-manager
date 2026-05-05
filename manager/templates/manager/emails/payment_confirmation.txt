@@ -1,25 +1,25 @@
-﻿Paiement ConfirmÃ© - Beautix
+Paiement Confirmé - Beauty Manager
 
 Bonjour {{ client_name }},
 
-Nous vous confirmons que votre paiement a Ã©tÃ© traitÃ© avec succÃ¨s !
+Nous vous confirmons que votre paiement a été traité avec succès !
 
-DÃ‰TAILS DE LA TRANSACTION :
+DÉTAILS DE LA TRANSACTION :
 Service : {{ service_name }}
 Date : {{ date }}
 Heure : {{ heure }}
-Montant payÃ© : {{ montant }}â‚¬
-MÃ©thode de paiement : Wave Mobile Money
+Montant payé : {{ montant }}€
+Méthode de paiement : Wave Mobile Money
 
-Votre rendez-vous est maintenant confirmÃ© !
+Votre rendez-vous est maintenant confirmé !
 
-Nous vous attendons avec impatience pour votre rendez-vous. N'oubliez pas d'arriver 10 minutes avant l'heure prÃ©vue.
+Nous vous attendons avec impatience pour votre rendez-vous. N'oubliez pas d'arriver 10 minutes avant l'heure prévue.
 
-En cas de question ou de modification, n'hÃ©sitez pas Ã  nous contacter.
+En cas de question ou de modification, n'hésitez pas à nous contacter.
 
 Cordialement,
-L'Ã©quipe Beautix
+L'équipe Beauty Manager
 
 ---
-Cet email a Ã©tÃ© envoyÃ© automatiquement. Merci de ne pas y rÃ©pondre.
-Â© 2024 Beautix. Tous droits rÃ©servÃ©s. 
+Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
+© 2024 Beauty Manager. Tous droits réservés. 

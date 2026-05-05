@@ -1,13 +1,13 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Mon Planning - Beautix{% endblock %}
+{% block title %}Mon Planning - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="page-header">
         <h1><i class="fas fa-calendar-alt"></i> Mon Planning</h1>
-        <p>GÃ©rez vos rendez-vous et votre disponibilitÃ©</p>
+        <p>Gérez vos rendez-vous et votre disponibilité</p>
     </div>
 
     <!-- Statistiques du planning -->
@@ -34,24 +34,24 @@
             <div class="stat-mini">
                 <div class="stat-number">
                     {% for reservation in reservations %}
-                        {% if reservation.statut == 'confirmÃ©' %}
+                        {% if reservation.statut == 'confirmé' %}
                             {{ forloop.counter }}
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="stat-label">ConfirmÃ©s</div>
+                <div class="stat-label">Confirmés</div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-mini">
                 <div class="stat-number">
                     {% for reservation in reservations %}
-                        {% if reservation.statut == 'payÃ©' %}
+                        {% if reservation.statut == 'payé' %}
                             {{ forloop.counter }}
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="stat-label">PayÃ©s</div>
+                <div class="stat-label">Payés</div>
             </div>
         </div>
     </div>
@@ -65,9 +65,9 @@
             <div class="filter-controls">
                 <button class="btn btn-outline-primary active" data-filter="all">Tous</button>
                 <button class="btn btn-outline-warning" data-filter="en_attente">En attente</button>
-                <button class="btn btn-outline-info" data-filter="confirmÃ©">ConfirmÃ©s</button>
-                <button class="btn btn-outline-success" data-filter="payÃ©">PayÃ©s</button>
-                <button class="btn btn-outline-danger" data-filter="annulÃ©">AnnulÃ©s</button>
+                <button class="btn btn-outline-info" data-filter="confirmé">Confirmés</button>
+                <button class="btn btn-outline-success" data-filter="payé">Payés</button>
+                <button class="btn btn-outline-danger" data-filter="annulé">Annulés</button>
             </div>
         </div>
     </div>
@@ -110,7 +110,7 @@
                                                         </div>
                                                         <div class="client-contact">
                                                             <i class="fas fa-phone"></i>
-                                                            <span>{{ reservation.client.phone|default:"TÃ©lÃ©phone non renseignÃ©" }}</span>
+                                                            <span>{{ reservation.client.phone|default:"Téléphone non renseigné" }}</span>
                                                         </div>
                                                         <div class="service-price">
                                                             <i class="fas fa-money-bill-wave"></i>
@@ -125,22 +125,22 @@
                                                     </div>
                                                     <div class="rdv-actions">
                                                         {% if reservation.statut == 'en_attente' %}
-                                                            <button class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmÃ©">
+                                                            <button class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmé">
                                                                 <i class="fas fa-check"></i> Confirmer
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'confirmÃ©' %}
-                                                            <button class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payÃ©">
-                                                                <i class="fas fa-credit-card"></i> Marquer PayÃ©
+                                                        {% if reservation.statut == 'confirmé' %}
+                                                            <button class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payé">
+                                                                <i class="fas fa-credit-card"></i> Marquer Payé
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmÃ©' %}
-                                                            <button class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulÃ©">
+                                                        {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmé' %}
+                                                            <button class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulé">
                                                                 <i class="fas fa-times"></i> Annuler
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'payÃ©' %}
-                                                            <button class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminÃ©">
+                                                        {% if reservation.statut == 'payé' %}
+                                                            <button class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminé">
                                                                 <i class="fas fa-check-double"></i> Terminer
                                                             </button>
                                                         {% endif %}
@@ -337,15 +337,15 @@
     border-left-color: #ffc107;
 }
 
-.rdv-card[data-status="confirmÃ©"] {
+.rdv-card[data-status="confirmé"] {
     border-left-color: #17a2b8;
 }
 
-.rdv-card[data-status="payÃ©"] {
+.rdv-card[data-status="payé"] {
     border-left-color: #28a745;
 }
 
-.rdv-card[data-status="annulÃ©"] {
+.rdv-card[data-status="annulé"] {
     border-left-color: #dc3545;
 }
 
@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
             
-            // Mettre Ã  jour les boutons actifs
+            // Mettre à jour les boutons actifs
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
@@ -489,14 +489,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Gestion des clics sur les boutons de mise Ã  jour de statut
+// Gestion des clics sur les boutons de mise à jour de statut
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.update-status-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             const reservationId = this.getAttribute('data-reservation-id');
             const newStatus = this.getAttribute('data-new-status');
             
-            if (confirm(`ÃŠtes-vous sÃ»r de vouloir changer le statut de la rÃ©servation #${reservationId} ?`)) {
+            if (confirm(`Êtes-vous sûr de vouloir changer le statut de la réservation #${reservationId} ?`)) {
                 fetch(`/reservations/${reservationId}/update-status/`, {
                     method: 'POST',
                     headers: {
@@ -512,12 +512,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (data.success) {
                         location.reload();
                     } else {
-                        alert('Erreur lors de la mise Ã  jour du statut');
+                        alert('Erreur lors de la mise à jour du statut');
                     }
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
-                    alert('Erreur lors de la mise Ã  jour du statut');
+                    alert('Erreur lors de la mise à jour du statut');
                 });
             }
         });

@@ -1,8 +1,8 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 {% load static %}
 
-{% block title %}Dashboard Admin - Beautix{% endblock %}
+{% block title %}Dashboard Admin - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -11,7 +11,7 @@
         <p>Bienvenue dans votre espace de gestion</p>
     </div>
 
-    <!-- Statistiques gÃ©nÃ©rales -->
+    <!-- Statistiques générales -->
     <div class="row">
         <div class="col-md-3">
             <div class="stat-card">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="stat-content">
                     <h3>{{ total_reservations }}</h3>
-                    <p>Total RÃ©servations</p>
+                    <p>Total Réservations</p>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="stat-content">
                     <h3>{{ reservations_aujourd_hui }}</h3>
-                    <p>RÃ©servations Aujourd'hui</p>
+                    <p>Réservations Aujourd'hui</p>
                 </div>
             </div>
         </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="stat-content">
                     <h3>{{ coiffeuses_actives }}</h3>
-                    <p>EsthÃ©ticiennes Actives</p>
+                    <p>Esthéticiennes Actives</p>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <!-- Actions rapides et RÃ©servations en attente -->
+    <!-- Actions rapides et Réservations en attente -->
     <div class="row">
         <div class="col-md-6">
             <div class="card">
@@ -69,16 +69,16 @@
                 <div class="card-body">
                     <div class="action-buttons">
                         <a href="{% url 'reservation_admin' %}" class="btn btn-primary">
-                            <i class="fas fa-list"></i> GÃ©rer les RÃ©servations
+                            <i class="fas fa-list"></i> Gérer les Réservations
                         </a>
                         <a href="{% url 'validation_coiffeuses' %}" class="btn btn-warning">
-                            <i class="fas fa-user-check"></i> Valider EsthÃ©ticiennes
+                            <i class="fas fa-user-check"></i> Valider Esthéticiennes
                             {% if coiffeuses_en_attente %}
                                 <span class="badge badge-light">{{ coiffeuses_en_attente.count }}</span>
                             {% endif %}
                         </a>
                         <a href="{% url 'services_list' %}" class="btn btn-success">
-                            <i class="fas fa-concierge-bell"></i> GÃ©rer les Services
+                            <i class="fas fa-concierge-bell"></i> Gérer les Services
                         </a>
                         <a href="{% url 'profil_utilisateur' %}" class="btn btn-info">
                             <i class="fas fa-user"></i> Mon Profil
@@ -91,15 +91,15 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-exclamation-triangle"></i> RÃ©servations en Attente</h3>
+                    <h3><i class="fas fa-exclamation-triangle"></i> Réservations en Attente</h3>
                 </div>
                 <div class="card-body">
                     <div class="stat-highlight">
                         <h2>{{ reservations_en_attente }}</h2>
-                        <p>RÃ©servations nÃ©cessitant une attention</p>
+                        <p>Réservations nécessitant une attention</p>
                         {% if reservations_en_attente > 0 %}
                             <a href="{% url 'reservation_admin' %}?statut=en_attente" class="btn btn-sm btn-warning">
-                                Voir les dÃ©tails
+                                Voir les détails
                             </a>
                         {% endif %}
                     </div>
@@ -108,12 +108,12 @@
         </div>
     </div>
 
-    <!-- Rendez-vous rÃ©cents -->
+    <!-- Rendez-vous récents -->
     <div class="row">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-calendar-alt"></i> Rendez-vous RÃ©cents</h3>
+                    <h3><i class="fas fa-calendar-alt"></i> Rendez-vous Récents</h3>
                 </div>
                 <div class="card-body">
                     {% if rdv_recents %}
@@ -124,7 +124,7 @@
                                         <th>Date</th>
                                         <th>Heure</th>
                                         <th>Client</th>
-                                        <th>EsthÃ©ticienne</th>
+                                        <th>Esthéticienne</th>
                                         <th>Service</th>
                                         <th>Statut</th>
                                         <th>Montant</th>
@@ -150,7 +150,7 @@
                             </table>
                         </div>
                     {% else %}
-                        <p class="text-muted">Aucun rendez-vous rÃ©cent.</p>
+                        <p class="text-muted">Aucun rendez-vous récent.</p>
                     {% endif %}
                 </div>
             </div>
@@ -159,7 +159,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-user-clock"></i> EsthÃ©ticiennes en Attente</h3>
+                    <h3><i class="fas fa-user-clock"></i> Esthéticiennes en Attente</h3>
                 </div>
                 <div class="card-body">
                     {% if coiffeuses_en_attente %}
@@ -177,7 +177,7 @@
                                 <div class="coiffeuse-info">
                                     <h5>{{ coiffeuse.user.username }}</h5>
                                     <p>{{ coiffeuse.user.email }}</p>
-                                    <p><i class="fas fa-phone"></i> {{ coiffeuse.phone|default:"Non renseignÃ©" }}</p>
+                                    <p><i class="fas fa-phone"></i> {{ coiffeuse.phone|default:"Non renseigné" }}</p>
                                 </div>
                                 <div class="coiffeuse-actions">
                                     <form method="post" action="{% url 'validation_coiffeuses' %}" style="display: inline;">
@@ -194,7 +194,7 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        <p class="text-muted">Aucune esthÃ©ticienne en attente de validation.</p>
+                        <p class="text-muted">Aucune esthéticienne en attente de validation.</p>
                     {% endif %}
                 </div>
             </div>
@@ -203,7 +203,7 @@
 </div>
 
 <style>
-/* Version: 3.0 - Nouveau layout avec cartes cÃ´te Ã  cÃ´te */
+/* Version: 3.0 - Nouveau layout avec cartes côte à côte */
 .dashboard-header {
     text-align: center;
     margin-bottom: 2rem;

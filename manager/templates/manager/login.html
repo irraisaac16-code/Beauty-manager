@@ -1,8 +1,8 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 
 {% block navbar %}{% endblock %}
 
-{% block title %}Connexion - Beautix{% endblock %}
+{% block title %}Connexion - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="reg-page login-page">
@@ -11,12 +11,12 @@
             <div class="reg-intro">
                 <h1>Connexion</h1>
                 <p>
-                    AccÃ©dez Ã  votre espace Beautix : rÃ©servations, historique et notifications
-                    dans une interface pensÃ©e pour vous.
+                    Accédez à votre espace Beauty Manager : réservations, historique et notifications
+                    dans une interface pensée pour vous.
                 </p>
                 <div class="reg-intro-cta">
                     <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
-                        <i class="fas fa-arrow-left"></i> Retour Ã  l'accueil
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
                     </a>
                 </div>
 
@@ -25,23 +25,23 @@
                     <div class="reg-grid2x2">
                         <article class="reg-card">
                             <i class="fas fa-calendar-check"></i>
-                            <h3>RÃ©servations</h3>
-                            <p>GÃ©rez vos rendez-vous facilement</p>
+                            <h3>Réservations</h3>
+                            <p>Gérez vos rendez-vous facilement</p>
                         </article>
                         <article class="reg-card">
                             <i class="fas fa-history"></i>
                             <h3>Historique</h3>
-                            <p>Consultez vos rÃ©servations passÃ©es</p>
+                            <p>Consultez vos réservations passées</p>
                         </article>
                         <article class="reg-card">
                             <i class="fas fa-bell"></i>
                             <h3>Notifications</h3>
-                            <p>Recevez des rappels personnalisÃ©s</p>
+                            <p>Recevez des rappels personnalisés</p>
                         </article>
                         <article class="reg-card">
                             <i class="fas fa-mobile-alt"></i>
                             <h3>Paiements</h3>
-                            <p>Payez en toute sÃ©curitÃ©</p>
+                            <p>Payez en toute sécurité</p>
                         </article>
                     </div>
                 </section>
@@ -49,9 +49,9 @@
 
             <div class="reg-panel">
                 <div class="reg-panel-inner">
-                    <div class="login-test-banner" role="region" aria-label="Compte de dÃ©monstration">
+                    <div class="login-test-banner" role="region" aria-label="Compte de démonstration">
                         <strong><i class="fas fa-user-shield"></i> Compte admin de test</strong>
-                        <p>Pour essayer toutes les fonctionnalitÃ©s :</p>
+                        <p>Pour essayer toutes les fonctionnalités :</p>
                         <p class="login-test-credentials">
                             <span><strong>Identifiant</strong> <code>admin_test</code></span>
                             <span><strong>Mot de passe</strong> <code>AdminTest123!</code></span>
@@ -97,10 +97,10 @@
 
                     <div class="register-options">
                         <a href="{% url 'register_client' %}" class="reg-btn reg-btn-outline reg-btn-wide">
-                            <i class="fas fa-user-plus"></i> CrÃ©er un compte client
+                            <i class="fas fa-user-plus"></i> Créer un compte client
                         </a>
                         <a href="{% url 'register_coiffeuse' %}" class="reg-btn reg-btn-esth reg-btn-wide">
-                            <i class="fas fa-cut"></i> Inscription esthÃ©ticienne
+                            <i class="fas fa-cut"></i> Inscription esthéticienne
                         </a>
                     </div>
                 </div>
@@ -161,4 +161,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
-

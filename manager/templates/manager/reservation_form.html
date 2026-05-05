@@ -1,20 +1,20 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}{{ action }} RÃ©servation - Beautix{% endblock %}
+{% block title %}{{ action }} Réservation - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="reservation-header">
-        <h1><i class="fas fa-edit"></i> {{ action }} RÃ©servation</h1>
-        <p>Modifiez les dÃ©tails de votre rÃ©servation</p>
+        <h1><i class="fas fa-edit"></i> {{ action }} Réservation</h1>
+        <p>Modifiez les détails de votre réservation</p>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-calendar-plus"></i> DÃ©tails de la RÃ©servation</h3>
+                    <h3><i class="fas fa-calendar-plus"></i> Détails de la Réservation</h3>
                 </div>
                 <div class="card-body">
                     <form method="post">
@@ -78,10 +78,10 @@
                                     {{ form.notes.errors }}
                                 </div>
                             {% endif %}
-                            <small class="form-text text-muted">Ajoutez des informations supplÃ©mentaires pour votre coiffeuse.</small>
+                            <small class="form-text text-muted">Ajoutez des informations supplémentaires pour votre coiffeuse.</small>
                         </div>
 
-                        <!-- Informations sur la rÃ©servation actuelle -->
+                        <!-- Informations sur la réservation actuelle -->
                         {% if reservation %}
                             <div class="current-reservation-info">
                                 <h4><i class="fas fa-info-circle"></i> Informations Actuelles</h4>
@@ -97,7 +97,7 @@
                                         <span>{{ reservation.montant|floatformat:0 }} FCFA</span>
                                     </div>
                                     <div class="info-item">
-                                        <label>Date de crÃ©ation :</label>
+                                        <label>Date de création :</label>
                                         <span>{{ reservation.created_at|date:"d/m/Y H:i" }}</span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
 
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> {{ action }} la RÃ©servation
+                                <i class="fas fa-save"></i> {{ action }} la Réservation
                             </button>
                             <a href="{% url 'dashboard_client' %}" class="btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Annuler
@@ -125,19 +125,19 @@
                     <div class="tips-list">
                         <div class="tip-item">
                             <i class="fas fa-clock text-info"></i>
-                            <span>Les crÃ©neaux disponibles sont de 8h Ã  19h, toutes les 30 minutes</span>
+                            <span>Les créneaux disponibles sont de 8h à 19h, toutes les 30 minutes</span>
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-calendar text-success"></i>
-                            <span>Vous pouvez rÃ©server jusqu'Ã  2 semaines Ã  l'avance</span>
+                            <span>Vous pouvez réserver jusqu'à 2 semaines à l'avance</span>
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-credit-card text-warning"></i>
-                            <span>Le paiement se fait aprÃ¨s la modification de la rÃ©servation</span>
+                            <span>Le paiement se fait après la modification de la réservation</span>
                         </div>
                         <div class="tip-item">
                             <i class="fas fa-exclamation-triangle text-danger"></i>
-                            <span>Annulez au moins 24h Ã  l'avance pour Ã©viter des frais</span>
+                            <span>Annulez au moins 24h à l'avance pour éviter des frais</span>
                         </div>
                     </div>
                 </div>

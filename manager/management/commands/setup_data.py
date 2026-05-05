@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from manager.models import Role, UserProfile, Service
 
 class Command(BaseCommand):
-    help = 'Initialise les données de base pour Beautix'
+    help = 'Initialise les données de base pour Beauty Manager'
 
     def handle(self, *args, **options):
         self.stdout.write('Initialisation des données de base...')

@@ -1,7 +1,7 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Dashboard EsthÃ©ticienne - Beautix{% endblock %}
+{% block title %}Dashboard Esthéticienne - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -35,7 +35,7 @@
                         <i class="fas fa-user"></i> Mon Profil
                     </a>
                     <a href="{% url 'logout' %}" class="btn btn-secondary">
-                        <i class="fas fa-sign-out-alt"></i> Se DÃ©connecter
+                        <i class="fas fa-sign-out-alt"></i> Se Déconnecter
                     </a>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="rdv-details">
                                         <p><i class="fas fa-user"></i> <strong>Client :</strong> {{ rdv.client.user.username }}</p>
-                                        <p><i class="fas fa-phone"></i> <strong>TÃ©lÃ©phone :</strong> {{ rdv.client.phone|default:"Non renseignÃ©" }}</p>
+                                        <p><i class="fas fa-phone"></i> <strong>Téléphone :</strong> {{ rdv.client.phone|default:"Non renseigné" }}</p>
                                         <p><i class="fas fa-money-bill-wave"></i> <strong>Prix :</strong> {{ rdv.montant|floatformat:0 }} FCFA</p>
                                         {% if rdv.notes %}
                                             <p><i class="fas fa-sticky-note"></i> <strong>Notes :</strong> {{ rdv.notes }}</p>
@@ -77,7 +77,7 @@
                     <div class="empty-state">
                         <i class="fas fa-calendar-times"></i>
                         <h3>Aucun rendez-vous aujourd'hui</h3>
-                        <p>Profitez de cette journÃ©e libre !</p>
+                        <p>Profitez de cette journée libre !</p>
                     </div>
                 {% endif %}
             </div>
@@ -112,7 +112,7 @@
             {% else %}
                 <div class="empty-state-small">
                     <i class="fas fa-calendar-times"></i>
-                    <p>Aucun rendez-vous Ã  venir</p>
+                    <p>Aucun rendez-vous à venir</p>
                 </div>
             {% endif %}
         </div>

@@ -1,7 +1,7 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Dashboard EsthÃ©ticienne - Beautix{% endblock %}
+{% block title %}Dashboard Esthéticienne - Beauty Manager{% endblock %}
 
 {% block content %}
 {% csrf_token %}
@@ -9,14 +9,14 @@
     <div class="reg-wrap">
         <section class="reg-hero">
             <div class="reg-intro">
-                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
-                <h1>Dashboard esthÃ©ticienne</h1>
+                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <h1>Dashboard esthéticienne</h1>
                 <p>
-                    Consultez votre planning, confirmez les rendez-vous et gÃ©rez les paiements en un seul endroit.
+                    Consultez votre planning, confirmez les rendez-vous et gérez les paiements en un seul endroit.
                 </p>
                 <div class="reg-intro-cta">
                     <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
-                        <i class="fas fa-arrow-left"></i> Retour Ã  l'accueil
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
                     </a>
                 </div>
             </div>
@@ -40,7 +40,7 @@
         <div class="reg-panel dash-main">
             <div class="reg-panel-inner">
                 <h2 class="reg-section-title"><i class="fas fa-calendar-week"></i> Planning des rendez-vous</h2>
-                <p class="dash-section-lead">Vos rendez-vous groupÃ©s par jour.</p>
+                <p class="dash-section-lead">Vos rendez-vous groupés par jour.</p>
 
                 {% if reservations %}
                     <div class="dash-planning">
@@ -63,22 +63,22 @@
                                                     <h5>{{ reservation.service.name }}</h5>
                                                     <div class="dash-badges">
                                                         <span class="dash-badge dash-badge-{{ reservation.statut }}">
-                                                            {% if reservation.statut == 'annulÃ©' %}
-                                                                AnnulÃ© par le client
+                                                            {% if reservation.statut == 'annulé' %}
+                                                                Annulé par le client
                                                             {% else %}
                                                                 {{ reservation.get_statut_display }}
                                                             {% endif %}
                                                         </span>
                                                         {% if reservation.payment_method == 'cash' and reservation.statut == 'en_attente' %}
                                                             <span class="dash-badge dash-badge-cash">
-                                                                <i class="fas fa-money-bill-wave"></i> Paiement espÃ¨ces
+                                                                <i class="fas fa-money-bill-wave"></i> Paiement espèces
                                                             </span>
                                                         {% endif %}
                                                     </div>
                                                 </div>
                                                 <div class="dash-rdv-meta">
                                                     <div><i class="fas fa-user"></i> <strong>Client :</strong> {{ reservation.client.user.username }}</div>
-                                                    <div><i class="fas fa-phone"></i> {{ reservation.client.phone|default:"TÃ©lÃ©phone non renseignÃ©" }}</div>
+                                                    <div><i class="fas fa-phone"></i> {{ reservation.client.phone|default:"Téléphone non renseigné" }}</div>
                                                     <div><i class="fas fa-money-bill-wave"></i> <strong>Prix :</strong> {{ reservation.montant|floatformat:0 }} FCFA</div>
                                                     {% if reservation.notes %}
                                                         <div><i class="fas fa-sticky-note"></i> <strong>Notes :</strong> {{ reservation.notes }}</div>
@@ -89,27 +89,27 @@
                                                 </div>
                                                 <div class="dash-rdv-btns">
                                                     {% if reservation.statut == 'en_attente' %}
-                                                        <button type="button" class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmÃ©">
+                                                        <button type="button" class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmé">
                                                             <i class="fas fa-check"></i> Confirmer
                                                         </button>
                                                     {% endif %}
-                                                    {% if reservation.statut == 'confirmÃ©' %}
-                                                        <button type="button" class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payÃ©">
-                                                            <i class="fas fa-credit-card"></i> Marquer payÃ©
+                                                    {% if reservation.statut == 'confirmé' %}
+                                                        <button type="button" class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payé">
+                                                            <i class="fas fa-credit-card"></i> Marquer payé
                                                         </button>
                                                     {% endif %}
                                                     {% if reservation.statut == 'en_attente' and reservation.payment_method == 'cash' %}
                                                         <button type="button" class="btn btn-sm btn-primary confirm-cash-payment-btn" data-reservation-id="{{ reservation.id }}">
-                                                            <i class="fas fa-money-bill-wave"></i> Confirmer paiement espÃ¨ces
+                                                            <i class="fas fa-money-bill-wave"></i> Confirmer paiement espèces
                                                         </button>
                                                     {% endif %}
-                                                    {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmÃ©' %}
-                                                        <button type="button" class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulÃ©">
+                                                    {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmé' %}
+                                                        <button type="button" class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulé">
                                                             <i class="fas fa-times"></i> Annuler
                                                         </button>
                                                     {% endif %}
-                                                    {% if reservation.statut == 'payÃ©' %}
-                                                        <button type="button" class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminÃ©">
+                                                    {% if reservation.statut == 'payé' %}
+                                                        <button type="button" class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminé">
                                                             <i class="fas fa-check-double"></i> Terminer
                                                         </button>
                                                     {% endif %}
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const reservationId = this.getAttribute('data-reservation-id');
             const newStatus = this.getAttribute('data-new-status');
 
-            if (!confirm('Changer le statut de la rÃ©servation #' + reservationId + ' ?')) {
+            if (!confirm('Changer le statut de la réservation #' + reservationId + ' ?')) {
                 return;
             }
 
@@ -160,11 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (data.success) {
                         location.reload();
                     } else {
-                        alert('Erreur lors de la mise Ã  jour du statut');
+                        alert('Erreur lors de la mise à jour du statut');
                     }
                 })
                 .catch(function() {
-                    alert('Erreur lors de la mise Ã  jour du statut');
+                    alert('Erreur lors de la mise à jour du statut');
                 });
         });
     });
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const reservationId = this.getAttribute('data-reservation-id');
 
-            if (!confirm('Confirmer le paiement en espÃ¨ces pour la rÃ©servation #' + reservationId + ' ?')) {
+            if (!confirm('Confirmer le paiement en espèces pour la réservation #' + reservationId + ' ?')) {
                 return;
             }
 
@@ -199,5 +199,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
-
-

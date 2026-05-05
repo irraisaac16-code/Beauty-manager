@@ -1,8 +1,8 @@
-﻿{% extends 'manager/base.html' %}
+{% extends 'manager/base.html' %}
 {% load static %}
 {% load math_filters %}
 
-{% block title %}Bilan Mensuel - Beautix{% endblock %}
+{% block title %}Bilan Mensuel - Beauty Manager{% endblock %}
 
 {% block content %}
 <div class="bilan-container">
@@ -32,7 +32,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ total_reservations }}</h3>
-                <p>Total RÃ©servations</p>
+                <p>Total Réservations</p>
             </div>
         </div>
         
@@ -42,7 +42,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_confirmees }}</h3>
-                <p>RÃ©servations ConfirmÃ©es</p>
+                <p>Réservations Confirmées</p>
             </div>
         </div>
         
@@ -52,7 +52,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_payees }}</h3>
-                <p>RÃ©servations PayÃ©es</p>
+                <p>Réservations Payées</p>
             </div>
         </div>
         
@@ -70,11 +70,11 @@
     <!-- Contenu principal -->
     <div class="main-content">
         <div class="content-grid">
-            <!-- Graphique des rÃ©servations par semaine -->
+            <!-- Graphique des réservations par semaine -->
             <div class="content-card">
                 <div class="card-header">
-                    <h3><i class="fas fa-chart-area"></i> RÃ©servations par Semaine</h3>
-                    <p>RÃ©partition des rÃ©servations sur le mois</p>
+                    <h3><i class="fas fa-chart-area"></i> Réservations par Semaine</h3>
+                    <p>Répartition des réservations sur le mois</p>
                 </div>
                 <div class="card-body">
                     <div class="chart-container">
@@ -108,7 +108,7 @@
                                 <div class="ranking-position">{{ forloop.counter }}</div>
                                 <div class="ranking-content">
                                     <h4>{{ coiffeuse.coiffeuse__user__username }}</h4>
-                                    <p>{{ coiffeuse.nb_reservations }} rÃ©servations</p>
+                                    <p>{{ coiffeuse.nb_reservations }} réservations</p>
                                 </div>
                                 <div class="ranking-amount">
                                     {{ coiffeuse.total_montant|floatformat:0 }} FCFA
@@ -119,7 +119,7 @@
                     {% else %}
                         <div class="empty-state">
                             <i class="fas fa-user-friends"></i>
-                            <p>Aucune rÃ©servation ce mois</p>
+                            <p>Aucune réservation ce mois</p>
                         </div>
                     {% endif %}
                 </div>
@@ -130,7 +130,7 @@
         <div class="content-card">
             <div class="card-header">
                 <h3><i class="fas fa-concierge-bell"></i> Top Services</h3>
-                <p>Les services les plus demandÃ©s du mois</p>
+                <p>Les services les plus demandés du mois</p>
             </div>
             <div class="card-body">
                 {% if top_services %}
@@ -142,7 +142,7 @@
                             </div>
                             <div class="service-content">
                                 <h4>{{ service.service__name }}</h4>
-                                <p>{{ service.nb_reservations }} rÃ©servations</p>
+                                <p>{{ service.nb_reservations }} réservations</p>
                                 <div class="service-amount">
                                     {{ service.total_montant|floatformat:0 }} FCFA
                                 </div>
@@ -153,17 +153,17 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-concierge-bell"></i>
-                        <p>Aucun service rÃ©servÃ© ce mois</p>
+                        <p>Aucun service réservé ce mois</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- DerniÃ¨res rÃ©servations -->
+        <!-- Dernières réservations -->
         <div class="content-card">
             <div class="card-header">
-                <h3><i class="fas fa-clock"></i> DerniÃ¨res RÃ©servations</h3>
-                <p>Les rÃ©servations rÃ©centes du mois</p>
+                <h3><i class="fas fa-clock"></i> Dernières Réservations</h3>
+                <p>Les réservations récentes du mois</p>
             </div>
             <div class="card-body">
                 {% if reservations_mois %}
@@ -176,7 +176,7 @@
                             </div>
                             <div class="reservation-details">
                                 <h4>{{ reservation.service.name }}</h4>
-                                <p>{{ reservation.client.user.username }} â†’ {{ reservation.coiffeuse.user.username }}</p>
+                                <p>{{ reservation.client.user.username }} → {{ reservation.coiffeuse.user.username }}</p>
                                 <span class="time-badge">{{ reservation.heure|time:"H:i" }}</span>
                             </div>
                             <div class="reservation-status">
@@ -193,7 +193,7 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-calendar-times"></i>
-                        <p>Aucune rÃ©servation ce mois</p>
+                        <p>Aucune réservation ce mois</p>
                     </div>
                 {% endif %}
             </div>
@@ -574,7 +574,7 @@
     font-size: 0.9rem;
 }
 
-/* RÃ©servations List */
+/* Réservations List */
 .reservations-list {
     display: flex;
     flex-direction: column;
@@ -654,17 +654,17 @@
     color: #d97706;
 }
 
-.status-confirmÃ© {
+.status-confirmé {
     background: #dbeafe;
     color: #1d4ed8;
 }
 
-.status-payÃ© {
+.status-payé {
     background: #d1fae5;
     color: #065f46;
 }
 
-.status-annulÃ© {
+.status-annulé {
     background: #dc2626;
     color: white;
 }
