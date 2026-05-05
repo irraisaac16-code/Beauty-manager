@@ -13,7 +13,6 @@
                 <div class="reg-brand" aria-label="Beauty Manager">
                     <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
                 </div>
-                <h1>Inscription esthéticienne</h1>
                 <p>
                     Rejoignez le réseau Beauty Manager : proposez vos services, gérez vos rendez-vous
                     et développez votre activité avec une interface pensée pour les professionnelles de la beauté.
@@ -67,6 +66,7 @@
 
             <div class="reg-panel">
                 <div class="reg-panel-inner">
+                    <h1 class="reg-form-title">Inscription esthéticienne</h1>
                     <form method="post" id="register-form" enctype="multipart/form-data">
                         {% csrf_token %}
 

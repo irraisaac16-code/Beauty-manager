@@ -13,7 +13,6 @@
                 <div class="reg-brand" aria-label="Beauty Manager">
                     <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
                 </div>
-                <h1>Inscription client</h1>
                 <p>
                     Créez votre compte pour réserver vos services de beauté en quelques clics.
                     Une expérience simple, alignée sur Beauty Manager.
@@ -53,6 +52,7 @@
 
             <div class="reg-panel">
                 <div class="reg-panel-inner">
+                    <h1 class="reg-form-title">Inscription client</h1>
                     <form method="post" id="register-form" enctype="multipart/form-data">
                         {% csrf_token %}
 
