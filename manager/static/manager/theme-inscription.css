@@ -125,13 +125,12 @@ main.theme-reg h2 {
     backdrop-filter: blur(8px);
 }
 
-.reg-panel-title {
-    margin: 0 0 0.85rem;
-    font-size: clamp(1.45rem, 2.25vw, 1.95rem);
+.reg-form-title {
+    margin: 0 0 1.15rem;
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
     line-height: 1.15;
-    font-weight: 900;
+    font-weight: 800;
     letter-spacing: -0.02em;
-    color: var(--reg-text);
 }
 
 .reg-section {
