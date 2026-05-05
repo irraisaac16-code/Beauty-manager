@@ -38,6 +38,7 @@
     {% endif %}
     <div class="services-list">
         {% if services %}
+            <div class="table-scroll">
             <table class="table-services">
                 <thead>
                     <tr>
@@ -72,6 +73,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            </div>
         {% else %}
             <p>Aucun service enregistré pour le moment.</p>
         {% endif %}

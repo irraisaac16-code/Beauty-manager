@@ -1472,5 +1472,45 @@ document.addEventListener('DOMContentLoaded', function() {
     background: rgba(255, 255, 255, 0.75) !important;
     border-color: rgba(124, 58, 237, 0.2) !important;
 }
+
+@media (max-width: 768px) {
+    .stats-dashboard {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .filters-header {
+        padding: 1rem 1.15rem;
+    }
+
+    .filters-content {
+        padding: 1rem 1.15rem;
+    }
+
+    .reservations-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .reservations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-card {
+        border-radius: 16px;
+    }
+
+    .card-header,
+    .card-body {
+        padding: 1.1rem;
+    }
+
+    .modal-content {
+        width: calc(100% - 1.25rem);
+        margin: 0.75rem;
+        max-height: 92vh;
+    }
+}
 </style>
 {% endblock %} 

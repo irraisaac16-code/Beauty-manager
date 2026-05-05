@@ -3,6 +3,7 @@ main.theme-reg {
     --reg-line: rgba(124, 58, 237, 0.14);
     --reg-muted: #64748b;
     --reg-text: #1e293b;
+    --tap-min: 44px;
 }
 
 main.theme-reg h1,
@@ -277,6 +278,33 @@ main.theme-reg h2 {
 
 .reg-btn-wide {
     width: 100%;
+}
+
+/* Mobile tap-targets (cohérent sur toutes pages reg/dash) */
+.reg-btn,
+.reg-submit,
+.reg-page button,
+.reg-page a.reg-btn,
+.reg-page input,
+.reg-page select {
+    min-height: var(--tap-min);
+}
+
+@media (max-width: 640px) {
+    .reg-intro p {
+        font-size: 0.98rem;
+        line-height: 1.6;
+    }
+    .reg-panel-inner {
+        padding: 1.2rem 1.05rem;
+    }
+    .reg-actions {
+        gap: 0.65rem;
+    }
+    .reg-actions .btn,
+    .reg-actions .reg-btn {
+        width: 100%;
+    }
 }
 
 .reg-benefits {
@@ -1103,6 +1131,24 @@ main.theme-reg .btn-primary:hover {
     .dash-act {
         justify-content: center;
         width: 100%;
+    }
+
+    .dash-rdv-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .dash-rdv-timecol {
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .dash-date-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 }
 

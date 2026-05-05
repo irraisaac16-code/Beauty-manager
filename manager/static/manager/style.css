@@ -10,6 +10,7 @@
   --radius: 1.5rem;
   --shadow: 0 8px 32px rgba(168,85,247,0.15);
   --shadow-dark: 0 4px 24px rgba(168,85,247,0.25);
+  --tap-min: 44px;
 }
 
 *, *::before, *::after {
@@ -27,6 +28,24 @@ main {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Mobile UX: éviter les débordements et améliorer les tap targets */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-wrap: anywhere;
+}
+
+@media (hover: none) {
+  .nav-link:hover,
+  .btn:hover,
+  a:hover {
+    transform: none !important;
+  }
 }
 
 /* Styles pour la navbar */
@@ -499,6 +518,10 @@ a[href="/inscription/client/"].btn.bg-secondary:hover {
     width: 100% !important;
     text-align: center !important;
     padding: 0.85rem 1rem !important;
+    min-height: var(--tap-min);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
   .navbar-brand {
@@ -510,6 +533,7 @@ a[href="/inscription/client/"].btn.bg-secondary:hover {
     width: 100% !important;
     margin: 0.65rem 0 !important;
     padding: 0.95rem 1rem !important;
+    min-height: var(--tap-min);
   }
 
   .hero-title {

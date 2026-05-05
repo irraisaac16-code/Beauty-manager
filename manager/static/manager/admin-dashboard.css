@@ -746,6 +746,10 @@
 }
 
 @media (max-width: 768px) {
+    .admin-dashboard {
+        width: min(1120px, 94%);
+        padding: 1.25rem 0 2rem;
+    }
     .admin-dashboard .header-content {
         padding: 1.5rem 1.15rem;
     }
@@ -769,6 +773,16 @@
     .admin-dashboard .modern-table th,
     .admin-dashboard .modern-table td {
         padding: 0.55rem 0.4rem;
+    }
+
+    /* Tables classiques (services) */
+    .admin-dashboard .table-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 14px;
+    }
+    .admin-dashboard .table-scroll table {
+        min-width: 720px;
     }
 }
 
