@@ -126,11 +126,12 @@ main.theme-reg h2 {
 }
 
 .reg-form-title {
-    margin: 0 0 1.15rem;
+    margin: 0 0 1.65rem;
     font-size: clamp(1.4rem, 2.2vw, 1.85rem);
     line-height: 1.15;
     font-weight: 800;
     letter-spacing: -0.02em;
+    text-align: center;
 }
 
 .reg-section {
