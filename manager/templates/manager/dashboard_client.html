@@ -4,44 +4,47 @@
 
 {% block title %}Dashboard Client - Beauty Manager{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
-{% endblock %}
-
 {% block content %}
-<div class="admin-dashboard">
-    <div class="dashboard-header">
-        <div class="header-content">
-            <div class="header-left">
+<div class="reg-page dash-page">
+    <div class="reg-wrap">
+        <section class="reg-hero">
+            <div class="reg-intro">
                 <div class="reg-brand" aria-label="Beauty Manager">
                     <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
                 </div>
-                <h1><i class="fas fa-user"></i> Dashboard client</h1>
-                <p>Retrouvez vos rendez-vous, effectuez vos paiements et accédez rapidement à vos outils.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="stats-grid">
-        <div class="stat-card info">
-            <div class="stat-icon">
-                <i class="fas fa-user-circle"></i>
-            </div>
-            <div class="stat-content">
-                <h3>{{ user_profile.user.username }}</h3>
-                <p>Bienvenue</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="main-content">
-        <div class="content-grid">
-            <div class="content-card">
-                <div class="card-header">
-                    <h3><i class="fas fa-calendar-alt"></i> Mes réservations</h3>
-                    <p>Gérez vos rendez-vous et suivez leur statut.</p>
+                <h1>Dashboard client</h1>
+                <p>
+                    Retrouvez vos rendez-vous, effectuez vos paiements et accédez rapidement à vos outils.
+                </p>
+                <div class="reg-intro-cta">
+                    <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
+                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                    </a>
                 </div>
-                <div class="card-body">
+            </div>
+
+            <div class="reg-panel">
+                <div class="reg-panel-inner dash-profile-card">
+                    <div class="dash-profile-visual">
+                        {% if user_profile.profile_image %}
+                            <img src="{{ user_profile.profile_image.url }}" alt="Photo de profil" class="dash-profile-img">
+                        {% else %}
+                            <div class="dash-profile-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <p class="dash-welcome"><strong>Bienvenue, {{ user_profile.user.username }}</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <div class="reg-panel dash-main">
+            <div class="reg-panel-inner">
+                <div class="dash-section">
+                    <h2 class="reg-section-title"><i class="fas fa-calendar-alt"></i> Mes réservations</h2>
+                    <p class="dash-section-lead">Gérez vos rendez-vous et suivez leur statut.</p>
+
                     {% if reservations %}
                         <div class="dash-res-grid">
                             {% for reservation in reservations %}
@@ -132,14 +135,10 @@
                         </div>
                     {% endif %}
                 </div>
-            </div>
 
-            <div class="content-card">
-                <div class="card-header">
-                    <h3><i class="fas fa-bolt"></i> Actions rapides</h3>
-                    <p>Accès direct aux fonctionnalités principales.</p>
-                </div>
-                <div class="card-body">
+                <div class="dash-section dash-section-last">
+                    <h2 class="reg-section-title"><i class="fas fa-bolt"></i> Actions rapides</h2>
+                    <p class="dash-section-lead">Accès direct aux fonctionnalités principales.</p>
                     <div class="dash-quick-grid">
                         <a href="{% url 'reservation_client' %}" class="dash-quick-card">
                             <div class="dash-quick-icon"><i class="fas fa-calendar-plus"></i></div>
