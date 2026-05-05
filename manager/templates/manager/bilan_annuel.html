@@ -1,8 +1,8 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load static %}
 {% load math_filters %}
 
-{% block title %}Bilan Annuel - Beauty Manager{% endblock %}
+{% block title %}Bilan Annuel - Beautix{% endblock %}
 
 {% block content %}
 <div class="bilan-container">
@@ -32,7 +32,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ total_reservations }}</h3>
-                <p>Total Réservations</p>
+                <p>Total RÃ©servations</p>
             </div>
         </div>
         
@@ -42,7 +42,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_confirmees }}</h3>
-                <p>Réservations Confirmées</p>
+                <p>RÃ©servations ConfirmÃ©es</p>
             </div>
         </div>
         
@@ -52,7 +52,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_payees }}</h3>
-                <p>Réservations Payées</p>
+                <p>RÃ©servations PayÃ©es</p>
             </div>
         </div>
         
@@ -70,11 +70,11 @@
     <!-- Contenu principal -->
     <div class="main-content">
         <div class="content-grid">
-            <!-- Graphique des réservations par mois -->
+            <!-- Graphique des rÃ©servations par mois -->
             <div class="content-card">
                 <div class="card-header">
-                    <h3><i class="fas fa-chart-area"></i> Réservations par Mois</h3>
-                    <p>Répartition des réservations sur l'année</p>
+                    <h3><i class="fas fa-chart-area"></i> RÃ©servations par Mois</h3>
+                    <p>RÃ©partition des rÃ©servations sur l'annÃ©e</p>
                 </div>
                 <div class="card-body">
                     <div class="chart-container">
@@ -97,7 +97,7 @@
             <div class="content-card">
                 <div class="card-header">
                     <h3><i class="fas fa-trophy"></i> Top Coiffeuses</h3>
-                    <p>Les coiffeuses les plus actives de l'année</p>
+                    <p>Les coiffeuses les plus actives de l'annÃ©e</p>
                 </div>
                 <div class="card-body">
                     {% if top_coiffeuses %}
@@ -107,7 +107,7 @@
                                 <div class="ranking-position">{{ forloop.counter }}</div>
                                 <div class="ranking-content">
                                     <h4>{{ coiffeuse.coiffeuse__user__username }}</h4>
-                                    <p>{{ coiffeuse.nb_reservations }} réservations</p>
+                                    <p>{{ coiffeuse.nb_reservations }} rÃ©servations</p>
                                 </div>
                                 <div class="ranking-amount">
                                     {{ coiffeuse.total_montant|floatformat:0 }} FCFA
@@ -118,7 +118,7 @@
                     {% else %}
                         <div class="empty-state">
                             <i class="fas fa-user-friends"></i>
-                            <p>Aucune réservation cette année</p>
+                            <p>Aucune rÃ©servation cette annÃ©e</p>
                         </div>
                     {% endif %}
                 </div>
@@ -129,7 +129,7 @@
         <div class="content-card">
             <div class="card-header">
                 <h3><i class="fas fa-concierge-bell"></i> Top Services</h3>
-                <p>Les services les plus demandés de l'année</p>
+                <p>Les services les plus demandÃ©s de l'annÃ©e</p>
             </div>
             <div class="card-body">
                 {% if top_services %}
@@ -141,7 +141,7 @@
                             </div>
                             <div class="service-content">
                                 <h4>{{ service.service__name }}</h4>
-                                <p>{{ service.nb_reservations }} réservations</p>
+                                <p>{{ service.nb_reservations }} rÃ©servations</p>
                                 <div class="service-amount">
                                     {{ service.total_montant|floatformat:0 }} FCFA
                                 </div>
@@ -152,17 +152,17 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-concierge-bell"></i>
-                        <p>Aucun service réservé cette année</p>
+                        <p>Aucun service rÃ©servÃ© cette annÃ©e</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Dernières réservations -->
+        <!-- DerniÃ¨res rÃ©servations -->
         <div class="content-card">
             <div class="card-header">
-                <h3><i class="fas fa-clock"></i> Dernières Réservations</h3>
-                <p>Les réservations récentes de l'année</p>
+                <h3><i class="fas fa-clock"></i> DerniÃ¨res RÃ©servations</h3>
+                <p>Les rÃ©servations rÃ©centes de l'annÃ©e</p>
             </div>
             <div class="card-body">
                 {% if reservations_annee %}
@@ -175,7 +175,7 @@
                             </div>
                             <div class="reservation-details">
                                 <h4>{{ reservation.service.name }}</h4>
-                                <p>{{ reservation.client.user.username }} → {{ reservation.coiffeuse.user.username }}</p>
+                                <p>{{ reservation.client.user.username }} â†’ {{ reservation.coiffeuse.user.username }}</p>
                                 <span class="time-badge">{{ reservation.heure|time:"H:i" }}</span>
                             </div>
                             <div class="reservation-status">
@@ -192,7 +192,7 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-calendar-times"></i>
-                        <p>Aucune réservation cette année</p>
+                        <p>Aucune rÃ©servation cette annÃ©e</p>
                     </div>
                 {% endif %}
             </div>
@@ -566,7 +566,7 @@
     font-size: 0.9rem;
 }
 
-/* Réservations List */
+/* RÃ©servations List */
 .reservations-list {
     display: flex;
     flex-direction: column;
@@ -646,17 +646,17 @@
     color: #d97706;
 }
 
-.status-confirmé {
+.status-confirmÃ© {
     background: #dbeafe;
     color: #1d4ed8;
 }
 
-.status-payé {
+.status-payÃ© {
     background: #d1fae5;
     color: #065f46;
 }
 
-.status-annulé {
+.status-annulÃ© {
     background: #dc2626;
     color: white;
 }

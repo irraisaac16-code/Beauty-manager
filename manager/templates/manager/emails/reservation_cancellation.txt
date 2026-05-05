@@ -1,28 +1,28 @@
-Annulation de Réservation - Beauty Manager
+﻿Annulation de RÃ©servation - Beautix
 
 Bonjour {{ client_name }},
 
-Nous vous informons que votre réservation a été annulée.
+Nous vous informons que votre rÃ©servation a Ã©tÃ© annulÃ©e.
 
-DÉTAILS DE LA RÉSERVATION ANNULÉE :
+DÃ‰TAILS DE LA RÃ‰SERVATION ANNULÃ‰E :
 Service : {{ service_name }}
 Coiffeuse : {{ coiffeuse_name }}
 Date : {{ date }}
 Heure : {{ heure }}
 
 INFORMATIONS IMPORTANTES :
-- Le créneau a été libéré pour d'autres clients
-- Si vous aviez déjà payé, un remboursement sera effectué
-- Vous pouvez créer une nouvelle réservation à tout moment
+- Le crÃ©neau a Ã©tÃ© libÃ©rÃ© pour d'autres clients
+- Si vous aviez dÃ©jÃ  payÃ©, un remboursement sera effectuÃ©
+- Vous pouvez crÃ©er une nouvelle rÃ©servation Ã  tout moment
 
-Pour créer une nouvelle réservation, connectez-vous à votre espace client :
+Pour crÃ©er une nouvelle rÃ©servation, connectez-vous Ã  votre espace client :
 http://localhost:8000
 
-Nous vous remercions de votre compréhension.
+Nous vous remercions de votre comprÃ©hension.
 
 Cordialement,
-L'équipe Beauty Manager
+L'Ã©quipe Beautix
 
 ---
-Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
-© 2024 Beauty Manager. Tous droits réservés. 
+Cet email a Ã©tÃ© envoyÃ© automatiquement. Merci de ne pas y rÃ©pondre.
+Â© 2024 Beautix. Tous droits rÃ©servÃ©s. 

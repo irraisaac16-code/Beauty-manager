@@ -1,7 +1,7 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Paiement - Beauty Manager{% endblock %}
+{% block title %}Paiement - Beautix{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -16,7 +16,7 @@
 
         <div class="payment-card">
             <div class="reservation-summary">
-                <h3><i class="fas fa-receipt"></i> Résumé de la réservation</h3>
+                <h3><i class="fas fa-receipt"></i> RÃ©sumÃ© de la rÃ©servation</h3>
                 <div class="summary-details">
                     <div class="summary-item">
                         <span class="label">Service :</span>
@@ -31,11 +31,11 @@
                         <span class="value">{{ reservation.heure|time:"H:i" }}</span>
                     </div>
                     <div class="summary-item">
-                        <span class="label">Esthéticienne :</span>
+                        <span class="label">EsthÃ©ticienne :</span>
 <span class="value">{{ reservation.coiffeuse.user.username }}</span>
                     </div>
                     <div class="summary-item total">
-                        <span class="label">Montant à payer :</span>
+                        <span class="label">Montant Ã  payer :</span>
                         <span class="value price">{{ reservation.montant|floatformat:0 }} FCFA</span>
                     </div>
                 </div>
@@ -47,12 +47,12 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="numero">
-                            <i class="fas fa-phone"></i> Numéro de téléphone
+                            <i class="fas fa-phone"></i> NumÃ©ro de tÃ©lÃ©phone
                         </label>
                         <input type="tel" id="numero" name="numero" class="form-control" 
                                placeholder="Ex: 0556620398" required 
                                pattern="[0-9]{10}" maxlength="10">
-                        <small class="form-text">Entrez votre numéro de téléphone (exactement 10 chiffres)</small>
+                        <small class="form-text">Entrez votre numÃ©ro de tÃ©lÃ©phone (exactement 10 chiffres)</small>
                     </div>
 
                     <div class="payment-options">
@@ -82,15 +82,15 @@
                             <input type="radio" id="cash" name="payment_method" value="cash">
                             <label for="cash">
                                 <i class="fas fa-money-bill-wave"></i>
-                                <span>Paiement en espèces au salon</span>
+                                <span>Paiement en espÃ¨ces au salon</span>
                             </label>
                         </div>
                         
                         <div class="cash-info" id="cash-info" style="display: none; margin-top: 1rem; padding: 1rem; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px;">
-                            <h5><i class="fas fa-info-circle"></i> Information paiement en espèces</h5>
+                            <h5><i class="fas fa-info-circle"></i> Information paiement en espÃ¨ces</h5>
                             <p style="margin: 0; color: #856404; font-size: 0.9rem;">
-                                Votre réservation sera confirmée immédiatement. Le paiement en espèces de <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> 
-                                devra être effectué directement au salon lors de votre rendez-vous.
+                                Votre rÃ©servation sera confirmÃ©e immÃ©diatement. Le paiement en espÃ¨ces de <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> 
+                                devra Ãªtre effectuÃ© directement au salon lors de votre rendez-vous.
                             </p>
                         </div>
                     </div>
@@ -109,16 +109,16 @@
 
         <div class="payment-info">
             <div class="info-card">
-                <h4><i class="fas fa-shield-alt"></i> Sécurité</h4>
-                <p>Vos informations de paiement sont sécurisées et ne sont jamais stockées.</p>
+                <h4><i class="fas fa-shield-alt"></i> SÃ©curitÃ©</h4>
+                <p>Vos informations de paiement sont sÃ©curisÃ©es et ne sont jamais stockÃ©es.</p>
             </div>
             <div class="info-card">
-                <h4><i class="fas fa-clock"></i> Instantané</h4>
-                <p>Le paiement est traité instantanément et votre réservation sera confirmée.</p>
+                <h4><i class="fas fa-clock"></i> InstantanÃ©</h4>
+                <p>Le paiement est traitÃ© instantanÃ©ment et votre rÃ©servation sera confirmÃ©e.</p>
             </div>
             <div class="info-card">
                 <h4><i class="fas fa-headset"></i> Support</h4>
-                <p>En cas de problème, contactez notre support client.</p>
+                <p>En cas de problÃ¨me, contactez notre support client.</p>
             </div>
         </div>
     </div>
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paymentOptions = document.querySelectorAll('input[name="payment_method"]');
     const cashInfo = document.getElementById('cash-info');
     
-    // Gestion de l'affichage du champ téléphone selon l'option de paiement
+    // Gestion de l'affichage du champ tÃ©lÃ©phone selon l'option de paiement
     function togglePhoneField() {
         const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
         const submitBtn = document.getElementById('submit-btn');
@@ -429,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             phoneField.style.display = 'none';
             phoneInput.removeAttribute('required');
             cashInfo.style.display = 'block';
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmer la réservation';
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmer la rÃ©servation';
         } else {
             phoneField.style.display = 'block';
             phoneInput.setAttribute('required', 'required');
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Écouter les changements d'option de paiement
+    // Ã‰couter les changements d'option de paiement
     paymentOptions.forEach(option => {
         option.addEventListener('change', togglePhoneField);
     });
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialiser l'affichage
     togglePhoneField();
     
-    // Formatage automatique du numéro de téléphone
+    // Formatage automatique du numÃ©ro de tÃ©lÃ©phone
     phoneInput.addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         if (value.length > 10) {
@@ -460,11 +460,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
         const phoneNumber = phoneInput.value;
         
-        // Validation spécifique selon la méthode de paiement
+        // Validation spÃ©cifique selon la mÃ©thode de paiement
         if (selectedMethod.value !== 'cash') {
             if (phoneNumber.length !== 10) {
                 e.preventDefault();
-                alert('Veuillez entrer un numéro de téléphone valide (exactement 10 chiffres).');
+                alert('Veuillez entrer un numÃ©ro de tÃ©lÃ©phone valide (exactement 10 chiffres).');
                 phoneInput.focus();
                 return false;
             }
@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
         submitBtn.disabled = true;
         
-        // Simuler un délai de traitement
+        // Simuler un dÃ©lai de traitement
         setTimeout(() => {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;

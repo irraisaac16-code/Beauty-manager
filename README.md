@@ -1,10 +1,10 @@
-# Beauty Manager
+﻿# Beautix
 
 Application web de gestion de salon de beaute developpee avec Django.
 
 ## Apercu
 
-Beauty Manager est une application de gestion pour salon de beaute qui permet de centraliser:
+Beautix est une application de gestion pour salon de beaute qui permet de centraliser:
 - la gestion des reservations,
 - la gestion des profils utilisateurs (admin, coiffeuse, client),
 - le suivi des services et des disponibilites,
@@ -67,24 +67,24 @@ python manage.py runserver
 Puis ouvrir: `http://127.0.0.1:8000`
 
 
-### 5) Créer et activer un environnement virtuel
+### 5) CrÃ©er et activer un environnement virtuel
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 6) Installer les dépendances
+### 6) Installer les dÃ©pendances
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 7) Configurer la base de données
+### 7) Configurer la base de donnÃ©es
 
 ```bash
 python manage.py migrate
-python manage.py setup_data  # Créer les données de base
+python manage.py setup_data  # CrÃ©er les donnÃ©es de base
 ```
 
 **Isaac (irraisaac16-code)**  
@@ -93,3 +93,4 @@ GitHub: https://github.com/irraisaac16-code
 ## Licence
 
 Projet distribue sous licence MIT (voir `LICENSE`).
+

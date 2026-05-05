@@ -1,7 +1,7 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load static %}
 
-{% block title %}Validation des Esthéticiennes{% endblock %}
+{% block title %}Validation des EsthÃ©ticiennes{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
@@ -298,9 +298,9 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
-                <h1><i class="fas fa-user-check"></i> Validation des Esthéticiennes</h1>
-                <p>Gérez les demandes d'inscription des esthéticiennes</p>
+                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
+                <h1><i class="fas fa-user-check"></i> Validation des EsthÃ©ticiennes</h1>
+                <p>GÃ©rez les demandes d'inscription des esthÃ©ticiennes</p>
             </div>
         </div>
     </div>
@@ -310,7 +310,7 @@
     <!-- Coiffeuses en attente de validation -->
     {% if coiffeuses_en_attente %}
         <div class="section-header">
-            <h2><i class="fas fa-clock"></i> Esthéticiennes en attente de validation</h2>
+            <h2><i class="fas fa-clock"></i> EsthÃ©ticiennes en attente de validation</h2>
         </div>
         <div class="row">
             {% for coiffeuse in coiffeuses_en_attente %}
@@ -329,7 +329,7 @@
                                 <p class="estheticienne-email">{{ coiffeuse.user.email }}</p>
                                 <p class="estheticienne-phone">
                                     <i class="fas fa-phone"></i>
-                                    {{ coiffeuse.phone|default:"Téléphone non renseigné" }}
+                                    {{ coiffeuse.phone|default:"TÃ©lÃ©phone non renseignÃ©" }}
                                 </p>
                             </div>
                         </div>
@@ -366,16 +366,16 @@
     {% else %}
         <div class="empty-state">
             <i class="fas fa-clock"></i>
-            <h3>Aucune esthéticienne en attente</h3>
-            <p>Toutes les demandes d'inscription ont été traitées.</p>
+            <h3>Aucune esthÃ©ticienne en attente</h3>
+            <p>Toutes les demandes d'inscription ont Ã©tÃ© traitÃ©es.</p>
         </div>
     {% endif %}
 
-    <!-- Coiffeuses validées -->
+    <!-- Coiffeuses validÃ©es -->
     {% if coiffeuses_validees %}
         <div class="validated-container">
             <div class="validated-container-header">
-                <h2><i class="fas fa-check-circle"></i> Esthéticiennes validées</h2>
+                <h2><i class="fas fa-check-circle"></i> EsthÃ©ticiennes validÃ©es</h2>
             </div>
             <div class="row">
                 {% for coiffeuse in coiffeuses_validees %}
@@ -394,7 +394,7 @@
                                     <p class="estheticienne-email">{{ coiffeuse.user.email }}</p>
                                     <p class="estheticienne-phone">
                                         <i class="fas fa-phone"></i>
-                                        {{ coiffeuse.phone|default:"Téléphone non renseigné" }}
+                                        {{ coiffeuse.phone|default:"TÃ©lÃ©phone non renseignÃ©" }}
                                     </p>
                                 </div>
                             </div>
@@ -406,7 +406,7 @@
                                 </div>
                                 <div class="detail-item">
                                     <span class="label">Statut :</span>
-                                    <span class="badge badge-success">Validée</span>
+                                    <span class="badge badge-success">ValidÃ©e</span>
                                 </div>
                             </div>
                             
@@ -425,8 +425,8 @@
     {% if not coiffeuses_en_attente and not coiffeuses_validees %}
         <div class="empty-state">
             <i class="fas fa-users"></i>
-            <h3>Aucune esthéticienne enregistrée</h3>
-            <p>Les esthéticiennes qui s'inscrivent apparaîtront ici pour validation.</p>
+            <h3>Aucune esthÃ©ticienne enregistrÃ©e</h3>
+            <p>Les esthÃ©ticiennes qui s'inscrivent apparaÃ®tront ici pour validation.</p>
         </div>
     {% endif %}
     </div>

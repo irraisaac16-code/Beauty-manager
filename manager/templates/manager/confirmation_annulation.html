@@ -1,12 +1,12 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Annuler Réservation - Beauty Manager{% endblock %}
+{% block title %}Annuler RÃ©servation - Beautix{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="cancellation-header">
-        <h1><i class="fas fa-times-circle"></i> Annuler la Réservation</h1>
+        <h1><i class="fas fa-times-circle"></i> Annuler la RÃ©servation</h1>
         <p>Confirmez l'annulation de votre rendez-vous</p>
     </div>
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-body">
                     <div class="reservation-details">
-                        <h4>Détails de la Réservation</h4>
+                        <h4>DÃ©tails de la RÃ©servation</h4>
                         <div class="details-grid">
                             <div class="detail-item">
                                 <label><strong>Date :</strong></label>
@@ -65,13 +65,13 @@
                         <div class="warning-message">
                             <div class="alert alert-warning">
                                 <h5><i class="fas fa-exclamation-triangle"></i> Attention !</h5>
-                                <p>Êtes-vous sûr de vouloir annuler cette réservation ?</p>
+                                <p>ÃŠtes-vous sÃ»r de vouloir annuler cette rÃ©servation ?</p>
                                 <ul>
-                                    <li>Cette action est irréversible</li>
-                                    <li>Le créneau sera libéré pour d'autres clients</li>
+                                    <li>Cette action est irrÃ©versible</li>
+                                    <li>Le crÃ©neau sera libÃ©rÃ© pour d'autres clients</li>
                                     <li>Une justification est obligatoire pour l'annulation</li>
-                                    {% if reservation.statut == 'payé' %}
-                                        <li>Un remboursement sera nécessaire</li>
+                                    {% if reservation.statut == 'payÃ©' %}
+                                        <li>Un remboursement sera nÃ©cessaire</li>
                                     {% endif %}
                                 </ul>
                             </div>
@@ -83,7 +83,7 @@
                             <!-- Formulaire de justification -->
                             <div class="justification-section">
                                 <h5><i class="fas fa-edit"></i> Justification de l'Annulation</h5>
-                                <p class="text-muted">Veuillez expliquer la raison de votre annulation (minimum 10 caractères)</p>
+                                <p class="text-muted">Veuillez expliquer la raison de votre annulation (minimum 10 caractÃ¨res)</p>
                                 
                                 {% if form.errors %}
                                     <div class="alert alert-danger">
@@ -122,9 +122,9 @@
                         <div class="new-reservation-section">
                             <div class="alert alert-info">
                                 <h5><i class="fas fa-info-circle"></i> Prendre un nouveau rendez-vous</h5>
-                                <p>Après l'annulation, vous pourrez immédiatement prendre un nouveau rendez-vous.</p>
+                                <p>AprÃ¨s l'annulation, vous pourrez immÃ©diatement prendre un nouveau rendez-vous.</p>
                                 <a href="{% url 'reservation_client' %}" class="btn btn-primary">
-                                    <i class="fas fa-calendar-plus"></i> Nouvelle Réservation
+                                    <i class="fas fa-calendar-plus"></i> Nouvelle RÃ©servation
                                 </a>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                             <div class="policy-item">
                                 <i class="fas fa-times text-danger"></i>
                                 <div>
-                                    <strong>Le jour même :</strong>
+                                    <strong>Le jour mÃªme :</strong>
                                     <span>Frais d'annulation de 100%</span>
                                 </div>
                             </div>

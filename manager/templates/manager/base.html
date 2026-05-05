@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Beauty Manager{% endblock %}</title>
+    <title>{% block title %}Beautix{% endblock %}</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3050/3050185.png">
     <link rel="shortcut icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3050/3050185.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -195,7 +195,7 @@
             text-decoration: none !important;
         }
         
-        /* Style pour le logo "Beauty Manager" */
+        /* Style pour le logo */
         .navbar-brand {
             color: #7c3aed !important;
         }
@@ -325,7 +325,7 @@
             }
         }
 
-        /* Wordmark page d'accueil : Beauty (ambre) + Manager (violet profond) */
+        /* Wordmark */
         .brand-wordmark {
             margin: 0 0 0.5rem;
             font-weight: 800;
@@ -374,7 +374,7 @@
     {% block navbar %}
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="navbar-brand {% block navbar_brand_class %}brand-wordmark-nav{% endblock %}">{% block navbar_brand %}<span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>{% endblock %}</a>
+            <a href="{% url 'home' %}" class="navbar-brand {% block navbar_brand_class %}brand-wordmark-nav{% endblock %}">{% block navbar_brand %}<span class="brand-wordmark__beauty">Beautix</span>{% endblock %}</a>
             <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>
@@ -415,7 +415,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p style="text-align: center; margin: 0; padding: 1rem 0;">&copy; 2026 Beauty Manager. Tous droits réservés.</p>
+            <p style="text-align: center; margin: 0; padding: 1rem 0;">&copy; 2026 Beautix. Tous droits réservés.</p>
             <p style="text-align: center; margin: 0; padding-bottom: 1rem; font-size: 0.9rem; color: #aaa; display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                 <span>Auteur du site : Irra Isaac Tialougbeu</span>
                 <img src="https://cdn-icons-png.flaticon.com/512/1250/1250681.png" alt="Icône auteur" style="width: 20px; height: 20px;">

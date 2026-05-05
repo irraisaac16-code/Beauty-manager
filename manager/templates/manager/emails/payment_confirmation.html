@@ -1,10 +1,10 @@
-{% load price_filters %}
+﻿{% load price_filters %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement Confirmé</title>
+    <title>Paiement ConfirmÃ©</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,16 +64,16 @@
 </head>
 <body>
     <div class="header">
-        <h1>✅ Paiement Confirmé</h1>
-        <p>Votre paiement a été traité avec succès !</p>
+        <h1>âœ… Paiement ConfirmÃ©</h1>
+        <p>Votre paiement a Ã©tÃ© traitÃ© avec succÃ¨s !</p>
     </div>
     
     <div class="content">
-        <div class="success-icon">💰</div>
+        <div class="success-icon">ðŸ’°</div>
         
         <p>Bonjour <strong>{{ client_name }}</strong>,</p>
         
-        <p>Nous vous confirmons que votre paiement a été traité avec succès. Voici les détails de votre transaction :</p>
+        <p>Nous vous confirmons que votre paiement a Ã©tÃ© traitÃ© avec succÃ¨s. Voici les dÃ©tails de votre transaction :</p>
         
         <div class="payment-details">
             <div class="detail-row">
@@ -89,28 +89,28 @@
                 <span class="detail-value">{{ heure }}</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Montant payé :</span>
+                <span class="detail-label">Montant payÃ© :</span>
                                         <span class="detail-value"><strong>{{ montant|floatformat:0 }} FCFA</strong></span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Méthode de paiement :</span>
+                <span class="detail-label">MÃ©thode de paiement :</span>
                 <span class="detail-value">Wave Mobile Money</span>
             </div>
         </div>
         
-        <p><strong>Votre rendez-vous est maintenant confirmé !</strong></p>
+        <p><strong>Votre rendez-vous est maintenant confirmÃ© !</strong></p>
         
-        <p>Nous vous attendons avec impatience pour votre rendez-vous. N'oubliez pas d'arriver 10 minutes avant l'heure prévue.</p>
+        <p>Nous vous attendons avec impatience pour votre rendez-vous. N'oubliez pas d'arriver 10 minutes avant l'heure prÃ©vue.</p>
         
-        <p>En cas de question ou de modification, n'hésitez pas à nous contacter.</p>
+        <p>En cas de question ou de modification, n'hÃ©sitez pas Ã  nous contacter.</p>
         
         <p>Cordialement,<br>
-        <strong>L'équipe Beauty Manager</strong></p>
+        <strong>L'Ã©quipe Beautix</strong></p>
     </div>
     
     <div class="footer">
-        <p>Cet email a été envoyé automatiquement. Merci de ne pas y répondre.</p>
-        <p>© 2024 Beauty Manager. Tous droits réservés.</p>
+        <p>Cet email a Ã©tÃ© envoyÃ© automatiquement. Merci de ne pas y rÃ©pondre.</p>
+        <p>Â© 2024 Beautix. Tous droits rÃ©servÃ©s.</p>
     </div>
 </body>
 </html> 

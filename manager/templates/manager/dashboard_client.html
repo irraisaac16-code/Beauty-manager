@@ -1,21 +1,21 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Dashboard Client - Beauty Manager{% endblock %}
+{% block title %}Dashboard Client - Beautix{% endblock %}
 
 {% block content %}
 <div class="reg-page dash-page">
     <div class="reg-wrap">
         <section class="reg-hero">
             <div class="reg-intro">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
                 <h1>Dashboard client</h1>
                 <p>
-                    Retrouvez vos rendez-vous, effectuez vos paiements et accédez rapidement à vos outils.
+                    Retrouvez vos rendez-vous, effectuez vos paiements et accÃ©dez rapidement Ã  vos outils.
                 </p>
                 <div class="reg-intro-cta">
                     <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
-                        <i class="fas fa-arrow-left"></i> Retour à l'accueil
+                        <i class="fas fa-arrow-left"></i> Retour Ã  l'accueil
                     </a>
                 </div>
             </div>
@@ -39,8 +39,8 @@
         <div class="reg-panel dash-main">
             <div class="reg-panel-inner">
                 <div class="dash-section">
-                    <h2 class="reg-section-title"><i class="fas fa-calendar-alt"></i> Mes réservations</h2>
-                    <p class="dash-section-lead">Gérez vos rendez-vous et suivez leur statut.</p>
+                    <h2 class="reg-section-title"><i class="fas fa-calendar-alt"></i> Mes rÃ©servations</h2>
+                    <p class="dash-section-lead">GÃ©rez vos rendez-vous et suivez leur statut.</p>
 
                     {% if reservations %}
                         <div class="dash-res-grid">
@@ -79,7 +79,7 @@
                                             </div>
                                             <div>
                                                 <span class="dash-coiffeuse-name">{{ reservation.coiffeuse.user.username }}</span>
-                                                <span class="dash-coiffeuse-label">Esthéticienne</span>
+                                                <span class="dash-coiffeuse-label">EsthÃ©ticienne</span>
                                             </div>
                                         </div>
                                         <div class="dash-price">{{ reservation.montant|floatformat:0 }} FCFA</div>
@@ -91,7 +91,7 @@
                                                 {% if reservation.payment_method == 'cash' %}
                                                     <div class="dash-pay-info">
                                                         <i class="fas fa-info-circle"></i>
-                                                        <span>Paiement en espèces — en attente de confirmation</span>
+                                                        <span>Paiement en espÃ¨ces â€” en attente de confirmation</span>
                                                     </div>
                                                 {% else %}
                                                     <a href="{% url 'simulate_payment' reservation.id %}" class="dash-act dash-act-pay">
@@ -104,15 +104,15 @@
                                                 <a href="{% url 'annuler_reservation' reservation.id %}" class="dash-act dash-act-cancel">
                                                     <i class="fas fa-times"></i> Annuler
                                                 </a>
-                                            {% elif reservation.statut == 'confirmé' %}
+                                            {% elif reservation.statut == 'confirmÃ©' %}
                                                 <a href="{% url 'modifier_reservation' reservation.id %}" class="dash-act dash-act-edit">
                                                     <i class="fas fa-edit"></i> Modifier
                                                 </a>
                                                 <a href="{% url 'annuler_reservation' reservation.id %}" class="dash-act dash-act-cancel">
                                                     <i class="fas fa-times"></i> Annuler
                                                 </a>
-                                            {% elif reservation.statut == 'payé' %}
-                                                <div class="dash-paid-pill"><i class="fas fa-check-circle"></i> Payé</div>
+                                            {% elif reservation.statut == 'payÃ©' %}
+                                                <div class="dash-paid-pill"><i class="fas fa-check-circle"></i> PayÃ©</div>
                                             {% else %}
                                                 <div class="dash-info-pill"><i class="fas fa-info-circle"></i> {{ reservation.get_statut_display }}</div>
                                             {% endif %}
@@ -124,10 +124,10 @@
                     {% else %}
                         <div class="dash-empty">
                             <i class="fas fa-calendar-times"></i>
-                            <h3>Aucune réservation</h3>
-                            <p>Vous n'avez pas encore de réservation. Commencez par en créer une.</p>
+                            <h3>Aucune rÃ©servation</h3>
+                            <p>Vous n'avez pas encore de rÃ©servation. Commencez par en crÃ©er une.</p>
                             <a href="{% url 'reservation_client' %}" class="btn btn-primary reg-submit">
-                                <i class="fas fa-calendar-plus"></i> Réserver maintenant
+                                <i class="fas fa-calendar-plus"></i> RÃ©server maintenant
                             </a>
                         </div>
                     {% endif %}
@@ -135,12 +135,12 @@
 
                 <div class="dash-section dash-section-last">
                     <h2 class="reg-section-title"><i class="fas fa-bolt"></i> Actions rapides</h2>
-                    <p class="dash-section-lead">Accès direct aux fonctionnalités principales.</p>
+                    <p class="dash-section-lead">AccÃ¨s direct aux fonctionnalitÃ©s principales.</p>
                     <div class="dash-quick-grid">
                         <a href="{% url 'reservation_client' %}" class="dash-quick-card">
                             <div class="dash-quick-icon"><i class="fas fa-calendar-plus"></i></div>
                             <div>
-                                <h4>Nouvelle réservation</h4>
+                                <h4>Nouvelle rÃ©servation</h4>
                                 <p>Prendre un nouveau rendez-vous</p>
                             </div>
                         </a>
@@ -148,7 +148,7 @@
                             <div class="dash-quick-icon"><i class="fas fa-user"></i></div>
                             <div>
                                 <h4>Mon profil</h4>
-                                <p>Gérer mes informations</p>
+                                <p>GÃ©rer mes informations</p>
                             </div>
                         </a>
                     </div>
@@ -159,3 +159,5 @@
 </div>
 
 {% endblock %}
+
+

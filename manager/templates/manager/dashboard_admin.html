@@ -1,8 +1,8 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 {% load static %}
 
-{% block title %}Dashboard Admin - Beauty Manager{% endblock %}
+{% block title %}Dashboard Admin - Beautix{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
 {% endblock %}
@@ -14,9 +14,9 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
                 <h1><i class="fas fa-shield-alt"></i> Dashboard Administrateur</h1>
-                <p>Gestion centralisée de votre salon de beauté</p>
+                <p>Gestion centralisÃ©e de votre salon de beautÃ©</p>
             </div>
 
         </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ total_reservations }}</h3>
-                <p>Total Réservations</p>
+                <p>Total RÃ©servations</p>
                 
             </div>
         </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_aujourd_hui }}</h3>
-                <p>Réservations Aujourd'hui</p>
+                <p>RÃ©servations Aujourd'hui</p>
                 
             </div>
         </div>
@@ -52,7 +52,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ coiffeuses_actives }}</h3>
-                <p>Esthéticiennes Actives</p>
+                <p>EsthÃ©ticiennes Actives</p>
                 
             </div>
         </div>
@@ -74,7 +74,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_payees }}</h3>
-                <p>Réservations Payées</p>
+                <p>RÃ©servations PayÃ©es</p>
                 
             </div>
         </div>
@@ -87,7 +87,7 @@
             <div class="content-card actions-card">
                 <div class="card-header">
                     <h3><i class="fas fa-bolt"></i> Actions Rapides</h3>
-                    <p>Accès direct aux fonctionnalités principales</p>
+                    <p>AccÃ¨s direct aux fonctionnalitÃ©s principales</p>
                 </div>
                 <div class="card-body">
                     <div class="actions-grid">
@@ -96,8 +96,8 @@
                                 <i class="fas fa-list"></i>
                             </div>
                             <div class="action-content">
-                                <h4>Gérer les Réservations</h4>
-                                <p>Voir et modifier toutes les réservations</p>
+                                <h4>GÃ©rer les RÃ©servations</h4>
+                                <p>Voir et modifier toutes les rÃ©servations</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -112,8 +112,8 @@
                                 {% endif %}
                             </div>
                             <div class="action-content">
-                                <h4>Valider Esthéticiennes</h4>
-                                <p>Approuver les nouvelles esthéticiennes</p>
+                                <h4>Valider EsthÃ©ticiennes</h4>
+                                <p>Approuver les nouvelles esthÃ©ticiennes</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -125,7 +125,7 @@
                                 <i class="fas fa-concierge-bell"></i>
                             </div>
                             <div class="action-content">
-                                <h4>Gérer les Services</h4>
+                                <h4>GÃ©rer les Services</h4>
                                 <p>Modifier les services disponibles</p>
                             </div>
                             <div class="action-arrow">
@@ -139,7 +139,7 @@
                             </div>
                             <div class="action-content">
                                 <h4>Mon Profil</h4>
-                                <p>Gérer vos informations personnelles</p>
+                                <p>GÃ©rer vos informations personnelles</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -153,7 +153,7 @@
             <div class="content-card alerts-card">
                 <div class="card-header">
                     <h3><i class="fas fa-exclamation-triangle"></i> Alertes</h3>
-                    <p>Points nécessitant votre attention</p>
+                    <p>Points nÃ©cessitant votre attention</p>
                 </div>
                 <div class="card-body">
                     <div class="alert-item urgent">
@@ -161,12 +161,12 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="alert-content">
-                            <h4>{{ reservations_en_attente }} Réservations en Attente</h4>
-                            <p>Nécessitent une validation ou un suivi</p>
+                            <h4>{{ reservations_en_attente }} RÃ©servations en Attente</h4>
+                            <p>NÃ©cessitent une validation ou un suivi</p>
                         </div>
                         {% if reservations_en_attente > 0 %}
                             <a href="{% url 'reservation_admin' %}" class="alert-action">
-                                Voir détails
+                                Voir dÃ©tails
                             </a>
                         {% endif %}
                     </div>
@@ -177,7 +177,7 @@
                             <i class="fas fa-user-plus"></i>
                         </div>
                         <div class="alert-content">
-                            <h4>{{ coiffeuses_en_attente.count }} Esthéticiennes en Attente</h4>
+                            <h4>{{ coiffeuses_en_attente.count }} EsthÃ©ticiennes en Attente</h4>
                             <p>En attente de validation</p>
                         </div>
                         <a href="{% url 'validation_coiffeuses' %}" class="alert-action">
@@ -194,7 +194,7 @@
         <div class="content-card clients-card">
             <div class="card-header">
                 <h3><i class="fas fa-users"></i> Clients Actifs</h3>
-                <p>Liste de tous les clients enregistrés ({{ clients_actifs }})</p>
+                <p>Liste de tous les clients enregistrÃ©s ({{ clients_actifs }})</p>
             </div>
             <div class="card-body">
                 {% if clients_liste %}
@@ -237,17 +237,17 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <h3>Aucun client actif</h3>
-                        <p>Aucun client n'est actuellement enregistré dans le système.</p>
+                        <p>Aucun client n'est actuellement enregistrÃ© dans le systÃ¨me.</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Tableau des rendez-vous récents -->
+        <!-- Tableau des rendez-vous rÃ©cents -->
         <div class="content-card table-card">
             <div class="card-header">
-                <h3><i class="fas fa-calendar-alt"></i> Rendez-vous Récents</h3>
-                <p>Dernières réservations du salon</p>
+                <h3><i class="fas fa-calendar-alt"></i> Rendez-vous RÃ©cents</h3>
+                <p>DerniÃ¨res rÃ©servations du salon</p>
             </div>
             <div class="card-body">
                 {% if rdv_recents %}
@@ -258,7 +258,7 @@
                                     <th>Date</th>
                                     <th>Heure</th>
                                     <th>Client</th>
-                                    <th>Esthéticienne</th>
+                                    <th>EsthÃ©ticienne</th>
                                     <th>Service</th>
                                     <th>Statut</th>
                                     <th>Montant</th>
@@ -311,14 +311,14 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-calendar-times"></i>
-                        <h4>Aucun rendez-vous récent</h4>
-                        <p>Les nouveaux rendez-vous apparaîtront ici</p>
+                        <h4>Aucun rendez-vous rÃ©cent</h4>
+                        <p>Les nouveaux rendez-vous apparaÃ®tront ici</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Carte Bilan centrée -->
+        <!-- Carte Bilan centrÃ©e -->
         <div class="bilan-container">
             <div class="content-card bilan-card">
                 <div class="card-header">
@@ -359,7 +359,7 @@
                             </div>
                             <div class="bilan-content">
                                 <h4>Bilan Annuel</h4>
-                                <p>Analyse complète de l'année</p>
+                                <p>Analyse complÃ¨te de l'annÃ©e</p>
                             </div>
                             <div class="bilan-arrow">
                                 <i class="fas fa-arrow-right"></i>
@@ -376,16 +376,16 @@
 
 
 <script>
-// Fonction pour afficher les détails d'un client
+// Fonction pour afficher les dÃ©tails d'un client
 function viewClientDetails(clientId) {
     // Pour l'instant, afficher une alerte
-    // Plus tard, cela pourrait ouvrir un modal avec les détails du client
-    alert(`Détails du client #${clientId}\n\nCette fonctionnalité sera développée pour afficher les détails complets du client, son historique de réservations, etc.`);
+    // Plus tard, cela pourrait ouvrir un modal avec les dÃ©tails du client
+    alert(`DÃ©tails du client #${clientId}\n\nCette fonctionnalitÃ© sera dÃ©veloppÃ©e pour afficher les dÃ©tails complets du client, son historique de rÃ©servations, etc.`);
 }
 
 // Fonction pour afficher les notifications
 function showNotification(message, type = 'info') {
-    // Créer l'élément de notification
+    // CrÃ©er l'Ã©lÃ©ment de notification
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -399,7 +399,7 @@ function showNotification(message, type = 'info') {
     // Ajouter au body
     document.body.appendChild(notification);
     
-    // Supprimer automatiquement après 5 secondes
+    // Supprimer automatiquement aprÃ¨s 5 secondes
     setTimeout(() => {
         if (notification.parentElement) {
             notification.remove();
@@ -408,3 +408,4 @@ function showNotification(message, type = 'info') {
 }
 </script>
 {% endblock %} 
+

@@ -1,15 +1,15 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 {% load static %}
 
-{% block title %}Gestion des Réservations - Beauty Manager{% endblock %}
+{% block title %}Gestion des RÃ©servations - Beautix{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
-<!-- Token CSRF caché pour les requêtes AJAX -->
+<!-- Token CSRF cachÃ© pour les requÃªtes AJAX -->
 <div style="display: none;">
     {% csrf_token %}
 </div>
@@ -17,8 +17,8 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
-                <h1><i class="fas fa-calendar-alt"></i> Gestion des Réservations</h1>
+                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
+                <h1><i class="fas fa-calendar-alt"></i> Gestion des RÃ©servations</h1>
                 <p>Panneau d'administration complet pour la gestion des rendez-vous</p>
             </div>
         </div>
@@ -26,9 +26,9 @@
 
     <div class="main-content">
 
-    <!-- Statistiques avancées -->
+    <!-- Statistiques avancÃ©es -->
     <div class="stats-dashboard">
-                        <div class="stat-card warning clickable" onclick="filterByStatus('en_attente')" title="Cliquer pour voir les réservations en attente">
+                        <div class="stat-card warning clickable" onclick="filterByStatus('en_attente')" title="Cliquer pour voir les rÃ©servations en attente">
                     <div class="stat-icon">
                         <i class="fas fa-clock"></i>
                     </div>
@@ -37,39 +37,39 @@
                         <div class="stat-label">En Attente</div>
                     </div>
                 </div>
-                <div class="stat-card info clickable" onclick="filterByStatus('confirmé')" title="Cliquer pour voir les réservations confirmées">
+                <div class="stat-card info clickable" onclick="filterByStatus('confirmÃ©')" title="Cliquer pour voir les rÃ©servations confirmÃ©es">
                     <div class="stat-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <div class="stat-content">
                         <div class="stat-number">{{ reservations_confirmees|default:0 }}</div>
-                        <div class="stat-label">Confirmé</div>
+                        <div class="stat-label">ConfirmÃ©</div>
                     </div>
                 </div>
-                <div class="stat-card success clickable" onclick="filterByStatus('payé')" title="Cliquer pour voir les réservations payées">
+                <div class="stat-card success clickable" onclick="filterByStatus('payÃ©')" title="Cliquer pour voir les rÃ©servations payÃ©es">
                     <div class="stat-icon">
                         <i class="fas fa-credit-card"></i>
                     </div>
                     <div class="stat-content">
                         <div class="stat-number">{{ reservations_payees|default:0 }}</div>
-                        <div class="stat-label">Payé</div>
+                        <div class="stat-label">PayÃ©</div>
                     </div>
                 </div>
-                <div class="stat-card danger clickable" onclick="filterByStatus('annulé')" title="Cliquer pour voir les réservations annulées">
+                <div class="stat-card danger clickable" onclick="filterByStatus('annulÃ©')" title="Cliquer pour voir les rÃ©servations annulÃ©es">
                     <div class="stat-icon">
                         <i class="fas fa-times-circle"></i>
                     </div>
                     <div class="stat-content">
                         <div class="stat-number">{{ reservations_annulees|default:0 }}</div>
-                        <div class="stat-label">Annulé</div>
+                        <div class="stat-label">AnnulÃ©</div>
                     </div>
                 </div>
     </div>
 
-    <!-- Filtres avancés -->
+    <!-- Filtres avancÃ©s -->
     <div class="filters-panel">
         <div class="filters-header">
-            <h3><i class="fas fa-filter"></i> Filtres Avancés</h3>
+            <h3><i class="fas fa-filter"></i> Filtres AvancÃ©s</h3>
             <button class="btn btn-sm btn-outline-secondary" onclick="toggleFilters()">
                 <i class="fas fa-chevron-down"></i>
             </button>
@@ -78,28 +78,28 @@
             <form method="get" class="filters-form">
                 {% csrf_token %}
                 <div class="filters-grid">
-                    <!-- Première ligne : Statut -->
+                    <!-- PremiÃ¨re ligne : Statut -->
                     <div class="filter-row">
                         <div class="filter-group full-width">
                             <label for="statut">
-                                <i class="fas fa-tag"></i> Statut de la réservation
+                                <i class="fas fa-tag"></i> Statut de la rÃ©servation
                             </label>
                             <select name="statut" id="statut" class="form-control">
-                                <option value="toutes" {% if request.GET.statut == 'toutes' or not request.GET.statut %}selected{% endif %}>Toutes les réservations</option>
+                                <option value="toutes" {% if request.GET.statut == 'toutes' or not request.GET.statut %}selected{% endif %}>Toutes les rÃ©servations</option>
                                 <option value="en_attente" {% if request.GET.statut == 'en_attente' %}selected{% endif %}>En attente</option>
-                                <option value="confirmé" {% if request.GET.statut == 'confirmé' %}selected{% endif %}>Confirmé</option>
-                                <option value="payé" {% if request.GET.statut == 'payé' %}selected{% endif %}>Payé</option>
-                                <option value="annulé" {% if request.GET.statut == 'annulé' %}selected{% endif %}>Annulé</option>
-                                <option value="terminé" {% if request.GET.statut == 'terminé' %}selected{% endif %}>Terminé</option>
+                                <option value="confirmÃ©" {% if request.GET.statut == 'confirmÃ©' %}selected{% endif %}>ConfirmÃ©</option>
+                                <option value="payÃ©" {% if request.GET.statut == 'payÃ©' %}selected{% endif %}>PayÃ©</option>
+                                <option value="annulÃ©" {% if request.GET.statut == 'annulÃ©' %}selected{% endif %}>AnnulÃ©</option>
+                                <option value="terminÃ©" {% if request.GET.statut == 'terminÃ©' %}selected{% endif %}>TerminÃ©</option>
                             </select>
                         </div>
                     </div>
                     
-                                         <!-- Deuxième ligne : Date -->
+                                         <!-- DeuxiÃ¨me ligne : Date -->
                      <div class="filter-row">
                          <div class="filter-group full-width">
                              <label for="date">
-                                 <i class="fas fa-calendar"></i> Date de réservation
+                                 <i class="fas fa-calendar"></i> Date de rÃ©servation
                              </label>
                              <select name="date" id="date" class="form-control">
                                  <option value="">Toutes les dates</option>
@@ -113,11 +113,11 @@
                          </div>
                      </div>
                      
-                     <!-- Troisième ligne : Coiffeuse -->
+                     <!-- TroisiÃ¨me ligne : Coiffeuse -->
                      <div class="filter-row">
                          <div class="filter-group full-width">
                              <label for="coiffeuse">
-                                 <i class="fas fa-user-tie"></i> Sélectionner une coiffeuse
+                                 <i class="fas fa-user-tie"></i> SÃ©lectionner une coiffeuse
                              </label>
                              <select name="coiffeuse" id="coiffeuse" class="form-control">
                                  <option value="">Toutes les coiffeuses</option>
@@ -130,7 +130,7 @@
                          </div>
                      </div>
                     
-                                         <!-- Quatrième ligne : Actions -->
+                                         <!-- QuatriÃ¨me ligne : Actions -->
                     <div class="filter-row">
                         <div class="filter-group full-width">
                                                          <div class="filter-actions">
@@ -145,11 +145,11 @@
         </div>
     </div>
 
-    <!-- Liste des réservations -->
+    <!-- Liste des rÃ©servations -->
     <div class="reservations-container">
         {% if reservations %}
             <div class="reservations-header">
-                <h3><i class="fas fa-list"></i> Réservations ({{ reservations|length }})</h3>
+                <h3><i class="fas fa-list"></i> RÃ©servations ({{ reservations|length }})</h3>
                 <div class="view-controls">
                     <button class="btn btn-sm btn-outline-primary active" onclick="setView('grid')">
                         <i class="fas fa-th"></i>
@@ -166,7 +166,7 @@
                     <div class="card-header">
                         <div class="reservation-id">
                             <span class="id-number">#{{ reservation.id }}</span>
-                            <!-- Indicateur de rôle -->
+                            <!-- Indicateur de rÃ´le -->
                             <div class="role-indicators">
                                 <span class="role-badge client-badge" title="Client">
                                     <i class="fas fa-user"></i>
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                         <div class="status-badge status-{{ reservation.statut }}">
-                            <i class="fas fa-{% if reservation.statut == 'en_attente' %}clock{% elif reservation.statut == 'confirmé' %}check{% elif reservation.statut == 'payé' %}credit-card{% elif reservation.statut == 'annulé' %}times{% else %}check-double{% endif %}"></i>
+                            <i class="fas fa-{% if reservation.statut == 'en_attente' %}clock{% elif reservation.statut == 'confirmÃ©' %}check{% elif reservation.statut == 'payÃ©' %}credit-card{% elif reservation.statut == 'annulÃ©' %}times{% else %}check-double{% endif %}"></i>
                             {{ reservation.get_statut_display }}
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                                         <span class="role-label coiffeuse-label">Coiffeuse:</span>
                                         {{ reservation.coiffeuse.user.get_full_name|default:reservation.coiffeuse.user.username }}
                                     </div>
-                                    <div class="participant-detail">{{ reservation.coiffeuse.phone|default:"Pas de téléphone" }}</div>
+                                    <div class="participant-detail">{{ reservation.coiffeuse.phone|default:"Pas de tÃ©lÃ©phone" }}</div>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                     
-                    <!-- Boutons d'actions supprimés - L'admin ne peut que consulter les réservations -->
+                    <!-- Boutons d'actions supprimÃ©s - L'admin ne peut que consulter les rÃ©servations -->
                 </div>
                 {% endfor %}
             </div>
@@ -242,23 +242,23 @@
                 <div class="empty-icon">
                     <i class="fas fa-calendar-times"></i>
                 </div>
-                <h3>Aucune réservation trouvée</h3>
-                <p>Aucune réservation ne correspond aux critères de recherche actuels.</p>
+                <h3>Aucune rÃ©servation trouvÃ©e</h3>
+                <p>Aucune rÃ©servation ne correspond aux critÃ¨res de recherche actuels.</p>
             </div>
         {% endif %}
     </div>
     </div>
 </div>
 
-<!-- Modal pour les détails -->
+<!-- Modal pour les dÃ©tails -->
 <div id="reservationModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3>Détails de la Réservation</h3>
+            <h3>DÃ©tails de la RÃ©servation</h3>
             <span class="close">&times;</span>
         </div>
         <div class="modal-body" id="modalContent">
-            <!-- Le contenu sera chargé dynamiquement -->
+            <!-- Le contenu sera chargÃ© dynamiquement -->
         </div>
     </div>
 </div>
@@ -300,7 +300,7 @@
     gap: 1rem;
 }
 
-/* Statistiques avancées */
+/* Statistiques avancÃ©es */
 .stats-dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -396,7 +396,7 @@
 .stat-trend.negative { color: #ef4444; }
 .stat-trend.neutral { color: #6b7280; }
 
-/* Filtres avancés */
+/* Filtres avancÃ©s */
 .filters-panel {
     background: white;
     border-radius: 20px;
@@ -522,7 +522,7 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Réservations */
+/* RÃ©servations */
 .reservations-container {
     margin-bottom: 2rem;
 }
@@ -596,22 +596,22 @@
     color: #92400e;
 }
 
-.status-confirmé {
+.status-confirmÃ© {
     background: #dbeafe;
     color: #1e40af;
 }
 
-.status-payé {
+.status-payÃ© {
     background: #d1fae5;
     color: #065f46;
 }
 
-.status-annulé {
+.status-annulÃ© {
     background: #dc2626;
     color: white;
 }
 
-.status-terminé {
+.status-terminÃ© {
     background: #d1fae5;
     color: #065f46;
 }
@@ -747,11 +747,11 @@
     color: #10b981;
 }
 
-/* Section card-actions supprimée - L'admin ne peut que consulter les réservations */
+/* Section card-actions supprimÃ©e - L'admin ne peut que consulter les rÃ©servations */
 
-/* Styles pour les boutons d'actions supprimés - L'admin ne peut que consulter les réservations */
+/* Styles pour les boutons d'actions supprimÃ©s - L'admin ne peut que consulter les rÃ©servations */
 
-/* État vide */
+/* Ã‰tat vide */
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
@@ -786,7 +786,7 @@
     flex-wrap: wrap;
 }
 
-/* Modal amélioré */
+/* Modal amÃ©liorÃ© */
 .modal {
     display: none;
     position: fixed;
@@ -904,7 +904,7 @@
 </style>
 
 <script>
-// Fonctionnalités JavaScript
+// FonctionnalitÃ©s JavaScript
 let currentView = 'grid';
 
 
@@ -928,12 +928,12 @@ function showReservationDetails(reservationId) {
     document.getElementById('modalContent').innerHTML = `
         <div class="loading-details">
             <i class="fas fa-spinner fa-spin"></i>
-            <p>Chargement des détails...</p>
+            <p>Chargement des dÃ©tails...</p>
         </div>
     `;
     modal.style.display = 'block';
     
-    // Récupérer les détails via AJAX
+    // RÃ©cupÃ©rer les dÃ©tails via AJAX
     fetch(`/reservation/${reservationId}/details/`)
         .then(response => response.json())
         .then(data => {
@@ -968,7 +968,7 @@ function showReservationDetails(reservationId) {
                         ${details.payment_method !== 'not_set' ? `
                         <div class="detail-item">
                             <i class="fas fa-credit-card"></i>
-                            <span><strong>Méthode de paiement:</strong> 
+                            <span><strong>MÃ©thode de paiement:</strong> 
                                 <span class="payment-method ${details.payment_method.toLowerCase()}">${details.payment_method}</span>
                             </span>
                         </div>
@@ -985,7 +985,7 @@ function showReservationDetails(reservationId) {
                 document.getElementById('modalContent').innerHTML = `
                     <div class="error-details">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <p>Erreur lors du chargement des détails</p>
+                        <p>Erreur lors du chargement des dÃ©tails</p>
                         <small>${data.message || 'Erreur inconnue'}</small>
                     </div>
                 `;
@@ -996,21 +996,21 @@ function showReservationDetails(reservationId) {
             document.getElementById('modalContent').innerHTML = `
                 <div class="error-details">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <p>Erreur lors du chargement des détails</p>
+                    <p>Erreur lors du chargement des dÃ©tails</p>
                     <small>Erreur de connexion</small>
                 </div>
             `;
         });
 }
 
-// Fonctions d'actions supprimées - L'admin ne peut que consulter les réservations
+// Fonctions d'actions supprimÃ©es - L'admin ne peut que consulter les rÃ©servations
 
 function filterByStatus(status) {
     // Construire l'URL avec le filtre de statut
     const currentUrl = new URL(window.location);
     currentUrl.searchParams.set('statut', status);
     
-    // Rediriger vers la page filtrée
+    // Rediriger vers la page filtrÃ©e
     window.location.href = currentUrl.toString();
 }
 
@@ -1022,7 +1022,7 @@ function resetFilters() {
 }
 
 function clearAllFilters() {
-    if (confirm('Êtes-vous sûr de vouloir effacer tous les filtres ?')) {
+    if (confirm('ÃŠtes-vous sÃ»r de vouloir effacer tous les filtres ?')) {
         document.getElementById('statut').value = '';
         document.getElementById('date').value = '';
         document.getElementById('coiffeuse').value = '';
@@ -1050,7 +1050,7 @@ function setView(view) {
     buttons.forEach(btn => btn.classList.remove('active'));
     event.target.closest('button').classList.add('active');
     
-    // Ici vous pourriez changer l'affichage des réservations
+    // Ici vous pourriez changer l'affichage des rÃ©servations
     console.log('Changement de vue vers:', view);
 }
 
@@ -1058,14 +1058,14 @@ function setView(view) {
 
 // Fonction pour obtenir le token CSRF
 function getCookie(name) {
-    // Récupérer depuis l'élément caché
+    // RÃ©cupÃ©rer depuis l'Ã©lÃ©ment cachÃ©
     const csrfElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
     if (csrfElement) {
-        console.log('CSRF Token trouvé dans l\'élément caché:', csrfElement.value);
+        console.log('CSRF Token trouvÃ© dans l\'Ã©lÃ©ment cachÃ©:', csrfElement.value);
         return csrfElement.value;
     }
     
-    // Si pas trouvé dans l'élément caché, essayer les cookies
+    // Si pas trouvÃ© dans l'Ã©lÃ©ment cachÃ©, essayer les cookies
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
@@ -1073,14 +1073,14 @@ function getCookie(name) {
             const cookie = cookies[i].trim();
             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                console.log('CSRF Token trouvé dans les cookies:', cookieValue);
+                console.log('CSRF Token trouvÃ© dans les cookies:', cookieValue);
                 break;
             }
         }
     }
     
     if (!cookieValue) {
-        console.error('Aucun token CSRF trouvé !');
+        console.error('Aucun token CSRF trouvÃ© !');
     }
     
     return cookieValue;
@@ -1088,7 +1088,7 @@ function getCookie(name) {
 
 // Fonction pour afficher les notifications
 function showNotification(message, type = 'info') {
-    // Créer l'élément de notification
+    // CrÃ©er l'Ã©lÃ©ment de notification
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -1102,7 +1102,7 @@ function showNotification(message, type = 'info') {
     // Ajouter au body
     document.body.appendChild(notification);
     
-    // Supprimer automatiquement après 5 secondes
+    // Supprimer automatiquement aprÃ¨s 5 secondes
     setTimeout(() => {
         if (notification.parentElement) {
             notification.remove();
@@ -1112,15 +1112,15 @@ function showNotification(message, type = 'info') {
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', function() {
-    // Vérifier la présence du token CSRF
+    // VÃ©rifier la prÃ©sence du token CSRF
     const csrfElement = document.querySelector('input[name="csrfmiddlewaretoken"]');
     if (csrfElement) {
-        console.log('Token CSRF trouvé au chargement:', csrfElement.value);
+        console.log('Token CSRF trouvÃ© au chargement:', csrfElement.value);
     } else {
-        console.error('Token CSRF non trouvé au chargement de la page !');
+        console.error('Token CSRF non trouvÃ© au chargement de la page !');
     }
     
-    // Ajouter des animations d'entrée
+    // Ajouter des animations d'entrÃ©e
     const cards = document.querySelectorAll('.reservation-card');
     cards.forEach((card, index) => {
         card.style.animationDelay = `${index * 0.1}s`;
@@ -1146,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Améliorations visuelles */
+/* AmÃ©liorations visuelles */
 .btn {
     border-radius: 12px;
     font-weight: 600;
@@ -1247,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }
 
-/* Styles pour les détails du modal */
+/* Styles pour les dÃ©tails du modal */
 .reservation-details {
     max-height: 70vh;
     overflow-y: auto;
@@ -1314,7 +1314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #ef4444;
 }
 
-/* Styles pour les indicateurs de rôle */
+/* Styles pour les indicateurs de rÃ´le */
 .role-indicators {
     display: flex;
     gap: 0.5rem;
@@ -1360,7 +1360,7 @@ document.addEventListener('DOMContentLoaded', function() {
     color: white;
 }
 
-/* Styles pour les labels de rôle */
+/* Styles pour les labels de rÃ´le */
 .role-label {
     font-weight: 600;
     font-size: 0.85rem;
@@ -1379,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', function() {
     color: #8b5cf6;
 }
 
-/* Styles pour les cartes de statistiques par rôle */
+/* Styles pour les cartes de statistiques par rÃ´le */
 .stat-card.client::before {
     --accent-color: #3b82f6;
     --accent-color-light: #60a5fa;
@@ -1390,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', function() {
     --accent-color-light: #a78bfa;
 }
 
-/* Amélioration de l'affichage des participants */
+/* AmÃ©lioration de l'affichage des participants */
 .participant {
     border-radius: 12px;
     padding: 1rem;
@@ -1474,3 +1474,4 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 </style>
 {% endblock %} 
+

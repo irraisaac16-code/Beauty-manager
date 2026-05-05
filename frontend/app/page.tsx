@@ -1,4 +1,4 @@
-export default function Home() {
+﻿export default function Home() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <header className="sticky top-0 z-20 border-b border-white/10 bg-slate-950/85 backdrop-blur">
@@ -20,14 +20,14 @@ export default function Home() {
         <section className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:py-24">
           <div>
             <p className="mb-4 inline-flex rounded-full border border-emerald-300/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-200">
-              Plateforme SaaS pour salon de beauté
+              Plateforme SaaS pour salon de beautÃ©
             </p>
             <h1 className="text-4xl font-black leading-tight sm:text-5xl">
               Pilote ton salon avec une interface moderne, rapide et claire.
             </h1>
             <p className="mt-6 max-w-xl text-slate-300">
-              Gère les rendez-vous, les paiements et tes équipes depuis un seul
-              outil. Pensé pour accélérer la croissance de ton activité.
+              GÃ¨re les rendez-vous, les paiements et tes Ã©quipes depuis un seul
+              outil. PensÃ© pour accÃ©lÃ©rer la croissance de ton activitÃ©.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
@@ -40,7 +40,7 @@ export default function Home() {
                 href="#fonctionnalites"
                 className="rounded-xl border border-slate-600 px-5 py-3 font-semibold text-slate-200 transition hover:border-slate-400 hover:bg-slate-800/70"
               >
-                Voir les fonctionnalités
+                Voir les fonctionnalitÃ©s
               </a>
             </div>
           </div>
@@ -48,17 +48,17 @@ export default function Home() {
           <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/20 via-sky-500/10 to-amber-400/10 p-6 shadow-2xl shadow-violet-900/20">
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                <p className="text-sm text-slate-400">Réservations/mois</p>
+                <p className="text-sm text-slate-400">RÃ©servations/mois</p>
                 <p className="mt-1 text-2xl font-bold text-white">+1 240</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4">
-                <p className="text-sm text-slate-400">Taux de présence</p>
+                <p className="text-sm text-slate-400">Taux de prÃ©sence</p>
                 <p className="mt-1 text-2xl font-bold text-emerald-300">96%</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 sm:col-span-2">
-                <p className="text-sm text-slate-400">Paiements sécurisés</p>
+                <p className="text-sm text-slate-400">Paiements sÃ©curisÃ©s</p>
                 <p className="mt-1 text-lg font-semibold text-white">
-                  Mobile Money & espèces avec suivi en temps réel
+                  Mobile Money & espÃ¨ces avec suivi en temps rÃ©el
                 </p>
               </div>
             </div>
@@ -66,16 +66,16 @@ export default function Home() {
         </section>
 
         <section id="fonctionnalites" className="mx-auto w-full max-w-6xl px-6 pb-12">
-          <h2 className="text-2xl font-bold sm:text-3xl">Fonctionnalités clés</h2>
+          <h2 className="text-2xl font-bold sm:text-3xl">FonctionnalitÃ©s clÃ©s</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {[
               {
                 title: "Planning intelligent",
-                text: "Créneaux optimisés, conflits évités, visibilité totale sur l'agenda.",
+                text: "CrÃ©neaux optimisÃ©s, conflits Ã©vitÃ©s, visibilitÃ© totale sur l'agenda.",
               },
               {
-                title: "Gestion des rôles",
-                text: "Admin, esthéticiennes et clients avec accès et dashboards dédiés.",
+                title: "Gestion des rÃ´les",
+                text: "Admin, esthÃ©ticiennes et clients avec accÃ¨s et dashboards dÃ©diÃ©s.",
               },
               {
                 title: "Suivi business",
@@ -96,17 +96,17 @@ export default function Home() {
         <section className="mx-auto w-full max-w-6xl px-6 pb-16">
           <div className="rounded-3xl border border-violet-300/30 bg-violet-500/10 p-8 text-center">
             <h2 className="text-2xl font-bold sm:text-3xl">
-              Prêt à moderniser ton salon ?
+              PrÃªt Ã  moderniser ton salon ?
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-300">
-              Lance Beauty Manager et transforme ta gestion quotidienne en
-              expérience fluide, premium et rentable.
+              Lance Beautix et transforme ta gestion quotidienne en
+              expÃ©rience fluide, premium et rentable.
             </p>
             <a
               href="http://127.0.0.1:8000/connexion/"
               className="mt-6 inline-block rounded-xl bg-amber-300 px-5 py-3 font-bold text-slate-900 transition hover:bg-amber-200"
             >
-              Démarrer
+              DÃ©marrer
             </a>
           </div>
         </section>
@@ -114,3 +114,4 @@ export default function Home() {
     </div>
   );
 }
+

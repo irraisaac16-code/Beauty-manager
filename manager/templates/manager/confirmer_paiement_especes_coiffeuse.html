@@ -1,20 +1,20 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Confirmer Paiement Espèces - Beauty Manager{% endblock %}
+{% block title %}Confirmer Paiement EspÃ¨ces - Beautix{% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="page-header">
-        <h1><i class="fas fa-money-bill-wave"></i> Confirmer Paiement Espèces</h1>
-        <p>Confirmez que le client a effectivement payé en espèces</p>
+        <h1><i class="fas fa-money-bill-wave"></i> Confirmer Paiement EspÃ¨ces</h1>
+        <p>Confirmez que le client a effectivement payÃ© en espÃ¨ces</p>
     </div>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-calendar-check"></i> Détails de la Réservation</h3>
+                    <h3><i class="fas fa-calendar-check"></i> DÃ©tails de la RÃ©servation</h3>
                 </div>
                 <div class="card-body">
                     <div class="reservation-details">
@@ -75,7 +75,7 @@
                     <div class="payment-confirmation-section">
                         <div class="alert alert-info">
                             <h5><i class="fas fa-info-circle"></i> Instructions</h5>
-                            <p>Vérifiez que le client a bien payé <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> en espèces avant de confirmer.</p>
+                            <p>VÃ©rifiez que le client a bien payÃ© <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> en espÃ¨ces avant de confirmer.</p>
                         </div>
                         
                         <form method="post">

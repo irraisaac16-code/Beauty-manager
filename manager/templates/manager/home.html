@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <title>Beauty Manager - Plateforme SaaS</title>
+    <title>Beautix - Plateforme SaaS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -27,7 +27,7 @@
             margin: 0;
             min-height: 100vh;
             font-family: Inter, "Segoe UI", Arial, sans-serif;
-            /* Lavande (haut) → blanc/lavande pâle → crème → doré doux (bas), comme vos références */
+            /* Lavande (haut) â†’ blanc/lavande pÃ¢le â†’ crÃ¨me â†’ dorÃ© doux (bas), comme vos rÃ©fÃ©rences */
             background:
                 radial-gradient(100% 80% at 0% 0%, rgba(224, 195, 252, 0.55) 0%, transparent 55%),
                 radial-gradient(90% 70% at 100% 100%, rgba(252, 235, 182, 0.65) 0%, transparent 50%),
@@ -248,16 +248,16 @@
     <main class="wrap">
         <section class="hero">
             <div>
-                <p class="hero-brand">Beauty Manager</p>
-                <h1>Gérez votre salon de beauté comme une entreprise moderne.</h1>
+                <p class="hero-brand">Beautix</p>
+                <h1>GÃ©rez votre salon de beautÃ© comme une entreprise moderne.</h1>
                 <p>
-                    Réservations, paiements, notifications et suivi d'activité dans une seule plateforme.
-                    Conçue pour les salons en Côte d'Ivoire avec une expérience simple, rapide et premium.
+                    RÃ©servations, paiements, notifications et suivi d'activitÃ© dans une seule plateforme.
+                    ConÃ§ue pour les salons en CÃ´te d'Ivoire avec une expÃ©rience simple, rapide et premium.
                 </p>
                 <div class="cta">
                     <a href="{% url 'register_client' %}" class="btn btn-main">Inscription client</a>
                     <a href="{% url 'login' %}" class="btn btn-esth">Se connecter</a>
-                    <a href="{% url 'register_coiffeuse' %}" class="btn btn-main">Inscription Esthéticienne</a>
+                    <a href="{% url 'register_coiffeuse' %}" class="btn btn-main">Inscription EsthÃ©ticienne</a>
                 </div>
             </div>
             <div class="panel panel-image">
@@ -268,60 +268,60 @@
         </section>
 
         <section>
-            <h2>Fonctionnalités clés</h2>
+            <h2>FonctionnalitÃ©s clÃ©s</h2>
             <div class="grid3">
                 <article class="card">
                     <i class="fas fa-calendar-check"></i>
-                    <h3>Réservation en ligne</h3>
+                    <h3>RÃ©servation en ligne</h3>
                     <p>Planifiez les rendez-vous en quelques clics avec un calendrier intuitif.</p>
                 </article>
                 <article class="card">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Paiement mobile</h3>
-                    <p>Paiements simples et sécurisés pour une expérience client fluide.</p>
+                    <p>Paiements simples et sÃ©curisÃ©s pour une expÃ©rience client fluide.</p>
                 </article>
                 <article class="card">
                     <i class="fas fa-users-cog"></i>
-                    <h3>Gestion des rôles</h3>
-                    <p>Accès adaptés pour admin, esthéticiennes et clients.</p>
+                    <h3>Gestion des rÃ´les</h3>
+                    <p>AccÃ¨s adaptÃ©s pour admin, esthÃ©ticiennes et clients.</p>
                 </article>
                 <article class="card">
                     <i class="fas fa-bell"></i>
                     <h3>Notifications</h3>
-                    <p>Rappels automatiques pour réduire les absences et mieux organiser le planning.</p>
+                    <p>Rappels automatiques pour rÃ©duire les absences et mieux organiser le planning.</p>
                 </article>
                 <article class="card">
                     <i class="fas fa-chart-line"></i>
                     <h3>Tableaux de bord</h3>
-                    <p>Suivez vos performances et prenez des décisions basées sur vos chiffres.</p>
+                    <p>Suivez vos performances et prenez des dÃ©cisions basÃ©es sur vos chiffres.</p>
                 </article>
                 <article class="card">
                     <i class="fas fa-lock"></i>
-                    <h3>Sécurité & fiabilité</h3>
-                    <p>Données protégées et contrôle d'accès strict pour votre activité.</p>
+                    <h3>SÃ©curitÃ© & fiabilitÃ©</h3>
+                    <p>DonnÃ©es protÃ©gÃ©es et contrÃ´le d'accÃ¨s strict pour votre activitÃ©.</p>
                 </article>
             </div>
         </section>
 
         <section>
-            <h2>Pourquoi choisir Beauty Manager ?</h2>
+            <h2>Pourquoi choisir Beautix ?</h2>
             <div class="stats">
                 <div class="stat"><strong>500+</strong><span>Clients satisfaits</span></div>
-                <div class="stat"><strong>50+</strong><span>Esthéticiennes partenaires</span></div>
-                <div class="stat"><strong>1000+</strong><span>Réservations traitées</span></div>
+                <div class="stat"><strong>50+</strong><span>EsthÃ©ticiennes partenaires</span></div>
+                <div class="stat"><strong>1000+</strong><span>RÃ©servations traitÃ©es</span></div>
                 <div class="stat"><strong>98%</strong><span>Taux de recommandation</span></div>
             </div>
         </section>
 
         <section class="final-cta">
-            <h2>Prêt(e) à accélérer votre salon ?</h2>
-            <p>Lancez votre espace Beauty Manager et centralisez toute votre gestion au même endroit.</p>
+            <h2>PrÃªt(e) Ã  accÃ©lÃ©rer votre salon ?</h2>
+            <p>Lancez votre espace Beautix et centralisez toute votre gestion au mÃªme endroit.</p>
             <a href="{% url 'register_client' %}" class="btn btn-main">Commencer maintenant</a>
         </section>
     </main>
 
     <footer>
-        &copy; 2025 Beauty Manager - Salon de Beauté en Côte d'Ivoire<br>
+        &copy; 2025 Beautix - Salon de BeautÃ© en CÃ´te d'Ivoire<br>
         Auteur du site : Irra Isaac Tialougbeu
     </footer>
 </body>

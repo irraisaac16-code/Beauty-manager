@@ -1,21 +1,21 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 
-{% block title %}Réservation - Beauty Manager{% endblock %}
+{% block title %}RÃ©servation - Beautix{% endblock %}
 
 {% block content %}
 <div class="container">
-    <!-- En-tête de la page -->
+    <!-- En-tÃªte de la page -->
     <div class="reservation-header">
         <div class="header-content">
             <h1>
                 <i class="fas fa-calendar-plus"></i>
-                <span>Nouvelle Réservation</span>
+                <span>Nouvelle RÃ©servation</span>
             </h1>
-            <p>Réservez votre créneau et profitez de nos services de beauté</p>
+            <p>RÃ©servez votre crÃ©neau et profitez de nos services de beautÃ©</p>
         </div>
     </div>
 
-    <!-- Section d'information pour les nouvelles réservations -->
+    <!-- Section d'information pour les nouvelles rÃ©servations -->
     {% if messages %}
         <div class="messages-section">
             {% for message in messages %}
@@ -29,7 +29,7 @@
     {% endif %}
 
     <div class="row">
-        <!-- Formulaire de réservation -->
+        <!-- Formulaire de rÃ©servation -->
         <div class="col-lg-8">
             <div class="reservation-form-card">
                 <div class="form-card-header">
@@ -37,7 +37,7 @@
                         <i class="fas fa-edit"></i>
                     </div>
                     <div class="header-text">
-                        <h2>Détails de la Réservation</h2>
+                        <h2>DÃ©tails de la RÃ©servation</h2>
                         <p>Remplissez les informations ci-dessous pour votre rendez-vous</p>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                     <form method="post" id="reservation-form" class="modern-form">
                         {% csrf_token %}
                         
-                        <!-- Première ligne : Esthéticienne et Service -->
+                        <!-- PremiÃ¨re ligne : EsthÃ©ticienne et Service -->
                         <div class="form-row">
                                                          <div class="form-group col-md-6">
                                  <div class="input-wrapper">
@@ -55,11 +55,11 @@
                                     </label>
                                      <div class="custom-select-wrapper">
                                                                                  <div class="custom-select-display" id="coiffeuse-display">
-                                            <span class="placeholder">Sélectionnez une coiffeuse</span>
+                                            <span class="placeholder">SÃ©lectionnez une coiffeuse</span>
                                         </div>
                                         <div class="custom-select-options" id="coiffeuse-options">
                                             <div class="custom-select-option" data-value="">
-                                                <span class="coiffeuse-name">Sélectionnez une coiffeuse</span>
+                                                <span class="coiffeuse-name">SÃ©lectionnez une coiffeuse</span>
                                             </div>
                                             {% for coiffeuse in coiffeuses %}
                                                 <div class="custom-select-option" data-value="{{ coiffeuse.id }}">
@@ -75,7 +75,7 @@
                                             {% endfor %}
                                         </div>
                                         <select name="coiffeuse" id="id_coiffeuse" style="display: none;">
-                                            <option value="">Sélectionnez une coiffeuse</option>
+                                            <option value="">SÃ©lectionnez une coiffeuse</option>
                                             {% for coiffeuse in coiffeuses %}
                                                 <option value="{{ coiffeuse.id }}">{{ coiffeuse.user.username }}</option>
                                             {% endfor %}
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <!-- Deuxième ligne : Date et Heure -->
+                        <!-- DeuxiÃ¨me ligne : Date et Heure -->
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <div class="input-wrapper">
@@ -135,7 +135,7 @@
                                     {% endif %}
                                     <small class="form-hint">
                                         <i class="fas fa-info-circle"></i>
-                                        Les réservations se font par créneaux de 30 minutes de 8h00 à 18h30
+                                        Les rÃ©servations se font par crÃ©neaux de 30 minutes de 8h00 Ã  18h30
                                     </small>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary btn-lg">
                                 <i class="fas fa-calendar-check"></i>
-                                Confirmer la Réservation
+                                Confirmer la RÃ©servation
                             </button>
                             <a href="{% url 'dashboard_client' %}" class="btn btn-secondary btn-lg">
                                 <i class="fas fa-arrow-left"></i>
@@ -194,7 +194,7 @@
                              </div>
                              <div class="schedule-item">
                                  <span class="day">Dimanche</span>
-                                 <span class="time">Fermé</span>
+                                 <span class="time">FermÃ©</span>
                              </div>
                          </div>
                          
@@ -203,9 +203,9 @@
                              <h4>Conseils</h4>
                                                            <ul class="tips-list">
                                   <li>Arrivez 10 minutes avant votre rendez-vous</li>
-                                  <li>Annulez au moins 24h à l'avance si nécessaire</li>
-                                  <li>Préparez vos questions pour l'esthéticienne</li>
-                                  <li>Apportez une pièce d'identité si demandé</li>
+                                  <li>Annulez au moins 24h Ã  l'avance si nÃ©cessaire</li>
+                                  <li>PrÃ©parez vos questions pour l'esthÃ©ticienne</li>
+                                  <li>Apportez une piÃ¨ce d'identitÃ© si demandÃ©</li>
                               </ul>
                          </div>
                      </div>
@@ -216,7 +216,7 @@
 </div>
 
 <style>
-/* En-tête de la page */
+/* En-tÃªte de la page */
 .reservation-header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 20px;
@@ -303,7 +303,7 @@
     margin-left: 1rem;
 }
 
-/* En-têtes des cartes */
+/* En-tÃªtes des cartes */
 .form-card-header,
 .history-card-header {
     background: linear-gradient(135deg, #7c3aed, #a855f7);
@@ -513,7 +513,7 @@
     opacity: 0.8;
 }
 
-/* Bouton de réservation */
+/* Bouton de rÃ©servation */
 .form-actions {
     margin-top: 2rem;
     text-align: center;
@@ -539,7 +539,7 @@
 
 
 
-/* Liste des réservations */
+/* Liste des rÃ©servations */
 .reservations-list {
     display: flex;
     flex-direction: column;
@@ -584,17 +584,17 @@
     color: #92400e;
 }
 
-.status-confirmé {
+.status-confirmÃ© {
     background: #dbeafe;
     color: #1e40af;
 }
 
-.status-payé {
+.status-payÃ© {
     background: #d1fae5;
     color: #065f46;
 }
 
-.status-annulé {
+.status-annulÃ© {
     background: #dc2626;
     color: white;
 }
@@ -640,7 +640,7 @@
 
 
 
-/* État vide */
+/* Ã‰tat vide */
 .empty-state {
     text-align: center;
     padding: 3rem 1rem;
@@ -695,7 +695,7 @@
     }
 }
 
-/* Effets de focus améliorés */
+/* Effets de focus amÃ©liorÃ©s */
 .modern-form select:focus,
 .modern-form input:focus,
 .modern-form textarea:focus {
@@ -705,7 +705,7 @@
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
-/* Nouveaux styles pour les créneaux */
+/* Nouveaux styles pour les crÃ©neaux */
 .time-slots-info {
     margin-top: 1rem;
 }
@@ -740,7 +740,7 @@
     color: #3b82f6;
 }
 
-/* Amélioration du style du select pour l'heure */
+/* AmÃ©lioration du style du select pour l'heure */
 #id_heure {
     background-color: white;
     border: 2px solid #e5e7eb;
@@ -761,7 +761,7 @@
     font-size: 0.9rem;
 }
 
-/* Responsive pour les créneaux */
+/* Responsive pour les crÃ©neaux */
 @media (max-width: 768px) {
     .time-slots-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -773,7 +773,7 @@
     }
 }
 
-/* Styles pour le select personnalisé des esthéticiennes avec photos */
+/* Styles pour le select personnalisÃ© des esthÃ©ticiennes avec photos */
 .custom-select-wrapper {
     position: relative;
     width: 100%;
@@ -805,7 +805,7 @@
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
 
-/* Suppression de la flèche */
+/* Suppression de la flÃ¨che */
 
 .custom-select-options {
     position: absolute;
@@ -902,7 +902,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = form.querySelector('button[type="submit"]');
     
     form.addEventListener('submit', function(e) {
-        // Désactiver le bouton pour éviter les soumissions multiples
+        // DÃ©sactiver le bouton pour Ã©viter les soumissions multiples
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
     });
@@ -915,15 +915,15 @@ document.addEventListener('DOMContentLoaded', function() {
         serviceSelect.addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
             if (selectedOption.value) {
-                // Ici vous pourriez ajouter une logique pour récupérer les détails du service
-                serviceInfo.textContent = `Service sélectionné : ${selectedOption.text}`;
+                // Ici vous pourriez ajouter une logique pour rÃ©cupÃ©rer les dÃ©tails du service
+                serviceInfo.textContent = `Service sÃ©lectionnÃ© : ${selectedOption.text}`;
             } else {
                 serviceInfo.textContent = '';
             }
         });
     }
     
-    // Gestion du select personnalisé pour les coiffeuses
+    // Gestion du select personnalisÃ© pour les coiffeuses
     const coiffeuseDisplay = document.getElementById('coiffeuse-display');
     const coiffeuseOptions = document.getElementById('coiffeuse-options');
     const coiffeuseSelect = document.getElementById('id_coiffeuse');
@@ -953,9 +953,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const name = option.querySelector('.coiffeuse-name').textContent;
                 const avatar = option.querySelector('.coiffeuse-avatar');
                 
-                // Mettre à jour l'affichage
+                // Mettre Ã  jour l'affichage
                 if (value === '') {
-                    coiffeuseDisplay.innerHTML = '<span class="placeholder">Sélectionnez une coiffeuse</span>';
+                    coiffeuseDisplay.innerHTML = '<span class="placeholder">SÃ©lectionnez une coiffeuse</span>';
                 } else {
                     if (avatar.tagName === 'IMG') {
                         coiffeuseDisplay.innerHTML = `
@@ -972,7 +972,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Mettre à jour le select original
+                // Mettre Ã  jour le select original
                 coiffeuseSelect.value = value;
                 coiffeuseSelect.dispatchEvent(new Event('change'));
                 

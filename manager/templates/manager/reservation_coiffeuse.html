@@ -1,14 +1,14 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load price_filters %}
 
-{% block title %}Mon Planning - Beauty Manager{% endblock %}
+{% block title %}Mon Planning - Beautix{% endblock %}
 
 {% block content %}
 {% csrf_token %}
 <div class="container">
     <div class="page-header">
         <h1><i class="fas fa-calendar-alt"></i> Mon Planning</h1>
-        <p>Gérez vos rendez-vous et votre disponibilité</p>
+        <p>GÃ©rez vos rendez-vous et votre disponibilitÃ©</p>
     </div>
 
     <!-- Statistiques du planning -->
@@ -35,24 +35,24 @@
             <div class="stat-mini">
                 <div class="stat-number">
                     {% for reservation in reservations %}
-                        {% if reservation.statut == 'confirmé' %}
+                        {% if reservation.statut == 'confirmÃ©' %}
                             {{ forloop.counter }}
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="stat-label">Confirmés</div>
+                <div class="stat-label">ConfirmÃ©s</div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="stat-mini">
                 <div class="stat-number">
                     {% for reservation in reservations %}
-                        {% if reservation.statut == 'payé' %}
+                        {% if reservation.statut == 'payÃ©' %}
                             {{ forloop.counter }}
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="stat-label">Payés</div>
+                <div class="stat-label">PayÃ©s</div>
             </div>
         </div>
     </div>
@@ -66,9 +66,9 @@
             <div class="filter-controls">
                 <button class="btn btn-outline-primary active" data-filter="all">Tous</button>
                 <button class="btn btn-outline-warning" data-filter="en_attente">En attente</button>
-                <button class="btn btn-outline-info" data-filter="confirmé">Confirmés</button>
-                <button class="btn btn-outline-success" data-filter="payé">Payés</button>
-                <button class="btn btn-outline-danger" data-filter="annulé">Annulés</button>
+                <button class="btn btn-outline-info" data-filter="confirmÃ©">ConfirmÃ©s</button>
+                <button class="btn btn-outline-success" data-filter="payÃ©">PayÃ©s</button>
+                <button class="btn btn-outline-danger" data-filter="annulÃ©">AnnulÃ©s</button>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
                                                         </span>
                                                         {% if reservation.payment_method == 'cash' and reservation.statut == 'en_attente' %}
                                                             <span class="badge badge-warning">
-                                                                <i class="fas fa-money-bill-wave"></i> Paiement Espèces
+                                                                <i class="fas fa-money-bill-wave"></i> Paiement EspÃ¨ces
                                                             </span>
                                                         {% endif %}
                                                     </div>
@@ -118,7 +118,7 @@
                                                         </div>
                                                         <div class="client-contact">
                                                             <i class="fas fa-phone"></i>
-                                                            <span>{{ reservation.client.phone|default:"Téléphone non renseigné" }}</span>
+                                                            <span>{{ reservation.client.phone|default:"TÃ©lÃ©phone non renseignÃ©" }}</span>
                                                         </div>
                                                         <div class="service-price">
                                                             <i class="fas fa-money-bill-wave"></i>
@@ -133,27 +133,27 @@
                                                     </div>
                                                     <div class="rdv-actions">
                                                         {% if reservation.statut == 'en_attente' %}
-                                                            <button class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmé">
+                                                            <button class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmÃ©">
                                                                 <i class="fas fa-check"></i> Confirmer
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'confirmé' %}
-                                                            <button class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payé">
-                                                                <i class="fas fa-credit-card"></i> Marquer Payé
+                                                        {% if reservation.statut == 'confirmÃ©' %}
+                                                            <button class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payÃ©">
+                                                                <i class="fas fa-credit-card"></i> Marquer PayÃ©
                                                             </button>
                                                         {% endif %}
                                                         {% if reservation.statut == 'en_attente' and reservation.payment_method == 'cash' %}
                                                             <button class="btn btn-sm btn-primary confirm-cash-payment-btn" data-reservation-id="{{ reservation.id }}">
-                                                                <i class="fas fa-money-bill-wave"></i> Confirmer Paiement Espèces
+                                                                <i class="fas fa-money-bill-wave"></i> Confirmer Paiement EspÃ¨ces
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmé' %}
-                                                            <button class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulé">
+                                                        {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmÃ©' %}
+                                                            <button class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulÃ©">
                                                                 <i class="fas fa-times"></i> Annuler
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'payé' %}
-                                                            <button class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminé">
+                                                        {% if reservation.statut == 'payÃ©' %}
+                                                            <button class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminÃ©">
                                                                 <i class="fas fa-check-double"></i> Terminer
                                                             </button>
                                                         {% endif %}
@@ -350,15 +350,15 @@
     border-left-color: #ffc107;
 }
 
-.rdv-card[data-status="confirmé"] {
+.rdv-card[data-status="confirmÃ©"] {
     border-left-color: #17a2b8;
 }
 
-.rdv-card[data-status="payé"] {
+.rdv-card[data-status="payÃ©"] {
     border-left-color: #28a745;
 }
 
-.rdv-card[data-status="annulé"] {
+.rdv-card[data-status="annulÃ©"] {
     border-left-color: #dc3545;
 }
 
@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
             
-            // Mettre à jour les boutons actifs
+            // Mettre Ã  jour les boutons actifs
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
@@ -513,14 +513,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Gestion des clics sur les boutons de mise à jour de statut
+// Gestion des clics sur les boutons de mise Ã  jour de statut
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.update-status-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             const reservationId = this.getAttribute('data-reservation-id');
             const newStatus = this.getAttribute('data-new-status');
             
-            if (confirm(`Êtes-vous sûr de vouloir changer le statut de la réservation #${reservationId} ?`)) {
+            if (confirm(`ÃŠtes-vous sÃ»r de vouloir changer le statut de la rÃ©servation #${reservationId} ?`)) {
                 fetch(`/reservations/${reservationId}/update-status/`, {
                     method: 'POST',
                     headers: {
@@ -536,23 +536,23 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (data.success) {
                         location.reload();
                     } else {
-                        alert('Erreur lors de la mise à jour du statut');
+                        alert('Erreur lors de la mise Ã  jour du statut');
                     }
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
-                    alert('Erreur lors de la mise à jour du statut');
+                    alert('Erreur lors de la mise Ã  jour du statut');
                 });
             }
         });
     });
     
-    // Gestion des clics sur les boutons de confirmation de paiement en espèces
+    // Gestion des clics sur les boutons de confirmation de paiement en espÃ¨ces
     document.querySelectorAll('.confirm-cash-payment-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             const reservationId = this.getAttribute('data-reservation-id');
             
-            if (confirm(`Confirmer que le client a bien payé en espèces pour la réservation #${reservationId} ?`)) {
+            if (confirm(`Confirmer que le client a bien payÃ© en espÃ¨ces pour la rÃ©servation #${reservationId} ?`)) {
                 fetch(`/reservation/${reservationId}/confirmer-paiement-coiffeuse/`, {
                     method: 'POST',
                     headers: {

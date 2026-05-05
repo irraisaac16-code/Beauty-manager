@@ -1,7 +1,7 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load static %}
 
-{% block title %}Bilan Hebdomadaire - Beauty Manager{% endblock %}
+{% block title %}Bilan Hebdomadaire - Beautix{% endblock %}
 
 {% block content %}
 <div class="bilan-container">
@@ -31,7 +31,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ total_reservations }}</h3>
-                <p>Total Réservations</p>
+                <p>Total RÃ©servations</p>
             </div>
         </div>
         
@@ -41,7 +41,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_confirmees }}</h3>
-                <p>Réservations Confirmées</p>
+                <p>RÃ©servations ConfirmÃ©es</p>
             </div>
         </div>
         
@@ -51,7 +51,7 @@
             </div>
             <div class="stat-content">
                 <h3>{{ reservations_payees }}</h3>
-                <p>Réservations Payées</p>
+                <p>RÃ©servations PayÃ©es</p>
             </div>
         </div>
         
@@ -69,23 +69,23 @@
     <!-- Contenu principal -->
     <div class="main-content">
         <div class="content-grid">
-            <!-- Graphique des réservations par jour -->
+            <!-- Graphique des rÃ©servations par jour -->
             <div class="content-card">
                 <div class="card-header">
-                    <h3><i class="fas fa-chart-area"></i> Réservations par Jour</h3>
-                    <p>Répartition des réservations sur la semaine</p>
+                    <h3><i class="fas fa-chart-area"></i> RÃ©servations par Jour</h3>
+                    <p>RÃ©partition des rÃ©servations sur la semaine</p>
                 </div>
                 <div class="card-body">
                     <div class="chart-container">
                         <div class="chart-header">
                             <div class="chart-title">
                                 <i class="fas fa-calendar-week"></i>
-                                <span>Répartition hebdomadaire</span>
+                                <span>RÃ©partition hebdomadaire</span>
                             </div>
                             <div class="chart-legend">
                                 <div class="legend-item">
                                     <div class="legend-color primary"></div>
-                                    <span>Réservations</span>
+                                    <span>RÃ©servations</span>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                 <div class="bar-container">
                                     <div class="bar-fill" style="height: {{ jour.pourcentage }}%">
                                         <div class="bar-tooltip">
-                                            <strong>{{ jour.nb_reservations }}</strong> réservation{{ jour.nb_reservations|pluralize }}
+                                            <strong>{{ jour.nb_reservations }}</strong> rÃ©servation{{ jour.nb_reservations|pluralize }}
                                             <br><small>{{ jour.pourcentage|floatformat:1 }}% du total</small>
                                         </div>
                                     </div>
@@ -117,11 +117,11 @@
                         <div class="chart-summary">
                             <div class="summary-item">
                                 <i class="fas fa-chart-line"></i>
-                                <span>Total: {{ total_reservations }} réservations</span>
+                                <span>Total: {{ total_reservations }} rÃ©servations</span>
                             </div>
                             <div class="summary-item">
                                 <i class="fas fa-calendar-check"></i>
-                                <span>Période: {{ periode }}</span>
+                                <span>PÃ©riode: {{ periode }}</span>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                 <div class="ranking-position">{{ forloop.counter }}</div>
                                 <div class="ranking-content">
                                     <h4>{{ coiffeuse.coiffeuse__user__username }}</h4>
-                                    <p>{{ coiffeuse.nb_reservations }} réservations</p>
+                                    <p>{{ coiffeuse.nb_reservations }} rÃ©servations</p>
                                 </div>
                                 <div class="ranking-amount">
                                     {{ coiffeuse.total_montant|floatformat:0 }} FCFA
@@ -153,7 +153,7 @@
                     {% else %}
                         <div class="empty-state">
                             <i class="fas fa-user-friends"></i>
-                            <p>Aucune réservation cette semaine</p>
+                            <p>Aucune rÃ©servation cette semaine</p>
                         </div>
                     {% endif %}
                 </div>
@@ -164,7 +164,7 @@
         <div class="content-card">
             <div class="card-header">
                 <h3><i class="fas fa-concierge-bell"></i> Top Services</h3>
-                <p>Les services les plus demandés</p>
+                <p>Les services les plus demandÃ©s</p>
             </div>
             <div class="card-body">
                 {% if top_services %}
@@ -176,7 +176,7 @@
                             </div>
                             <div class="service-content">
                                 <h4>{{ service.service__name }}</h4>
-                                <p>{{ service.nb_reservations }} réservations</p>
+                                <p>{{ service.nb_reservations }} rÃ©servations</p>
                                 <div class="service-amount">
                                     {{ service.total_montant|floatformat:0 }} FCFA
                                 </div>
@@ -187,17 +187,17 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-concierge-bell"></i>
-                        <p>Aucun service réservé cette semaine</p>
+                        <p>Aucun service rÃ©servÃ© cette semaine</p>
                     </div>
                 {% endif %}
             </div>
         </div>
 
-        <!-- Dernières réservations -->
+        <!-- DerniÃ¨res rÃ©servations -->
         <div class="content-card">
             <div class="card-header">
-                <h3><i class="fas fa-clock"></i> Dernières Réservations</h3>
-                <p>Les réservations récentes de la semaine</p>
+                <h3><i class="fas fa-clock"></i> DerniÃ¨res RÃ©servations</h3>
+                <p>Les rÃ©servations rÃ©centes de la semaine</p>
             </div>
             <div class="card-body">
                 {% if reservations_semaine %}
@@ -210,7 +210,7 @@
                             </div>
                             <div class="reservation-details">
                                 <h4>{{ reservation.service.name }}</h4>
-                                <p>{{ reservation.client.user.username }} → {{ reservation.coiffeuse.user.username }}</p>
+                                <p>{{ reservation.client.user.username }} â†’ {{ reservation.coiffeuse.user.username }}</p>
                                 <span class="time-badge">{{ reservation.heure|time:"H:i" }}</span>
                             </div>
                             <div class="reservation-status">
@@ -227,7 +227,7 @@
                 {% else %}
                     <div class="empty-state">
                         <i class="fas fa-calendar-times"></i>
-                        <p>Aucune réservation cette semaine</p>
+                        <p>Aucune rÃ©servation cette semaine</p>
                     </div>
                 {% endif %}
             </div>
@@ -439,7 +439,7 @@
     padding: 2rem;
 }
 
-/* Graphique amélioré */
+/* Graphique amÃ©liorÃ© */
 .chart-container {
     padding: 1.5rem 0;
 }
@@ -777,7 +777,7 @@
     font-size: 0.9rem;
 }
 
-/* Réservations List */
+/* RÃ©servations List */
 .reservations-list {
     display: flex;
     flex-direction: column;
@@ -857,17 +857,17 @@
     color: #d97706;
 }
 
-.status-confirmé {
+.status-confirmÃ© {
     background: #dbeafe;
     color: #1d4ed8;
 }
 
-.status-payé {
+.status-payÃ© {
     background: #d1fae5;
     color: #065f46;
 }
 
-.status-annulé {
+.status-annulÃ© {
     background: #dc2626;
     color: white;
 }
@@ -1051,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'linear-gradient(180deg, #06b6d4 0%, #22d3ee 100%)'
         ];
         
-        // Appliquer une couleur différente à chaque barre
+        // Appliquer une couleur diffÃ©rente Ã  chaque barre
         bar.style.background = colors[index % colors.length];
         
         // Animation de remplissage avec effet de rebond

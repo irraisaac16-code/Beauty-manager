@@ -1,7 +1,7 @@
-{% extends 'manager/base.html' %}
+﻿{% extends 'manager/base.html' %}
 {% load static %}
 
-{% block title %}Modifier Mon Profil - Beauty Manager{% endblock %}
+{% block title %}Modifier Mon Profil - Beautix{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
@@ -12,9 +12,9 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <p class="brand-wordmark" aria-label="Beautix"><span class="brand-wordmark__beauty">Beautix</span></p>
                 <h1><i class="fas fa-edit"></i> Modifier Mon Profil</h1>
-                <p>Mettez à jour vos informations personnelles</p>
+                <p>Mettez Ã  jour vos informations personnelles</p>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
                                        class="file-input"
                                        onchange="previewImage(this)">
                                 <small class="form-text text-muted">
-                                    Formats acceptés : JPG, PNG, GIF. Taille maximale : 5MB
+                                    Formats acceptÃ©s : JPG, PNG, GIF. Taille maximale : 5MB
                                 </small>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="first_name"><strong>Prénom *</strong></label>
+                                    <label for="first_name"><strong>PrÃ©nom *</strong></label>
                                     <input type="text" 
                                            class="form-control" 
                                            id="first_name" 
@@ -93,18 +93,18 @@
                                    name="email" 
                                    value="{{ user_profile.user.email }}"
                                    required>
-                            <small class="form-text text-muted">Votre email sera utilisé pour les communications importantes.</small>
+                            <small class="form-text text-muted">Votre email sera utilisÃ© pour les communications importantes.</small>
                         </div>
 
                         <div class="form-group">
-                            <label for="phone"><strong>Téléphone</strong></label>
+                            <label for="phone"><strong>TÃ©lÃ©phone</strong></label>
                             <input type="tel" 
                                    class="form-control" 
                                    id="phone" 
                                    name="phone" 
                                    value="{{ user_profile.phone|default:'' }}"
                                    placeholder="Ex: +221 77 123 45 67">
-                            <small class="form-text text-muted">Votre numéro de téléphone pour les confirmations de rendez-vous.</small>
+                            <small class="form-text text-muted">Votre numÃ©ro de tÃ©lÃ©phone pour les confirmations de rendez-vous.</small>
                         </div>
 
                         <div class="form-group">
@@ -113,16 +113,16 @@
                                    class="form-control" 
                                    value="{{ user_profile.user.username }}" 
                                    disabled>
-                            <small class="form-text text-muted">Le nom d'utilisateur ne peut pas être modifié.</small>
+                            <small class="form-text text-muted">Le nom d'utilisateur ne peut pas Ãªtre modifiÃ©.</small>
                         </div>
 
                         <div class="form-group">
-                            <label><strong>Rôle</strong></label>
+                            <label><strong>RÃ´le</strong></label>
                             <input type="text" 
                                    class="form-control" 
                                    value="{{ user_profile.role.get_name_display }}" 
                                    disabled>
-                            <small class="form-text text-muted">Votre rôle dans l'application.</small>
+                            <small class="form-text text-muted">Votre rÃ´le dans l'application.</small>
                         </div>
 
                         <div class="form-actions">
@@ -144,11 +144,11 @@
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info">
-                        <h5><i class="fas fa-shield-alt"></i> Sécurité</h5>
+                        <h5><i class="fas fa-shield-alt"></i> SÃ©curitÃ©</h5>
                         <ul>
-                            <li>Votre email est utilisé pour les communications importantes</li>
-                            <li>Le téléphone est utilisé pour les confirmations de rendez-vous</li>
-                            <li>Vos données personnelles sont protégées et ne seront jamais partagées</li>
+                            <li>Votre email est utilisÃ© pour les communications importantes</li>
+                            <li>Le tÃ©lÃ©phone est utilisÃ© pour les confirmations de rendez-vous</li>
+                            <li>Vos donnÃ©es personnelles sont protÃ©gÃ©es et ne seront jamais partagÃ©es</li>
                         </ul>
                     </div>
                     
@@ -156,8 +156,8 @@
                         <h5><i class="fas fa-exclamation-triangle"></i> Attention</h5>
                         <ul>
                             <li>Assurez-vous que votre email est correct pour recevoir les notifications</li>
-                            <li>Un numéro de téléphone valide facilite la communication</li>
-                            <li>Pour changer votre mot de passe, utilisez le lien dédié</li>
+                            <li>Un numÃ©ro de tÃ©lÃ©phone valide facilite la communication</li>
+                            <li>Pour changer votre mot de passe, utilisez le lien dÃ©diÃ©</li>
                         </ul>
                     </div>
                 </div>
@@ -380,10 +380,10 @@ function previewImage(input) {
         reader.onload = function(e) {
             const currentImage = document.querySelector('.current-image');
             
-            // Créer une nouvelle image
+            // CrÃ©er une nouvelle image
             const img = document.createElement('img');
             img.src = e.target.result;
-            img.alt = 'Aperçu de la photo';
+            img.alt = 'AperÃ§u de la photo';
             img.className = 'profile-preview';
             
             // Remplacer le contenu de current-image
@@ -396,3 +396,4 @@ function previewImage(input) {
 }
 </script>
 {% endblock %} 
+
