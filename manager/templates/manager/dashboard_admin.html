@@ -5,6 +5,18 @@
 {% block title %}Dashboard Admin - Beauty Manager{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=1">
+<style>
+    /* Dashboard admin: masquer le brand dans la topbar + centrer les liens */
+    .navbar-brand { display: none !important; }
+    .navbar .container { justify-content: center !important; }
+    .navbar-nav { justify-content: center !important; }
+
+    @media (max-width: 768px) {
+        .navbar { position: relative; }
+        .nav-toggle { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); }
+        .navbar .container { padding: 0 1rem !important; }
+    }
+</style>
 {% endblock %}
 
 
