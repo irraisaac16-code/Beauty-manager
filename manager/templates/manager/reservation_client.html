@@ -1,19 +1,24 @@
 {% extends 'manager/base.html' %}
+{% load static %}
 
 {% block title %}Réservation - Beauty Manager{% endblock %}
 
 {% block content %}
-<div class="container">
-    <!-- En-tête de la page -->
-    <div class="reservation-header">
-        <div class="header-content">
-            <h1>
-                <i class="fas fa-calendar-plus"></i>
-                <span>Nouvelle Réservation</span>
-            </h1>
-            <p>Réservez votre créneau et profitez de nos services de beauté</p>
-        </div>
-    </div>
+<div class="reg-page dash-page">
+    <div class="reg-wrap">
+        <section class="reg-hero">
+            <div class="reg-intro">
+                <div class="reg-brand" aria-label="Beauty Manager">
+                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
+                </div>
+                <h1>Nouvelle réservation</h1>
+                <p>Réservez votre créneau et profitez de nos services de beauté.</p>
+                <div class="reg-intro-cta">
+                    <a href="{% url 'dashboard_client' %}" class="reg-btn reg-btn-alt">
+                        <i class="fas fa-arrow-left"></i> Retour au dashboard
+                    </a>
+                </div>
+            </div>
 
     <!-- Section d'information pour les nouvelles réservations -->
     {% if messages %}
@@ -28,10 +33,12 @@
         </div>
     {% endif %}
 
-    <div class="row">
-        <!-- Formulaire de réservation -->
-        <div class="col-lg-8">
-            <div class="reservation-form-card">
+            <div class="reg-panel dash-main">
+                <div class="reg-panel-inner">
+                    <div class="row">
+                        <!-- Formulaire de réservation -->
+                        <div class="col-lg-8">
+                            <div class="reservation-form-card">
                 <div class="form-card-header">
                     <div class="header-icon">
                         <i class="fas fa-edit"></i>
@@ -172,11 +179,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+                        </div>
 
         <!-- Informations et aide -->
-        <div class="col-lg-4">
-            <div class="info-sidebar">
+                        <div class="col-lg-4">
+                            <div class="info-sidebar">
                                                   <!-- Remarques Importantes -->
                  <div class="info-card">
                      <div class="card-body">
@@ -212,6 +219,10 @@
                  </div>
             </div>
         </div>
+    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 
