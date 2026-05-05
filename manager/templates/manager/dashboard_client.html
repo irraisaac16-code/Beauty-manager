@@ -1,5 +1,6 @@
 {% extends 'manager/base.html' %}
 {% load price_filters %}
+{% load static %}
 
 {% block title %}Dashboard Client - Beauty Manager{% endblock %}
 
@@ -8,7 +9,9 @@
     <div class="reg-wrap">
         <section class="reg-hero">
             <div class="reg-intro">
-                <p class="brand-wordmark" aria-label="Beauty Manager"><span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span></p>
+                <div class="reg-brand" aria-label="Beauty Manager">
+                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
+                </div>
                 <h1>Dashboard client</h1>
                 <p>
                     Retrouvez vos rendez-vous, effectuez vos paiements et accédez rapidement à vos outils.
