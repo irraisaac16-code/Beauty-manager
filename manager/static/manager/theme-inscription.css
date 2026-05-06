@@ -1076,6 +1076,27 @@ main.theme-reg .btn-primary:hover {
     margin: 0 0 1.25rem;
 }
 
+.dash-empty-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 240px;
+    padding: 0.85rem 1.4rem;
+    border-radius: 14px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.dash-empty-cta i {
+    font-size: 1.05em;
+}
+
+.dash-empty-cta:focus-visible {
+    outline: 3px solid rgba(124, 58, 237, 0.28);
+    outline-offset: 3px;
+}
+
 .reg-submit {
     border-radius: 12px !important;
     padding: 0.75rem 1.25rem !important;
