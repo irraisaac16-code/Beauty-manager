@@ -24,148 +24,154 @@
                 </div>
             </div>
 
-    <!-- Section d'information pour les nouvelles réservations -->
-    {% if messages %}
-        <div class="messages-section">
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    <i class="fas fa-info-circle"></i>
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
-
-            <div class="reg-panel dash-main">
+            <div class="reg-panel reservation-aside">
                 <div class="reg-panel-inner">
-                    <div class="dash-form-grid">
-                        <div class="reservation-form-card">
-                <div class="form-card-header">
-                    <div class="header-icon">
-                        <i class="fas fa-edit"></i>
-                    </div>
-                    <div class="header-text">
-                        <h2>Détails de la Réservation</h2>
-                        <p>Remplissez les informations ci-dessous pour votre rendez-vous</p>
+                    <h2 class="reg-section-title"><i class="fas fa-bolt"></i> À savoir</h2>
+                    <p class="dash-section-lead">Quelques infos utiles avant de valider votre rendez-vous.</p>
+                    <div class="dash-rdv-meta">
+                        <div><i class="fas fa-clock"></i> Créneaux de 30 minutes</div>
+                        <div><i class="fas fa-calendar-day"></i> 8h00 à 18h30</div>
+                        <div><i class="fas fa-info-circle"></i> Annulez 24h à l’avance si possible</div>
                     </div>
                 </div>
-                
-                <div class="form-card-body">
-                    <form method="post" id="reservation-form" class="modern-form">
-                        {% csrf_token %}
-                        
-                        <!-- Première ligne : Esthéticienne et Service -->
-                        <div class="form-row">
-                                                         <div class="form-group col-md-6">
-                                 <div class="input-wrapper">
-                                                                         <label for="coiffeuse-select" class="floating-label">
-                                        Coiffeuse
-                                    </label>
-                                     <div class="custom-select-wrapper">
-                                                                                 <div class="custom-select-display" id="coiffeuse-display">
-                                            <span class="placeholder">Sélectionnez une coiffeuse</span>
-                                        </div>
-                                        <div class="custom-select-options" id="coiffeuse-options">
-                                            <div class="custom-select-option" data-value="">
-                                                <span class="coiffeuse-name">Sélectionnez une coiffeuse</span>
-                                            </div>
-                                            {% for coiffeuse in coiffeuses %}
-                                                <div class="custom-select-option" data-value="{{ coiffeuse.id }}">
-                                                    {% if coiffeuse.profile_image %}
-                                                        <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="coiffeuse-avatar">
-                                                    {% else %}
-                                                        <div class="coiffeuse-avatar default">
-                                                            <i class="fas fa-user"></i>
-                                                        </div>
-                                                    {% endif %}
-                                                    <span class="coiffeuse-name">{{ coiffeuse.user.username }}</span>
+            </div>
+        </section>
+
+        {% if messages %}
+            <div class="messages-section">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        <i class="fas fa-info-circle"></i>
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="reg-panel dash-main">
+            <div class="reg-panel-inner">
+                <div class="dash-form-grid">
+                    <div class="reservation-form-card">
+                        <div class="form-card-header">
+                            <div class="header-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="header-text">
+                                <h2>Détails de la Réservation</h2>
+                                <p>Remplissez les informations ci-dessous pour votre rendez-vous</p>
+                            </div>
+                        </div>
+
+                        <div class="form-card-body">
+                            <form method="post" id="reservation-form" class="modern-form">
+                                {% csrf_token %}
+
+                                <!-- Première ligne : Esthéticienne et Service -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <label for="coiffeuse-select" class="floating-label">Coiffeuse</label>
+                                            <div class="custom-select-wrapper">
+                                                <div class="custom-select-display" id="coiffeuse-display">
+                                                    <span class="placeholder">Sélectionnez une coiffeuse</span>
                                                 </div>
-                                            {% endfor %}
+                                                <div class="custom-select-options" id="coiffeuse-options">
+                                                    <div class="custom-select-option" data-value="">
+                                                        <span class="coiffeuse-name">Sélectionnez une coiffeuse</span>
+                                                    </div>
+                                                    {% for coiffeuse in coiffeuses %}
+                                                        <div class="custom-select-option" data-value="{{ coiffeuse.id }}">
+                                                            {% if coiffeuse.profile_image %}
+                                                                <img src="{{ coiffeuse.profile_image.url }}" alt="Photo de {{ coiffeuse.user.username }}" class="coiffeuse-avatar">
+                                                            {% else %}
+                                                                <div class="coiffeuse-avatar default">
+                                                                    <i class="fas fa-user"></i>
+                                                                </div>
+                                                            {% endif %}
+                                                            <span class="coiffeuse-name">{{ coiffeuse.user.username }}</span>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <select name="coiffeuse" id="id_coiffeuse" style="display: none;">
+                                                    <option value="">Sélectionnez une coiffeuse</option>
+                                                    {% for coiffeuse in coiffeuses %}
+                                                        <option value="{{ coiffeuse.id }}">{{ coiffeuse.user.username }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            {% if form.coiffeuse.errors %}
+                                                <div class="error-message">
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    {{ form.coiffeuse.errors }}
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                        <select name="coiffeuse" id="id_coiffeuse" style="display: none;">
-                                            <option value="">Sélectionnez une coiffeuse</option>
-                                            {% for coiffeuse in coiffeuses %}
-                                                <option value="{{ coiffeuse.id }}">{{ coiffeuse.user.username }}</option>
-                                            {% endfor %}
-                                        </select>
-                                     </div>
-                                                                         {% if form.coiffeuse.errors %}
-                                        <div class="error-message">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                            {{ form.coiffeuse.errors }}
-                                        </div>
-                                    {% endif %}
-                                 </div>
-                             </div>
+                                    </div>
                             
-                            <div class="form-group col-md-6">
-                                <div class="input-wrapper">
-                                    <label for="{{ form.service.id_for_label }}" class="floating-label">
-                                    </label>
-                                    {{ form.service }}
-                                    {% if form.service.errors %}
-                                        <div class="error-message">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                            {{ form.service.errors }}
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <label for="{{ form.service.id_for_label }}" class="floating-label"></label>
+                                            {{ form.service }}
+                                            {% if form.service.errors %}
+                                                <div class="error-message">
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    {{ form.service.errors }}
+                                                </div>
+                                            {% endif %}
+                                            <small class="form-hint" id="service-info"></small>
                                         </div>
-                                    {% endif %}
-                                    <small class="form-hint" id="service-info"></small>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Deuxième ligne : Date et Heure -->
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <div class="input-wrapper">
-                                    <label for="{{ form.date.id_for_label }}" class="floating-label">
-                                    </label>
-                                    {{ form.date }}
-                                    {% if form.date.errors %}
-                                        <div class="error-message">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                            {{ form.date.errors }}
+                                <!-- Deuxième ligne : Date et Heure -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <label for="{{ form.date.id_for_label }}" class="floating-label"></label>
+                                            {{ form.date }}
+                                            {% if form.date.errors %}
+                                                <div class="error-message">
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    {{ form.date.errors }}
+                                                </div>
+                                            {% endif %}
                                         </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            
-                            <div class="form-group col-md-6">
-                                <div class="input-wrapper">
-                                    <label for="{{ form.heure.id_for_label }}" class="floating-label">
-                                    </label>
-                                    {{ form.heure }}
-                                    {% if form.heure.errors %}
-                                        <div class="error-message">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                            {{ form.heure.errors }}
-                                        </div>
-                                    {% endif %}
-                                    <small class="form-hint">
-                                        <i class="fas fa-info-circle"></i>
-                                        Les réservations se font par créneaux de 30 minutes de 8h00 à 18h30
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
 
-                        <!-- Notes -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <div class="input-wrapper">
-                                    <label for="{{ form.notes.id_for_label }}" class="floating-label">
-                                    </label>
-                                    {{ form.notes }}
-                                    {% if form.notes.errors %}
-                                        <div class="error-message">
-                                            <i class="fas fa-exclamation-circle"></i>
-                                            {{ form.notes.errors }}
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <label for="{{ form.heure.id_for_label }}" class="floating-label"></label>
+                                            {{ form.heure }}
+                                            {% if form.heure.errors %}
+                                                <div class="error-message">
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    {{ form.heure.errors }}
+                                                </div>
+                                            {% endif %}
+                                            <small class="form-hint">
+                                                <i class="fas fa-info-circle"></i>
+                                                Les réservations se font par créneaux de 30 minutes de 8h00 à 18h30
+                                            </small>
                                         </div>
-                                    {% endif %}
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+
+                                <!-- Notes -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <div class="input-wrapper">
+                                            <label for="{{ form.notes.id_for_label }}" class="floating-label"></label>
+                                            {{ form.notes }}
+                                            {% if form.notes.errors %}
+                                                <div class="error-message">
+                                                    <i class="fas fa-exclamation-circle"></i>
+                                                    {{ form.notes.errors }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
 
                         <!-- Boutons d'action -->
                         <div class="form-actions">
@@ -178,12 +184,11 @@
                                 Retour au Dashboard
                             </a>
                         </div>
-                    </form>
-                </div>
-            </div>
+                            </form>
                         </div>
+                    </div>
 
-                        <div class="info-sidebar">
+                    <div class="info-sidebar">
                             <div class="info-card">
                                 <div class="card-body">
                                     <div class="section">
@@ -213,10 +218,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
 </div>
 

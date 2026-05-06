@@ -1,5 +1,26 @@
 /* Reservation client — styles scoped, uniformes dashboard */
 
+.reservation-adminlike .reservation-aside .reg-panel-inner {
+    padding: 1.25rem 1.25rem;
+}
+
+.reservation-adminlike .reservation-aside .reg-section-title {
+    margin-bottom: 0.65rem;
+    justify-content: flex-start;
+}
+
+.reservation-adminlike .reservation-aside .dash-section-lead {
+    margin-bottom: 1rem;
+}
+
+.reservation-adminlike .reservation-aside .dash-rdv-meta > div {
+    margin-bottom: 0.45rem;
+}
+
+.reservation-adminlike .reservation-aside .dash-rdv-meta > div:last-child {
+    margin-bottom: 0;
+}
+
 .reservation-adminlike .messages-section {
     margin-bottom: 1.25rem;
 }
