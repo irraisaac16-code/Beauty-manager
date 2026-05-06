@@ -1077,16 +1077,9 @@ main.theme-reg .btn-primary:hover {
 }
 
 .dash-empty-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
     min-width: 240px;
     min-height: 52px;
-    padding: 0 1.4rem;
-    border-radius: 14px;
     text-align: center;
-    line-height: 1;
 }
 
 .dash-empty-cta i {
