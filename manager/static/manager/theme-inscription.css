@@ -1103,6 +1103,19 @@ main.theme-reg .btn-primary:hover {
     gap: 0.85rem;
 }
 
+.dash-form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+@media (max-width: 960px) {
+    .dash-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .dash-quick-card {
     display: flex;
     align-items: center;
