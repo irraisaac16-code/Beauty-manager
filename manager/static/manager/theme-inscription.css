@@ -24,6 +24,64 @@ main.theme-reg h2 {
     padding: 0 0 2.5rem;
 }
 
+.reservation-adminlike .reg-wrap {
+    width: min(1320px, 96%);
+}
+
+.reservation-adminlike .reservation-form-card,
+.reservation-adminlike .info-card {
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--reg-line);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    overflow: hidden;
+    margin: 0;
+}
+
+.reservation-adminlike .form-card-header {
+    background: transparent;
+    color: var(--reg-text);
+    padding: 1.35rem 1.5rem 1rem;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.reservation-adminlike .form-card-header .header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.reservation-adminlike .form-card-header .header-text h2 {
+    color: var(--reg-text);
+}
+
+.reservation-adminlike .form-card-header .header-text p {
+    color: var(--reg-muted);
+}
+
+.reservation-adminlike .form-card-body {
+    padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.reservation-adminlike .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+    .reservation-adminlike .form-actions {
+        flex-direction: column;
+    }
+    .reservation-adminlike .form-actions .reg-btn {
+        width: 100%;
+    }
+}
+
 .reg-hero {
     display: grid;
     grid-template-columns: 1.05fr 1fr;
