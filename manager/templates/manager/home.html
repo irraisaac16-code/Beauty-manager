@@ -69,25 +69,11 @@
             width: 100%;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: var(--text);
-        }
-
-        .logo img {
-            height: clamp(1.75rem, 3.5vw, 2.1rem);
-            width: auto;
-            max-width: 200px;
-            object-fit: contain;
-        }
-
         .nav-main {
             display: flex;
             align-items: center;
             gap: clamp(1rem, 3vw, 2rem);
+            margin-right: auto;
         }
 
         .nav-main a {
@@ -150,22 +136,9 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1.05fr;
+            grid-template-columns: 1fr 1.12fr;
             gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
-        }
-
-        .badge-top {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.35rem 0.85rem;
-            border-radius: var(--radius-pill);
-            background: var(--accent-soft);
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.25rem;
         }
 
         .hero-title {
@@ -244,9 +217,9 @@
 
         .hero-img-frame {
             position: relative;
-            width: min(100%, 300px);
+            width: min(100%, 440px);
             aspect-ratio: 3 / 4;
-            border-radius: 1.5rem;
+            border-radius: 1.75rem;
             overflow: hidden;
             box-shadow:
                 0 16px 36px rgba(0, 0, 0, 0.09),
@@ -320,7 +293,7 @@
             }
             .hero-visual { order: -1; }
             .hero-img-frame {
-                width: min(100%, 260px);
+                width: min(100%, 340px);
                 aspect-ratio: 1;
                 transform: rotate(-2deg);
             }
@@ -347,9 +320,6 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
-            <a href="{% url 'home' %}" class="logo" aria-label="Beauty Manager — accueil">
-                <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager" width="200" height="40">
-            </a>
             <nav class="nav-main" aria-label="Navigation principale">
                 <a href="{% url 'home' %}">Accueil</a>
                 <a href="{% url 'login' %}">Connexion</a>
@@ -369,10 +339,6 @@
         <section class="hero-landing">
             <div class="wrap hero-grid">
                 <div class="hero-copy">
-                    <div class="badge-top">
-                        <i class="fas fa-layer-group" aria-hidden="true"></i>
-                        Django · interface soignée
-                    </div>
                     <h1 class="hero-title">
                         Pilotez votre institut<br>
                         <span class="accent">avec rigueur &amp; sérénité</span>
@@ -404,8 +370,8 @@
                         <img
                             src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}"
                             alt="Ambiance salon de beauté"
-                            width="300"
-                            height="400"
+                            width="440"
+                            height="587"
                             loading="eager"
                             decoding="async"
                         >
