@@ -112,8 +112,9 @@
             transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
         }
 
-        /* Inscription client(e) — style néo-brutaliste (beige + ombre verte dure) */
-        .header-actions .btn-pill--accent {
+        /* CTA header — style néo-brutaliste (beige + ombre verte dure) */
+        .header-actions .btn-pill--accent,
+        .header-actions .btn-pill--ghost {
             --neo-shift: 5px;
             background: #ebe8e4;
             color: var(--text);
@@ -127,31 +128,38 @@
                 color 0.18s ease;
         }
 
-        .header-actions .btn-pill--accent:hover {
+        .header-actions .btn-pill--accent:hover,
+        .header-actions .btn-pill--ghost:hover {
             background: #e3dfd9;
             color: var(--text);
             transform: translate(var(--neo-shift), var(--neo-shift));
             box-shadow: 0 0 0 0 transparent;
+            border-color: var(--accent);
         }
 
-        .header-actions .btn-pill--accent:active {
+        .header-actions .btn-pill--accent:active,
+        .header-actions .btn-pill--ghost:active {
             background: #dcd8d1;
             transform: translate(var(--neo-shift), var(--neo-shift));
             box-shadow: 0 0 0 0 transparent;
         }
 
-        .header-actions .btn-pill--accent:focus-visible {
+        .header-actions .btn-pill--accent:focus-visible,
+        .header-actions .btn-pill--ghost:focus-visible {
             outline: 3px solid var(--accent);
             outline-offset: 3px;
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .header-actions .btn-pill--accent {
+            .header-actions .btn-pill--accent,
+            .header-actions .btn-pill--ghost {
                 transform: none;
             }
 
             .header-actions .btn-pill--accent:hover,
-            .header-actions .btn-pill--accent:active {
+            .header-actions .btn-pill--accent:active,
+            .header-actions .btn-pill--ghost:hover,
+            .header-actions .btn-pill--ghost:active {
                 transform: none;
                 box-shadow: 0 0 0 0 transparent;
                 background: #e3dfd9;
