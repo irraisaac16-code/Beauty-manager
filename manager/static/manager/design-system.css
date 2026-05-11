@@ -1,0 +1,478 @@
+/**
+ * Beauty Manager — design system portfolio
+ * Palette sobre, lisible, secteur bien-être / tech pro (sans effets flashy).
+ */
+:root {
+  --bm-font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bm-bg: #f3f2ef;
+  --bm-bg-elevated: #fafaf8;
+  --bm-surface: #ffffff;
+  --bm-ink: #161514;
+  --bm-muted: #5f5c57;
+  --bm-muted-light: #8a8680;
+  --bm-accent: #6b4f4f;
+  --bm-accent-hover: #5a4242;
+  --bm-accent-soft: rgba(107, 79, 79, 0.1);
+  --bm-teal: #2d6a66;
+  --bm-teal-soft: rgba(45, 106, 102, 0.12);
+  --bm-border: rgba(22, 21, 20, 0.08);
+  --bm-border-strong: rgba(22, 21, 20, 0.12);
+  --bm-radius: 12px;
+  --bm-radius-lg: 16px;
+  --bm-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --bm-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --bm-tap-min: 44px;
+}
+
+/* --- Global --- */
+body {
+  font-family: var(--bm-font) !important;
+  background: var(--bm-bg) !important;
+  color: var(--bm-ink) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+main.main-content.theme-reg {
+  padding-top: 0.5rem;
+  padding-bottom: 3rem;
+}
+
+/* --- Navbar --- */
+.navbar {
+  background: rgba(255, 255, 255, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bm-border) !important;
+  box-shadow: var(--bm-shadow) !important;
+  padding: 0.85rem 0 !important;
+}
+
+.navbar-brand,
+a.navbar-brand.brand-wordmark-nav {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--bm-ink) !important;
+  letter-spacing: -0.02em !important;
+  text-decoration: none !important;
+}
+
+a.navbar-brand.brand-wordmark-nav .brand-wordmark__beauty {
+  color: var(--bm-teal) !important;
+}
+
+a.navbar-brand.brand-wordmark-nav .brand-wordmark__manager {
+  color: var(--bm-ink) !important;
+  font-weight: 600 !important;
+}
+
+.navbar-brand:hover,
+a.navbar-brand.brand-wordmark-nav:hover {
+  color: var(--bm-ink) !important;
+  transform: none !important;
+}
+
+.nav-link {
+  color: var(--bm-muted) !important;
+  font-weight: 500 !important;
+  border-radius: var(--bm-radius) !important;
+  transition: color 0.15s ease, background 0.15s ease !important;
+}
+
+.nav-link:hover {
+  color: var(--bm-ink) !important;
+  background: var(--bm-accent-soft) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.nav-link-connect {
+  border: 1px solid var(--bm-border-strong) !important;
+  background: var(--bm-surface) !important;
+  color: var(--bm-ink) !important;
+  border-radius: var(--bm-radius) !important;
+  font-weight: 600 !important;
+}
+
+.nav-link-connect:hover {
+  background: var(--bm-bg-elevated) !important;
+  border-color: var(--bm-border-strong) !important;
+  box-shadow: var(--bm-shadow) !important;
+}
+
+.nav-toggle {
+  border: 1px solid var(--bm-border-strong) !important;
+  background: var(--bm-surface) !important;
+}
+
+.nav-toggle span {
+  background: var(--bm-ink) !important;
+}
+
+.navbar-nav.open {
+  background: var(--bm-surface) !important;
+  border: 1px solid var(--bm-border) !important;
+  box-shadow: var(--bm-shadow-md) !important;
+}
+
+/* --- Footer --- */
+.footer {
+  background: var(--bm-surface) !important;
+  border-top: 1px solid var(--bm-border) !important;
+  box-shadow: none !important;
+  margin-top: 2rem !important;
+}
+
+.footer p {
+  color: var(--bm-muted) !important;
+}
+
+.footer p:hover {
+  color: var(--bm-muted) !important;
+}
+
+.footer a {
+  color: var(--bm-teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- Buttons (Bootstrap-like used in templates) --- */
+.btn {
+  border-radius: var(--bm-radius) !important;
+  font-weight: 600 !important;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.btn:hover {
+  transform: none !important;
+}
+
+.btn-primary {
+  background: var(--bm-accent) !important;
+  border-color: var(--bm-accent) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.btn-primary:hover {
+  background: var(--bm-accent-hover) !important;
+  border-color: var(--bm-accent-hover) !important;
+  color: #fff !important;
+}
+
+.btn-success {
+  background: var(--bm-teal) !important;
+  border-color: var(--bm-teal) !important;
+  color: #fff !important;
+}
+
+.btn-success:hover {
+  filter: brightness(1.05);
+  color: #fff !important;
+}
+
+.btn-warning {
+  background: #b8860b !important;
+  border-color: #9a7209 !important;
+  color: #fff !important;
+}
+
+.btn-info {
+  background: #3d6b82 !important;
+  border-color: #335a6e !important;
+  color: #fff !important;
+}
+
+.btn-secondary,
+.btn-outline-secondary {
+  background: var(--bm-surface) !important;
+  color: var(--bm-ink) !important;
+  border: 1px solid var(--bm-border-strong) !important;
+}
+
+.btn-secondary:hover {
+  background: var(--bm-bg-elevated) !important;
+}
+
+/* --- Cards --- */
+.card {
+  background: var(--bm-surface) !important;
+  border: 1px solid var(--bm-border) !important;
+  border-radius: var(--bm-radius-lg) !important;
+  box-shadow: var(--bm-shadow) !important;
+}
+
+.card-header {
+  background: var(--bm-bg-elevated) !important;
+  color: var(--bm-ink) !important;
+  border-bottom: 1px solid var(--bm-border) !important;
+  font-weight: 600 !important;
+}
+
+.card-body {
+  color: var(--bm-muted);
+}
+
+/* --- Forms --- */
+.form-control {
+  border-radius: var(--bm-radius) !important;
+  border: 1px solid var(--bm-border-strong) !important;
+  background: var(--bm-surface) !important;
+  color: var(--bm-ink) !important;
+}
+
+.form-control:focus {
+  border-color: var(--bm-teal) !important;
+  box-shadow: 0 0 0 3px var(--bm-teal-soft) !important;
+}
+
+/* --- Alerts --- */
+.alert {
+  border-radius: var(--bm-radius) !important;
+  border: 1px solid transparent !important;
+}
+
+/* --- Registration / theme-reg bridge --- */
+main.theme-reg,
+.reg-page {
+  --reg-line: var(--bm-border-strong);
+  --reg-muted: var(--bm-muted);
+  --reg-text: var(--bm-ink);
+}
+
+.reg-panel {
+  border: 1px solid var(--bm-border) !important;
+  border-radius: var(--bm-radius-lg) !important;
+  background: var(--bm-surface) !important;
+  padding: 0.5rem !important;
+  box-shadow: var(--bm-shadow-md) !important;
+}
+
+.reg-panel-inner {
+  background: var(--bm-bg-elevated) !important;
+  border: 1px solid var(--bm-border) !important;
+  border-radius: var(--bm-radius) !important;
+}
+
+.reg-card {
+  background: var(--bm-surface) !important;
+  border: 1px solid var(--bm-border) !important;
+  box-shadow: var(--bm-shadow) !important;
+}
+
+.reg-card:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--bm-shadow-md) !important;
+}
+
+.reg-card i,
+.reg-section-title i,
+.reg-group label i {
+  color: var(--bm-teal) !important;
+}
+
+.reg-btn-alt {
+  border: 1px solid var(--bm-border-strong) !important;
+  background: var(--bm-surface) !important;
+}
+
+.reg-btn-outline {
+  border: 1px solid var(--bm-border-strong) !important;
+  color: var(--bm-ink) !important;
+  background: var(--bm-surface) !important;
+}
+
+.reg-btn-outline:hover {
+  background: var(--bm-bg-elevated) !important;
+  color: var(--bm-ink) !important;
+}
+
+.reg-btn-esth {
+  border: 1px solid rgba(45, 106, 102, 0.35) !important;
+  color: var(--bm-teal) !important;
+  background: var(--bm-teal-soft) !important;
+}
+
+.reg-btn-esth:hover {
+  background: rgba(45, 106, 102, 0.18) !important;
+  color: #1f4a47 !important;
+}
+
+.reg-link {
+  color: var(--bm-teal) !important;
+}
+
+main.theme-reg .btn-primary {
+  background: var(--bm-accent) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+main.theme-reg .btn-primary:hover {
+  background: var(--bm-accent-hover) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+main.theme-reg .section-title {
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
+  color: var(--bm-ink) !important;
+  font-weight: 700 !important;
+}
+
+main.theme-reg .table-services th {
+  background: var(--bm-ink) !important;
+  color: #fff !important;
+}
+
+main.theme-reg .card-header {
+  background: var(--bm-bg-elevated) !important;
+}
+
+.login-test-banner {
+  border: 1px solid var(--bm-border) !important;
+  background: var(--bm-teal-soft) !important;
+}
+
+.login-test-banner strong {
+  color: var(--bm-ink) !important;
+}
+
+.login-test-banner strong i {
+  color: var(--bm-teal) !important;
+}
+
+.login-test-banner code {
+  border: 1px solid var(--bm-border) !important;
+  color: var(--bm-ink) !important;
+}
+
+/* --- Dashboard client / coiffeuse --- */
+.dash-rdv-date-icon,
+.dash-quick-icon,
+.dash-date-badge {
+  background: var(--bm-teal) !important;
+  color: #fff !important;
+}
+
+.dash-rdv-row {
+  border-left-color: var(--bm-teal) !important;
+}
+
+.dash-rdv-time {
+  color: var(--bm-teal) !important;
+}
+
+.dash-profile-img,
+.dash-profile-placeholder {
+  border-color: var(--bm-border-strong) !important;
+}
+
+.dash-profile-placeholder,
+.dash-coiffeuse-ph {
+  background: var(--bm-teal-soft) !important;
+  color: var(--bm-teal) !important;
+}
+
+.dash-rdv-head,
+.dash-rdv-date-icon {
+  background: linear-gradient(180deg, var(--bm-bg-elevated), var(--bm-surface)) !important;
+}
+
+.dash-act-pay {
+  background: var(--bm-teal) !important;
+  border: none !important;
+}
+
+/* --- Admin dashboard shell --- */
+.admin-dashboard .dashboard-header {
+  border: 1px solid var(--bm-border) !important;
+  background: var(--bm-surface) !important;
+  box-shadow: var(--bm-shadow-md) !important;
+  padding: 0.5rem !important;
+}
+
+.admin-dashboard .header-content {
+  background: var(--bm-bg-elevated) !important;
+  border: 1px solid var(--bm-border) !important;
+}
+
+.admin-dashboard .header-left h1 i {
+  color: var(--bm-teal) !important;
+}
+
+.admin-dashboard .stat-card {
+  background: var(--bm-surface) !important;
+  border: 1px solid var(--bm-border) !important;
+  box-shadow: var(--bm-shadow) !important;
+}
+
+.admin-dashboard .stat-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--bm-shadow-md) !important;
+}
+
+.admin-dashboard .stat-card::before {
+  background: var(--bm-teal) !important;
+  height: 2px !important;
+}
+
+.admin-dashboard .stat-card.primary::before,
+.admin-dashboard .stat-card.success::before,
+.admin-dashboard .stat-card.warning::before,
+.admin-dashboard .stat-card.info::before {
+  background: var(--bm-teal) !important;
+}
+
+.admin-dashboard .stat-icon {
+  background: var(--bm-teal-soft) !important;
+  color: var(--bm-teal) !important;
+}
+
+.reservation-adminlike .form-card-header .header-icon {
+  background: var(--bm-teal) !important;
+}
+
+.reg-page .reg-group input:focus,
+.reg-page .reg-group select:focus,
+.reg-page .reg-group textarea:focus {
+  border-color: var(--bm-teal) !important;
+  box-shadow: 0 0 0 3px var(--bm-teal-soft) !important;
+}
+
+@media (max-width: 768px) {
+  body {
+    background: var(--bm-bg) !important;
+  }
+}
+
+/* --- Login : proposition de valeur compacte --- */
+.login-value-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 22rem;
+}
+
+.login-value-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--bm-muted);
+  line-height: 1.45;
+}
+
+.login-value-points li i {
+  color: var(--bm-teal);
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}

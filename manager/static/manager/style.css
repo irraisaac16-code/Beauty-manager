@@ -1,15 +1,15 @@
 /* style.css - Effet visuel inspiré de la maquette professionnelle */
 
 :root {
-  --primary: #a855f7;
-  --primary-dark: #7c3aed;
-  --secondary: #fbbf24;
-  --accent: #f472b6;
-  --bg-gradient: linear-gradient(135deg, #fbbf24 0%, #f472b6 50%, #a855f7 100%);
-  --card-bg: rgba(255,255,255,0.85);
-  --radius: 1.5rem;
-  --shadow: 0 8px 32px rgba(168,85,247,0.15);
-  --shadow-dark: 0 4px 24px rgba(168,85,247,0.25);
+  --primary: #2d6a66;
+  --primary-dark: #245652;
+  --secondary: #6b4f4f;
+  --accent: #2d6a66;
+  --bg-gradient: linear-gradient(180deg, #f3f2ef 0%, #ebe8e3 100%);
+  --card-bg: #ffffff;
+  --radius: 1rem;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.06);
   --tap-min: 44px;
 }
 
@@ -50,14 +50,14 @@ body {
 
 /* Styles pour la navbar */
 .navbar {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(224, 195, 252, 0.35);
-  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(22, 21, 20, 0.08);
+  padding: 0.85rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 20px rgba(124, 58, 237, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .navbar .container {
@@ -68,33 +68,18 @@ body {
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: var(--primary-dark);
+  color: #161514;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.15s ease;
   position: relative;
 }
 
 .navbar-brand:hover {
-  color: var(--primary);
-  transform: translateY(-1px);
+  color: #2d6a66;
+  transform: none;
   text-decoration: none;
-}
-
-.navbar-brand::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: width 0.3s ease;
-}
-
-.navbar-brand:hover::after {
-  width: 100%;
 }
 
 .navbar-nav {
@@ -134,11 +119,11 @@ body {
 }
 
 .nav-link:hover {
-  color: var(--primary-dark);
-  background: rgba(168, 85, 247, 0.05);
-  transform: translateY(-1px);
+  color: #161514;
+  background: rgba(45, 106, 102, 0.08);
+  transform: none;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1);
+  box-shadow: none;
 }
 
   .nav-toggle {
@@ -154,7 +139,7 @@ body {
     display: block;
     width: 26px;
     height: 3px;
-    background: var(--primary-dark);
+    background: #161514;
     border-radius: 999px;
     margin: 4px 0;
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -183,7 +168,7 @@ body {
       width: 100%;
       gap: 0.75rem;
       padding: 1rem 0;
-      border-top: 1px solid rgba(168, 85, 247, 0.1);
+      border-top: 1px solid rgba(22, 21, 20, 0.08);
       margin-top: 1rem;
     }
 
@@ -198,12 +183,11 @@ body {
 
 /* Styles pour le footer */
 .footer {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(168, 85, 247, 0.1);
+  background: #fafaf8;
+  border-top: 1px solid rgba(22, 21, 20, 0.08);
   padding: 1.5rem 0;
-  margin-top: 3rem;
-  box-shadow: 0 -2px 20px rgba(168, 85, 247, 0.1);
+  margin-top: 2rem;
+  box-shadow: none;
 }
 
 .footer .container {
@@ -219,25 +203,14 @@ body {
 }
 
 .footer p:hover {
-  color: var(--primary-dark);
+  color: #5f5c57;
 }
 
 body {
   min-height: 100vh;
-  /* Aligné avec la page d'accueil (lavande → crème → doré) */
-  background:
-    radial-gradient(100% 80% at 0% 0%, rgba(224, 195, 252, 0.55) 0%, transparent 55%),
-    radial-gradient(90% 70% at 100% 100%, rgba(252, 235, 182, 0.65) 0%, transparent 50%),
-    linear-gradient(
-      to bottom,
-      #E0C3FC 0%,
-      #F8F7FF 22%,
-      #ffffff 48%,
-      #FFF9E5 76%,
-      #FCEBB6 100%
-    );
-  color: #1e293b;
-  font-family: Inter, 'Segoe UI', 'Roboto', Arial, sans-serif;
+  background: #f3f2ef;
+  color: #161514;
+  font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
   margin: 0;
   padding: 0;
   position: relative;
@@ -480,7 +453,7 @@ a[href="/inscription/client/"].btn.bg-secondary:hover {
 @media (max-width: 768px) {
   html { font-size: 15px; }
   body {
-    background: #fef7ff;
+    background: #f3f2ef;
   }
 
   body > div[style*="position: fixed"] {

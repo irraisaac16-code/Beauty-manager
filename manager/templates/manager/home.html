@@ -11,22 +11,23 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'manager/design-system.css' %}?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #f6f5f3;
+            --bg: #f3f2ef;
             --surface: #ffffff;
-            --text: #1a1a1a;
-            --muted: #5c5c5c;
-            --accent: #d4657a;
-            --accent-hover: #c2556a;
-            --accent-soft: rgba(212, 101, 122, 0.12);
+            --text: #161514;
+            --muted: #5f5c57;
+            --accent: #2d6a66;
+            --accent-hover: #245652;
+            --accent-soft: rgba(45, 106, 102, 0.12);
             --header-h: 4.25rem;
             --radius-pill: 999px;
             --radius-card: 1.5rem;
-            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
-            --shadow-cta: 0 12px 28px rgba(212, 101, 122, 0.28);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+            --shadow-cta: 0 10px 28px rgba(45, 106, 102, 0.22);
         }
 
         * { box-sizing: border-box; }
@@ -35,7 +36,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: "DM Sans", system-ui, sans-serif;
+            font-family: "Plus Jakarta Sans", system-ui, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.5;
@@ -122,7 +123,7 @@
         .btn-pill--accent:hover {
             background: var(--accent-hover);
             transform: translateY(-1px);
-            box-shadow: 0 14px 32px rgba(212, 101, 122, 0.35);
+            box-shadow: 0 12px 28px rgba(45, 106, 102, 0.28);
         }
 
         .btn-pill--ghost {
@@ -205,8 +206,8 @@
 
         .btn-hero:hover {
             background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 16px 36px rgba(212, 101, 122, 0.35);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28);
         }
 
         .btn-hero i { font-size: 0.85em; opacity: 0.95; }
@@ -286,7 +287,7 @@
         }
 
         .float-card i {
-            color: #eab308;
+            color: var(--accent);
             font-size: 1rem;
         }
 
@@ -369,15 +370,15 @@
             <div class="wrap hero-grid">
                 <div class="hero-copy">
                     <div class="badge-top">
-                        <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
-                        Nouveaux créneaux ouverts
+                        <i class="fas fa-layer-group" aria-hidden="true"></i>
+                        Django · interface soignée
                     </div>
                     <h1 class="hero-title">
-                        L’institut moderne,<br>
-                        <span class="accent">sans la complexité</span>
+                        Pilotez votre institut<br>
+                        <span class="accent">avec rigueur &amp; sérénité</span>
                     </h1>
                     <p class="hero-lead">
-                        Réservez votre soin en quelques clics. Une expérience claire pour vos clientes et votre équipe.
+                        Application full-stack de démonstration : réservations, rôles, paiements et tableaux de bord — pensée pour un usage réel en salon.
                     </p>
                     <a href="{% url 'register_client' %}" class="btn-hero">
                         Prendre rendez-vous
@@ -409,8 +410,8 @@
                             decoding="async"
                         >
                         <div class="float-card">
-                            <i class="fas fa-star" aria-hidden="true"></i>
-                            <span>Certifié pro — meilleure expérience</span>
+                            <i class="fas fa-award" aria-hidden="true"></i>
+                            <span>Parcours client &amp; équipe unifiés</span>
                         </div>
                     </div>
                 </div>
@@ -420,12 +421,14 @@
 
     <footer class="site-footer">
         <p style="margin:0 0 0.35rem;">
-            &copy; 2026 Beauty Manager · Côte d’Ivoire
+            &copy; 2026 Beauty Manager — vitrine développeur full-stack
         </p>
         <p style="margin:0;">
             <a href="{% url 'login' %}">Connexion</a>
             ·
             <a href="{% url 'register_client' %}">Inscription cliente</a>
+            ·
+            <span style="color:var(--muted);">Irra Isaac Tialougbeu</span>
         </p>
     </footer>
 </body>

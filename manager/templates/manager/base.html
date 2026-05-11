@@ -9,44 +9,14 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=7">
-    <link rel="stylesheet" href="{% static 'manager/theme-inscription.css' %}?v=11">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'manager/style.css' %}?v=8">
+    <link rel="stylesheet" href="{% static 'manager/theme-inscription.css' %}?v=12">
+    <link rel="stylesheet" href="{% static 'manager/design-system.css' %}?v=2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --lavender-top: #E0C3FC;
-            --lavender-soft: #F8F7FF;
-            --cream-mid: #FFF9E5;
-            --gold-bottom: #FCEBB6;
-            --card: rgba(255, 255, 255, 0.78);
-            --text: #1e293b;
-            --muted: #64748b;
-            --violet: #7c3aed;
-            --line: rgba(124, 58, 237, 0.14);
-            --esth-accent: #d97706;
-        }
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            background:
-                radial-gradient(100% 80% at 0% 0%, rgba(224, 195, 252, 0.55) 0%, transparent 55%),
-                radial-gradient(90% 70% at 100% 100%, rgba(252, 235, 182, 0.65) 0%, transparent 50%),
-                linear-gradient(
-                    to bottom,
-                    var(--lavender-top) 0%,
-                    var(--lavender-soft) 22%,
-                    #ffffff 48%,
-                    var(--cream-mid) 76%,
-                    var(--gold-bottom) 100%
-                );
-            color: var(--text);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
         .main-content {
-            padding: 1.5rem 0 2.2rem;
+            padding: 1.25rem 0 2.5rem;
         }
         /* Styles Bootstrap-like */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
@@ -70,18 +40,18 @@
             color: #495057;
             background-color: #fff;
             background-clip: padding-box;
-            border: 1px solid var(--line);
+            border: 1px solid rgba(22, 21, 20, 0.12);
             border-radius: 12px;
             transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-            background: rgba(255, 255, 255, 0.9);
+            background: #fff;
         }
         
         .form-control:focus {
-            color: #495057;
+            color: #1a1918;
             background-color: #fff;
-            border-color: rgba(124, 58, 237, 0.35);
+            border-color: #2d6a66;
             outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.12);
+            box-shadow: 0 0 0 3px rgba(45, 106, 102, 0.15);
         }
         
         .alert {
@@ -127,8 +97,8 @@
         
         .btn-primary {
             color: #fff;
-            background: linear-gradient(135deg, var(--violet), #6d28d9);
-            border-color: transparent;
+            background: #6b4f4f;
+            border-color: #6b4f4f;
         }
         
         .btn-success {
@@ -161,171 +131,6 @@
         .badge-info { color: #fff; background-color: #17a2b8; }
         .badge-danger { color: #fff; background-color: #dc3545; }
         
-        /* Styles temporaires pour la navbar */
-        .navbar {
-            background: rgba(255, 255, 255, 0.55) !important;
-            backdrop-filter: blur(14px) !important;
-            border-bottom: 1px solid rgba(224, 195, 252, 0.35) !important;
-            padding: 1rem 0 !important;
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 1000 !important;
-            box-shadow: 0 2px 20px rgba(124, 58, 237, 0.08) !important;
-        }
-        
-        .navbar .container {
-            display: flex;
-            justify-content: space-between !important;
-            align-items: center !important;
-            padding: 0 2rem !important;
-        }
-        
-        .navbar-brand {
-            font-size: 1.5rem !important;
-            font-weight: 700 !important;
-            color: var(--violet) !important;
-            text-decoration: none !important;
-            transition: all 0.3s ease !important;
-            position: relative !important;
-        }
-        
-        .navbar-brand:hover {
-            color: #a855f7 !important;
-            transform: translateY(-1px) !important;
-            text-decoration: none !important;
-        }
-        
-        /* Style pour le logo "Beauty Manager" */
-        .navbar-brand {
-            color: #7c3aed !important;
-        }
-        
-        .navbar-nav {
-            display: flex;
-            align-items: center !important;
-            gap: 1.5rem !important;
-            list-style: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        
-        .nav-link {
-            color: #5f667a !important;
-            text-decoration: none !important;
-            font-weight: 500 !important;
-            font-size: 0.95rem !important;
-            padding: 0.5rem 1rem !important;
-            border-radius: 8px !important;
-            transition: all 0.3s ease !important;
-            position: relative !important;
-            overflow: hidden !important;
-        }
-        
-        .nav-link:hover {
-            color: var(--violet) !important;
-            background: rgba(168, 85, 247, 0.05) !important;
-            transform: translateY(-1px) !important;
-            text-decoration: none !important;
-            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1) !important;
-        }
-        .nav-link-connect {
-            border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.55) !important;
-            color: var(--text) !important;
-            border-radius: 12px !important;
-            padding: 0.55rem 1rem !important;
-            font-weight: 700 !important;
-        }
-        .nav-link-connect:hover {
-            background: rgba(255, 255, 255, 0.9) !important;
-            color: var(--text) !important;
-            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.12) !important;
-        }
-        .card {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            box-shadow: 0 10px 28px rgba(124, 58, 237, 0.08);
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 42px;
-            height: 42px;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 10px;
-            background: #fff;
-            cursor: pointer;
-            padding: 0 10px;
-        }
-
-        .nav-toggle span {
-            width: 100%;
-            height: 2px;
-            border-radius: 2px;
-            background: #7c3aed;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                position: relative !important;
-                top: auto !important;
-            }
-
-            .navbar .container {
-                position: relative;
-                padding: 0 1rem !important;
-            }
-
-            .nav-toggle {
-                display: inline-flex;
-            }
-
-            .navbar-nav {
-                display: none;
-                position: absolute;
-                top: calc(100% + 10px);
-                right: 1rem;
-                left: 1rem;
-                background: rgba(255, 255, 255, 0.92);
-                border: 1px solid rgba(168, 85, 247, 0.15);
-                border-radius: 12px;
-                box-shadow: 0 12px 28px rgba(124, 58, 237, 0.12);
-                padding: 0.8rem;
-                z-index: 1200;
-            }
-
-            .navbar-nav.open {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch !important;
-                gap: 0.35rem !important;
-            }
-
-            .nav-link {
-                width: 100%;
-                text-align: left;
-                padding: 0.65rem 0.85rem !important;
-            }
-        }
-
-        /* Wordmark page d'accueil : Beauty (ambre) + Manager (violet profond) */
         .brand-wordmark {
             margin: 0 0 0.5rem;
             font-weight: 800;
@@ -333,34 +138,17 @@
             font-size: clamp(1.15rem, 2vw, 1.45rem);
             line-height: 1.2;
         }
-        .brand-wordmark__beauty {
-            color: var(--esth-accent);
-        }
-        .brand-wordmark__manager {
-            color: #6d28d9;
-        }
+        .brand-wordmark__beauty { color: #2d6a66; }
+        .brand-wordmark__manager { color: #161514; }
         a.navbar-brand.brand-wordmark-nav {
-            font-weight: 800 !important;
-            letter-spacing: -0.03em !important;
-            gap: 0.15rem;
+            font-weight: 700 !important;
+            letter-spacing: -0.02em !important;
+            gap: 0.2rem;
         }
-        a.navbar-brand.brand-wordmark-nav:hover {
-            text-decoration: none !important;
-        }
-        a.navbar-brand.brand-wordmark-nav .brand-wordmark__beauty {
-            color: var(--esth-accent) !important;
-        }
-        a.navbar-brand.brand-wordmark-nav .brand-wordmark__manager {
-            color: #6d28d9 !important;
-        }
+        a.navbar-brand.brand-wordmark-nav:hover { text-decoration: none !important; }
         a.navbar-brand.navbar-brand-plain {
             font-weight: 700 !important;
-            letter-spacing: normal !important;
-            color: var(--text) !important;
-            gap: 0.35rem;
-        }
-        a.navbar-brand.navbar-brand-plain:hover {
-            color: var(--violet) !important;
+            color: #161514 !important;
         }
         .navbar-accueil-link {
             display: inline-flex;
@@ -415,10 +203,9 @@
 
     <footer class="footer">
         <div class="container">
-            <p style="text-align: center; margin: 0; padding: 1rem 0;">&copy; 2026 Beauty Manager. Tous droits réservés.</p>
-            <p style="text-align: center; margin: 0; padding-bottom: 1rem; font-size: 0.9rem; color: #aaa; display: flex; justify-content: center; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                <span>Auteur du site : Irra Isaac Tialougbeu</span>
-                <img src="https://cdn-icons-png.flaticon.com/512/1250/1250681.png" alt="Icône auteur" style="width: 20px; height: 20px;">
+            <p style="text-align: center; margin: 0; padding: 1rem 0 0.35rem;">&copy; 2026 Beauty Manager — démonstration full-stack</p>
+            <p style="text-align: center; margin: 0; padding-bottom: 1.25rem; font-size: 0.875rem; color: #5f5c57;">
+                Conception & développement : Irra Isaac Tialougbeu
             </p>
         </div>
     </footer>
