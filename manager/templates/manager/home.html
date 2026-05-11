@@ -457,6 +457,19 @@
             font-weight: 600;
         }
 
+        #apropos {
+            scroll-margin-top: calc(var(--header-h) + 0.75rem);
+        }
+
+        .about-prose {
+            box-shadow: var(--shadow-hero-frame);
+            transition: box-shadow 0.35s ease;
+        }
+
+        .about-prose:hover {
+            box-shadow: var(--shadow-hero-frame-hover);
+        }
+
         /* ----- Responsive ----- */
         @media (max-width: 900px) {
             .nav-main { display: none; }
@@ -514,6 +527,7 @@
         <div class="wrap header-inner">
             <nav class="nav-main" aria-label="Navigation principale">
                 <a href="{% url 'home' %}">Accueil</a>
+                <a href="#apropos">À propos</a>
                 <a href="{% url 'login' %}">Connexion</a>
                 <a href="{% url 'register_coiffeuse' %}">Pro</a>
             </nav>
@@ -675,6 +689,32 @@
                 </div>
             </div>
         </section>
+
+        <section class="home-section" id="apropos" aria-labelledby="about-title">
+            <div class="wrap">
+                <header class="home-section-head">
+                    <p class="home-section-kicker">Projet</p>
+                    <h2 id="about-title" class="home-section-title">À propos</h2>
+                    <p class="home-section-lead">
+                        Beauty Manager est une application de démonstration conçue pour illustrer une chaîne complète : modèle métier, interface utilisateur et déploiement.
+                    </p>
+                </header>
+                <div class="why-prose about-prose">
+                    <p>
+                        <strong>Origine du projet.</strong> Beauty Manager a été développé par <strong>Irra Isaac Tialougbeu</strong> comme vitrine de compétences en développement web full-stack : conception d’une application métier (gestion de salon), implémentation back-end, parcours utilisateurs multiples et mise en ligne d’une version consultable par des recruteurs ou des clients techniques.
+                    </p>
+                    <p>
+                        <strong>Stack &amp; architecture.</strong> Le cœur applicatif repose sur <strong>Django</strong> (Python), avec des modèles de données pour les utilisateurs, les rôles, les services et les réservations ; les vues sont rendues via des templates HTML côté serveur, avec des feuilles de style dédiées pour un rendu sobre et professionnel. En production, le projet peut s’appuyer sur une base <strong>PostgreSQL</strong> (par exemple via Railway) et sur <strong>Gunicorn</strong> pour servir l’application, avec fichiers statiques et médias gérés selon les bonnes pratiques Django.
+                    </p>
+                    <p>
+                        <strong>Ce que cette démo n’est pas.</strong> Il ne s’agit pas d’un produit SaaS commercial prêt à la vente : certains flux (paiement, e-mails) sont volontairement simplifiés ou simulés pour l’exercice. En revanche, la structure du code, la séparation des rôles et les écrans principaux reflètent une réflexion produit réaliste, transposable à un projet client avec des itérations supplémentaires.
+                    </p>
+                    <p>
+                        <strong>Contact &amp; code source.</strong> Le dépôt public et l’historique des commits sont disponibles sur GitHub sous le compte <strong>irraisaac16-code</strong>. Pour toute question sur le projet ou sur une collaboration, l’auteur peut être contacté via les canaux indiqués sur son profil GitHub.
+                    </p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
@@ -682,6 +722,8 @@
             &copy; 2026 Beauty Manager — vitrine développeur full-stack
         </p>
         <p style="margin:0;">
+            <a href="#apropos">À propos</a>
+            ·
             <a href="{% url 'login' %}">Connexion</a>
             ·
             <a href="{% url 'register_client' %}">Inscription cliente</a>
