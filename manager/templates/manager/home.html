@@ -76,9 +76,20 @@
         .header-inner {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: space-between;
             gap: 1rem;
             width: 100%;
+        }
+
+        .site-header .header-brand {
+            flex-shrink: 0;
+            transform: translateY(0.28rem);
+        }
+
+        .site-header .header-brand:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 6px;
         }
 
         .btn-pill {
@@ -551,6 +562,9 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
+            <a href="{% url 'home' %}" class="navbar-brand brand-wordmark-nav header-brand" aria-label="Beauty Manager — Accueil">
+                <span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>
+            </a>
             <div class="header-actions">
                 <a href="{% url 'register_coiffeuse' %}" class="btn-pill btn-pill--ghost">
                     <i class="fas fa-spa" aria-hidden="true"></i>
