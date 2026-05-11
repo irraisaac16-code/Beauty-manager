@@ -44,7 +44,7 @@
         }
 
         .wrap {
-            width: min(1140px, 92%);
+            width: min(1320px, 94%);
             margin: 0 auto;
         }
 
@@ -136,8 +136,8 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr minmax(0, 1.28fr);
-            gap: clamp(2rem, 5vw, 4rem);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr);
+            gap: clamp(2rem, 5vw, 4.5rem);
             align-items: center;
         }
 
@@ -217,11 +217,11 @@
 
         .hero-img-frame {
             position: relative;
-            width: min(100%, 620px);
+            width: min(100%, 780px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.65rem;
+            padding: 0.75rem;
             border-radius: 1.75rem;
             background: linear-gradient(180deg, #fafaf8 0%, #ebe8e4 100%);
             box-shadow:
@@ -240,7 +240,7 @@
             max-width: 100%;
             width: auto;
             height: auto;
-            max-height: min(78vh, 720px);
+            max-height: min(88vh, 920px);
             object-fit: contain;
             object-position: center;
             border-radius: 1rem;
@@ -299,12 +299,12 @@
             }
             .hero-visual { order: -1; }
             .hero-img-frame {
-                width: min(100%, 92vw);
-                max-width: 520px;
+                width: min(100%, 94vw);
+                max-width: 680px;
                 transform: rotate(-1.5deg);
             }
             .hero-img-frame img {
-                max-height: min(62vh, 560px);
+                max-height: min(72vh, 720px);
             }
             .float-card {
                 right: 50%;
@@ -379,8 +379,8 @@
                         <img
                             src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}"
                             alt="Ambiance salon de beauté"
-                            width="620"
-                            height="620"
+                            width="780"
+                            height="780"
                             loading="eager"
                             decoding="async"
                         >
