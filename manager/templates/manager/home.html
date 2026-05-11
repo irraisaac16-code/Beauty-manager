@@ -217,7 +217,7 @@
 
         .hero-img-frame {
             position: relative;
-            width: min(100%, 775px);
+            width: min(100%, 700px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -225,14 +225,23 @@
             border-radius: 1.75rem;
             background: linear-gradient(180deg, #fafaf8 0%, #ebe8e4 100%);
             box-shadow:
-                0 16px 36px rgba(0, 0, 0, 0.09),
-                0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+                0 2px 4px rgba(22, 21, 20, 0.04),
+                0 8px 20px rgba(22, 21, 20, 0.08),
+                0 20px 44px -8px rgba(45, 106, 102, 0.14),
+                0 28px 56px -16px rgba(22, 21, 20, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.75) inset;
             transform: rotate(-2deg);
-            transition: transform 0.35s ease;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
 
         .hero-img-frame:hover {
             transform: rotate(-1deg);
+            box-shadow:
+                0 4px 8px rgba(22, 21, 20, 0.06),
+                0 12px 28px rgba(22, 21, 20, 0.1),
+                0 24px 52px -6px rgba(45, 106, 102, 0.18),
+                0 32px 64px -14px rgba(22, 21, 20, 0.12),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset;
         }
 
         .hero-img-frame img {
@@ -300,7 +309,7 @@
             .hero-visual { order: -1; }
             .hero-img-frame {
                 width: min(100%, 94vw);
-                max-width: 675px;
+                max-width: 620px;
                 transform: rotate(-1.5deg);
             }
             .hero-img-frame img {
@@ -379,8 +388,8 @@
                         <img
                             src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}"
                             alt="Ambiance salon de beauté"
-                            width="775"
-                            height="775"
+                            width="700"
+                            height="700"
                             loading="eager"
                             decoding="async"
                         >
