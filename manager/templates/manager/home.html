@@ -6,330 +6,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <title>Beauty Manager - Plateforme SaaS</title>
+    <title>Beauty Manager</title>
     <link rel="icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="shortcut icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --lavender-top: #E0C3FC;
-            --lavender-soft: #F8F7FF;
-            --cream-mid: #FFF9E5;
-            --gold-bottom: #FCEBB6;
-            --card: rgba(255, 255, 255, 0.78);
-            --text: #1e293b;
-            --muted: #64748b;
-            --violet: #7c3aed;
-            --amber: #d97706;
-            --esth-accent: #d97706;
-            --line: rgba(124, 58, 237, 0.14);
+            --bg: #f6f5f3;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --muted: #5c5c5c;
+            --accent: #d4657a;
+            --accent-hover: #c2556a;
+            --accent-soft: rgba(212, 101, 122, 0.12);
+            --header-h: 4.25rem;
+            --radius-pill: 999px;
+            --radius-card: 1.5rem;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-cta: 0 12px 28px rgba(212, 101, 122, 0.28);
         }
+
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            /* Lavande (haut) → blanc/lavande pâle → crème → doré doux (bas), comme vos références */
-            background:
-                radial-gradient(100% 80% at 0% 0%, rgba(224, 195, 252, 0.55) 0%, transparent 55%),
-                radial-gradient(90% 70% at 100% 100%, rgba(252, 235, 182, 0.65) 0%, transparent 50%),
-                linear-gradient(
-                    to bottom,
-                    var(--lavender-top) 0%,
-                    var(--lavender-soft) 22%,
-                    #ffffff 48%,
-                    var(--cream-mid) 76%,
-                    var(--gold-bottom) 100%
-                );
+            font-family: "DM Sans", system-ui, sans-serif;
+            background: var(--bg);
             color: var(--text);
             line-height: 1.5;
-            position: relative;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            pointer-events: none;
-            z-index: -1;
-            filter: blur(1px);
+
+        .wrap {
+            width: min(1140px, 92%);
+            margin: 0 auto;
         }
-        body::before {
-            width: 480px;
-            height: 480px;
-            left: -140px;
-            bottom: -100px;
-            background: radial-gradient(circle, rgba(252, 235, 182, 0.45) 0%, rgba(255, 249, 229, 0.2) 45%, rgba(255, 255, 255, 0) 72%);
-        }
-        body::after {
-            width: 460px;
-            height: 460px;
-            right: -130px;
-            top: -90px;
-            background: radial-gradient(circle, rgba(224, 195, 252, 0.42) 0%, rgba(248, 247, 255, 0.22) 45%, rgba(255, 255, 255, 0) 72%);
-        }
-        .wrap { width: min(1120px, 92%); margin: 0 auto; }
-        .hero-brand {
-            margin: 0 0 1.35rem;
+
+        /* ----- Header ----- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            height: var(--header-h);
             display: flex;
-            justify-content: center;
+            align-items: center;
+            background: rgba(246, 245, 243, 0.82);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .hero-brand-image {
-            display: block;
-            height: clamp(56px, 8vw, 92px);
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo img {
+            height: clamp(1.75rem, 3.5vw, 2.1rem);
             width: auto;
-            max-width: min(520px, 100%);
+            max-width: 200px;
             object-fit: contain;
         }
-        .btn {
-            display: inline-block; text-decoration: none; border-radius: 12px;
-            padding: 0.8rem 1.1rem; font-weight: 700; transition: .2s ease;
-        }
-        .btn-main { background: linear-gradient(135deg, var(--violet), #6d28d9); color: #fff; }
-        .btn-main:hover { transform: translateY(-1px); }
-        .btn-alt { border: 1px solid var(--line); color: var(--text); background: rgba(255, 255, 255, 0.55); }
-        .btn-alt:hover { background: rgba(255, 255, 255, 0.85); }
-        .btn-esth {
-            background: linear-gradient(135deg, var(--esth-accent), #f59e0b);
-            color: #fff;
-            border: 1px solid rgba(180, 83, 9, 0.25);
-            box-shadow: 0 6px 14px rgba(217, 119, 6, 0.22);
-        }
-        .btn-esth:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 18px rgba(217, 119, 6, 0.28);
-        }
-        .hero {
-            padding: 3rem 0 3.2rem;
-            display: grid;
-            grid-template-columns: 1.22fr 1.05fr;
-            gap: 1.5rem;
-            align-items: stretch;
-        }
-        h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: 0 0 .9rem; line-height: 1.1; }
-        .hero p { color: var(--muted); max-width: 640px; font-size: 1.03rem; }
-        .cta {
-            margin-top: 1.3rem;
+
+        .nav-main {
             display: flex;
-            gap: .65rem;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: clamp(1rem, 3vw, 2rem);
+        }
+
+        .nav-main a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-main a:hover { color: var(--text); }
+
+        .btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.15rem;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .btn-pill--accent {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: var(--shadow-cta);
+        }
+
+        .btn-pill--accent:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 32px rgba(212, 101, 122, 0.35);
+        }
+
+        .btn-pill--ghost {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-pill--ghost:hover {
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* ----- Hero ----- */
+        .hero-landing {
+            padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 8vw, 5rem);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
         }
-        .panel {
-            border: 1px solid rgba(224, 195, 252, 0.45);
-            border-radius: 20px;
-            background: linear-gradient(155deg, rgba(224, 195, 252, 0.42), rgba(252, 235, 182, 0.38));
-            padding: 1rem;
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
+
+        .badge-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius-pill);
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
         }
-        /* Bloc image hero : coins arrondis, hauteur = colonne texte */
-        .hero .panel.panel-image {
-            border-radius: 18px;
-            padding: 0;
-            margin: 0;
-            background: transparent;
-            box-shadow: none;
-            border: 1px solid rgba(124, 58, 237, 0.18);
+
+        .hero-title {
+            font-size: clamp(2.35rem, 4.8vw, 3.35rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin: 0 0 1rem;
+        }
+
+        .hero-title .accent {
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .hero-lead {
+            margin: 0 0 1.75rem;
+            color: var(--muted);
+            font-size: clamp(1rem, 1.35vw, 1.08rem);
+            max-width: 26rem;
+            line-height: 1.65;
+        }
+
+        .btn-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.95rem 1.65rem;
+            border-radius: var(--radius-pill);
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-cta);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        .btn-hero:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 36px rgba(212, 101, 122, 0.35);
+        }
+
+        .btn-hero i { font-size: 0.85em; opacity: 0.95; }
+
+        .stats-row {
             display: flex;
-            flex-direction: column;
-            min-height: 0;
-            align-self: stretch;
-            overflow: hidden;
+            flex-wrap: wrap;
+            gap: clamp(1.5rem, 4vw, 2.75rem);
+            margin-top: 2.25rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
-        .hero-image-wrap {
-            width: 100%;
-            flex: 1 1 auto;
-            min-height: 12rem;
-            border-radius: 18px;
-            overflow: hidden;
-            background: #eceff5;
-            border: none;
+
+        .stat-item strong {
+            display: block;
+            font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
-        .hero-image {
+
+        .stat-item span {
+            font-size: 0.82rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* ----- Visual ----- */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-img-frame {
+            position: relative;
+            width: min(100%, 440px);
+            aspect-ratio: 4 / 5;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow:
+                0 24px 48px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+            transform: rotate(-3deg);
+            transition: transform 0.35s ease;
+        }
+
+        .hero-img-frame:hover {
+            transform: rotate(-2deg) scale(1.01);
+        }
+
+        .hero-img-frame img {
             width: 100%;
             height: 100%;
-            min-height: 100%;
-            display: block;
             object-fit: cover;
-            object-position: center 24%;
-            border-radius: 18px;
-            transform: none;
-            transform-origin: center;
+            object-position: center 28%;
+            display: block;
         }
-        .kpis { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-        .kpi {
-            background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: .8rem;
+
+        .float-card {
+            position: absolute;
+            top: 1rem;
+            right: 0.5rem;
+            transform: rotate(3deg) translateX(8%);
+            background: var(--surface);
+            padding: 0.65rem 0.9rem;
+            border-radius: 14px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            max-width: 11rem;
+            line-height: 1.25;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .kpi h3 { margin: .15rem 0; font-size: 1.4rem; }
-        .kpi p { margin: 0; color: var(--muted); font-size: .88rem; }
-        section { padding: 1.4rem 0; }
-        h2 { font-size: 1.8rem; margin-bottom: .8rem; }
-        .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: .9rem; }
-        .card {
-            background: var(--card); border: 1px solid var(--line);
-            border-radius: 16px; padding: 1rem;
+
+        .float-card i {
+            color: #eab308;
+            font-size: 1rem;
         }
-        .card i { color: #7c3aed; font-size: 1.25rem; }
-        .card h3 { margin: .55rem 0 .35rem; font-size: 1.07rem; }
-        .card p { margin: 0; color: var(--muted); font-size: .92rem; }
-        .stats {
-            display: grid; grid-template-columns: repeat(4,1fr); gap: .8rem; margin-top: .6rem;
-        }
-        .stat {
-            text-align: center; border: 1px solid var(--line); border-radius: 14px; padding: .95rem;
-            background: rgba(255, 255, 255, 0.65);
-        }
-        .stat strong { display:block; font-size:1.4rem; color:#b45309; }
-        .final-cta {
-            margin: 2.2rem 0 2.5rem; padding: 1.4rem; border-radius: 20px;
-            border: 1px solid rgba(224, 195, 252, 0.5);
-            background: linear-gradient(130deg, rgba(224, 195, 252, 0.45), rgba(252, 235, 182, 0.55));
+
+        /* ----- Footer ----- */
+        .site-footer {
             text-align: center;
-            box-shadow: 0 14px 44px rgba(217, 119, 6, 0.09);
+            padding: 1.5rem 1rem 2.25rem;
+            color: var(--muted);
+            font-size: 0.82rem;
         }
-        .final-cta p { color: var(--muted); margin: .5rem 0 1.1rem; }
-        footer {
-            text-align: center; color: var(--muted); padding: 1rem 0 2rem; font-size: .88rem;
+
+        .site-footer a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
         }
-        @media (min-width: 901px) {
-            .hero .panel.panel-image {
-                justify-self: stretch;
-                width: 100%;
-                max-width: none;
-                min-height: 0;
-            }
-            .hero .hero-image-wrap {
-                min-height: 0;
-                flex: 1 1 0;
-            }
-            /* Une seule ligne : grille 3 colonnes (plus fiable que flex-wrap) */
-            .hero .cta {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: 0.45rem;
-                align-items: stretch;
-            }
-            .hero .cta .btn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 0.62rem 0.45rem;
-                font-size: clamp(0.78rem, 1.05vw, 0.9rem);
-                line-height: 1.2;
-                min-width: 0;
-            }
-        }
+
+        .site-footer a:hover { color: var(--accent); }
+
+        /* ----- Responsive ----- */
         @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; }
-            .grid3 { grid-template-columns: 1fr 1fr; }
-            .stats { grid-template-columns: 1fr 1fr; }
-            .hero .panel.panel-image {
-                min-height: 14rem;
-                max-height: 52vh;
+            .nav-main { display: none; }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            .hero .hero-image-wrap {
-                flex: 1 1 auto;
-                min-height: 12rem;
-                aspect-ratio: 16 / 10;
+            .hero-lead { margin-left: auto; margin-right: auto; }
+            .stats-row {
+                justify-content: center;
             }
-            .hero-image { object-position: center 22%; }
+            .hero-visual { order: -1; }
+            .hero-img-frame {
+                width: min(100%, 360px);
+                aspect-ratio: 1;
+                transform: rotate(-2deg);
+            }
+            .float-card {
+                right: 50%;
+                transform: translateX(50%) rotate(2deg);
+                top: 0.75rem;
+            }
         }
+
         @media (max-width: 480px) {
-            .hero { padding: 2rem 0 2.2rem; gap: 1.1rem; }
-            .hero-brand { margin-bottom: 1.1rem; }
-            h1 { font-size: 1.85rem; }
-            .hero p { font-size: 0.98rem; }
-            .cta { flex-direction: column; align-items: stretch; }
-            .cta .btn { width: 100%; text-align: center; }
-        }
-        @media (max-width: 640px) {
-            .grid3 { grid-template-columns: 1fr; }
-            .stats { grid-template-columns: 1fr; }
+            .header-actions .btn-pill--ghost { display: none; }
+            .stats-row {
+                gap: 1.25rem;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 20rem;
+                margin-left: auto;
+                margin-right: auto;
+            }
         }
     </style>
 </head>
 <body>
-    <main class="wrap">
-        <section class="hero">
-            <div>
-                <div class="hero-brand" aria-label="Beauty Manager">
-                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager" class="hero-brand-image">
-                </div>
-                <h1>Gérez votre salon de beauté comme une entreprise moderne.</h1>
-                <p>
-                    Réservations, paiements, notifications et suivi d'activité dans une seule plateforme.
-                    Conçue pour les salons en Côte d'Ivoire avec une expérience simple, rapide et premium.
-                </p>
-                <div class="cta">
-                    <a href="{% url 'register_client' %}" class="btn btn-main">Inscription client</a>
-                    <a href="{% url 'login' %}" class="btn btn-esth">Se connecter</a>
-                    <a href="{% url 'register_coiffeuse' %}" class="btn btn-main">Inscription Esthéticienne</a>
-                </div>
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a href="{% url 'home' %}" class="logo" aria-label="Beauty Manager — accueil">
+                <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager" width="200" height="40">
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <a href="{% url 'home' %}">Accueil</a>
+                <a href="{% url 'login' %}">Connexion</a>
+                <a href="{% url 'register_coiffeuse' %}">Pro</a>
+            </nav>
+            <div class="header-actions">
+                <a href="{% url 'login' %}" class="btn-pill btn-pill--ghost">Se connecter</a>
+                <a href="{% url 'register_client' %}" class="btn-pill btn-pill--accent">
+                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
+                    Réserver
+                </a>
             </div>
-            <div class="panel panel-image">
-                <div class="hero-image-wrap">
-                    <img src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}" alt="Coiffeuse et cliente dans un salon" class="hero-image">
-                </div>
-            </div>
-        </section>
+        </div>
+    </header>
 
-        <section>
-            <h2>Fonctionnalités clés</h2>
-            <div class="grid3">
-                <article class="card">
-                    <i class="fas fa-calendar-check"></i>
-                    <h3>Réservation en ligne</h3>
-                    <p>Planifiez les rendez-vous en quelques clics avec un calendrier intuitif.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Paiement mobile</h3>
-                    <p>Paiements simples et sécurisés pour une expérience client fluide.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Gestion des rôles</h3>
-                    <p>Accès adaptés pour admin, esthéticiennes et clients.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-bell"></i>
-                    <h3>Notifications</h3>
-                    <p>Rappels automatiques pour réduire les absences et mieux organiser le planning.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Tableaux de bord</h3>
-                    <p>Suivez vos performances et prenez des décisions basées sur vos chiffres.</p>
-                </article>
-                <article class="card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Sécurité & fiabilité</h3>
-                    <p>Données protégées et contrôle d'accès strict pour votre activité.</p>
-                </article>
+    <main>
+        <section class="hero-landing">
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <div class="badge-top">
+                        <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        Nouveaux créneaux ouverts
+                    </div>
+                    <h1 class="hero-title">
+                        L’institut moderne,<br>
+                        <span class="accent">sans la complexité</span>
+                    </h1>
+                    <p class="hero-lead">
+                        Réservez votre soin en quelques clics. Une expérience claire pour vos clientes et votre équipe.
+                    </p>
+                    <a href="{% url 'register_client' %}" class="btn-hero">
+                        Prendre rendez-vous
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <div class="stats-row" aria-label="Indicateurs">
+                        <div class="stat-item">
+                            <strong>2&nbsp;000+</strong>
+                            <span>Clientes</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>5,0</strong>
+                            <span>Note moyenne</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>15+</strong>
+                            <span>Spécialistes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-img-frame">
+                        <img
+                            src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}"
+                            alt="Ambiance salon de beauté"
+                            width="440"
+                            height="550"
+                            loading="eager"
+                            decoding="async"
+                        >
+                        <div class="float-card">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                            <span>Certifié pro — meilleure expérience</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-
-        <section>
-            <h2>Pourquoi choisir Beauty Manager ?</h2>
-            <div class="stats">
-                <div class="stat"><strong>500+</strong><span>Clients satisfaits</span></div>
-                <div class="stat"><strong>50+</strong><span>Esthéticiennes partenaires</span></div>
-                <div class="stat"><strong>1000+</strong><span>Réservations traitées</span></div>
-                <div class="stat"><strong>98%</strong><span>Taux de recommandation</span></div>
-            </div>
-        </section>
-
-        <section class="final-cta">
-            <h2>Prêt(e) à accélérer votre salon ?</h2>
-            <p>Lancez votre espace Beauty Manager et centralisez toute votre gestion au même endroit.</p>
-            <a href="{% url 'register_client' %}" class="btn btn-main">Commencer maintenant</a>
         </section>
     </main>
 
-    <footer>
-        &copy; 2025 Beauty Manager - Salon de Beauté en Côte d'Ivoire<br>
-        Auteur du site : Irra Isaac Tialougbeu
+    <footer class="site-footer">
+        <p style="margin:0 0 0.35rem;">
+            &copy; 2026 Beauty Manager · Côte d’Ivoire
+        </p>
+        <p style="margin:0;">
+            <a href="{% url 'login' %}">Connexion</a>
+            ·
+            <a href="{% url 'register_client' %}">Inscription cliente</a>
+        </p>
     </footer>
 </body>
 </html>
