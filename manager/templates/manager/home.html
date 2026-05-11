@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'manager/design-system.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'manager/design-system.css' %}?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -81,12 +81,42 @@
             width: 100%;
         }
 
-        .site-header .header-brand {
+        /* Wordmark accueil — styles locaux (visibilité garantie sans dépendre de .navbar) */
+        .site-header .home-header-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2em;
             flex-shrink: 0;
+            position: relative;
+            z-index: 2;
             transform: translateY(0.28rem);
+            text-decoration: none;
+            font-size: clamp(1.08rem, 2.4vw, 1.28rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--text);
         }
 
-        .site-header .header-brand:focus-visible {
+        .site-header .home-header-brand .brand-wordmark__beauty {
+            color: var(--accent);
+        }
+
+        .site-header .home-header-brand .brand-wordmark__manager {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .site-header .home-header-brand:hover {
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .site-header .home-header-brand:hover .brand-wordmark__beauty {
+            color: var(--accent-hover);
+        }
+
+        .site-header .home-header-brand:focus-visible {
             outline: 3px solid var(--accent);
             outline-offset: 4px;
             border-radius: 6px;
@@ -177,6 +207,8 @@
             gap: clamp(0.65rem, 1.5vw, 1rem);
             margin-inline-end: clamp(0.75rem, 2vw, 1.35rem);
             transform: translateY(0.28rem);
+            position: relative;
+            z-index: 1;
         }
 
         /* ----- Hero ----- */
@@ -562,7 +594,7 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
-            <a href="{% url 'home' %}" class="navbar-brand brand-wordmark-nav header-brand" aria-label="Beauty Manager — Accueil">
+            <a href="{% url 'home' %}" class="home-header-brand" aria-label="Beauty Manager — Accueil">
                 <span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>
             </a>
             <div class="header-actions">
