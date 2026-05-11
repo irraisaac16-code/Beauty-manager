@@ -136,7 +136,7 @@
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1.12fr;
+            grid-template-columns: 1fr minmax(0, 1.28fr);
             gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
         }
@@ -217,27 +217,33 @@
 
         .hero-img-frame {
             position: relative;
-            width: min(100%, 440px);
-            aspect-ratio: 3 / 4;
+            width: min(100%, 620px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem;
             border-radius: 1.75rem;
-            overflow: hidden;
+            background: linear-gradient(180deg, #fafaf8 0%, #ebe8e4 100%);
             box-shadow:
                 0 16px 36px rgba(0, 0, 0, 0.09),
-                0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-            transform: rotate(-3deg);
+                0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+            transform: rotate(-2deg);
             transition: transform 0.35s ease;
         }
 
         .hero-img-frame:hover {
-            transform: rotate(-2deg) scale(1.01);
+            transform: rotate(-1deg);
         }
 
         .hero-img-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 28%;
             display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: min(78vh, 720px);
+            object-fit: contain;
+            object-position: center;
+            border-radius: 1rem;
         }
 
         .float-card {
@@ -293,9 +299,12 @@
             }
             .hero-visual { order: -1; }
             .hero-img-frame {
-                width: min(100%, 340px);
-                aspect-ratio: 1;
-                transform: rotate(-2deg);
+                width: min(100%, 92vw);
+                max-width: 520px;
+                transform: rotate(-1.5deg);
+            }
+            .hero-img-frame img {
+                max-height: min(62vh, 560px);
             }
             .float-card {
                 right: 50%;
@@ -370,8 +379,8 @@
                         <img
                             src="{% static 'manager/home-hero.png' %}?v={{ hero_cache_buster }}"
                             alt="Ambiance salon de beauté"
-                            width="440"
-                            height="587"
+                            width="620"
+                            height="620"
                             loading="eager"
                             decoding="async"
                         >
