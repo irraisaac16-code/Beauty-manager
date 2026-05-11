@@ -112,16 +112,50 @@
             transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
         }
 
-        .btn-pill--accent {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: var(--shadow-cta);
+        /* Inscription client(e) — style néo-brutaliste (beige + ombre verte dure) */
+        .header-actions .btn-pill--accent {
+            --neo-shift: 5px;
+            background: #ebe8e4;
+            color: var(--text);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            box-shadow: var(--neo-shift) var(--neo-shift) 0 0 var(--accent);
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease,
+                background 0.18s ease,
+                color 0.18s ease;
         }
 
-        .btn-pill--accent:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 12px 28px rgba(45, 106, 102, 0.28);
+        .header-actions .btn-pill--accent:hover {
+            background: #e3dfd9;
+            color: var(--text);
+            transform: translate(var(--neo-shift), var(--neo-shift));
+            box-shadow: 0 0 0 0 transparent;
+        }
+
+        .header-actions .btn-pill--accent:active {
+            background: #dcd8d1;
+            transform: translate(var(--neo-shift), var(--neo-shift));
+            box-shadow: 0 0 0 0 transparent;
+        }
+
+        .header-actions .btn-pill--accent:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .header-actions .btn-pill--accent {
+                transform: none;
+            }
+
+            .header-actions .btn-pill--accent:hover,
+            .header-actions .btn-pill--accent:active {
+                transform: none;
+                box-shadow: 0 0 0 0 transparent;
+                background: #e3dfd9;
+            }
         }
 
         .btn-pill--ghost {
