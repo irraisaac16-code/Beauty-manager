@@ -604,6 +604,36 @@
             transition: box-shadow 0.35s ease;
         }
 
+        .about-profile {
+            display: flex;
+            align-items: flex-start;
+            gap: clamp(1rem, 3vw, 1.65rem);
+            margin-bottom: 1.35rem;
+        }
+
+        .about-intro-text {
+            flex: 1;
+            min-width: 0;
+            padding-top: 0.15rem;
+        }
+
+        .about-name {
+            margin: 0 0 0.35rem;
+            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .about-role {
+            margin: 0;
+            font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.35;
+        }
+
         .about-avatar {
             width: clamp(72px, 9.5vw, 96px);
             aspect-ratio: 1 / 1;
@@ -612,7 +642,8 @@
             object-position: center top;
             border-radius: 12px;
             display: block;
-            margin: 0.65rem auto 1.25rem;
+            margin: 0;
+            flex-shrink: 0;
             border: 2px solid rgba(45, 106, 102, 0.28);
             box-shadow:
                 0 4px 14px rgba(22, 21, 20, 0.14),
@@ -659,6 +690,16 @@
 
             .home-section-head {
                 margin-bottom: 1.75rem;
+            }
+
+            .about-profile {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .about-intro-text {
+                padding-top: 0;
             }
         }
     </style>
@@ -802,7 +843,13 @@
                     </p>
                 </header>
                 <div class="why-prose about-prose">
-                    <img src="{% static 'manager/isaac-profile.png' %}" alt="Photo de Irra Isaac Tialougbeu" class="about-avatar">
+                    <div class="about-profile">
+                        <img src="{% static 'manager/isaac-profile.png' %}" alt="Photo de Irra Isaac Tialougbeu" class="about-avatar">
+                        <div class="about-intro-text">
+                            <p class="about-name">Irra Isaac Tialougbeu</p>
+                            <p class="about-role">Développeur web full-stack</p>
+                        </div>
+                    </div>
                     <p>
                         J’ai développé Beauty Manager pour démontrer mes compétences en développement web full-stack à travers la création d’une application moderne de gestion de salon de beauté. Cette version sert de démonstration technique : certains modules, comme les paiements et les notifications, sont volontairement simplifiés ou simulés. Malgré cela, le projet présente une architecture SaaS réaliste, avec une gestion des rôles et des fonctionnalités pensées pour évoluer vers un produit complet.
                     </p>
