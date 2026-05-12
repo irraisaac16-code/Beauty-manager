@@ -612,13 +612,14 @@
         }
 
         .about-prose > .about-author-heading {
-            margin: 0 0 1rem;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-            line-height: 1.3;
+            margin: 0 auto 1.1rem;
+            max-width: 100%;
+            text-align: center;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            line-height: 1.2;
         }
 
         .about-intro-text {
@@ -857,7 +858,7 @@
                     </p>
                 </header>
                 <div class="why-prose about-prose">
-                    <p class="about-author-heading">À propos de l'auteur</p>
+                    <h2 class="about-author-heading">À propos de l'auteur</h2>
                     <div class="about-profile">
                         <img src="{% static 'manager/isaac-profile.png' %}" alt="Photo de Irra Isaac Tialougbeu" class="about-avatar">
                         <div class="about-intro-text">
