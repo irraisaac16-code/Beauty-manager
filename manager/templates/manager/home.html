@@ -625,7 +625,7 @@
         .about-intro-text {
             flex: 1;
             min-width: 0;
-            padding-top: 0.15rem;
+            padding-top: clamp(0.45rem, 1.2vw, 0.7rem);
         }
 
         .about-intro-text p {
@@ -736,7 +736,7 @@
             }
 
             .about-intro-text {
-                padding-top: 0;
+                padding-top: 0.35rem;
             }
         }
     </style>
@@ -901,17 +901,8 @@
     </main>
 
     <footer class="site-footer">
-        <p style="margin:0 0 0.35rem;">
-            2026 Beauty Manager - © Tous droits réservés.
-        </p>
         <p style="margin:0;">
-            <a href="#apropos">À propos</a>
-            ·
-            <a href="{% url 'login' %}">Connexion</a>
-            ·
-            <a href="{% url 'register_client' %}">Inscription cliente</a>
-            ·
-            <span style="color:var(--muted);">Irra Isaac Tialougbeu</span>
+            2026 Beauty Manager - © Tous droits réservés.
         </p>
     </footer>
     <script>
