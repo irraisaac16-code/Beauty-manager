@@ -1518,7 +1518,7 @@ main.theme-reg .btn-primary:hover {
     border-radius: 6px;
 }
 
-/* CTA formulaire inscription = palette hero « Prendre rendez-vous » */
+/* CTA formulaire inscription = palette hero accueil (teal + ombre) */
 .reg-page .reg-actions .reg-submit-cta {
     background: #2d6a66 !important;
     border-color: #2d6a66 !important;
