@@ -203,7 +203,7 @@ def register_coiffeuse(request):
                 user_profile.profile_image = request.FILES['profile_image']
                 user_profile.save()
             
-            messages.success(request, 'Inscription esthéticienne soumise ! Votre compte sera activé après validation par l\'administrateur.')
+            messages.success(request, 'Candidature soumise ! Votre compte sera activé après validation par l\'administrateur.')
             return redirect('login')
     else:
         form = SecureUserRegistrationForm()
