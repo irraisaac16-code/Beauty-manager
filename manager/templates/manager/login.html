@@ -1,5 +1,4 @@
 {% extends 'manager/base.html' %}
-{% load static %}
 
 {% block navbar %}{% endblock %}
 
@@ -11,16 +10,14 @@
         <section class="reg-hero">
             <div class="reg-intro">
                 <div class="reg-brand" aria-label="Beauty Manager">
-                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
+                    <a href="{% url 'home' %}" class="reg-home-wordmark">
+                        <span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>
+                    </a>
                 </div>
                 <p>
                     Espace sécurisé : suivez vos rendez-vous, vos paiements et vos messages en un seul endroit.
                 </p>
-                <ul class="login-value-points">
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Planning et statuts en temps réel</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Parcours distincts admin, pro et cliente</li>
-                    <li><i class="fas fa-check-circle" aria-hidden="true"></i> Interface pensée pour le terrain</li>
-                </ul>
+
                 <div class="reg-intro-cta">
                     <a href="{% url 'home' %}" class="reg-btn reg-btn-alt">
                         <i class="fas fa-arrow-left"></i> Retour à l'accueil
@@ -67,7 +64,7 @@
                         </div>
 
                         <div class="reg-actions">
-                            <button type="submit" class="btn btn-primary btn-lg reg-submit">
+                            <button type="submit" class="btn btn-primary btn-lg reg-submit reg-submit-cta">
                                 <i class="fas fa-sign-in-alt"></i> Se connecter
                             </button>
                         </div>
@@ -79,10 +76,10 @@
 
                     <div class="register-options">
                         <a href="{% url 'register_client' %}" class="reg-btn reg-btn-outline reg-btn-wide">
-                            <i class="fas fa-user-plus"></i> Créer un compte client
+                            <i class="fas fa-user-plus"></i> Je suis un(e) client(e)
                         </a>
                         <a href="{% url 'register_coiffeuse' %}" class="reg-btn reg-btn-esth reg-btn-wide">
-                            <i class="fas fa-cut"></i> Je suis une esthéticienne
+                            <i class="fas fa-cut"></i> Inscription esthéticienne
                         </a>
                     </div>
                 </div>
