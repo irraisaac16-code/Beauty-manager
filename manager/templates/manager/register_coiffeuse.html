@@ -5,6 +5,21 @@
 
 {% block title %}Inscription Esthéticienne - Beauty Manager{% endblock %}
 
+{% block extra_css %}
+<style>
+    .reg-page .reg-actions .reg-submit-candidature {
+        background: #16a34a !important;
+        border-color: #15803d !important;
+        color: #fff !important;
+    }
+    .reg-page .reg-actions .reg-submit-candidature:hover {
+        background: #15803d !important;
+        border-color: #166534 !important;
+        color: #fff !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="reg-page">
     <div class="reg-wrap">
@@ -36,32 +51,6 @@
                         <i class="fas fa-arrow-left"></i> Retour à l'accueil
                     </a>
                 </div>
-
-                <section class="reg-benefits">
-                    <h2 class="reg-benefits-heading">Pourquoi rejoindre Beauty Manager ?</h2>
-                    <div class="reg-grid2x2">
-                        <article class="reg-card">
-                            <i class="fas fa-calendar-alt"></i>
-                            <h3>Gestion simplifiée</h3>
-                            <p>Gérez vos rendez-vous et votre planning facilement</p>
-                        </article>
-                        <article class="reg-card">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Suivi des performances</h3>
-                            <p>Consultez vos statistiques et revenus</p>
-                        </article>
-                        <article class="reg-card">
-                            <i class="fas fa-bell"></i>
-                            <h3>Notifications</h3>
-                            <p>Soyez informée des nouveaux rendez-vous</p>
-                        </article>
-                        <article class="reg-card">
-                            <i class="fas fa-star"></i>
-                            <h3>Réputation</h3>
-                            <p>Développez votre réputation en ligne</p>
-                        </article>
-                    </div>
-                </section>
             </div>
 
             <div class="reg-panel">
@@ -171,7 +160,7 @@
                         </div>
 
                         <div class="reg-actions">
-                            <button type="submit" class="btn btn-primary btn-lg reg-submit">
+                            <button type="submit" class="btn btn-primary btn-lg reg-submit reg-submit-candidature">
                                 <i class="fas fa-user-plus"></i> Soumettre ma candidature
                             </button>
                             <a href="{% url 'login' %}" class="reg-btn reg-btn-alt reg-btn-wide">
