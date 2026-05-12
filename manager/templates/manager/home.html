@@ -397,6 +397,54 @@
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1.25rem;
+            padding-bottom: 1.5rem;
+            padding-left: clamp(0.35rem, 2.5vw, 1.35rem);
+            padding-right: clamp(0.35rem, 2.5vw, 1.35rem);
+        }
+
+        /* Cartes aux extrémités : empilement type « cadre » (nuances de vert) */
+        .features-grid .feature-card:first-child {
+            border-color: rgba(45, 106, 102, 0.32);
+            box-shadow:
+                -4px 4px 0 0 var(--accent),
+                -8px 8px 0 0 rgba(45, 106, 102, 0.78),
+                -12px 12px 0 0 rgba(45, 106, 102, 0.55),
+                -16px 16px 0 0 rgba(45, 106, 102, 0.36),
+                -20px 20px 0 0 rgba(45, 106, 102, 0.2),
+                0 10px 26px rgba(22, 21, 20, 0.08);
+        }
+
+        .features-grid .feature-card:last-child {
+            border-color: rgba(45, 106, 102, 0.32);
+            box-shadow:
+                4px 4px 0 0 var(--accent),
+                8px 8px 0 0 rgba(45, 106, 102, 0.78),
+                12px 12px 0 0 rgba(45, 106, 102, 0.55),
+                16px 16px 0 0 rgba(45, 106, 102, 0.36),
+                20px 20px 0 0 rgba(45, 106, 102, 0.2),
+                0 10px 26px rgba(22, 21, 20, 0.08);
+        }
+
+        .features-grid .feature-card:first-child:hover {
+            border-color: rgba(45, 106, 102, 0.45);
+            box-shadow:
+                -4px 4px 0 0 var(--accent-hover),
+                -8px 8px 0 0 rgba(36, 86, 82, 0.82),
+                -12px 12px 0 0 rgba(45, 106, 102, 0.58),
+                -16px 16px 0 0 rgba(45, 106, 102, 0.38),
+                -20px 20px 0 0 rgba(45, 106, 102, 0.22),
+                0 14px 34px rgba(45, 106, 102, 0.18);
+        }
+
+        .features-grid .feature-card:last-child:hover {
+            border-color: rgba(45, 106, 102, 0.45);
+            box-shadow:
+                4px 4px 0 0 var(--accent-hover),
+                8px 8px 0 0 rgba(36, 86, 82, 0.82),
+                12px 12px 0 0 rgba(45, 106, 102, 0.58),
+                16px 16px 0 0 rgba(45, 106, 102, 0.38),
+                20px 20px 0 0 rgba(45, 106, 102, 0.22),
+                0 14px 34px rgba(45, 106, 102, 0.18);
         }
 
         .feature-card {
@@ -505,6 +553,24 @@
         .why-prose strong {
             color: var(--text);
             font-weight: 600;
+        }
+
+        .home-section[aria-labelledby="why-title"] .why-prose {
+            transform: rotate(-1.25deg);
+            box-shadow: var(--shadow-hero-frame);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .home-section[aria-labelledby="why-title"] .why-prose:hover {
+            transform: rotate(-0.55deg);
+            box-shadow: var(--shadow-hero-frame-hover);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .home-section[aria-labelledby="why-title"] .why-prose,
+            .home-section[aria-labelledby="why-title"] .why-prose:hover {
+                transform: none;
+            }
         }
 
         #apropos {
