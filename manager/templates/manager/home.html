@@ -604,6 +604,19 @@
             transition: box-shadow 0.35s ease;
         }
 
+        .about-avatar {
+            width: clamp(112px, 18vw, 160px);
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 999px;
+            display: block;
+            margin: 0 auto 1.25rem;
+            border: 3px solid rgba(45, 106, 102, 0.28);
+            box-shadow:
+                0 8px 24px rgba(22, 21, 20, 0.18),
+                0 0 0 6px rgba(45, 106, 102, 0.12);
+        }
+
         .about-prose:hover {
             box-shadow: var(--shadow-hero-frame-hover);
         }
@@ -787,6 +800,7 @@
                     </p>
                 </header>
                 <div class="why-prose about-prose">
+                    <img src="{% static 'manager/isaac-profile.png' %}" alt="Photo de Irra Isaac Tialougbeu" class="about-avatar">
                     <p>
                         <strong>Origine du projet</strong>
                     </p>
