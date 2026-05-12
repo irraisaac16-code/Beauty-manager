@@ -608,9 +608,11 @@
             width: clamp(112px, 18vw, 160px);
             aspect-ratio: 1 / 1;
             object-fit: cover;
+            /* Remonte le cadrage sur le portrait pour ne pas couper le front */
+            object-position: center top;
             border-radius: 18px;
             display: block;
-            margin: 0 auto 1.25rem;
+            margin: 0.65rem auto 1.25rem;
             border: 3px solid rgba(45, 106, 102, 0.28);
             box-shadow:
                 0 8px 24px rgba(22, 21, 20, 0.18),
