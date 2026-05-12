@@ -14,6 +14,7 @@
   --bm-accent-hover: #5a4242;
   --bm-accent-soft: rgba(107, 79, 79, 0.1);
   --bm-teal: #2d6a66;
+  --bm-teal-hover: #245652;
   --bm-teal-soft: rgba(45, 106, 102, 0.12);
   --bm-border: rgba(22, 21, 20, 0.08);
   --bm-border-strong: rgba(22, 21, 20, 0.12);
@@ -39,10 +40,10 @@ main.main-content.theme-reg {
 
 /* --- Navbar --- */
 .navbar {
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(246, 245, 243, 0.82) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--bm-border) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
   box-shadow: var(--bm-shadow) !important;
   padding: 0.85rem 0 !important;
 }
@@ -80,7 +81,7 @@ a.navbar-brand.brand-wordmark-nav:hover {
 
 .nav-link:hover {
   color: var(--bm-ink) !important;
-  background: var(--bm-accent-soft) !important;
+  background: var(--bm-teal-soft) !important;
   transform: none !important;
   box-shadow: none !important;
 }
@@ -152,15 +153,15 @@ a.navbar-brand.brand-wordmark-nav:hover {
 }
 
 .btn-primary {
-  background: var(--bm-accent) !important;
-  border-color: var(--bm-accent) !important;
+  background: var(--bm-teal) !important;
+  border-color: var(--bm-teal) !important;
   color: #fff !important;
   box-shadow: none !important;
 }
 
 .btn-primary:hover {
-  background: var(--bm-accent-hover) !important;
-  border-color: var(--bm-accent-hover) !important;
+  background: var(--bm-teal-hover) !important;
+  border-color: var(--bm-teal-hover) !important;
   color: #fff !important;
 }
 

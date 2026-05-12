@@ -1,6 +1,6 @@
 ﻿/* Dashboard admin â€” thÃ¨me alignÃ© accueil / inscriptions (lavande, verre, crÃ¨me) */
 .admin-dashboard {
-    --adm-line: rgba(124, 58, 237, 0.14);
+    --adm-line: rgba(45, 106, 102, 0.14);
     --adm-muted: #64748b;
     --adm-text: #1e293b;
     width: min(1120px, 92%);
@@ -15,11 +15,11 @@
 }
 
 .admin-dashboard .dashboard-header {
-    border: 1px solid rgba(224, 195, 252, 0.45);
+    border: 1px solid rgba(45, 106, 102, 0.12);
     border-radius: 20px;
-    background: linear-gradient(155deg, rgba(224, 195, 252, 0.42), rgba(252, 235, 182, 0.38));
+    background: linear-gradient(155deg, rgba(229, 241, 240, 0.75), rgba(243, 242, 239, 0.95));
     padding: 0.55rem;
-    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
+    box-shadow: 0 12px 40px rgba(45, 106, 102, 0.08);
     margin-bottom: 1.75rem;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .admin-dashboard .header-left h1 i {
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .admin-dashboard .header-left p {
@@ -74,7 +74,7 @@
     border: 1px solid var(--adm-line);
     border-radius: 16px;
     padding: 1.35rem 1.25rem;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -99,12 +99,12 @@
 
 .admin-dashboard .stat-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 14px 32px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 14px 32px rgba(45, 106, 102, 0.12);
 }
 
 .admin-dashboard .stat-card.primary {
-    --accent-color: #7c3aed;
-    --accent-color-light: #a855f7;
+    --accent-color: #2d6a66;
+    --accent-color-light: #3d8a84;
 }
 .admin-dashboard .stat-card.success {
     --accent-color: #10b981;
@@ -166,7 +166,7 @@
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid var(--adm-line);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     overflow: hidden;
     transition: box-shadow 0.2s ease;
     animation: admFadeInUp 0.55s ease backwards;
@@ -176,12 +176,12 @@
 .admin-dashboard .content-grid > .content-card:nth-child(2) { animation-delay: 0.32s; }
 
 .admin-dashboard .content-card:hover {
-    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 12px 32px rgba(45, 106, 102, 0.1);
 }
 
 .admin-dashboard .card-header {
     padding: 1.35rem 1.5rem 1rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .admin-dashboard .card-header h3 {
@@ -197,7 +197,7 @@
 }
 
 .admin-dashboard .card-header h3 i {
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .admin-dashboard .card-header p {
@@ -231,7 +231,7 @@
 
 .admin-dashboard .action-btn:hover {
     transform: translateX(4px);
-    box-shadow: 0 6px 22px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 6px 22px rgba(45, 106, 102, 0.12);
     text-decoration: none;
     color: var(--adm-text);
 }
@@ -250,7 +250,7 @@
 }
 
 .admin-dashboard .action-btn.primary .action-icon {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
 }
 .admin-dashboard .action-btn.warning .action-icon {
     background: linear-gradient(135deg, #f59e0b, #fbbf24);
@@ -297,7 +297,7 @@
 }
 
 .admin-dashboard .action-arrow {
-    color: #7c3aed;
+    color: #2d6a66;
     opacity: 0.45;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -366,18 +366,18 @@
 .admin-dashboard .alert-action {
     padding: 0.45rem 0.85rem;
     background: rgba(255, 255, 255, 0.9);
-    color: #7c3aed;
+    color: #2d6a66;
     text-decoration: none;
     border-radius: 10px;
     font-weight: 700;
     font-size: 0.82rem;
-    border: 1px solid rgba(124, 58, 237, 0.22);
+    border: 1px solid rgba(45, 106, 102, 0.22);
     white-space: nowrap;
     transition: background 0.2s ease, color 0.2s ease;
 }
 
 .admin-dashboard .alert-action:hover {
-    background: #7c3aed;
+    background: #2d6a66;
     color: #fff;
     text-decoration: none;
 }
@@ -401,8 +401,8 @@
 
 .admin-dashboard .client-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 26px rgba(124, 58, 237, 0.1);
-    border-color: rgba(124, 58, 237, 0.25);
+    box-shadow: 0 10px 26px rgba(45, 106, 102, 0.1);
+    border-color: rgba(45, 106, 102, 0.25);
 }
 
 .admin-dashboard .client-avatar {
@@ -411,7 +411,7 @@
     height: 56px;
     border-radius: 50%;
     overflow: hidden;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,13 +462,13 @@
     gap: 0.3rem;
     font-size: 0.75rem;
     color: var(--adm-muted);
-    background: rgba(124, 58, 237, 0.06);
+    background: rgba(45, 106, 102, 0.06);
     padding: 0.2rem 0.45rem;
     border-radius: 8px;
 }
 
 .admin-dashboard .client-stats .stat-item i {
-    color: #7c3aed;
+    color: #2d6a66;
     font-size: 0.72rem;
 }
 
@@ -479,7 +479,7 @@
 .admin-dashboard .table-container {
     overflow-x: auto;
     border-radius: 12px;
-    border: 1px solid rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .admin-dashboard .modern-table {
@@ -488,18 +488,18 @@
 }
 
 .admin-dashboard .modern-table th {
-    background: linear-gradient(180deg, rgba(237, 233, 254, 0.85), rgba(250, 245, 255, 0.5));
+    background: linear-gradient(180deg, rgba(229, 241, 240, 0.95), rgba(243, 242, 239, 0.65));
     padding: 0.85rem 0.75rem;
     text-align: left;
     font-weight: 700;
     font-size: 0.82rem;
-    color: #4338ca;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.12);
+    color: #1d4d49;
+    border-bottom: 1px solid rgba(45, 106, 102, 0.12);
 }
 
 .admin-dashboard .modern-table td {
     padding: 0.85rem 0.75rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.07);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.07);
     font-size: 0.88rem;
 }
 
@@ -508,7 +508,7 @@
 }
 
 .admin-dashboard .table-row:hover {
-    background: rgba(124, 58, 237, 0.05);
+    background: rgba(45, 106, 102, 0.05);
 }
 
 .admin-dashboard .date-cell {
@@ -520,7 +520,7 @@
 .admin-dashboard .date-day {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .admin-dashboard .date-month {
@@ -552,7 +552,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #7c3aed;
+    color: #2d6a66;
     font-size: 0.75rem;
 }
 
@@ -608,12 +608,12 @@
 
 .admin-dashboard .empty-state .empty-icon i {
     font-size: 2.5rem;
-    color: rgba(124, 58, 237, 0.22);
+    color: rgba(45, 106, 102, 0.22);
 }
 
 .admin-dashboard .empty-state > i {
     font-size: 2.5rem;
-    color: rgba(124, 58, 237, 0.22);
+    color: rgba(45, 106, 102, 0.22);
     margin-bottom: 0.75rem;
     display: inline-block;
 }
@@ -636,9 +636,9 @@
 }
 
 .admin-dashboard .bilan-card.content-card {
-    background: linear-gradient(155deg, rgba(224, 195, 252, 0.38), rgba(252, 235, 182, 0.35));
-    border: 1px solid rgba(224, 195, 252, 0.45);
-    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
+    background: linear-gradient(155deg, rgba(229, 241, 240, 0.55), rgba(243, 242, 239, 0.9));
+    border: 1px solid rgba(45, 106, 102, 0.12);
+    box-shadow: 0 12px 40px rgba(45, 106, 102, 0.08);
     padding: 0.5rem;
 }
 
@@ -660,7 +660,7 @@
 }
 
 .admin-dashboard .bilan-card .card-header h3 i {
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .admin-dashboard .bilan-card .card-header p {
@@ -686,7 +686,7 @@
 
 .admin-dashboard .bilan-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 8px 22px rgba(45, 106, 102, 0.12);
     text-decoration: none;
     color: var(--adm-text);
 }
@@ -705,7 +705,7 @@
 }
 
 .admin-dashboard .bilan-btn.hebdomadaire .bilan-icon {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
 }
 .admin-dashboard .bilan-btn.mensuel .bilan-icon {
     background: linear-gradient(135deg, #ec4899, #f97316);
@@ -729,7 +729,7 @@
 
 .admin-dashboard .bilan-arrow {
     margin-left: auto;
-    color: #7c3aed;
+    color: #2d6a66;
     opacity: 0.5;
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -794,8 +794,8 @@
     backdrop-filter: blur(8px);
     border-radius: 12px;
     padding: 1rem 1.25rem;
-    box-shadow: 0 12px 36px rgba(124, 58, 237, 0.15);
-    border: 1px solid rgba(124, 58, 237, 0.12);
+    box-shadow: 0 12px 36px rgba(45, 106, 102, 0.15);
+    border: 1px solid rgba(45, 106, 102, 0.12);
     display: flex;
     align-items: center;
     gap: 0.65rem;

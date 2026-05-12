@@ -1,8 +1,8 @@
-/* Thème inscription esthéticienne — global (main.theme-reg) */
+/* Thème pages inscription / connexion — aligné palette accueil (vert + beige) */
 main.theme-reg {
-    --reg-line: rgba(124, 58, 237, 0.14);
-    --reg-muted: #64748b;
-    --reg-text: #1e293b;
+    --reg-line: rgba(45, 106, 102, 0.14);
+    --reg-muted: #5f5c57;
+    --reg-text: #161514;
     --tap-min: 44px;
 }
 
@@ -13,9 +13,9 @@ main.theme-reg h2 {
 }
 
 .reg-page {
-    --reg-line: rgba(124, 58, 237, 0.14);
-    --reg-muted: #64748b;
-    --reg-text: #1e293b;
+    --reg-line: rgba(45, 106, 102, 0.14);
+    --reg-muted: #5f5c57;
+    --reg-text: #161514;
 }
 
 .reg-wrap {
@@ -33,7 +33,7 @@ main.theme-reg h2 {
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid var(--reg-line);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     overflow: hidden;
     margin: 0;
 }
@@ -42,14 +42,14 @@ main.theme-reg h2 {
     background: transparent;
     color: var(--reg-text);
     padding: 1.35rem 1.5rem 1rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .reservation-adminlike .form-card-header .header-icon {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     font-size: 1.1rem;
 }
@@ -135,14 +135,14 @@ main.theme-reg h2 {
     gap: 0.85rem;
     padding: 1rem 1.1rem;
     border-radius: 14px;
-    border: 1px solid rgba(217, 119, 6, 0.28);
-    background: linear-gradient(135deg, rgba(254, 243, 199, 0.65), rgba(252, 231, 243, 0.45));
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(45, 106, 102, 0.22);
+    background: linear-gradient(135deg, rgba(229, 241, 240, 0.9), rgba(240, 237, 232, 0.55));
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
 }
 
 .reg-validation-notice-icon {
     flex-shrink: 0;
-    color: #b45309;
+    color: #2d6a66;
     font-size: 1.35rem;
     line-height: 1;
     margin-top: 0.1rem;
@@ -150,7 +150,7 @@ main.theme-reg h2 {
 
 .reg-validation-notice strong {
     display: block;
-    color: #92400e;
+    color: #1d4d49;
     font-size: 0.95rem;
     margin-bottom: 0.35rem;
 }
@@ -159,7 +159,7 @@ main.theme-reg h2 {
     margin: 0;
     font-size: 0.88rem;
     line-height: 1.45;
-    color: #78350f;
+    color: var(--reg-muted);
     max-width: none;
 }
 
@@ -172,7 +172,7 @@ main.theme-reg h2 {
     border-radius: 20px;
     background: linear-gradient(155deg, rgba(224, 195, 252, 0.42), rgba(252, 235, 182, 0.38));
     padding: 0.55rem;
-    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.08);
+    box-shadow: 0 12px 40px rgba(45, 106, 102, 0.08);
 }
 
 .reg-panel-inner {
@@ -195,7 +195,7 @@ main.theme-reg h2 {
 .reg-section {
     margin-bottom: 1.75rem;
     padding-bottom: 1.75rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .reg-section-last {
@@ -215,7 +215,7 @@ main.theme-reg h2 {
 }
 
 .reg-section-title i {
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .reg-form-row {
@@ -241,7 +241,7 @@ main.theme-reg h2 {
 }
 
 .reg-group label i {
-    color: #7c3aed;
+    color: #2d6a66;
     margin-right: 0.35rem;
 }
 
@@ -267,8 +267,8 @@ main.theme-reg h2 {
 
 .reg-page .reg-group input:focus {
     outline: none;
-    border-color: rgba(124, 58, 237, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.12);
+    border-color: rgba(45, 106, 102, 0.35);
+    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
 }
 
 .reg-hint {
@@ -309,7 +309,7 @@ main.theme-reg h2 {
 }
 
 .reg-link {
-    color: #7c3aed;
+    color: #2d6a66;
     font-weight: 600;
     text-decoration: none;
 }
@@ -352,7 +352,7 @@ main.theme-reg h2 {
 
 .reg-btn-alt:hover {
     background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 4px 14px rgba(45, 106, 102, 0.12);
     text-decoration: none;
     color: var(--reg-text);
 }
@@ -413,17 +413,17 @@ main.theme-reg h2 {
     border: 1px solid var(--reg-line);
     border-radius: 16px;
     padding: 1rem;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .reg-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 12px 28px rgba(45, 106, 102, 0.1);
 }
 
 .reg-card i {
-    color: #7c3aed;
+    color: #2d6a66;
     font-size: 1.25rem;
 }
 
@@ -481,8 +481,8 @@ main.theme-reg .reg-group .form-control {
 main.theme-reg .form-group .form-control:focus,
 main.theme-reg .reg-group .form-control:focus {
     outline: none;
-    border-color: rgba(124, 58, 237, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.12);
+    border-color: rgba(45, 106, 102, 0.35);
+    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
 }
 
 main.theme-reg .section-title {
@@ -492,7 +492,7 @@ main.theme-reg .section-title {
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--reg-text);
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -504,25 +504,25 @@ main.theme-reg .table-services {
     background: rgba(255, 255, 255, 0.85);
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     border: 1px solid var(--reg-line);
 }
 
 main.theme-reg .table-services th,
 main.theme-reg .table-services td {
     padding: 1rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.08);
     text-align: left;
 }
 
 main.theme-reg .table-services th {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     font-weight: 600;
 }
 
 main.theme-reg .table-services tr:hover {
-    background-color: rgba(237, 233, 254, 0.35);
+    background-color: rgba(229, 241, 240, 0.35);
 }
 
 main.theme-reg .btn-action {
@@ -538,9 +538,9 @@ main.theme-reg .btn-action {
 }
 
 main.theme-reg .btn-action:hover {
-    background: rgba(237, 233, 254, 0.6);
+    background: rgba(229, 241, 240, 0.6);
     transform: translateY(-1px);
-    color: #5b21b6;
+    color: #1d4d49;
 }
 
 main.theme-reg .messages {
@@ -579,14 +579,14 @@ main.theme-reg .card {
     background: rgba(255, 255, 255, 0.78);
     border: 1px solid var(--reg-line);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     overflow: hidden;
 }
 
 main.theme-reg .card-header {
-    background: linear-gradient(135deg, rgba(237, 233, 254, 0.9), rgba(252, 231, 243, 0.45));
+    background: linear-gradient(135deg, rgba(229, 241, 240, 0.9), rgba(240, 237, 232, 0.45));
     color: var(--reg-text);
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
     font-weight: 700;
 }
 
@@ -618,16 +618,16 @@ main.theme-reg .service-inactive {
 }
 
 main.theme-reg .btn-primary {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     border: none;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
+    box-shadow: 0 4px 15px rgba(45, 106, 102, 0.25);
 }
 
 main.theme-reg .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.35);
+    box-shadow: 0 6px 20px rgba(45, 106, 102, 0.35);
     color: #fff;
 }
 
@@ -636,20 +636,20 @@ main.theme-reg .btn-primary:hover {
     margin-bottom: 1.25rem;
     padding: 1rem 1.1rem;
     border-radius: 14px;
-    border: 1px solid rgba(124, 58, 237, 0.22);
-    background: linear-gradient(135deg, rgba(237, 233, 254, 0.75), rgba(252, 231, 243, 0.45));
+    border: 1px solid rgba(45, 106, 102, 0.22);
+    background: linear-gradient(135deg, rgba(229, 241, 240, 0.75), rgba(240, 237, 232, 0.45));
 }
 
 .login-test-banner strong {
     display: flex;
     align-items: center;
     gap: 0.45rem;
-    color: #5b21b6;
+    color: #1d4d49;
     font-size: 0.95rem;
 }
 
 .login-test-banner strong i {
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .login-test-banner p {
@@ -668,8 +668,8 @@ main.theme-reg .btn-primary:hover {
 
 .login-test-banner code {
     background: rgba(255, 255, 255, 0.85);
-    color: #6d28d9;
-    border: 1px solid rgba(124, 58, 237, 0.15);
+    color: #245652;
+    border: 1px solid rgba(45, 106, 102, 0.15);
     border-radius: 8px;
     padding: 0.12rem 0.4rem;
     font-size: 0.85rem;
@@ -706,8 +706,8 @@ main.theme-reg .btn-primary:hover {
 }
 
 .password-toggle:hover {
-    color: #7c3aed;
-    border-color: rgba(124, 58, 237, 0.3);
+    color: #2d6a66;
+    border-color: rgba(45, 106, 102, 0.3);
 }
 .login-divider {
     text-align: center;
@@ -722,7 +722,7 @@ main.theme-reg .btn-primary:hover {
     left: 0;
     right: 0;
     height: 1px;
-    background: rgba(124, 58, 237, 0.12);
+    background: rgba(45, 106, 102, 0.12);
 }
 
 .login-divider span {
@@ -741,26 +741,29 @@ main.theme-reg .btn-primary:hover {
 }
 
 .reg-btn-outline {
-    border: 1px solid rgba(124, 58, 237, 0.35);
-    color: #6d28d9;
+    border: 1px solid rgba(45, 106, 102, 0.35);
+    color: #245652;
     background: rgba(255, 255, 255, 0.75);
 }
 .reg-btn-outline:hover {
-    background: rgba(124, 58, 237, 0.08);
-    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.12);
+    background: rgba(45, 106, 102, 0.08);
+    box-shadow: 0 4px 14px rgba(45, 106, 102, 0.12);
     text-decoration: none;
-    color: #5b21b6;
+    color: #1d4d49;
 }
 .reg-btn-esth {
-    border: 1px solid rgba(217, 119, 6, 0.35);
-    color: #b45309;
-    background: rgba(255, 251, 235, 0.85);
+    border: 2px solid #2d6a66;
+    color: #161514;
+    background: #ebe8e4;
+    box-shadow: 5px 5px 0 0 #2d6a66;
 }
 .reg-btn-esth:hover {
-    background: rgba(254, 243, 199, 0.95);
-    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.15);
+    background: #e3dfd9;
+    box-shadow: 0 0 0 0 transparent;
+    transform: translate(5px, 5px);
     text-decoration: none;
-    color: #92400e;
+    color: #161514;
+    border-color: #2d6a66;
 }
 .reg-grid3 {
     display: grid;
@@ -810,7 +813,7 @@ main.theme-reg .btn-primary:hover {
 .dash-section {
     margin-bottom: 1.75rem;
     padding-bottom: 1.75rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .dash-section-last {
@@ -828,8 +831,8 @@ main.theme-reg .btn-primary:hover {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(124, 58, 237, 0.25);
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+    border: 3px solid rgba(45, 106, 102, 0.25);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.12);
 }
 
 .dash-profile-placeholder {
@@ -840,9 +843,9 @@ main.theme-reg .btn-primary:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(237, 233, 254, 0.9);
-    border: 3px solid rgba(124, 58, 237, 0.2);
-    color: #7c3aed;
+    background: rgba(229, 241, 240, 0.9);
+    border: 3px solid rgba(45, 106, 102, 0.2);
+    color: #2d6a66;
     font-size: 3.5rem;
 }
 
@@ -863,13 +866,13 @@ main.theme-reg .btn-primary:hover {
     border: 1px solid var(--reg-line);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.06);
+    box-shadow: 0 8px 24px rgba(45, 106, 102, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dash-rdv-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 12px 28px rgba(45, 106, 102, 0.1);
 }
 
 .dash-rdv-head {
@@ -877,8 +880,8 @@ main.theme-reg .btn-primary:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.1rem;
-    background: linear-gradient(135deg, rgba(237, 233, 254, 0.55), rgba(252, 231, 243, 0.35));
-    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+    background: linear-gradient(135deg, rgba(229, 241, 240, 0.55), rgba(240, 237, 232, 0.35));
+    border-bottom: 1px solid rgba(45, 106, 102, 0.1);
 }
 
 .dash-rdv-date {
@@ -891,7 +894,7 @@ main.theme-reg .btn-primary:hover {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     display: flex;
     align-items: center;
@@ -959,7 +962,7 @@ main.theme-reg .btn-primary:hover {
     gap: 0.85rem;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.08);
 }
 
 .dash-service-icon {
@@ -990,9 +993,9 @@ main.theme-reg .btn-primary:hover {
     align-items: center;
     gap: 0.75rem;
     padding: 0.65rem 0.75rem;
-    background: rgba(124, 58, 237, 0.05);
+    background: rgba(45, 106, 102, 0.05);
     border-radius: 12px;
-    border: 1px solid rgba(124, 58, 237, 0.1);
+    border: 1px solid rgba(45, 106, 102, 0.1);
     margin-bottom: 0.75rem;
 }
 
@@ -1001,18 +1004,18 @@ main.theme-reg .btn-primary:hover {
     height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(124, 58, 237, 0.25);
+    border: 2px solid rgba(45, 106, 102, 0.25);
 }
 
 .dash-coiffeuse-ph {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(237, 233, 254, 0.9);
+    background: rgba(229, 241, 240, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .dash-coiffeuse-name {
@@ -1121,7 +1124,7 @@ main.theme-reg .btn-primary:hover {
 
 .dash-empty i {
     font-size: 2.75rem;
-    color: rgba(124, 58, 237, 0.22);
+    color: rgba(45, 106, 102, 0.22);
     margin-bottom: 0.75rem;
 }
 
@@ -1145,7 +1148,7 @@ main.theme-reg .btn-primary:hover {
 }
 
 .dash-empty-cta:focus-visible {
-    outline: 3px solid rgba(124, 58, 237, 0.28);
+    outline: 3px solid rgba(45, 106, 102, 0.28);
     outline-offset: 3px;
 }
 
@@ -1189,7 +1192,7 @@ main.theme-reg .btn-primary:hover {
 
 .dash-quick-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 8px 22px rgba(45, 106, 102, 0.1);
     text-decoration: none;
     color: var(--reg-text);
 }
@@ -1198,7 +1201,7 @@ main.theme-reg .btn-primary:hover {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     display: flex;
     align-items: center;
@@ -1280,7 +1283,7 @@ main.theme-reg .btn-primary:hover {
     align-items: center;
     margin-bottom: 0.85rem;
     padding-bottom: 0.65rem;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.12);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.12);
 }
 
 .dash-date-head h4 {
@@ -1292,7 +1295,7 @@ main.theme-reg .btn-primary:hover {
 }
 
 .dash-date-badge {
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
     color: #fff;
     padding: 0.25rem 0.65rem;
     border-radius: 999px;
@@ -1311,16 +1314,16 @@ main.theme-reg .btn-primary:hover {
     gap: 1rem;
     padding: 1rem;
     border-radius: 12px;
-    border: 1px solid rgba(124, 58, 237, 0.12);
+    border: 1px solid rgba(45, 106, 102, 0.12);
     background: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.05);
-    border-left: 4px solid #7c3aed;
+    box-shadow: 0 4px 16px rgba(45, 106, 102, 0.05);
+    border-left: 4px solid #2d6a66;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dash-rdv-row:hover {
     transform: translateY(-1px);
-    box-shadow: 0 8px 22px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 8px 22px rgba(45, 106, 102, 0.1);
 }
 
 .dash-rdv-row[data-status="en_attente"] {
@@ -1351,7 +1354,7 @@ main.theme-reg .btn-primary:hover {
     display: block;
     font-size: 1.1rem;
     font-weight: 800;
-    color: #7c3aed;
+    color: #2d6a66;
 }
 
 .dash-rdv-dur {
@@ -1432,7 +1435,7 @@ main.theme-reg .btn-primary:hover {
 }
 
 .dash-rdv-meta i {
-    color: #7c3aed;
+    color: #2d6a66;
     width: 16px;
     text-align: center;
 }

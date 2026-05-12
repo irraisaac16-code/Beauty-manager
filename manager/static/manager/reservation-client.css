@@ -122,8 +122,8 @@
 .reservation-adminlike .modern-form input:focus,
 .reservation-adminlike .modern-form textarea:focus {
     outline: none;
-    border-color: rgba(124, 58, 237, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.12);
+    border-color: rgba(45, 106, 102, 0.35);
+    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
 }
 
 /* Custom select (coiffeuses) */
@@ -148,12 +148,12 @@
 }
 
 .reservation-adminlike .custom-select-display:hover {
-    border-color: rgba(124, 58, 237, 0.25);
+    border-color: rgba(45, 106, 102, 0.25);
 }
 
 .reservation-adminlike .custom-select-display.active {
-    border-color: rgba(124, 58, 237, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.12);
+    border-color: rgba(45, 106, 102, 0.35);
+    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
 }
 
 .reservation-adminlike .custom-select-options {
@@ -162,13 +162,13 @@
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.98);
-    border: 1px solid rgba(124, 58, 237, 0.18);
+    border: 1px solid rgba(45, 106, 102, 0.18);
     border-radius: 12px;
     max-height: 240px;
     overflow-y: auto;
     z-index: 1000;
     display: none;
-    box-shadow: 0 14px 38px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 14px 38px rgba(45, 106, 102, 0.12);
 }
 
 .reservation-adminlike .custom-select-options.show {
@@ -182,7 +182,7 @@
     align-items: center;
     gap: 0.65rem;
     transition: background-color 0.15s ease;
-    border-bottom: 1px solid rgba(124, 58, 237, 0.08);
+    border-bottom: 1px solid rgba(45, 106, 102, 0.08);
 }
 
 .reservation-adminlike .custom-select-option:last-child {
@@ -190,11 +190,11 @@
 }
 
 .reservation-adminlike .custom-select-option:hover {
-    background: rgba(124, 58, 237, 0.06);
+    background: rgba(45, 106, 102, 0.06);
 }
 
 .reservation-adminlike .custom-select-option.selected {
-    background: rgba(124, 58, 237, 0.12);
+    background: rgba(45, 106, 102, 0.12);
 }
 
 .reservation-adminlike .coiffeuse-avatar {
@@ -202,7 +202,7 @@
     height: 32px;
     border-radius: 999px;
     object-fit: cover;
-    border: 2px solid rgba(124, 58, 237, 0.14);
+    border: 2px solid rgba(45, 106, 102, 0.14);
     flex-shrink: 0;
 }
 
@@ -211,7 +211,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #7c3aed;
+    color: #2d6a66;
     font-size: 0.85rem;
 }
 
