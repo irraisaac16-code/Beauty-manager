@@ -95,7 +95,7 @@
                             </div>
                         </div>
 
-                        <div class="reg-section">
+                        <div class="reg-section reg-section-last">
                             <div class="reg-form-row">
                                 <div class="reg-group">
                                     <label for="{{ form.password1.id_for_label }}">
@@ -118,23 +118,6 @@
                                     {% endif %}
                                     <small class="reg-hint">Répétez votre mot de passe</small>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="reg-section reg-section-last">
-                            <div class="reg-check">
-                                <input type="checkbox" id="terms" name="terms" required>
-                                <label for="terms">
-                                    J'accepte les <a href="#" class="reg-link">conditions d'utilisation</a> et la
-                                    <a href="#" class="reg-link">politique de confidentialité</a> *
-                                </label>
-                            </div>
-
-                            <div class="reg-check">
-                                <input type="checkbox" id="newsletter" name="newsletter">
-                                <label for="newsletter">
-                                    Je souhaite recevoir les offres et nouveautés par email
-                                </label>
                             </div>
                         </div>
 
@@ -187,15 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (form) {
         form.addEventListener('submit', function(e) {
-            const terms = document.getElementById('terms');
-
-            if (terms && !terms.checked) {
-                e.preventDefault();
-                alert('Veuillez accepter les conditions d\'utilisation.');
-                terms.focus();
-                return false;
-            }
-
             if (password1 && password1.value.length < 8) {
                 e.preventDefault();
                 alert('Le mot de passe doit contenir au moins 8 caractères.');
