@@ -4,57 +4,6 @@
 
 {% block title %}Je suis une esthéticienne - Beauty Manager{% endblock %}
 
-{% block extra_css %}
-<style>
-    .reg-page .reg-brand .reg-home-wordmark {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.2em;
-        text-decoration: none;
-        font-size: clamp(1.38rem, 3.2vw, 1.72rem);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
-        color: #161514;
-    }
-    .reg-page .reg-brand .reg-home-wordmark:hover {
-        text-decoration: none;
-        color: #161514;
-    }
-    .reg-page .reg-brand .reg-home-wordmark .brand-wordmark__beauty {
-        color: #2d6a66;
-    }
-    .reg-page .reg-brand .reg-home-wordmark:hover .brand-wordmark__beauty {
-        color: #245652;
-    }
-    .reg-page .reg-brand .reg-home-wordmark .brand-wordmark__manager {
-        color: #161514;
-        font-weight: 700;
-    }
-    .reg-page .reg-brand .reg-home-wordmark:focus-visible {
-        outline: 3px solid #2d6a66;
-        outline-offset: 4px;
-        border-radius: 6px;
-    }
-
-    /* Même palette que le CTA « Prendre rendez-vous » (home .btn-hero) */
-    .reg-page .reg-actions .reg-submit-candidature {
-        background: #2d6a66 !important;
-        border-color: #2d6a66 !important;
-        color: #fff !important;
-        box-shadow: 0 10px 28px rgba(45, 106, 102, 0.22) !important;
-        transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s !important;
-    }
-    .reg-page .reg-actions .reg-submit-candidature:hover {
-        background: #245652 !important;
-        border-color: #245652 !important;
-        color: #fff !important;
-        transform: translateY(-1px) !important;
-        box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 <div class="reg-page">
     <div class="reg-wrap">
@@ -173,7 +122,7 @@
                         </div>
 
                         <div class="reg-actions">
-                            <button type="submit" class="btn btn-primary btn-lg reg-submit reg-submit-candidature">
+                            <button type="submit" class="btn btn-primary btn-lg reg-submit reg-submit-cta">
                                 <i class="fas fa-user-plus"></i> Soumettre ma candidature
                             </button>
                             <a href="{% url 'login' %}" class="reg-btn reg-btn-alt reg-btn-wide">
