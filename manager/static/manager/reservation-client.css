@@ -259,8 +259,13 @@ body.page-dashboard-neumorphic .reservation-page-glass .dash-main .reg-panel-inn
     backdrop-filter: none;
 }
 
-body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card,
-body.page-dashboard-neumorphic .reservation-page-glass .info-card {
+body.page-dashboard-neumorphic .reservation-page-glass .dash-form-grid {
+    grid-template-columns: 1fr;
+    max-width: min(920px, 100%);
+    margin: 0 auto;
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card {
     background: rgba(255, 255, 255, 0.4) !important;
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -268,8 +273,7 @@ body.page-dashboard-neumorphic .reservation-page-glass .info-card {
     box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
-body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card:hover,
-body.page-dashboard-neumorphic .reservation-page-glass .info-card:hover {
+body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card:hover {
     border-color: rgba(255, 255, 255, 0.78) !important;
     box-shadow: 0 16px 44px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
