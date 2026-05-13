@@ -5,7 +5,7 @@
 {% block title %}Mon Profil — Gestion salon{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
 {% endblock %}
 
 {% block content %}
@@ -66,8 +66,8 @@
                         </div>
                     </div>
                     
-                    <div class="profile-actions mt-4">
-                        <a href="{% url 'modifier_profil' %}" class="btn btn-primary">
+                    <div class="profile-actions">
+                        <a href="{% url 'modifier_profil' %}" class="btn btn-primary btn-admin-cta">
                             <i class="fas fa-edit"></i> Modifier le Profil
                         </a>
                         {% if user_profile.role.name != 'admin' %}
@@ -114,6 +114,9 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    margin-top: 2.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(163, 177, 198, 0.45);
 }
 
 .stat-item {
@@ -208,6 +211,11 @@
     
     .profile-actions {
         flex-direction: column;
+    }
+
+    .profile-actions .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 </style>
