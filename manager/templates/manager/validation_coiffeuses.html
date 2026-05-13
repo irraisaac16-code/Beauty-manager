@@ -3,15 +3,24 @@
 
 {% block title %}Validation des Esthéticiennes — Gestion salon{% endblock %}
 
+{% block body_class %}page-dashboard-neumorphic{% endblock %}
+
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
 <style>
-    .admin-dashboard .validation-inner {
+    .admin-dashboard .validation-inner--glass {
         width: 100%;
+        padding: 0.5rem 0 2rem;
+        border-radius: 24px;
+        background:
+            radial-gradient(ellipse 90% 60% at 50% -10%, rgba(45, 106, 102, 0.14) 0%, transparent 55%),
+            radial-gradient(ellipse 70% 50% at 100% 40%, rgba(255, 255, 255, 0.35) 0%, transparent 50%),
+            radial-gradient(ellipse 55% 45% at 0% 90%, rgba(45, 106, 102, 0.06) 0%, transparent 45%);
     }
 
     .section-header {
-        margin-bottom: 30px;
+        margin-bottom: 28px;
         text-align: center;
     }
 
@@ -20,68 +29,88 @@
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 15px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     }
 
     .section-header h2 {
-        color: #374151;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 10px;
+        display: inline-block;
+        color: #1e293b;
+        font-size: 1.65rem;
+        font-weight: 700;
+        margin: 0 auto 10px;
+        padding: 0.85rem 1.75rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.75);
     }
 
     .section-header i {
-        color: #7c3aed;
+        color: #2d6a66;
         margin-right: 10px;
     }
 
     .section-header p {
-        color: #6b7280;
-        font-size: 1.1rem;
+        color: #64748b;
+        font-size: 1.05rem;
         margin: 0;
     }
 
     .estheticienne-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        box-shadow:
+            0 10px 40px rgba(15, 23, 42, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        margin-bottom: 22px;
         overflow: hidden;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .estheticienne-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+        box-shadow:
+            0 16px 48px rgba(15, 23, 42, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        border-color: rgba(255, 255, 255, 0.85);
     }
 
     .estheticienne-card.validated {
-        border-left: 4px solid #10b981;
+        border-left: 4px solid rgba(16, 185, 129, 0.85);
     }
 
     .validated-container {
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-        border: 2px solid #10b981;
-        border-radius: 16px;
-        padding: 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+        background: rgba(240, 253, 244, 0.45);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(16, 185, 129, 0.35);
+        border-radius: 22px;
+        padding: 28px 22px 32px;
+        margin-bottom: 28px;
+        box-shadow:
+            0 12px 40px rgba(16, 185, 129, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.7);
     }
 
     .validated-container-header {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 26px;
     }
 
     .validated-container-header h2 {
-        color: #374151;
-        font-size: 2rem;
-        font-weight: 600;
-        margin-bottom: 10px;
+        color: #1e293b;
+        font-size: 1.55rem;
+        font-weight: 700;
+        margin-bottom: 0;
     }
 
     .validated-container-header i {
-        color: #7c3aed;
+        color: #2d6a66;
         margin-right: 10px;
     }
 
@@ -89,9 +118,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 20px;
-        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        padding: 22px 18px;
+        background: rgba(255, 255, 255, 0.32);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.45);
     }
 
     .estheticienne-avatar {
@@ -102,9 +134,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #7c3aed;
+        background: linear-gradient(145deg, #2d6a66, #245652);
         color: white;
         font-size: 40px;
+        box-shadow: 0 8px 24px rgba(45, 106, 102, 0.28);
+        border: 3px solid rgba(255, 255, 255, 0.5);
     }
 
     .estheticienne-avatar img {
@@ -112,37 +146,40 @@
         height: 100%;
         border-radius: 50%;
         object-fit: cover;
+        border: 3px solid rgba(255, 255, 255, 0.55);
+        box-sizing: border-box;
     }
 
     .estheticienne-info h3 {
         margin: 0 0 10px 0;
-        color: #374151;
+        color: #1e293b;
         font-size: 1.25rem;
-        font-weight: 600;
+        font-weight: 700;
     }
 
     .estheticienne-email {
-        color: #6b7280;
+        color: #64748b;
         margin: 0 0 8px 0;
         font-size: 0.9rem;
     }
 
     .estheticienne-phone {
-        color: #6b7280;
+        color: #64748b;
         margin: 0;
         font-size: 0.9rem;
     }
 
     .estheticienne-phone i {
         margin-right: 5px;
-        color: #7c3aed;
+        color: #2d6a66;
     }
 
-    
     .estheticienne-details {
-        padding: 15px 20px;
-        background: #f9fafb;
-        border-top: 1px solid #e5e7eb;
+        padding: 16px 20px;
+        background: rgba(248, 250, 252, 0.42);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     .detail-item {
@@ -156,38 +193,43 @@
     }
 
     .detail-item .label {
-        font-weight: 500;
-        color: #374151;
+        font-weight: 600;
+        color: #334155;
         margin-bottom: 4px;
     }
 
     .detail-item .value {
-        color: #6b7280;
+        color: #64748b;
         font-size: 0.9rem;
     }
 
     .badge {
-        padding: 4px 8px;
-        border-radius: 6px;
+        padding: 5px 10px;
+        border-radius: 999px;
         font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
     }
 
     .badge-warning {
-        background: #fef3c7;
-        color: #d97706;
+        background: rgba(254, 243, 199, 0.85);
+        color: #b45309;
+        border: 1px solid rgba(251, 191, 36, 0.35);
     }
 
     .badge-success {
-        background: #d1fae5;
-        color: #059669;
+        background: rgba(209, 250, 229, 0.9);
+        color: #047857;
+        border: 1px solid rgba(52, 211, 153, 0.35);
     }
 
     .estheticienne-actions {
-        padding: 20px;
+        padding: 18px 20px 22px;
         display: flex;
         gap: 10px;
         justify-content: center;
+        background: rgba(255, 255, 255, 0.28);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
     }
 
     .validation-form {
@@ -197,37 +239,49 @@
         justify-content: center;
     }
 
-    .btn {
+    .validation-inner--glass .btn {
         padding: 12px 24px;
         border: none;
-        border-radius: 8px;
-        font-weight: 500;
+        border-radius: 12px;
+        font-weight: 600;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        transition: all 0.2s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         cursor: pointer;
     }
 
-    .btn-success {
-        background: #10b981;
-        color: white;
+    .validation-inner--glass .btn-success {
+        background: #2d6a66 !important;
+        border-color: #2d6a66 !important;
+        color: #fff !important;
+        box-shadow: 0 8px 22px rgba(45, 106, 102, 0.28);
     }
 
-    .btn-success:hover {
-        background: #059669;
-        transform: translateY(-1px);
+    .validation-inner--glass .btn-success:hover {
+        background: #245652 !important;
+        border-color: #245652 !important;
+        color: #fff !important;
+        filter: none;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(45, 106, 102, 0.32);
     }
 
-    .btn-danger {
-        background: #ef4444;
-        color: white;
+    .validation-inner--glass .btn-danger {
+        background: #ef4444 !important;
+        border-color: #ef4444 !important;
+        color: #fff !important;
+        box-shadow: 0 8px 22px rgba(239, 68, 68, 0.22);
     }
 
-    .btn-danger:hover {
-        background: #dc2626;
-        transform: translateY(-1px);
+    .validation-inner--glass .btn-danger:hover {
+        background: #dc2626 !important;
+        border-color: #dc2626 !important;
+        color: #fff !important;
+        filter: none;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(239, 68, 68, 0.28);
     }
 
     .btn-lg {
@@ -237,23 +291,32 @@
 
     .empty-state {
         text-align: center;
-        padding: 60px 20px;
-        color: #6b7280;
+        padding: 52px 24px;
+        color: #64748b;
+        max-width: 520px;
+        margin: 0 auto 24px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.38);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 10px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
 
     .empty-state i {
-        font-size: 4rem;
-        color: #d1d5db;
-        margin-bottom: 20px;
+        font-size: 3.5rem;
+        color: rgba(45, 106, 102, 0.35);
+        margin-bottom: 18px;
     }
 
     .empty-state h3 {
         margin-bottom: 10px;
-        color: #374151;
+        color: #1e293b;
+        font-weight: 700;
     }
 
     .empty-state p {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         margin: 0;
     }
 
@@ -263,7 +326,8 @@
         }
 
         .section-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
+            padding: 0.75rem 1.25rem;
         }
 
         .estheticienne-header {
@@ -285,7 +349,7 @@
             width: 100%;
         }
 
-        .btn {
+        .validation-inner--glass .btn {
             width: 100%;
             justify-content: center;
         }
@@ -304,7 +368,7 @@
         </div>
     </div>
     <div class="main-content">
-    <div class="validation-inner">
+    <div class="validation-inner validation-inner--glass">
 
     <!-- Coiffeuses en attente de validation -->
     {% if coiffeuses_en_attente %}
