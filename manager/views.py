@@ -463,7 +463,14 @@ def simulate_payment(request, reservation_id):
                     except Exception as e:
                         logger.error(f"Erreur lors de l'envoi de la notification: {e}")
                     
-                    messages.success(request, f"Paiement {payment_method} simulé avec succès !")
+                    _mobile_labels = {
+                        'wave': 'Wave',
+                        'orange': 'Orange Money',
+                        'moov': 'Moov Money',
+                        'mtn': 'MTN Mobile Money',
+                    }
+                    _label = _mobile_labels.get(payment_method, payment_method)
+                    messages.success(request, f"Paiement {_label} simulé avec succès !")
                 
                 return redirect('dashboard_client')
                 

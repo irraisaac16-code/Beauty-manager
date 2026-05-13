@@ -130,6 +130,10 @@
     font-size: 1.1rem;
 }
 
+.admin-dashboard.simulate-payment-page .option-item label .payment-option-fa--orange {
+    color: #ff7900;
+}
+
 .admin-dashboard.simulate-payment-page .option-item label .payment-option-icon {
     flex-shrink: 0;
     margin-right: 0.65rem;

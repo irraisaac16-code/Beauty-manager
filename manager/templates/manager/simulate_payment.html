@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
 <link rel="stylesheet" href="{% static 'manager/service-form-admin.css' %}?v=5">
-<link rel="stylesheet" href="{% static 'manager/simulate-payment-admin.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'manager/simulate-payment-admin.css' %}?v=5">
 {% endblock %}
 
 {% block content %}
@@ -75,6 +75,13 @@
                             <label for="wave">
                                 <img src="{% static 'manager/img/wave-logo.png' %}" alt="Wave" class="payment-option-icon payment-option-icon--wave" width="28" height="28">
                                 <span>Wave</span>
+                            </label>
+                        </div>
+                        <div class="option-item">
+                            <input type="radio" id="orange" name="payment_method" value="orange">
+                            <label for="orange">
+                                <i class="fas fa-mobile-alt payment-option-fa payment-option-fa--orange"></i>
+                                <span>Orange Money</span>
                             </label>
                         </div>
                         <div class="option-item">
