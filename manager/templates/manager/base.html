@@ -158,7 +158,7 @@
     </style>
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
     {% block navbar %}
     <nav class="navbar">
         <div class="container">
