@@ -13,12 +13,7 @@ body.page-dashboard-neumorphic .main-content.theme-reg {
     background: transparent !important;
 }
 
-body.page-dashboard-neumorphic .navbar {
-    background: var(--neo-bg) !important;
-    backdrop-filter: none;
-    border-bottom: none;
-    box-shadow: var(--neo-shadow-out-sm);
-}
+/* Navbar : même rendu que les pages admin type « Validation » (design-system + base, sans surcharge) */
 
 body.page-dashboard-neumorphic .footer {
     background: var(--neo-bg);
@@ -29,21 +24,9 @@ body.page-dashboard-neumorphic .footer p {
     color: #64748b !important;
 }
 
-body.page-dashboard-neumorphic .nav-link {
-    border-radius: 12px;
-}
-
-body.page-dashboard-neumorphic .nav-link:hover {
-    background: rgba(255, 255, 255, 0.42);
-}
-
 body.page-dashboard-neumorphic .notification {
     background: var(--neo-bg);
     backdrop-filter: none;
     border: none;
     box-shadow: var(--neo-shadow-out);
-}
-
-body.page-dashboard-neumorphic .nav-toggle span {
-    background: #64748b;
 }
