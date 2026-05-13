@@ -57,65 +57,6 @@
     resize: vertical;
 }
 
-.admin-dashboard .form-service--neo .checkbox-group {
-    margin-top: 0.5rem;
-}
-
-.admin-dashboard .form-service--neo .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--adm-text, #1e2a3a);
-    padding: 1rem 1.1rem;
-    background: var(--neo-bg, #e8ecf0);
-    border-radius: 16px;
-    border: none;
-    box-shadow: var(--neo-shadow-out-sm, 5px 5px 10px rgba(163, 177, 198, 0.42), -5px -5px 11px rgba(255, 255, 255, 0.94));
-    transition: box-shadow 0.2s ease;
-}
-
-.admin-dashboard .form-service--neo .checkbox-label:hover {
-    box-shadow: var(--neo-shadow-out, 8px 8px 16px rgba(163, 177, 198, 0.52), -8px -8px 18px rgba(255, 255, 255, 0.96));
-}
-
-.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"] {
-    display: none;
-}
-
-.admin-dashboard .form-service--neo .checkbox-label .checkmark {
-    width: 24px;
-    height: 24px;
-    border: none;
-    border-radius: 8px;
-    position: relative;
-    background: var(--neo-bg, #e8ecf0);
-    box-shadow: var(--neo-shadow-in-soft);
-    flex-shrink: 0;
-}
-
-.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"]:checked + .checkmark {
-    background: #2d6a66;
-    box-shadow: var(--neo-shadow-out-sm);
-}
-
-.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
-    content: "✓";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-}
-
-.admin-dashboard .form-service--neo .checkbox-label i {
-    color: #2d6a66;
-    font-size: 1.1rem;
-}
-
 .admin-dashboard .form-service--neo .errorlist {
     list-style: none;
     padding: 0;
@@ -160,15 +101,21 @@
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.admin-dashboard .form-service--neo .btn-primary {
-    background: var(--neo-bg, #e8ecf0);
-    color: var(--adm-text, #1e2a3a);
-    box-shadow: var(--neo-shadow-out-sm);
+/* Même teal que inscription / « Se connecter » (.reg-submit-cta) */
+.admin-dashboard .form-service--neo .btn-primary.btn-service-submit {
+    background: #2d6a66 !important;
+    border: 1px solid #2d6a66 !important;
+    color: #fff !important;
+    box-shadow: 0 10px 28px rgba(45, 106, 102, 0.22) !important;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
 }
 
-.admin-dashboard .form-service--neo .btn-primary:hover {
-    box-shadow: var(--neo-shadow-out);
-    color: #0f172a;
+.admin-dashboard .form-service--neo .btn-primary.btn-service-submit:hover {
+    background: #245652 !important;
+    border-color: #245652 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
 }
 
 .admin-dashboard .form-service--neo .btn-secondary {

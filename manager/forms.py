@@ -297,7 +297,7 @@ class SecureServiceForm(forms.ModelForm):
     
     class Meta:
         model = Service
-        fields = ['name', 'description', 'price', 'duration', 'is_active']
+        fields = ['name', 'description', 'price', 'duration']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4, 'maxlength': 1000}),
         }
