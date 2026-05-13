@@ -1,0 +1,197 @@
+/* Formulaire création / modification service — aligné dashboard admin (neumorphisme + teal) */
+.admin-dashboard .service-form-card .card-body {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.admin-dashboard .form-service--neo .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.admin-dashboard .form-service--neo .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.admin-dashboard .form-service--neo .floating-label {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    margin-bottom: 0.55rem;
+    color: var(--adm-text, #1e2a3a);
+    font-size: 0.95rem;
+}
+
+.admin-dashboard .form-service--neo .floating-label i {
+    color: #1e3a5f;
+    font-size: 1rem;
+    width: 1.1rem;
+    text-align: center;
+}
+
+.admin-dashboard .form-service--neo input,
+.admin-dashboard .form-service--neo textarea {
+    width: 100%;
+    padding: 0.95rem 1.1rem;
+    border-radius: 16px;
+    border: none;
+    background: var(--neo-bg, #e8ecf0);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--adm-text, #1e2a3a);
+    box-shadow: var(--neo-shadow-in-soft, inset 3px 3px 6px rgba(163, 177, 198, 0.32), inset -3px -3px 8px rgba(255, 255, 255, 0.88));
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.admin-dashboard .form-service--neo input:focus,
+.admin-dashboard .form-service--neo textarea:focus {
+    outline: none;
+    box-shadow: var(--neo-shadow-in, inset 6px 6px 12px rgba(163, 177, 198, 0.38), inset -6px -6px 14px rgba(255, 255, 255, 0.92)), 0 0 0 3px rgba(45, 106, 102, 0.2);
+}
+
+.admin-dashboard .form-service--neo textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.admin-dashboard .form-service--neo .checkbox-group {
+    margin-top: 0.5rem;
+}
+
+.admin-dashboard .form-service--neo .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--adm-text, #1e2a3a);
+    padding: 1rem 1.1rem;
+    background: var(--neo-bg, #e8ecf0);
+    border-radius: 16px;
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm, 5px 5px 10px rgba(163, 177, 198, 0.42), -5px -5px 11px rgba(255, 255, 255, 0.94));
+    transition: box-shadow 0.2s ease;
+}
+
+.admin-dashboard .form-service--neo .checkbox-label:hover {
+    box-shadow: var(--neo-shadow-out, 8px 8px 16px rgba(163, 177, 198, 0.52), -8px -8px 18px rgba(255, 255, 255, 0.96));
+}
+
+.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.admin-dashboard .form-service--neo .checkbox-label .checkmark {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 8px;
+    position: relative;
+    background: var(--neo-bg, #e8ecf0);
+    box-shadow: var(--neo-shadow-in-soft);
+    flex-shrink: 0;
+}
+
+.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: #2d6a66;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+.admin-dashboard .form-service--neo .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.admin-dashboard .form-service--neo .checkbox-label i {
+    color: #2d6a66;
+    font-size: 1.1rem;
+}
+
+.admin-dashboard .form-service--neo .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    color: #b91c1c;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.admin-dashboard .form-service--neo .errorlist li {
+    padding: 0.45rem 0.65rem;
+    background: rgba(254, 226, 226, 0.45);
+    border-radius: 10px;
+    border-left: 3px solid #dc2626;
+    margin-top: 0.35rem;
+}
+
+.admin-dashboard .form-service--neo .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(163, 177, 198, 0.35);
+}
+
+.admin-dashboard .form-service--neo .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 130px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.admin-dashboard .form-service--neo .btn-primary {
+    background: var(--neo-bg, #e8ecf0);
+    color: var(--adm-text, #1e2a3a);
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+.admin-dashboard .form-service--neo .btn-primary:hover {
+    box-shadow: var(--neo-shadow-out);
+    color: #0f172a;
+}
+
+.admin-dashboard .form-service--neo .btn-secondary {
+    background: var(--neo-bg, #e8ecf0);
+    color: var(--adm-muted, #6b7a8f);
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+.admin-dashboard .form-service--neo .btn-secondary:hover {
+    box-shadow: var(--neo-shadow-out-sm);
+    color: var(--adm-text, #1e2a3a);
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard .form-service--neo .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard .form-service--neo .form-actions {
+        flex-direction: column;
+    }
+
+    .admin-dashboard .form-service--neo .btn {
+        width: 100%;
+    }
+}
