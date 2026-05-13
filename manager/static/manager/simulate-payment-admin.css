@@ -130,6 +130,16 @@
     font-size: 1.1rem;
 }
 
+.admin-dashboard.simulate-payment-page .option-item label .payment-option-icon {
+    flex-shrink: 0;
+    margin-right: 0.65rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
+}
+
 .admin-dashboard.simulate-payment-page .cash-info-neo {
     margin-top: 1rem;
     padding: 1rem 1.1rem;

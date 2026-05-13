@@ -41,7 +41,7 @@ class Reservation(models.Model):
     ]
     
     PAYMENT_METHOD_CHOICES = [
-        ('mobile', 'Mobile Money'),
+        ('mobile', 'Wave'),
         ('cash', 'Espèces'),
         ('not_set', 'Non défini'),
     ]

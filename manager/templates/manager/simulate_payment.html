@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
 <link rel="stylesheet" href="{% static 'manager/service-form-admin.css' %}?v=5">
-<link rel="stylesheet" href="{% static 'manager/simulate-payment-admin.css' %}?v=3">
+<link rel="stylesheet" href="{% static 'manager/simulate-payment-admin.css' %}?v=4">
 {% endblock %}
 
 {% block content %}
@@ -19,7 +19,7 @@
         <div class="header-content">
             <div class="header-left">
                 <h1><i class="fas fa-mobile-alt"></i> Paiement</h1>
-                <p>Simulation de paiement mobile money</p>
+                <p>Simulation de paiement Wave</p>
             </div>
         </div>
     </div>
@@ -73,8 +73,8 @@
                         <div class="option-item">
                             <input type="radio" id="wave" name="payment_method" value="wave" checked>
                             <label for="wave">
-                                <i class="fas fa-mobile-alt"></i>
-                                <span>Mobile Money</span>
+                                <img src="{% static 'manager/img/wave-logo.png' %}" alt="Wave" class="payment-option-icon payment-option-icon--wave" width="28" height="28">
+                                <span>Wave</span>
                             </label>
                         </div>
                         <div class="option-item">
