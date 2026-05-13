@@ -1,32 +1,19 @@
-/* Reservation client — styles scoped, uniformes dashboard */
+/* Page nouvelle réservation — alignée admin + form-service--neo (service-form-admin.css) */
 
-.reservation-adminlike .reservation-aside .reg-panel-inner {
-    padding: 1.25rem 1.25rem;
+.admin-dashboard.reservation-client-page .reservation-form-lead {
+    margin: 0 0 1.35rem;
+    text-align: center;
+    color: var(--adm-muted, #6b7a8f);
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-.reservation-adminlike .reservation-aside .reg-section-title {
-    margin-bottom: 0.65rem;
-    justify-content: flex-start;
+.admin-dashboard.reservation-client-page .messages-section {
+    margin-bottom: 0.5rem;
 }
 
-.reservation-adminlike .reservation-aside .dash-section-lead {
-    margin-bottom: 1rem;
-}
-
-.reservation-adminlike .reservation-aside .dash-rdv-meta > div {
-    margin-bottom: 0.45rem;
-}
-
-.reservation-adminlike .reservation-aside .dash-rdv-meta > div:last-child {
-    margin-bottom: 0;
-}
-
-.reservation-adminlike .messages-section {
-    margin-bottom: 1.25rem;
-}
-
-.reservation-adminlike .messages-section .alert {
-    border-radius: 12px;
+.admin-dashboard.reservation-client-page .messages-section .alert {
+    border-radius: 16px;
     border: 1px solid transparent;
     padding: 0.85rem 1rem;
     margin-bottom: 0.75rem;
@@ -35,31 +22,31 @@
     gap: 0.65rem;
 }
 
-.reservation-adminlike .messages-section .alert-success {
+.admin-dashboard.reservation-client-page .messages-section .alert-success {
     background: rgba(209, 250, 229, 0.75);
     color: #065f46;
     border-color: rgba(16, 185, 129, 0.25);
 }
 
-.reservation-adminlike .messages-section .alert-info {
+.admin-dashboard.reservation-client-page .messages-section .alert-info {
     background: rgba(207, 250, 254, 0.7);
     color: #0c5460;
     border-color: rgba(6, 182, 212, 0.22);
 }
 
-.reservation-adminlike .messages-section .alert-warning {
+.admin-dashboard.reservation-client-page .messages-section .alert-warning {
     background: rgba(254, 243, 199, 0.75);
     color: #92400e;
     border-color: rgba(217, 119, 6, 0.25);
 }
 
-.reservation-adminlike .messages-section .alert-danger {
+.admin-dashboard.reservation-client-page .messages-section .alert-danger {
     background: rgba(254, 226, 226, 0.75);
     color: #b91c1c;
     border-color: rgba(248, 113, 113, 0.3);
 }
 
-.reservation-adminlike .messages-section .btn-close {
+.admin-dashboard.reservation-client-page .messages-section .btn-close {
     background: none;
     border: none;
     color: inherit;
@@ -70,265 +57,71 @@
     border-radius: 8px;
 }
 
-.reservation-adminlike .messages-section .btn-close:hover {
+.admin-dashboard.reservation-client-page .messages-section .btn-close:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 0.4);
 }
 
-/* Form layout */
-.reservation-adminlike .form-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 1.25rem;
+/* Carte conseils (colonne droite) */
+.admin-dashboard.reservation-client-page .reservation-conseils-card .card-body {
+    padding-top: 0.75rem;
 }
 
-.reservation-adminlike .form-group {
-    min-width: 0;
-}
-
-@media (max-width: 768px) {
-    .reservation-adminlike .form-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-}
-
-/* Inputs (cohérents avec theme-reg) */
-.reservation-adminlike .modern-form select,
-.reservation-adminlike .modern-form input,
-.reservation-adminlike .modern-form textarea {
-    width: 100%;
-    border: 1px solid var(--reg-line);
-    border-radius: 12px;
-    padding: 0.75rem 0.9rem;
-    background: rgba(255, 255, 255, 0.95);
-    color: var(--reg-text);
-    font-size: 1rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.reservation-adminlike .modern-form select,
-.reservation-adminlike .modern-form input {
-    min-height: 52px;
-}
-
-.reservation-adminlike .modern-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-.reservation-adminlike .modern-form select:focus,
-.reservation-adminlike .modern-form input:focus,
-.reservation-adminlike .modern-form textarea:focus {
-    outline: none;
-    border-color: rgba(45, 106, 102, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
-}
-
-/* Custom select (coiffeuses) */
-.reservation-adminlike .custom-select-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.reservation-adminlike .custom-select-display {
-    width: 100%;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid var(--reg-line);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.95);
-    cursor: pointer;
+.admin-dashboard.reservation-client-page .reservation-conseils-list > div {
     display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    min-height: 52px;
-    box-sizing: border-box;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--adm-muted, #6b7a8f);
+    line-height: 1.45;
 }
 
-.reservation-adminlike .custom-select-display:hover {
-    border-color: rgba(45, 106, 102, 0.25);
+.admin-dashboard.reservation-client-page .reservation-conseils-list > div:last-child {
+    margin-bottom: 0;
 }
 
-.reservation-adminlike .custom-select-display.active {
-    border-color: rgba(45, 106, 102, 0.35);
-    box-shadow: 0 0 0 0.2rem rgba(45, 106, 102, 0.12);
+.admin-dashboard.reservation-client-page .reservation-conseils-list i {
+    color: #1e3a5f;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+    width: 1rem;
+    text-align: center;
 }
 
-.reservation-adminlike .custom-select-options {
+/* Select coiffeuse masqué (UI personnalisée) */
+.admin-dashboard.reservation-client-page #id_coiffeuse {
     position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    border: 1px solid rgba(45, 106, 102, 0.18);
-    border-radius: 12px;
-    max-height: 240px;
-    overflow-y: auto;
-    z-index: 1000;
-    display: none;
-    box-shadow: 0 14px 38px rgba(45, 106, 102, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
 }
 
-.reservation-adminlike .custom-select-options.show {
-    display: block;
+.admin-dashboard.reservation-client-page .custom-select-display .placeholder {
+    color: var(--adm-muted, #6b7a8f);
 }
 
-.reservation-adminlike .custom-select-option {
-    padding: 0.7rem 0.85rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    transition: background-color 0.15s ease;
-    border-bottom: 1px solid rgba(45, 106, 102, 0.08);
-}
-
-.reservation-adminlike .custom-select-option:last-child {
-    border-bottom: none;
-}
-
-.reservation-adminlike .custom-select-option:hover {
-    background: rgba(45, 106, 102, 0.06);
-}
-
-.reservation-adminlike .custom-select-option.selected {
-    background: rgba(45, 106, 102, 0.12);
-}
-
-.reservation-adminlike .coiffeuse-avatar {
+.admin-dashboard.reservation-client-page .coiffeuse-avatar {
     width: 32px;
     height: 32px;
     border-radius: 999px;
     object-fit: cover;
-    border: 2px solid rgba(45, 106, 102, 0.14);
+    border: 2px solid rgba(45, 106, 102, 0.18);
     flex-shrink: 0;
 }
 
-.reservation-adminlike .coiffeuse-avatar.default {
-    background: rgba(237, 233, 254, 0.9);
+.admin-dashboard.reservation-client-page .coiffeuse-avatar.default {
+    background: var(--neo-bg, #e8ecf0);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #2d6a66;
     font-size: 0.85rem;
+    box-shadow: var(--neo-shadow-in-soft, inset 3px 3px 6px rgba(163, 177, 198, 0.28), inset -3px -3px 7px rgba(255, 255, 255, 0.85));
 }
 
-.reservation-adminlike .coiffeuse-name {
+.admin-dashboard.reservation-client-page .coiffeuse-name {
     font-weight: 600;
-    color: var(--reg-text);
+    color: var(--adm-text, #1e2a3a);
 }
-
-/* --- Glassmorphism : nouvelle réservation (fond neumorphique + panneaux vitrés) --- */
-body.page-dashboard-neumorphic .reservation-page-glass .reg-wrap {
-    padding-bottom: 2.75rem;
-    background:
-        radial-gradient(ellipse 90% 55% at 12% 0%, rgba(45, 106, 102, 0.12) 0%, transparent 55%),
-        radial-gradient(ellipse 75% 50% at 92% 20%, rgba(255, 255, 255, 0.42) 0%, transparent 52%),
-        radial-gradient(ellipse 55% 45% at 50% 100%, rgba(45, 106, 102, 0.07) 0%, transparent 48%);
-    border-radius: 0 0 24px 24px;
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .reg-hero .reg-panel.reservation-aside {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .reservation-aside .reg-panel-inner {
-    background: rgba(255, 255, 255, 0.4) !important;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.62) !important;
-    box-shadow: 0 10px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.78);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .reg-panel.dash-main {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .dash-main .reg-panel-inner {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    backdrop-filter: none;
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .dash-form-grid {
-    grid-template-columns: 1fr;
-    max-width: min(920px, 100%);
-    margin: 0 auto;
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card {
-    background: rgba(255, 255, 255, 0.4) !important;
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.62) !important;
-    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card:hover {
-    border-color: rgba(255, 255, 255, 0.78) !important;
-    box-shadow: 0 16px 44px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .form-card-header {
-    background: rgba(255, 255, 255, 0.32);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.48);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .form-card-body {
-    background: rgba(248, 250, 252, 0.28);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .modern-form select,
-body.page-dashboard-neumorphic .reservation-page-glass .modern-form input,
-body.page-dashboard-neumorphic .reservation-page-glass .modern-form textarea {
-    background: rgba(255, 255, 255, 0.52) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .custom-select-display {
-    background: rgba(255, 255, 255, 0.52) !important;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .custom-select-options {
-    background: rgba(255, 255, 255, 0.72) !important;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-}
-
-body.page-dashboard-neumorphic .reservation-page-glass .messages-section .alert {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-/* Hide original select */
-.reservation-adminlike #id_coiffeuse {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Sidebar small typography */
-.reservation-adminlike .tips-list {
-    margin: 0;
-    padding-left: 1.1rem;
-    color: var(--reg-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
