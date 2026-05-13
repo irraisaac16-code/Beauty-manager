@@ -32,7 +32,7 @@
     text-align: center;
 }
 
-.admin-dashboard .form-service--neo input,
+.admin-dashboard .form-service--neo input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
 .admin-dashboard .form-service--neo textarea,
 .admin-dashboard .form-service--neo select {
     width: 100%;
@@ -52,7 +52,7 @@
     cursor: pointer;
 }
 
-.admin-dashboard .form-service--neo input:focus,
+.admin-dashboard .form-service--neo input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]):focus,
 .admin-dashboard .form-service--neo textarea:focus,
 .admin-dashboard .form-service--neo select:focus {
     outline: none;
