@@ -1,0 +1,177 @@
+/* Dashboards client / esthéticienne (reg-page + dash-page) — neumorphisme */
+body.page-dashboard-neumorphic .reg-page.dash-page {
+    --dash-text: #1e2a3a;
+    --dash-muted: #6b7a8f;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-intro h1 {
+    color: var(--dash-text);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-intro p,
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-section-lead,
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-welcome {
+    color: var(--dash-muted);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-welcome strong {
+    color: var(--dash-text);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-panel {
+    border: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-panel-inner {
+    background: var(--neo-bg);
+    border: none;
+    border-radius: 22px;
+    box-shadow: var(--neo-shadow-out);
+    backdrop-filter: none;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-section-title {
+    color: var(--dash-text);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-section-title i {
+    color: #1e3a5f;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-section {
+    border-bottom-color: rgba(163, 177, 198, 0.35);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-btn.reg-btn-alt {
+    background: var(--neo-bg);
+    border: none;
+    color: var(--dash-text);
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-btn.reg-btn-alt:hover {
+    box-shadow: var(--neo-shadow-out);
+    color: var(--dash-text);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-profile-img {
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-profile-placeholder {
+    background: var(--neo-bg);
+    border: none;
+    color: #1e3a5f;
+    box-shadow: var(--neo-shadow-in);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-card {
+    background: var(--neo-bg);
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-card:hover {
+    box-shadow: var(--neo-shadow-out);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-head {
+    background: transparent;
+    border-bottom: 1px solid rgba(163, 177, 198, 0.3);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-date-icon {
+    background: var(--neo-bg);
+    color: #1e3a5f;
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-service-icon {
+    background: var(--neo-bg);
+    color: #1e3a5f;
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-coiffeuse-ph,
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-coiffeuse-img {
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-coiffeuse-block {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-date-block {
+    background: var(--neo-bg);
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-date-head {
+    border-bottom-color: rgba(163, 177, 198, 0.35);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-row {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-row:hover {
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-row[data-status="payé"] {
+    background: rgba(255, 255, 255, 0.38);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-row[data-status="annulé"] {
+    background: rgba(255, 255, 255, 0.34);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-quick-card {
+    background: var(--neo-bg);
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-quick-card:hover {
+    box-shadow: var(--neo-shadow-out);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-quick-icon {
+    background: var(--neo-bg);
+    color: #1e3a5f;
+    box-shadow: var(--neo-shadow-in-soft);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-date-badge {
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-empty {
+    background: var(--neo-bg);
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--neo-shadow-in);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-validation-notice {
+    background: var(--neo-bg);
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-validation-notice-icon {
+    color: #1e3a5f;
+}
+
+body.page-dashboard-neumorphic .main-content .container .alert {
+    border: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}

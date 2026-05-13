@@ -1,0 +1,49 @@
+/* Shell neumorphique partagé — dashboards (body + navbar + footer) */
+body.page-dashboard-neumorphic {
+    --neo-bg: #e8ecf0;
+    --neo-light: #ffffff;
+    --neo-shadow-out: 8px 8px 16px rgba(163, 177, 198, 0.52), -8px -8px 18px rgba(255, 255, 255, 0.96);
+    --neo-shadow-out-sm: 5px 5px 10px rgba(163, 177, 198, 0.42), -5px -5px 11px rgba(255, 255, 255, 0.94);
+    --neo-shadow-in: inset 6px 6px 12px rgba(163, 177, 198, 0.38), inset -6px -6px 14px rgba(255, 255, 255, 0.92);
+    --neo-shadow-in-soft: inset 3px 3px 6px rgba(163, 177, 198, 0.32), inset -3px -3px 8px rgba(255, 255, 255, 0.88);
+    background-color: var(--neo-bg) !important;
+}
+
+body.page-dashboard-neumorphic .main-content.theme-reg {
+    background: transparent !important;
+}
+
+body.page-dashboard-neumorphic .navbar {
+    background: var(--neo-bg) !important;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: var(--neo-shadow-out-sm);
+}
+
+body.page-dashboard-neumorphic .footer {
+    background: var(--neo-bg);
+    border-top: none;
+}
+
+body.page-dashboard-neumorphic .footer p {
+    color: #64748b !important;
+}
+
+body.page-dashboard-neumorphic .nav-link {
+    border-radius: 12px;
+}
+
+body.page-dashboard-neumorphic .nav-link:hover {
+    background: rgba(255, 255, 255, 0.42);
+}
+
+body.page-dashboard-neumorphic .notification {
+    background: var(--neo-bg);
+    backdrop-filter: none;
+    border: none;
+    box-shadow: var(--neo-shadow-out);
+}
+
+body.page-dashboard-neumorphic .nav-toggle span {
+    background: #64748b;
+}

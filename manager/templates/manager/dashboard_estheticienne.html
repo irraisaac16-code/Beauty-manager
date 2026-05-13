@@ -1,7 +1,13 @@
 {% extends 'manager/base.html' %}
 {% load price_filters %}
+{% load static %}
 
 {% block title %}Dashboard Esthéticienne - Beauty Manager{% endblock %}
+
+{% block body_class %}page-dashboard-neumorphic{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
 <div class="container">
