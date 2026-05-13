@@ -2,7 +2,7 @@
 {% load static %}
 {% load math_filters %}
 
-{% block title %}Bilan Mensuel - Beauty Manager{% endblock %}
+{% block title %}Bilan Mensuel — Gestion salon{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=3">
@@ -14,9 +14,6 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <div class="reg-brand" aria-label="Beauty Manager">
-                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
-                </div>
                 <h1><i class="fas fa-calendar-alt"></i> Bilan Mensuel</h1>
                 <p>{{ periode }}</p>
                 <div class="header-actions">

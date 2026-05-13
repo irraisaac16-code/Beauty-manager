@@ -1,4 +1,4 @@
-Compte Validé - Beauty Manager
+Compte Validé — Gestion salon
 
 Bonjour {{ coiffeuse_name }},
 
@@ -23,8 +23,8 @@ Accédez à votre espace : http://localhost:8000
 Nous sommes ravis de vous compter parmi notre équipe de professionnels !
 
 Cordialement,
-L'équipe Beauty Manager
+L'équipe du salon
 
 ---
 Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
-© 2024 Beauty Manager. Tous droits réservés. 
+© Tous droits réservés. 

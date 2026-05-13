@@ -1,4 +1,4 @@
-Confirmation de Réservation - Beauty Manager
+Confirmation de Réservation — Gestion salon
 
 Bonjour {{ client_name }},
 
@@ -21,8 +21,8 @@ http://localhost:8000
 Nous vous remercions de votre confiance et nous vous attendons avec impatience !
 
 Cordialement,
-L'équipe Beauty Manager
+L'équipe du salon
 
 ---
 Cet email a été envoyé automatiquement. Merci de ne pas y répondre.
-© 2024 Beauty Manager. Tous droits réservés. 
+© Tous droits réservés. 

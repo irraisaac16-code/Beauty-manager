@@ -1,10 +1,10 @@
-# Beauty Manager
+# Gestion salon (Django)
 
 Application web de gestion de salon de beaute developpee avec Django.
 
 ## Apercu
 
-Beauty Manager est une application de gestion pour salon de beaute qui permet de centraliser:
+Cette démo est une application de gestion pour salon de beaute qui permet de centraliser:
 - la gestion des reservations,
 - la gestion des profils utilisateurs (admin, coiffeuse, client),
 - le suivi des services et des disponibilites,

@@ -1,5 +1,5 @@
 /**
- * Beauty Manager — design system portfolio
+ * Design system — palette sobre (bien-être / tech pro)
  * Palette sobre, lisible, secteur bien-être / tech pro (sans effets flashy).
  */
 :root {
@@ -49,26 +49,20 @@ main.main-content.theme-reg {
 }
 
 .navbar-brand,
-a.navbar-brand.brand-wordmark-nav {
-  font-size: 1.48rem !important;
+a.navbar-brand.navbar-brand-plain {
+  font-size: 1.35rem !important;
   font-weight: 700 !important;
   color: var(--bm-ink) !important;
   letter-spacing: -0.02em !important;
   text-decoration: none !important;
-}
-
-a.navbar-brand.brand-wordmark-nav .brand-wordmark__beauty {
-  color: var(--bm-teal) !important;
-}
-
-a.navbar-brand.brand-wordmark-nav .brand-wordmark__manager {
-  color: var(--bm-ink) !important;
-  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .navbar-brand:hover,
-a.navbar-brand.brand-wordmark-nav:hover {
-  color: var(--bm-ink) !important;
+a.navbar-brand.navbar-brand-plain:hover {
+  color: var(--bm-teal) !important;
   transform: none !important;
 }
 

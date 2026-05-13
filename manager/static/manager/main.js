@@ -1,7 +1,7 @@
-// Fichier JavaScript pour Beauty Manager
+// Scripts interface gestion salon
 // Ce fichier permet à GitHub de détecter l'utilisation de JavaScript dans le projet
 
-console.log("Beauty Manager - JavaScript loaded");
+console.log("Gestion salon — scripts chargés");
 
 // Fonction exemple pour les réservations
 function toggleReservationDetails(id) {

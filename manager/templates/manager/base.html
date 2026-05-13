@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Beauty Manager{% endblock %}</title>
+    <title>{% block title %}Gestion salon{% endblock %}</title>
     <link rel="icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="shortcut icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -131,24 +131,17 @@
         .badge-info { color: #fff; background-color: #17a2b8; }
         .badge-danger { color: #fff; background-color: #dc3545; }
         
-        .brand-wordmark {
-            margin: 0 0 0.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            font-size: clamp(1.34rem, 2.5vw, 1.78rem);
-            line-height: 1.2;
-        }
-        .brand-wordmark__beauty { color: #2d6a66; }
-        .brand-wordmark__manager { color: #161514; }
-        a.navbar-brand.brand-wordmark-nav {
-            font-weight: 700 !important;
-            letter-spacing: -0.02em !important;
-            gap: 0.2rem;
-        }
-        a.navbar-brand.brand-wordmark-nav:hover { text-decoration: none !important; }
         a.navbar-brand.navbar-brand-plain {
             font-weight: 700 !important;
             color: #161514 !important;
+            font-size: 1.35rem !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+        a.navbar-brand.navbar-brand-plain:hover {
+            text-decoration: none !important;
+            color: #2d6a66 !important;
         }
         .navbar-accueil-link {
             display: inline-flex;
@@ -162,7 +155,7 @@
     {% block navbar %}
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="navbar-brand {% block navbar_brand_class %}brand-wordmark-nav{% endblock %}">{% block navbar_brand %}<span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>{% endblock %}</a>
+            <a href="{% url 'home' %}" class="navbar-brand navbar-brand-plain {% block navbar_brand_class %}{% endblock %}" aria-label="Accueil">{% block navbar_brand %}<i class="fas fa-spa" aria-hidden="true"></i>{% endblock %}</a>
             <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>
@@ -204,7 +197,7 @@
     <footer class="footer">
         <div class="container">
             <p style="text-align: center; margin: 0; padding: 1.25rem 1rem 1.75rem; color: #5f5c57; font-size: 0.82rem;">
-                2026 Beauty Manager - © Tous droits réservés.
+                © 2026 — Tous droits réservés.
             </p>
         </div>
     </footer>

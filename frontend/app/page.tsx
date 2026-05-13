@@ -99,7 +99,7 @@ export default function Home() {
               Prêt à moderniser ton salon ?
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-slate-300">
-              Lance Beauty Manager et transforme ta gestion quotidienne en
+              Lance la plateforme et transforme ta gestion quotidienne en
               expérience fluide, premium et rentable.
             </p>
             <a

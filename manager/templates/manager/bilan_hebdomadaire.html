@@ -1,7 +1,7 @@
 {% extends 'manager/base.html' %}
 {% load static %}
 
-{% block title %}Bilan Hebdomadaire - Beauty Manager{% endblock %}
+{% block title %}Bilan Hebdomadaire — Gestion salon{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=3">
@@ -13,9 +13,6 @@
     <div class="dashboard-header">
         <div class="header-content">
             <div class="header-left">
-                <div class="reg-brand" aria-label="Beauty Manager">
-                    <img src="{% static 'manager/brand-wordmark.png' %}?v=1" alt="Beauty Manager">
-                </div>
                 <h1><i class="fas fa-chart-line"></i> Bilan Hebdomadaire</h1>
                 <p>{{ periode }}</p>
                 <div class="header-actions">

@@ -41,10 +41,6 @@
     box-shadow: var(--neo-shadow-out, 8px 8px 16px rgba(163, 177, 198, 0.52), -8px -8px 18px rgba(255, 255, 255, 0.96));
 }
 
-.admin-dashboard .header-left .brand-wordmark {
-    text-align: center;
-}
-
 .admin-dashboard .header-left h1 {
     font-size: clamp(1.6rem, 3vw, 2.25rem);
     font-weight: 800;

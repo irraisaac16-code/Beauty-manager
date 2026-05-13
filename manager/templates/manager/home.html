@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <title>Beauty Manager</title>
+    <title>Accueil — Gestion salon</title>
     <link rel="icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="shortcut icon" type="image/png" href="{% static 'manager/favicon.png' %}?v=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -81,37 +81,21 @@
             width: 100%;
         }
 
-        /* Wordmark accueil — styles locaux (visibilité garantie sans dépendre de .navbar) */
+        /* Logo accueil — icône seule (sans wordmark) */
         .site-header .home-header-brand {
             display: inline-flex;
             align-items: center;
             align-self: center;
-            gap: 0.2em;
             flex-shrink: 0;
             margin-inline-start: clamp(1rem, 4vw, 2.5rem);
             text-decoration: none;
-            font-size: clamp(1.38rem, 3.2vw, 1.72rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
             line-height: 1;
-            color: var(--text);
-        }
-
-        .site-header .home-header-brand .brand-wordmark__beauty {
             color: var(--accent);
-        }
-
-        .site-header .home-header-brand .brand-wordmark__manager {
-            color: var(--text);
-            font-weight: 700;
         }
 
         .site-header .home-header-brand:hover {
             text-decoration: none;
-            color: var(--text);
-        }
-
-        .site-header .home-header-brand:hover .brand-wordmark__beauty {
             color: var(--accent-hover);
         }
 
@@ -744,8 +728,8 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
-            <a href="{% url 'home' %}" class="home-header-brand" aria-label="Beauty Manager — Accueil">
-                <span class="brand-wordmark__beauty">Beauty</span> <span class="brand-wordmark__manager">Manager</span>
+            <a href="{% url 'home' %}" class="home-header-brand" aria-label="Accueil">
+                <i class="fas fa-spa" aria-hidden="true"></i>
             </a>
             <div class="header-actions">
                 <a href="{% url 'register_coiffeuse' %}" class="btn-pill btn-pill--ghost">
@@ -798,17 +782,17 @@
         <section class="home-section" aria-labelledby="why-title">
             <div class="wrap">
                 <header class="home-section-head">
-                    <h1 id="why-title" class="home-section-title">C'est quoi Beauty Manager ?</h1>
+                    <h1 id="why-title" class="home-section-title">À propos de la plateforme</h1>
                 </header>
                 <div class="why-prose">
                     <p>
-                        Beauty Manager est une plateforme web moderne conçue pour aider les salons de beauté à gérer leur activité de manière plus simple, plus rapide et plus professionnelle.
+                        Cette plateforme web moderne est conçue pour aider les salons de beauté à gérer leur activité de manière plus simple, plus rapide et plus professionnelle.
                     </p>
                     <p>
                         Réservations, gestion des clientes, suivi des équipes, paiements et tableaux de bord intelligents : tout est centralisé dans une seule interface pensée pour optimiser l’organisation quotidienne et améliorer la rentabilité du salon.
                     </p>
                     <p>
-                        Grâce à une expérience fluide et intuitive, Beauty Manager permet aux professionnels de la beauté de gagner du temps, mieux suivre leurs performances et offrir une expérience plus moderne à leurs clientes.
+                        Grâce à une expérience fluide et intuitive, elle permet aux professionnels de la beauté de gagner du temps, mieux suivre leurs performances et offrir une expérience plus moderne à leurs clientes.
                     </p>
                 </div>
             </div>
@@ -829,7 +813,7 @@
                         <h3>Rôles &amp; accès</h3>
                         <div class="feature-card-body">
                             <p>
-                                Beauty Manager propose trois espaces dédiés : administrateur, esthéticienne et client(e), chacun avec des fonctionnalités adaptées à son rôle.
+                                Elle propose trois espaces dédiés : administrateur, esthéticienne et client(e), chacun avec des fonctionnalités adaptées à son rôle.
                             </p>
                             <p>
                                 Les comptes esthéticiennes sont validés par l’administrateur avant activation, tandis que les clientes accèdent directement à la plateforme après inscription.
@@ -882,7 +866,7 @@
                         </div>
                     </div>
                     <p>
-                        J’ai développé Beauty Manager pour démontrer mes compétences en développement web full-stack à travers la création d’une application moderne de gestion de salon de beauté. Cette version sert de démonstration technique : certains modules, comme les paiements et les notifications, sont volontairement simplifiés ou simulés. Malgré cela, le projet présente une architecture SaaS réaliste, avec une gestion des rôles et des fonctionnalités pensées pour évoluer vers un produit complet.
+                        J’ai développé cette application pour démontrer mes compétences en développement web full-stack à travers la création d’une application moderne de gestion de salon de beauté. Cette version sert de démonstration technique : certains modules, comme les paiements et les notifications, sont volontairement simplifiés ou simulés. Malgré cela, le projet présente une architecture SaaS réaliste, avec une gestion des rôles et des fonctionnalités pensées pour évoluer vers un produit complet.
                     </p>
                     <p class="about-contact-line">
                         <span class="about-contact-item"><strong class="about-contact-label">Contact</strong>&nbsp;: <a href="tel:+2250556620398">+225 0556620398</a></span>
@@ -895,7 +879,7 @@
 
     <footer class="site-footer">
         <p style="margin:0;">
-            2026 Beauty Manager - © Tous droits réservés.
+            © 2026 — Tous droits réservés.
         </p>
     </footer>
     <script>
