@@ -7,16 +7,16 @@
 {% block body_class %}page-dashboard-neumorphic{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=3">
 {% endblock %}
 
 {% block content %}
 {% csrf_token %}
-<div class="reg-page dash-page">
+<div class="reg-page dash-page dash-page-coiffeuse">
     <div class="reg-wrap">
         <section class="reg-hero">
             <div class="reg-intro">
-                <h1>Dashboard esthéticienne</h1>
+                <h1>Bienvenue, {{ user_profile.user.username }}</h1>
                 <p>
                     Consultez votre planning, confirmez les rendez-vous et gérez les paiements en un seul endroit.
                 </p>
@@ -38,7 +38,6 @@
                             </div>
                         {% endif %}
                     </div>
-                    <p class="dash-welcome"><strong>Bienvenue, {{ user_profile.user.username }}</strong></p>
                 </div>
             </div>
         </section>

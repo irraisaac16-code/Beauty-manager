@@ -221,3 +221,32 @@ body.page-dashboard-neumorphic .reg-page.dash-page .dash-welcome {
         margin-right: auto;
     }
 }
+
+/* Dashboard esthéticienne : cadre profil sans texte, photo agrandie */
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .reg-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 175px);
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .reg-hero > .reg-panel {
+    max-width: 158px;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .reg-hero > .reg-panel .reg-panel-inner.dash-profile-card {
+    padding: 0.55rem 0.55rem 0.6rem;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .dash-profile-img,
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .dash-profile-placeholder {
+    width: 120px;
+    height: 120px;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .dash-profile-placeholder {
+    font-size: 3rem;
+}
+
+@media (max-width: 960px) {
+    body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-coiffeuse .reg-hero > .reg-panel {
+        max-width: 158px;
+    }
+}
