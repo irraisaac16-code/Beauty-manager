@@ -175,3 +175,49 @@ body.page-dashboard-neumorphic .main-content .container .alert {
     border: none;
     box-shadow: var(--neo-shadow-out-sm);
 }
+
+/* Hero : bloc « Bienvenue » plus compact (ne pas occuper ~50 % de la largeur) */
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+    gap: 1.35rem;
+    align-items: start;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-hero > .reg-panel {
+    max-width: 240px;
+    width: 100%;
+    justify-self: end;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .reg-hero > .reg-panel .reg-panel-inner.dash-profile-card {
+    padding: 0.85rem 0.75rem 1rem;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-profile-img,
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-profile-placeholder {
+    width: 80px;
+    height: 80px;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-profile-placeholder {
+    font-size: 2.25rem;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .dash-welcome {
+    margin: 0.55rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 960px) {
+    body.page-dashboard-neumorphic .reg-page.dash-page .reg-hero {
+        grid-template-columns: 1fr;
+    }
+
+    body.page-dashboard-neumorphic .reg-page.dash-page .reg-hero > .reg-panel {
+        max-width: 220px;
+        justify-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
