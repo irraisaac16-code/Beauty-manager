@@ -220,6 +220,98 @@
     color: var(--reg-text);
 }
 
+/* --- Glassmorphism : nouvelle réservation (fond neumorphique + panneaux vitrés) --- */
+body.page-dashboard-neumorphic .reservation-page-glass .reg-wrap {
+    padding-bottom: 2.75rem;
+    background:
+        radial-gradient(ellipse 90% 55% at 12% 0%, rgba(45, 106, 102, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 75% 50% at 92% 20%, rgba(255, 255, 255, 0.42) 0%, transparent 52%),
+        radial-gradient(ellipse 55% 45% at 50% 100%, rgba(45, 106, 102, 0.07) 0%, transparent 48%);
+    border-radius: 0 0 24px 24px;
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reg-hero .reg-panel.reservation-aside {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reservation-aside .reg-panel-inner {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.62) !important;
+    box-shadow: 0 10px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reg-panel.dash-main {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .dash-main .reg-panel-inner {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none;
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card,
+body.page-dashboard-neumorphic .reservation-page-glass .info-card {
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.62) !important;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .reservation-form-card:hover,
+body.page-dashboard-neumorphic .reservation-page-glass .info-card:hover {
+    border-color: rgba(255, 255, 255, 0.78) !important;
+    box-shadow: 0 16px 44px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .form-card-header {
+    background: rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.48);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .form-card-body {
+    background: rgba(248, 250, 252, 0.28);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .modern-form select,
+body.page-dashboard-neumorphic .reservation-page-glass .modern-form input,
+body.page-dashboard-neumorphic .reservation-page-glass .modern-form textarea {
+    background: rgba(255, 255, 255, 0.52) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .custom-select-display {
+    background: rgba(255, 255, 255, 0.52) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .custom-select-options {
+    background: rgba(255, 255, 255, 0.72) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+body.page-dashboard-neumorphic .reservation-page-glass .messages-section .alert {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
 /* Hide original select */
 .reservation-adminlike #id_coiffeuse {
     position: absolute;
