@@ -6,7 +6,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
 {% endblock %}
 
 {% block content %}
@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
     <div class="mb-4 flex-center">
-        <a href="{% url 'service_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter un service</a>
+        <a href="{% url 'service_create' %}" class="btn btn-primary btn-admin-cta"><i class="fas fa-plus"></i> Ajouter un service</a>
     </div>
     {% if messages %}
         <ul class="messages">

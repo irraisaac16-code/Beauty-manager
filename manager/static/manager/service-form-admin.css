@@ -101,21 +101,9 @@
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-/* Même teal que inscription / « Se connecter » (.reg-submit-cta) */
-.admin-dashboard .form-service--neo .btn-primary.btn-service-submit {
-    background: #2d6a66 !important;
+/* Ne pas écraser le style CTA défini dans admin-dashboard.css (.btn-admin-cta) */
+.admin-dashboard .form-service--neo .btn.btn-admin-cta {
     border: 1px solid #2d6a66 !important;
-    color: #fff !important;
-    box-shadow: 0 10px 28px rgba(45, 106, 102, 0.22) !important;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
-}
-
-.admin-dashboard .form-service--neo .btn-primary.btn-service-submit:hover {
-    background: #245652 !important;
-    border-color: #245652 !important;
-    color: #fff !important;
-    transform: translateY(-1px);
-    box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
 }
 
 .admin-dashboard .form-service--neo .btn-secondary {
