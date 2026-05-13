@@ -138,10 +138,32 @@
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
+            text-decoration: none !important;
         }
         a.navbar-brand.navbar-brand-plain:hover {
             text-decoration: none !important;
+        }
+        .navbar-brand-text {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.2em;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            font-size: clamp(1.22rem, 2.4vw, 1.48rem);
+            line-height: 1.15;
+        }
+        .navbar-brand-text__beauty {
             color: #2d6a66 !important;
+        }
+        .navbar-brand-text__manager {
+            color: #161514 !important;
+            font-weight: 700 !important;
+        }
+        a.navbar-brand.navbar-brand-plain:hover .navbar-brand-text__beauty {
+            color: #245652 !important;
+        }
+        a.navbar-brand.navbar-brand-plain:hover .navbar-brand-text__manager {
+            color: #161514 !important;
         }
         .navbar-accueil-link {
             display: inline-flex;
@@ -155,7 +177,7 @@
     {% block navbar %}
     <nav class="navbar">
         <div class="container">
-            <a href="{% url 'home' %}" class="navbar-brand navbar-brand-plain {% block navbar_brand_class %}{% endblock %}" aria-label="Accueil">{% block navbar_brand %}<i class="fas fa-spa" aria-hidden="true"></i>{% endblock %}</a>
+            <a href="{% url 'home' %}" class="navbar-brand navbar-brand-plain {% block navbar_brand_class %}{% endblock %}" aria-label="Beauty Manager — Accueil">{% block navbar_brand %}<span class="navbar-brand-text"><span class="navbar-brand-text__beauty">Beauty</span> <span class="navbar-brand-text__manager">Manager</span></span>{% endblock %}</a>
             <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
                 <span></span>
                 <span></span>

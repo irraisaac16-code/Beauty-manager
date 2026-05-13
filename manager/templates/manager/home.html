@@ -81,7 +81,7 @@
             width: 100%;
         }
 
-        /* Logo accueil — icône seule (sans wordmark) */
+        /* Marque en-tête accueil — texte Beauty Manager */
         .site-header .home-header-brand {
             display: inline-flex;
             align-items: center;
@@ -89,14 +89,31 @@
             flex-shrink: 0;
             margin-inline-start: clamp(1rem, 4vw, 2.5rem);
             text-decoration: none;
-            font-size: clamp(1.5rem, 3.5vw, 2rem);
-            line-height: 1;
+            font-size: clamp(1.28rem, 2.8vw, 1.72rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+        }
+
+        .site-header .home-header-brand .home-brand__beauty {
             color: var(--accent);
+        }
+
+        .site-header .home-header-brand .home-brand__manager {
+            color: var(--text);
+            font-weight: 700;
         }
 
         .site-header .home-header-brand:hover {
             text-decoration: none;
+        }
+
+        .site-header .home-header-brand:hover .home-brand__beauty {
             color: var(--accent-hover);
+        }
+
+        .site-header .home-header-brand:hover .home-brand__manager {
+            color: var(--text);
         }
 
         .site-header .home-header-brand:focus-visible {
@@ -728,8 +745,8 @@
 <body>
     <header class="site-header">
         <div class="wrap header-inner">
-            <a href="{% url 'home' %}" class="home-header-brand" aria-label="Accueil">
-                <i class="fas fa-spa" aria-hidden="true"></i>
+            <a href="{% url 'home' %}" class="home-header-brand" aria-label="Beauty Manager — Accueil">
+                <span class="home-brand__beauty">Beauty</span> <span class="home-brand__manager">Manager</span>
             </a>
             <div class="header-actions">
                 <a href="{% url 'register_coiffeuse' %}" class="btn-pill btn-pill--ghost">
