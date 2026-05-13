@@ -1,62 +1,75 @@
 {% extends 'manager/base.html' %}
 {% load price_filters %}
+{% load static %}
 
 {% block title %}Paiement — Gestion salon{% endblock %}
 
-{% block content %}
-<div class="container">
-    <div class="payment-container">
-        <div class="payment-header">
-            <div class="wave-logo">
-                <i class="fas fa-mobile-alt"></i>
-            </div>
-            <h1>Paiement</h1>
-            <p>Simulation de paiement mobile money</p>
-        </div>
+{% block body_class %}page-dashboard-neumorphic{% endblock %}
 
-        <div class="payment-card">
-            <div class="reservation-summary">
-                <h3><i class="fas fa-receipt"></i> Résumé de la réservation</h3>
-                <div class="summary-details">
-                    <div class="summary-item">
-                        <span class="label">Service :</span>
-                        <span class="value">{{ reservation.service.name }}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Date :</span>
-                        <span class="value">{{ reservation.date|date:"d/m/Y" }}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Heure :</span>
-                        <span class="value">{{ reservation.heure|time:"H:i" }}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="label">Esthéticienne :</span>
-<span class="value">{{ reservation.coiffeuse.user.username }}</span>
-                    </div>
-                    <div class="summary-item total">
-                        <span class="label">Montant à payer :</span>
-                        <span class="value price">{{ reservation.montant|floatformat:0 }} FCFA</span>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'manager/admin-dashboard.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'manager/service-form-admin.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'manager/simulate-payment-admin.css' %}?v=1">
+{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard simulate-payment-page">
+    <div class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-mobile-alt"></i> Paiement</h1>
+                <p>Simulation de paiement mobile money</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-card service-form-card">
+            <div class="card-body">
+                <div class="payment-reservation-summary">
+                    <h3><i class="fas fa-receipt"></i> Résumé de la réservation</h3>
+                    <div class="summary-details">
+                        <div class="summary-item">
+                            <span class="label">Service :</span>
+                            <span class="value">{{ reservation.service.name }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Date :</span>
+                            <span class="value">{{ reservation.date|date:"d/m/Y" }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Heure :</span>
+                            <span class="value">{{ reservation.heure|time:"H:i" }}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Esthéticienne :</span>
+                            <span class="value">{{ reservation.coiffeuse.user.username }}</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span class="label">Montant à payer :</span>
+                            <span class="value price">{{ reservation.montant|floatformat:0 }} FCFA</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="payment-form">
-                <h3><i class="fas fa-credit-card"></i> Informations de paiement</h3>
-                <form method="post" id="payment-form">
+                <h3 class="payment-section-title"><i class="fas fa-credit-card"></i> Informations de paiement</h3>
+
+                <form method="post" id="payment-form" class="form-service form-service--neo">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="numero">
+
+                    <div class="form-group" id="payment-phone-group">
+                        <label for="numero" class="floating-label">
                             <i class="fas fa-phone"></i> Numéro de téléphone
                         </label>
-                        <input type="tel" id="numero" name="numero" class="form-control" 
-                               placeholder="Ex: 0556620398" required 
+                        <input type="tel" id="numero" name="numero"
+                               placeholder="Ex: 0556620398"
                                pattern="[0-9]{10}" maxlength="10">
-                        <small class="form-text">Entrez votre numéro de téléphone (exactement 10 chiffres)</small>
+                        <small class="form-hint">Entrez votre numéro de téléphone (exactement 10 chiffres)</small>
                     </div>
 
-                    <div class="payment-options">
-                        <h4>Options de paiement :</h4>
+                    <div class="form-group payment-options-block">
+                        <h4>Options de paiement</h4>
                         <div class="option-item">
                             <input type="radio" id="wave" name="payment_method" value="wave" checked>
                             <label for="wave">
@@ -85,18 +98,19 @@
                                 <span>Paiement en espèces au salon</span>
                             </label>
                         </div>
-                        
-                        <div class="cash-info" id="cash-info" style="display: none; margin-top: 1rem; padding: 1rem; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px;">
-                            <h5><i class="fas fa-info-circle"></i> Information paiement en espèces</h5>
-                            <p style="margin: 0; color: #856404; font-size: 0.9rem;">
-                                Votre réservation sera confirmée immédiatement. Le paiement en espèces de <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong> 
+
+                        <div class="cash-info-neo" id="cash-info" style="display: none;">
+                            <h5><i class="fas fa-info-circle"></i> Paiement en espèces</h5>
+                            <p>
+                                Votre réservation sera confirmée immédiatement. Le paiement en espèces de
+                                <strong>{{ reservation.montant|floatformat:0 }} FCFA</strong>
                                 devra être effectué directement au salon lors de votre rendez-vous.
                             </p>
                         </div>
                     </div>
 
-                    <div class="payment-actions">
-                        <button type="submit" class="btn btn-success btn-lg" id="submit-btn">
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-admin-cta" id="submit-btn">
                             <i class="fas fa-lock"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA
                         </button>
                         <a href="{% url 'dashboard_client' %}" class="btn btn-secondary">
@@ -107,382 +121,101 @@
             </div>
         </div>
 
-        <div class="payment-info">
-            <div class="info-card">
-                <h4><i class="fas fa-shield-alt"></i> Sécurité</h4>
-                <p>Vos informations de paiement sont sécurisées et ne sont jamais stockées.</p>
+        <div class="payment-info-grid">
+            <div class="content-card">
+                <div class="card-body">
+                    <h4><i class="fas fa-shield-alt"></i> Sécurité</h4>
+                    <p>Vos informations de paiement sont sécurisées et ne sont jamais stockées.</p>
+                </div>
             </div>
-            <div class="info-card">
-                <h4><i class="fas fa-clock"></i> Instantané</h4>
-                <p>Le paiement est traité instantanément et votre réservation sera confirmée.</p>
+            <div class="content-card">
+                <div class="card-body">
+                    <h4><i class="fas fa-clock"></i> Instantané</h4>
+                    <p>Le paiement est traité instantanément et votre réservation sera confirmée.</p>
+                </div>
             </div>
-            <div class="info-card">
-                <h4><i class="fas fa-headset"></i> Support</h4>
-                <p>En cas de problème, contactez notre support client.</p>
+            <div class="content-card">
+                <div class="card-body">
+                    <h4><i class="fas fa-headset"></i> Support</h4>
+                    <p>En cas de problème, contactez notre support client.</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-.payment-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-
-.payment-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #7c3aed, #a855f7);
-    color: white;
-    border-radius: 15px;
-}
-
-.wave-logo {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.payment-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-}
-
-.payment-header p {
-    margin: 0.5rem 0 0 0;
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.payment-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-bottom: 2rem;
-}
-
-.reservation-summary {
-    background: #f8f9fa;
-    padding: 1.5rem;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.reservation-summary h3 {
-    margin: 0 0 1rem 0;
-    color: #333;
-    font-weight: 600;
-}
-
-.reservation-summary h3 i {
-    color: #7c3aed;
-    margin-right: 0.5rem;
-}
-
-.summary-details {
-    display: grid;
-    gap: 0.75rem;
-}
-
-.summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-}
-
-.summary-item.total {
-    border-top: 2px solid #e9ecef;
-    padding-top: 1rem;
-    margin-top: 0.5rem;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.summary-item .label {
-    color: #666;
-    font-weight: 500;
-}
-
-.summary-item .value {
-    color: #333;
-    font-weight: 600;
-}
-
-.summary-item .value.price {
-    color: #28a745;
-    font-size: 1.2rem;
-}
-
-.payment-form {
-    padding: 2rem;
-}
-
-.payment-form h3 {
-    margin: 0 0 1.5rem 0;
-    color: #333;
-    font-weight: 600;
-}
-
-.payment-form h3 i {
-    color: #7c3aed;
-    margin-right: 0.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #333;
-    font-weight: 600;
-}
-
-.form-group label i {
-    color: #7c3aed;
-    margin-right: 0.5rem;
-}
-
-.form-control {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-control:focus {
-    outline: none;
-    border-color: #7c3aed;
-    box-shadow: 0 0 0 0.2rem rgba(124, 58, 237, 0.25);
-}
-
-.form-text {
-    display: block;
-    margin-top: 0.25rem;
-    color: #666;
-    font-size: 0.85rem;
-}
-
-.payment-options {
-    margin-bottom: 2rem;
-}
-
-.payment-options h4 {
-    margin: 0 0 1rem 0;
-    color: #333;
-    font-weight: 600;
-}
-
-.option-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.75rem;
-    padding: 0.75rem;
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.option-item:hover {
-    border-color: #7c3aed;
-    background-color: #f8f9fa;
-}
-
-.option-item input[type="radio"] {
-    margin-right: 1rem;
-    transform: scale(1.2);
-}
-
-.option-item input[type="radio"]:checked + label {
-    color: #7c3aed;
-    font-weight: 600;
-}
-
-.option-item label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin: 0;
-    flex: 1;
-}
-
-.option-item label i {
-    margin-right: 0.75rem;
-    font-size: 1.2rem;
-}
-
-.payment-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.btn-lg:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.payment-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-}
-
-.info-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.info-card h4 {
-    margin: 0 0 0.5rem 0;
-    color: #333;
-    font-weight: 600;
-}
-
-.info-card h4 i {
-    color: #7c3aed;
-    margin-right: 0.5rem;
-}
-
-.info-card p {
-    margin: 0;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-    color: white;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-}
-
-@media (max-width: 768px) {
-    .payment-header h1 {
-        font-size: 2rem;
-    }
-    
-    .payment-actions {
-        flex-direction: column;
-    }
-    
-    .summary-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.25rem;
-    }
-    
-    .payment-info {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.getElementById('numero');
     const paymentForm = document.getElementById('payment-form');
-    const phoneField = document.querySelector('.form-group');
+    const phoneField = document.getElementById('payment-phone-group');
     const paymentOptions = document.querySelectorAll('input[name="payment_method"]');
     const cashInfo = document.getElementById('cash-info');
-    
-    // Gestion de l'affichage du champ téléphone selon l'option de paiement
+
     function togglePhoneField() {
         const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
         const submitBtn = document.getElementById('submit-btn');
-        
+
         if (selectedMethod && selectedMethod.value === 'cash') {
-            phoneField.style.display = 'none';
-            phoneInput.removeAttribute('required');
-            cashInfo.style.display = 'block';
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmer la réservation';
+            if (phoneField) phoneField.style.display = 'none';
+            if (phoneInput) phoneInput.removeAttribute('required');
+            if (cashInfo) cashInfo.style.display = 'block';
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmer la réservation';
+            }
         } else {
-            phoneField.style.display = 'block';
-            phoneInput.setAttribute('required', 'required');
-            cashInfo.style.display = 'none';
-            submitBtn.innerHTML = '<i class="fas fa-lock"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA';
-        }
-    }
-    
-    // Écouter les changements d'option de paiement
-    paymentOptions.forEach(option => {
-        option.addEventListener('change', togglePhoneField);
-    });
-    
-    // Initialiser l'affichage
-    togglePhoneField();
-    
-    // Formatage automatique du numéro de téléphone
-    phoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 10) {
-            value = value.slice(0, 10);
-        }
-        e.target.value = value;
-    });
-    
-    // Validation du formulaire
-    paymentForm.addEventListener('submit', function(e) {
-        const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
-        const phoneNumber = phoneInput.value;
-        
-        // Validation spécifique selon la méthode de paiement
-        if (selectedMethod.value !== 'cash') {
-            if (phoneNumber.length !== 10) {
-                e.preventDefault();
-                alert('Veuillez entrer un numéro de téléphone valide (exactement 10 chiffres).');
-                phoneInput.focus();
-                return false;
+            if (phoneField) phoneField.style.display = 'block';
+            if (phoneInput) phoneInput.setAttribute('required', 'required');
+            if (cashInfo) cashInfo.style.display = 'none';
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA';
             }
         }
-        
-        // Simulation de traitement
-        const submitBtn = paymentForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
-        submitBtn.disabled = true;
-        
-        // Simuler un délai de traitement
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+    }
+
+    paymentOptions.forEach(function(option) {
+        option.addEventListener('change', togglePhoneField);
     });
+
+    togglePhoneField();
+
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+            e.target.value = value;
+        });
+    }
+
+    if (paymentForm) {
+        paymentForm.addEventListener('submit', function(e) {
+            const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
+            const phoneNumber = phoneInput ? phoneInput.value : '';
+
+            if (selectedMethod && selectedMethod.value !== 'cash') {
+                if (phoneNumber.length !== 10) {
+                    e.preventDefault();
+                    alert('Veuillez entrer un numéro de téléphone valide (exactement 10 chiffres).');
+                    if (phoneInput) phoneInput.focus();
+                    return false;
+                }
+            }
+
+            const submitBtn = paymentForm.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
+            submitBtn.disabled = true;
+
+            setTimeout(function() {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+    }
 });
 </script>
-{% endblock %} 
+{% endblock %}
