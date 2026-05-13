@@ -7,7 +7,7 @@
 {% block body_class %}page-dashboard-neumorphic{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=4">
+<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=5">
 {% endblock %}
 
 {% block content %}
@@ -131,7 +131,7 @@
                             <i class="fas fa-calendar-times"></i>
                             <h3>Aucune réservation</h3>
                             <p>Vous n'avez pas encore de réservation. Commencez par en créer une.</p>
-                            <a href="{% url 'reservation_client' %}" class="reg-btn btn-primary dash-empty-cta">
+                            <a href="{% url 'reservation_client' %}" class="btn btn-primary btn-admin-cta dash-empty-cta">
                                 <i class="fas fa-calendar-plus"></i> Réserver maintenant
                             </a>
                         </div>

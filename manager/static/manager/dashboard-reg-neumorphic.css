@@ -250,3 +250,31 @@ body.page-dashboard-neumorphic .reg-page.dash-page.dash-page-hero-profile .dash-
         max-width: 158px;
     }
 }
+
+/* Même CTA teal que « Confirmer la réservation » (.btn-admin-cta) */
+body.page-dashboard-neumorphic .reg-page.dash-page .btn.btn-admin-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1.6rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 16px !important;
+    min-height: 44px;
+    background: #2d6a66 !important;
+    border: 1px solid #2d6a66 !important;
+    color: #fff !important;
+    box-shadow: 0 10px 28px rgba(45, 106, 102, 0.22) !important;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    text-decoration: none;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .btn.btn-admin-cta:hover {
+    background: #245652 !important;
+    border-color: #245652 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
+    text-decoration: none;
+}
