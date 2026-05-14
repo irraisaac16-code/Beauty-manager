@@ -335,9 +335,11 @@ def dashboard_admin(request):
     clients_actifs = UserProfile.objects.filter(role__name='client', user__is_active=True).count()
     
     # Rendez-vous récents
-    rdv_recents = Reservation.objects.filter(
-        date__gte=today
-    ).order_by('date', 'heure')[:10]
+    rdv_recents = (
+        Reservation.objects.filter(date__gte=today)
+        .select_related('coiffeuse', 'coiffeuse__user', 'client', 'client__user', 'service')
+        .order_by('date', 'heure')[:10]
+    )
     
     # Coiffeuses en attente de validation
     coiffeuses_en_attente = UserProfile.objects.filter(

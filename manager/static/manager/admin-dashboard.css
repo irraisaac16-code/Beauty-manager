@@ -566,6 +566,14 @@
     color: #b45309;
 }
 
+.admin-dashboard .user-avatar .user-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
 .admin-dashboard .service-name {
     font-weight: 700;
     color: var(--adm-text);
