@@ -884,3 +884,41 @@
     --accent-color: #ef4444;
     --accent-color-light: #f87171;
 }
+
+/* Gestion des services : flashs uniquement au-dessus du tableau */
+.admin-dashboard .services-table-messages {
+    margin: 0 0 1rem;
+}
+
+.admin-dashboard .messages.messages--services-table {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-dashboard .messages.messages--services-table li {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.4;
+}
+
+.admin-dashboard .messages.messages--services-table li.success {
+    background: rgba(16, 185, 129, 0.14);
+    border: 1px solid rgba(16, 185, 129, 0.38);
+    color: #047857;
+}
+
+.admin-dashboard .messages.messages--services-table li.warning {
+    background: rgba(245, 158, 11, 0.14);
+    border: 1px solid rgba(245, 158, 11, 0.42);
+    color: #b45309;
+}
+
+.admin-dashboard .messages.messages--services-table li.error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #b91c1c;
+}
