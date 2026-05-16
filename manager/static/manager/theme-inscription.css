@@ -1534,3 +1534,21 @@ main.theme-reg .btn-primary:hover {
     transform: translateY(-1px) !important;
     box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
 }
+
+/* Confirmer paiement espèces — même teal que « Se connecter » (.reg-submit-cta) */
+.confirm-cash-payment-btn {
+    background: #2d6a66 !important;
+    border-color: #2d6a66 !important;
+    color: #fff !important;
+    box-shadow: 0 6px 18px rgba(45, 106, 102, 0.22) !important;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s !important;
+}
+
+.confirm-cash-payment-btn:hover,
+.confirm-cash-payment-btn:focus {
+    background: #245652 !important;
+    border-color: #245652 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(45, 106, 102, 0.28) !important;
+}
