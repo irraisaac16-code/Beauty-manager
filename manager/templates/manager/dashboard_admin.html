@@ -276,7 +276,11 @@
                                     <td>
                                         <div class="user-cell">
                                             <div class="user-avatar">
-                                                <i class="fas fa-user"></i>
+                                                {% if rdv.client.profile_image %}
+                                                    <img src="{{ rdv.client.profile_image.url }}" alt="" class="user-avatar-img" width="32" height="32">
+                                                {% else %}
+                                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                                {% endif %}
                                             </div>
                                             <span>{{ rdv.client.user.username }}</span>
                                         </div>
