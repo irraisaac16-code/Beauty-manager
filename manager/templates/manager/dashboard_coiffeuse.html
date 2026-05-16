@@ -68,11 +68,7 @@
                                                     <h5>{{ reservation.service.name }}</h5>
                                                     <div class="dash-badges">
                                                         <span class="dash-badge dash-badge-{{ reservation.statut }}">
-                                                            {% if reservation.statut == 'annulé' %}
-                                                                Annulé par le client
-                                                            {% else %}
-                                                                {{ reservation.get_statut_display }}
-                                                            {% endif %}
+                                                            {{ reservation.get_statut_display }}
                                                         </span>
                                                         {% if reservation.payment_method == 'cash' and reservation.statut == 'en_attente' %}
                                                             <span class="dash-badge dash-badge-cash">
@@ -106,11 +102,6 @@
                                                     {% if reservation.statut == 'en_attente' and reservation.payment_method == 'cash' %}
                                                         <button type="button" class="btn btn-sm btn-primary confirm-cash-payment-btn" data-reservation-id="{{ reservation.id }}">
                                                             <i class="fas fa-money-bill-wave"></i> Confirmer paiement espèces
-                                                        </button>
-                                                    {% endif %}
-                                                    {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmé' %}
-                                                        <button type="button" class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulé">
-                                                            <i class="fas fa-times"></i> Annuler
                                                         </button>
                                                     {% endif %}
                                                     {% if reservation.statut == 'payé' %}

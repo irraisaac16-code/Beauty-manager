@@ -36,7 +36,6 @@ class Reservation(models.Model):
         ('en_attente', 'En attente'),
         ('confirmé', 'Confirmé'),
         ('payé', 'Payé'),
-        ('annulé', 'Annulé'),
         ('terminé', 'Terminé'),
     ]
     

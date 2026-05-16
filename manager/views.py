@@ -586,8 +586,6 @@ def reservation_admin(request):
     reservations_en_attente = Reservation.objects.filter(statut='en_attente').count()
     reservations_confirmees = Reservation.objects.filter(statut='confirmé').count()
     reservations_payees = Reservation.objects.filter(statut='payé').count()
-    reservations_annulees = Reservation.objects.filter(statut='annulé').count()
-    
     # Statistiques par rôle
     reservations_clients = Reservation.objects.filter(client__role__name='client').count()
     reservations_coiffeuses = Reservation.objects.filter(coiffeuse__role__name='coiffeuse').count()
@@ -604,7 +602,6 @@ def reservation_admin(request):
         'reservations_en_attente': reservations_en_attente,
         'reservations_confirmees': reservations_confirmees,
         'reservations_payees': reservations_payees,
-        'reservations_annulees': reservations_annulees,
         'reservations_clients': reservations_clients,
         'reservations_coiffeuses': reservations_coiffeuses,
         'coiffeuses': coiffeuses,
@@ -913,16 +910,15 @@ def annuler_reservation(request, reservation_id):
         if form.is_valid():
             justification = form.cleaned_data['justification']
             
-            # Mettre à jour la réservation
-            reservation.statut = 'annulé'
             reservation.justification_annulation = justification
-            reservation.save()
             
-            # Envoyer une notification d'annulation
+            # Envoyer une notification d'annulation avant suppression
             try:
                 NotificationService.send_reservation_cancellation(reservation)
             except Exception as e:
                 print(f"Erreur lors de l'envoi de la notification: {e}")
+            
+            reservation.delete()
             
             messages.success(request, 'Réservation annulée avec succès ! Vous pouvez maintenant prendre un nouveau rendez-vous.')
             return redirect('reservation_client' if request.user.userprofile.role.name == 'client' else 'reservation_admin')
@@ -1121,7 +1117,7 @@ def update_reservation_status(request, reservation_id):
             
             logger.info(f"Statut reçu: '{new_status}'")
             
-            if new_status in ['en_attente', 'confirmé', 'payé', 'annulé', 'terminé']:
+            if new_status in ['en_attente', 'confirmé', 'payé', 'terminé']:
                 reservation.statut = new_status
                 reservation.save()
                 

@@ -54,15 +54,6 @@
                         <div class="stat-label">Payé</div>
                     </div>
                 </div>
-                <div class="stat-card danger clickable" onclick="filterByStatus('annulé')" title="Cliquer pour voir les réservations annulées">
-                    <div class="stat-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-number">{{ reservations_annulees|default:0 }}</div>
-                        <div class="stat-label">Annulé</div>
-                    </div>
-                </div>
     </div>
 
     <!-- Filtres avancés -->
@@ -88,7 +79,6 @@
                                 <option value="en_attente" {% if request.GET.statut == 'en_attente' %}selected{% endif %}>En attente</option>
                                 <option value="confirmé" {% if request.GET.statut == 'confirmé' %}selected{% endif %}>Confirmé</option>
                                 <option value="payé" {% if request.GET.statut == 'payé' %}selected{% endif %}>Payé</option>
-                                <option value="annulé" {% if request.GET.statut == 'annulé' %}selected{% endif %}>Annulé</option>
                                 <option value="terminé" {% if request.GET.statut == 'terminé' %}selected{% endif %}>Terminé</option>
                             </select>
                         </div>
@@ -176,7 +166,7 @@
                             </div>
                         </div>
                         <div class="status-badge status-{{ reservation.statut }}">
-                            <i class="fas fa-{% if reservation.statut == 'en_attente' %}clock{% elif reservation.statut == 'confirmé' %}check{% elif reservation.statut == 'payé' %}credit-card{% elif reservation.statut == 'annulé' %}times{% else %}check-double{% endif %}"></i>
+                            <i class="fas fa-{% if reservation.statut == 'en_attente' %}clock{% elif reservation.statut == 'confirmé' %}check{% elif reservation.statut == 'payé' %}credit-card{% else %}check-double{% endif %}"></i>
                             {{ reservation.get_statut_display }}
                         </div>
                     </div>
