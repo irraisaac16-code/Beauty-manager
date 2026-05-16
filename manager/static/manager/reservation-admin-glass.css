@@ -1,0 +1,547 @@
+/* Gestion des réservations — glassmorphisme (aligné validation esthéticiennes) */
+
+.admin-dashboard.reservations-admin--glass {
+    --glass-bg: rgba(255, 255, 255, 0.38);
+    --glass-bg-strong: rgba(255, 255, 255, 0.52);
+    --glass-border: rgba(255, 255, 255, 0.55);
+    --glass-shadow: 0 10px 40px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    --glass-blur: blur(16px);
+    --adm-text: #1e2a3a;
+    --adm-muted: #6b7a8f;
+    --adm-accent: #2d6a66;
+}
+
+.admin-dashboard.reservations-admin--glass .reservations-admin-inner--glass {
+    width: 100%;
+    padding: 0.25rem 0 2rem;
+    border-radius: 24px;
+    background:
+        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(45, 106, 102, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 100% 40%, rgba(255, 255, 255, 0.35) 0%, transparent 50%),
+        radial-gradient(ellipse 55% 45% at 0% 90%, rgba(45, 106, 102, 0.06) 0%, transparent 45%);
+}
+
+.admin-dashboard.reservations-admin--glass .dashboard-header {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 22px;
+}
+
+.admin-dashboard.reservations-admin--glass .dashboard-header h1,
+.admin-dashboard.reservations-admin--glass .dashboard-header p {
+    color: var(--adm-text);
+}
+
+.admin-dashboard.reservations-admin--glass .dashboard-header h1 i {
+    color: var(--adm-accent);
+}
+
+/* Statistiques */
+.admin-dashboard.reservations-admin--glass .stats-dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-dashboard.reservations-admin--glass .stat-card {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    padding: 1.35rem 1.5rem;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-dashboard.reservations-admin--glass .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color, #2d6a66), var(--accent-color-light, #3d8a84));
+}
+
+.admin-dashboard.reservations-admin--glass .stat-card.primary::before { --accent-color: #2d6a66; --accent-color-light: #3d8a84; }
+.admin-dashboard.reservations-admin--glass .stat-card.warning::before { --accent-color: #f59e0b; --accent-color-light: #fbbf24; }
+.admin-dashboard.reservations-admin--glass .stat-card.success::before { --accent-color: #10b981; --accent-color-light: #34d399; }
+.admin-dashboard.reservations-admin--glass .stat-card.info::before { --accent-color: #3b82f6; --accent-color-light: #60a5fa; }
+
+.admin-dashboard.reservations-admin--glass .stat-card:hover,
+.admin-dashboard.reservations-admin--glass .stat-card.clickable:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.admin-dashboard.reservations-admin--glass .stat-card.clickable {
+    cursor: pointer;
+}
+
+.admin-dashboard.reservations-admin--glass .stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #fff;
+    margin-right: 1rem;
+    background: linear-gradient(135deg, var(--accent-color, #2d6a66), var(--accent-color-light, #3d8a84));
+    flex-shrink: 0;
+}
+
+.admin-dashboard.reservations-admin--glass .stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--adm-text);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+}
+
+.admin-dashboard.reservations-admin--glass .stat-label {
+    color: var(--adm-muted);
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Filtres */
+.admin-dashboard.reservations-admin--glass .filters-panel {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.admin-dashboard.reservations-admin--glass .filters-header {
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.15rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.admin-dashboard.reservations-admin--glass .filters-header h3 {
+    margin: 0;
+    color: var(--adm-text);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.admin-dashboard.reservations-admin--glass .filters-content {
+    padding: 1.5rem;
+}
+
+.admin-dashboard.reservations-admin--glass .filter-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+    padding: 1.15rem;
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.admin-dashboard.reservations-admin--glass .filter-group label {
+    color: var(--adm-text);
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 0.45rem;
+}
+
+.admin-dashboard.reservations-admin--glass .filter-group label i {
+    color: var(--adm-accent);
+    margin-right: 0.35rem;
+}
+
+.admin-dashboard.reservations-admin--glass .form-control,
+.admin-dashboard.reservations-admin--glass select.form-control {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 12px;
+    color: var(--adm-text);
+}
+
+.admin-dashboard.reservations-admin--glass .form-control:focus,
+.admin-dashboard.reservations-admin--glass select.form-control:focus {
+    border-color: rgba(45, 106, 102, 0.45);
+    box-shadow: 0 0 0 3px rgba(45, 106, 102, 0.15);
+    outline: none;
+}
+
+.admin-dashboard.reservations-admin--glass .filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+}
+
+/* Liste réservations */
+.admin-dashboard.reservations-admin--glass .reservations-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.admin-dashboard.reservations-admin--glass .reservations-header h3 {
+    margin: 0;
+    color: var(--adm-text);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.admin-dashboard.reservations-admin--glass .reservations-header h3 i {
+    color: var(--adm-accent);
+}
+
+.admin-dashboard.reservations-admin--glass .reservations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.25rem;
+}
+
+.admin-dashboard.reservations-admin--glass .reservation-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.admin-dashboard.reservations-admin--glass .reservation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.admin-dashboard.reservations-admin--glass .reservation-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.15rem 1.25rem;
+    background: rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.admin-dashboard.reservations-admin--glass .reservation-id .id-number {
+    font-weight: 800;
+    color: var(--adm-accent);
+    font-size: 1.1rem;
+}
+
+.admin-dashboard.reservations-admin--glass .reservation-card .card-body {
+    padding: 1.25rem;
+}
+
+.admin-dashboard.reservations-admin--glass .datetime-section,
+.admin-dashboard.reservations-admin--glass .service-section {
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 0.85rem 1rem;
+}
+
+.admin-dashboard.reservations-admin--glass .datetime-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.admin-dashboard.reservations-admin--glass .service-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-dashboard.reservations-admin--glass .participant {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.admin-dashboard.reservations-admin--glass .participant:hover {
+    transform: translateX(4px);
+}
+
+.admin-dashboard.reservations-admin--glass .participant.client .participant-avatar {
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
+}
+
+.admin-dashboard.reservations-admin--glass .participant.coiffeuse .participant-avatar {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.admin-dashboard.reservations-admin--glass .participant-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.admin-dashboard.reservations-admin--glass .client-badge {
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
+}
+
+.admin-dashboard.reservations-admin--glass .coiffeuse-badge {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+.admin-dashboard.reservations-admin--glass .client-label {
+    background: rgba(45, 106, 102, 0.12);
+    color: #2d6a66;
+}
+
+.admin-dashboard.reservations-admin--glass .coiffeuse-label {
+    background: rgba(59, 130, 246, 0.12);
+    color: #1d4ed8;
+}
+
+.admin-dashboard.reservations-admin--glass .price-display .price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #059669;
+}
+
+/* Badges statut */
+.admin-dashboard.reservations-admin--glass .status-badge {
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.admin-dashboard.reservations-admin--glass .status-en_attente {
+    background: rgba(254, 243, 199, 0.85);
+    color: #92400e;
+    border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.admin-dashboard.reservations-admin--glass .status-confirmé {
+    background: rgba(219, 234, 254, 0.85);
+    color: #1e40af;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.admin-dashboard.reservations-admin--glass .status-payé,
+.admin-dashboard.reservations-admin--glass .status-terminé {
+    background: rgba(209, 250, 229, 0.85);
+    color: #065f46;
+    border: 1px solid rgba(16, 185, 129, 0.22);
+}
+
+/* État vide */
+.admin-dashboard.reservations-admin--glass .empty-state {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+}
+
+.admin-dashboard.reservations-admin--glass .empty-icon {
+    font-size: 3.5rem;
+    color: rgba(45, 106, 102, 0.25);
+    margin-bottom: 1rem;
+}
+
+/* Modal (hors .admin-dashboard dans le template) */
+body.page-dashboard-neumorphic #reservationModal.modal {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+body.page-dashboard-neumorphic #reservationModal .modal-content {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.15);
+}
+
+body.page-dashboard-neumorphic #reservationModal .modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+body.page-dashboard-neumorphic #reservationModal .detail-section {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+}
+
+body.page-dashboard-neumorphic #reservationModal .detail-item {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Boutons */
+.admin-dashboard.reservations-admin--glass .btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-dashboard.reservations-admin--glass .btn-primary {
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
+    border: none;
+    color: #fff;
+}
+
+.admin-dashboard.reservations-admin--glass .btn-primary:hover {
+    background: linear-gradient(135deg, #245652, #2d6a66);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(45, 106, 102, 0.25);
+}
+
+.admin-dashboard.reservations-admin--glass .btn-outline-primary,
+.admin-dashboard.reservations-admin--glass .btn-outline-secondary {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(45, 106, 102, 0.25);
+    color: var(--adm-text);
+}
+
+.admin-dashboard.reservations-admin--glass .btn-outline-primary.active,
+.admin-dashboard.reservations-admin--glass .btn-outline-primary:hover {
+    background: rgba(45, 106, 102, 0.15);
+    border-color: rgba(45, 106, 102, 0.4);
+    color: var(--adm-accent);
+}
+
+/* Animations */
+@keyframes resAdminFadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-dashboard.reservations-admin--glass .fade-in {
+    animation: resAdminFadeIn 0.55s ease-out forwards;
+}
+
+body.page-dashboard-neumorphic .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: 600;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    max-width: 400px;
+}
+
+body.page-dashboard-neumorphic .notification-success {
+    background: linear-gradient(135deg, #10b981, #34d399);
+}
+
+body.page-dashboard-neumorphic .notification-error {
+    background: linear-gradient(135deg, #ef4444, #f87171);
+}
+
+body.page-dashboard-neumorphic .notification-info {
+    background: linear-gradient(135deg, #2d6a66, #3d8a84);
+}
+
+body.page-dashboard-neumorphic .filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    align-items: end;
+}
+
+body.page-dashboard-neumorphic .filter-group.full-width {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .admin-dashboard.reservations-admin--glass .stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .admin-dashboard.reservations-admin--glass .filter-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard.reservations-admin--glass .reservations-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard.reservations-admin--glass .datetime-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .admin-dashboard.reservations-admin--glass .service-section {
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    body.page-dashboard-neumorphic #reservationModal .modal-content {
+        width: calc(100% - 1.25rem);
+        margin: 0.75rem auto;
+    }
+}
