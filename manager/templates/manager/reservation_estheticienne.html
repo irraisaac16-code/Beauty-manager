@@ -123,11 +123,6 @@
                                                         {% endif %}
                                                     </div>
                                                     <div class="rdv-actions">
-                                                        {% if reservation.statut == 'en_attente' %}
-                                                            <button class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmé">
-                                                                <i class="fas fa-check"></i> Confirmer
-                                                            </button>
-                                                        {% endif %}
                                                         {% if reservation.statut == 'confirmé' %}
                                                             <button class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payé">
                                                                 <i class="fas fa-credit-card"></i> Marquer Payé

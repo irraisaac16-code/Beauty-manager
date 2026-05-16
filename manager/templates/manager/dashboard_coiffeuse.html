@@ -7,7 +7,7 @@
 {% block body_class %}page-dashboard-neumorphic{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=8">
 {% endblock %}
 
 {% block content %}
@@ -89,18 +89,13 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="dash-rdv-btns">
-                                                    {% if reservation.statut == 'en_attente' %}
-                                                        <button type="button" class="btn btn-sm btn-success update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="confirmé">
-                                                            <i class="fas fa-check"></i> Confirmer
-                                                        </button>
-                                                    {% endif %}
                                                     {% if reservation.statut == 'confirmé' %}
                                                         <button type="button" class="btn btn-sm btn-warning update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="payé">
                                                             <i class="fas fa-credit-card"></i> Marquer payé
                                                         </button>
                                                     {% endif %}
                                                     {% if reservation.statut == 'en_attente' and reservation.payment_method == 'cash' %}
-                                                        <button type="button" class="btn btn-sm btn-primary confirm-cash-payment-btn" data-reservation-id="{{ reservation.id }}">
+                                                        <button type="button" class="btn btn-sm confirm-cash-payment-btn reg-submit-cta" data-reservation-id="{{ reservation.id }}">
                                                             <i class="fas fa-money-bill-wave"></i> Confirmer paiement espèces
                                                         </button>
                                                     {% endif %}

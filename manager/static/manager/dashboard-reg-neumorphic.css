@@ -278,3 +278,20 @@ body.page-dashboard-neumorphic .reg-page.dash-page .btn.btn-admin-cta:hover {
     box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
     text-decoration: none;
 }
+
+/* Paiement espèces — même teal que « Se connecter » */
+body.page-dashboard-neumorphic .reg-page.dash-page .btn.confirm-cash-payment-btn {
+    background: #2d6a66 !important;
+    border-color: #2d6a66 !important;
+    color: #fff !important;
+    box-shadow: 0 10px 28px rgba(45, 106, 102, 0.22) !important;
+}
+
+body.page-dashboard-neumorphic .reg-page.dash-page .btn.confirm-cash-payment-btn:hover,
+body.page-dashboard-neumorphic .reg-page.dash-page .btn.confirm-cash-payment-btn:focus {
+    background: #245652 !important;
+    border-color: #245652 !important;
+    color: #fff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(45, 106, 102, 0.28) !important;
+}
