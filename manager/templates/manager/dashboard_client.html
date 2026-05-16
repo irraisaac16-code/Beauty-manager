@@ -7,7 +7,7 @@
 {% block body_class %}page-dashboard-neumorphic{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'manager/dashboard-neumorphic-shell.css' %}?v=2">
-<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=5">
+<link rel="stylesheet" href="{% static 'manager/dashboard-reg-neumorphic.css' %}?v=6">
 {% endblock %}
 
 {% block content %}
@@ -57,8 +57,14 @@
                                                 <i class="fas fa-calendar-day"></i>
                                             </div>
                                             <div>
-                                                <span class="dash-rdv-date-t">{{ reservation.date|date:"d/m/Y" }}</span>
-                                                <span class="dash-rdv-time-t">{{ reservation.heure|time:"H:i" }}</span>
+                                                <span class="dash-rdv-date-t">
+                                                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                                    {{ reservation.date|date:"d/m/Y" }}
+                                                </span>
+                                                <span class="dash-rdv-time-t">
+                                                    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                                    {{ reservation.heure|time:"H:i" }}
+                                                </span>
                                             </div>
                                         </div>
                                         <div class="dash-status dash-status-{{ reservation.statut }}">
@@ -99,8 +105,8 @@
                                                         <span>Paiement en espèces — en attente de confirmation</span>
                                                     </div>
                                                 {% else %}
-                                                    <a href="{% url 'simulate_payment' reservation.id %}" class="dash-act dash-act-pay">
-                                                        <i class="fas fa-credit-card"></i> Payer
+                                                    <a href="{% url 'simulate_payment' reservation.id %}" class="dash-act dash-act-pay dash-act-pay--blink">
+                                                        <i class="fas fa-credit-card"></i> Finaliser le paiement
                                                     </a>
                                                 {% endif %}
                                                 <a href="{% url 'modifier_reservation' reservation.id %}" class="dash-act dash-act-edit">
