@@ -214,6 +214,13 @@ textarea,
 
 /* ----- Page d'accueil (header standalone) ----- */
 @media (max-width: 768px) {
+    .site-header {
+        height: auto !important;
+        min-height: var(--header-h, 4.5rem);
+        padding: 0.65rem 0 !important;
+        overflow: visible !important;
+    }
+
     .site-header .wrap {
         width: min(100%, 100% - 1.5rem);
     }
@@ -221,7 +228,7 @@ textarea,
     .site-header .header-inner {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 0.65rem;
     }
 
     .site-header .home-header-brand {
@@ -235,9 +242,14 @@ textarea,
         margin-inline-end: 0;
         flex-wrap: wrap;
         justify-content: center;
+        gap: 0.5rem;
     }
 
-    .site-header .header-actions .btn-pill {
+    .site-header .header-actions .btn-pill,
+    .site-header .header-actions .btn-pill--ghost,
+    .site-header .header-actions .btn-pill--accent {
+        display: inline-flex !important;
+        visibility: visible !important;
         flex: 1 1 100%;
         justify-content: center;
         min-height: var(--tap-min, 44px);
@@ -252,11 +264,6 @@ textarea,
 }
 
 @media (max-width: 480px) {
-    /* Afficher les deux inscriptions empilées sur très petit écran */
-    .site-header .header-actions .btn-pill--ghost {
-        display: inline-flex !important;
-    }
-
     .site-header .header-actions .btn-pill {
         font-size: 0.82rem;
         padding: 0.6rem 0.85rem;
