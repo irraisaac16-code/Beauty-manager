@@ -239,6 +239,20 @@ textarea,
 
     .site-header .home-nav-toggle {
         display: inline-flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 5px !important;
+    }
+
+    .site-header .home-nav-toggle .home-nav-toggle__bar {
+        display: block !important;
+        width: 22px !important;
+        height: 3px !important;
+        max-width: none !important;
+        background: #161514 !important;
+        border-radius: 999px !important;
+        margin: 0 !important;
     }
 
     .site-header .header-actions {
