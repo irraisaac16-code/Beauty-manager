@@ -85,8 +85,8 @@ body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-head {
 }
 
 body.page-dashboard-neumorphic .reg-page.dash-page .dash-rdv-date-icon {
-    background: var(--neo-bg);
-    color: #1e3a5f;
+    background: var(--neo-bg) !important;
+    color: #2d6a66 !important;
     box-shadow: var(--neo-shadow-in-soft);
 }
 

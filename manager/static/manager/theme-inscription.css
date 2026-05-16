@@ -905,34 +905,31 @@ main.theme-reg .btn-primary:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+}
+
+.dash-rdv-date-icon i {
+    font-size: 1.1rem;
+}
+
+.dash-rdv-date > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
 }
 
 .dash-rdv-date-t {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    display: block;
     font-weight: 700;
     color: var(--reg-text);
-}
-
-.dash-rdv-date-t i {
-    color: #2d6a66;
-    font-size: 0.9rem;
-    flex-shrink: 0;
+    line-height: 1.3;
 }
 
 .dash-rdv-time-t {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
+    display: block;
     font-size: 0.88rem;
     color: var(--reg-muted);
-}
-
-.dash-rdv-time-t i {
-    color: #2d6a66;
-    font-size: 0.85rem;
-    flex-shrink: 0;
+    line-height: 1.3;
 }
 
 .dash-status {

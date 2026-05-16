@@ -374,8 +374,7 @@ main.theme-reg .card-header {
   color: var(--bm-teal) !important;
 }
 
-.dash-rdv-head,
-.dash-rdv-date-icon {
+.dash-rdv-head {
   background: linear-gradient(180deg, var(--bm-bg-elevated), var(--bm-surface)) !important;
 }
 
