@@ -472,40 +472,20 @@ a[href="/inscription/client/"].btn.bg-secondary:hover {
     padding: 0 1rem !important;
   }
 
-  .navbar .container {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 1rem !important;
-  }
-
-  .navbar-nav {
-    align-items: stretch !important;
-  }
-
-  .navbar-nav {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
+  /* Navbar mobile : détail dans mobile-responsive.css */
 
   .nav-link {
-    width: 100% !important;
-    text-align: center !important;
-    padding: 0.85rem 1rem !important;
     min-height: var(--tap-min);
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
-  .navbar-brand {
-    font-size: 1.3rem !important;
-  }
-
-  .btn {
-    display: block !important;
-    width: 100% !important;
-    margin: 0.65rem 0 !important;
-    padding: 0.95rem 1rem !important;
+  /* Boutons pleine largeur : formulaires simples uniquement */
+  .container > .btn:not(.btn-sm),
+  .section-block .btn:not(.btn-sm),
+  header .btn:not(.btn-sm) {
+    display: block;
+    width: 100%;
+    margin: 0.65rem 0;
+    padding: 0.95rem 1rem;
     min-height: var(--tap-min);
   }
 

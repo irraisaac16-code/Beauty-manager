@@ -1,0 +1,395 @@
+/* Optimisations mobile globales — Beauty Manager */
+
+/* ----- Base & safe areas ----- */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+}
+
+img,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Évite le zoom auto sur iOS dans les champs */
+input,
+select,
+textarea,
+.form-control {
+    font-size: max(16px, 1rem);
+}
+
+/* ----- Navbar : conserver brand + menu hamburger sur une ligne ----- */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 0 !important;
+        padding: 0 1rem !important;
+    }
+
+    .navbar-brand,
+    a.navbar-brand.navbar-brand-plain {
+        flex: 1 1 auto;
+        min-width: 0;
+        font-size: clamp(1rem, 4.5vw, 1.25rem) !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
+    }
+
+    .navbar-brand-text {
+        flex-wrap: wrap;
+    }
+
+    .nav-toggle {
+        display: block !important;
+        flex-shrink: 0;
+        min-width: var(--tap-min, 44px);
+        min-height: var(--tap-min, 44px);
+    }
+
+    .navbar-nav {
+        flex-basis: 100%;
+        width: 100% !important;
+        align-items: stretch !important;
+        margin-top: 0.5rem;
+    }
+
+    .navbar-nav .nav-link {
+        width: 100% !important;
+        min-height: var(--tap-min, 44px);
+        justify-content: center !important;
+    }
+
+    /* Ne pas forcer tous les boutons en pleine largeur (style.css legacy) */
+    .btn.btn-sm,
+    .admin-dashboard .btn,
+    .admin-dashboard .btn-admin-cta,
+    .dash-act,
+    .btn-pill,
+    .header-actions .btn-pill,
+    .filter-actions .btn,
+    .view-controls .btn,
+    .rdv-actions .btn,
+    .rdv-actions .btn-sm,
+    .form-actions .btn,
+    .confirm-cash-payment-btn,
+    .update-status-btn {
+        display: inline-flex !important;
+        width: auto !important;
+        max-width: 100%;
+        margin: 0 !important;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+    }
+
+    .form-actions .btn-admin-cta,
+    .reg-actions .reg-submit,
+    .reg-actions .btn {
+        width: 100% !important;
+        justify-content: center;
+    }
+}
+
+/* ----- Admin dashboards ----- */
+@media (max-width: 768px) {
+    .admin-dashboard {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: max(0.75rem, env(safe-area-inset-left)) !important;
+        padding-right: max(0.75rem, env(safe-area-inset-right)) !important;
+    }
+
+    .admin-dashboard .dashboard-header .header-content,
+    .admin-dashboard .dashboard-header .header-left {
+        padding: 1.15rem 1rem !important;
+    }
+
+    .admin-dashboard .dashboard-header h1 {
+        font-size: clamp(1.25rem, 5vw, 1.65rem) !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .admin-dashboard .dashboard-header p {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .admin-dashboard .stats-dashboard {
+        grid-template-columns: 1fr !important;
+        gap: 0.85rem !important;
+    }
+
+    .admin-dashboard .stat-card {
+        padding: 1.15rem !important;
+    }
+
+    .admin-dashboard .stat-number {
+        font-size: 1.65rem !important;
+    }
+
+    .admin-dashboard .content-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .admin-dashboard .header-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-dashboard .header-actions .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .admin-dashboard .filters-content {
+        padding: 1rem !important;
+    }
+
+    .admin-dashboard .filter-row {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 1rem !important;
+    }
+
+    .admin-dashboard .reservations-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .admin-dashboard .reservations-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .admin-dashboard .view-controls {
+        justify-content: center;
+    }
+
+    .admin-dashboard .reservation-card .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+    }
+
+    .admin-dashboard .datetime-section {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .admin-dashboard .service-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+    }
+
+    .admin-dashboard .participant {
+        flex-wrap: wrap;
+    }
+
+    .admin-dashboard .table-scroll {
+        margin-left: -0.25rem;
+        margin-right: -0.25rem;
+        border-radius: 12px;
+    }
+
+    .admin-dashboard .payment-info-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ----- Page d'accueil (header standalone) ----- */
+@media (max-width: 768px) {
+    .site-header .wrap {
+        width: min(100%, 100% - 1.5rem);
+    }
+
+    .site-header .header-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .site-header .home-header-brand {
+        margin-inline-start: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .site-header .header-actions {
+        width: 100%;
+        margin-inline-end: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .site-header .header-actions .btn-pill {
+        flex: 1 1 100%;
+        justify-content: center;
+        min-height: var(--tap-min, 44px);
+        text-align: center;
+    }
+
+    .hero-landing .btn-hero {
+        width: 100%;
+        max-width: 20rem;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Afficher les deux inscriptions empilées sur très petit écran */
+    .site-header .header-actions .btn-pill--ghost {
+        display: inline-flex !important;
+    }
+
+    .site-header .header-actions .btn-pill {
+        font-size: 0.82rem;
+        padding: 0.6rem 0.85rem;
+    }
+}
+
+/* ----- Dashboards client / esthéticienne (reg-page) ----- */
+@media (max-width: 640px) {
+    .reg-page.dash-page .reg-wrap {
+        width: min(100%, 100% - 1rem);
+    }
+
+    .reg-page.dash-page .dash-res-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .reg-page.dash-page .dash-rdv-actions,
+    .reg-page.dash-page .dash-rdv-btns {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .reg-page.dash-page .dash-act,
+    .reg-page.dash-page .dash-rdv-btns .btn {
+        width: 100% !important;
+        justify-content: center;
+    }
+
+    .reg-page.dash-page .dash-quick-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ----- Planning coiffeuse (container legacy) ----- */
+@media (max-width: 768px) {
+    .container {
+        padding-left: max(0.75rem, env(safe-area-inset-left));
+        padding-right: max(0.75rem, env(safe-area-inset-right));
+    }
+
+    .page-header {
+        padding: 1.25rem 1rem !important;
+        border-radius: 12px !important;
+    }
+
+    .page-header h1 {
+        font-size: clamp(1.35rem, 6vw, 2rem) !important;
+    }
+
+    .filter-controls {
+        gap: 0.4rem;
+    }
+
+    .filter-controls .btn {
+        flex: 1 1 calc(50% - 0.25rem);
+        min-width: 0;
+        font-size: 0.78rem;
+        padding: 0.5rem 0.4rem !important;
+    }
+
+    .rdv-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .rdv-actions .btn {
+        width: 100% !important;
+        justify-content: center;
+    }
+}
+
+/* ----- Bilans ----- */
+@media (max-width: 768px) {
+    .admin-dashboard .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .admin-dashboard .ranking-item,
+    .admin-dashboard .reservation-item {
+        flex-wrap: wrap;
+    }
+
+    .admin-dashboard .chart-bars {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.35rem;
+    }
+}
+
+/* ----- Modales ----- */
+@media (max-width: 768px) {
+    .modal-content {
+        width: calc(100% - 1.25rem) !important;
+        max-width: 100% !important;
+        margin: 0.75rem auto !important;
+        max-height: 92vh;
+        overflow-y: auto;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding: 1.15rem !important;
+    }
+
+    #reservationModal .detail-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ----- Utilitaires ----- */
+@media (max-width: 768px) {
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row > [class*="col-"] {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .main-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 540px) {
+    .admin-dashboard .stat-icon {
+        width: 44px !important;
+        height: 44px !important;
+        margin-right: 0.85rem !important;
+        font-size: 1.1rem !important;
+    }
+}
