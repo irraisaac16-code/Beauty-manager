@@ -147,11 +147,6 @@
                                                                 <i class="fas fa-money-bill-wave"></i> Confirmer Paiement Espèces
                                                             </button>
                                                         {% endif %}
-                                                        {% if reservation.statut == 'en_attente' or reservation.statut == 'confirmé' %}
-                                                            <button class="btn btn-sm btn-danger update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="annulé">
-                                                                <i class="fas fa-times"></i> Annuler
-                                                            </button>
-                                                        {% endif %}
                                                         {% if reservation.statut == 'payé' %}
                                                             <button class="btn btn-sm btn-info update-status-btn" data-reservation-id="{{ reservation.id }}" data-new-status="terminé">
                                                                 <i class="fas fa-check-double"></i> Terminer
