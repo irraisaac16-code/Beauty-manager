@@ -119,6 +119,12 @@ main.theme-reg h2 {
     letter-spacing: -0.02em;
 }
 
+.reg-intro h1 .navbar-brand-text {
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+}
+
 .reg-intro p {
     margin: 0;
     color: var(--reg-muted);
