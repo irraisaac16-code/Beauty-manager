@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'manager/design-system.css' %}?v=5">
-    <link rel="stylesheet" href="{% static 'manager/mobile-responsive.css' %}?v=2">
+    <link rel="stylesheet" href="{% static 'manager/mobile-responsive.css' %}?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -211,6 +211,49 @@
             align-self: center;
             gap: clamp(0.65rem, 1.5vw, 1rem);
             margin-inline-end: clamp(0.75rem, 2vw, 1.35rem);
+        }
+
+        .home-nav-toggle {
+            display: none;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-inline-end: clamp(0.75rem, 2vw, 1.35rem);
+            padding: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: var(--surface);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .home-nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2.5px;
+            background: var(--text);
+            border-radius: 999px;
+            margin: 3.5px auto;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .home-nav-toggle.active span:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .home-nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .home-nav-toggle.active span:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .home-nav-toggle:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* ----- Hero ----- */
@@ -725,34 +768,55 @@
 
         @media (max-width: 768px) {
             .site-header {
-                height: auto;
+                height: var(--header-h);
                 min-height: var(--header-h);
-                padding: 0.65rem 0;
+                padding: 0;
             }
 
             .header-inner {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.65rem;
+                position: relative;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                gap: 0.75rem;
             }
 
             .site-header .home-header-brand {
-                margin-inline-start: 0;
-                width: 100%;
-                justify-content: center;
+                margin-inline-start: clamp(0.75rem, 3vw, 1.25rem);
+                width: auto;
+                justify-content: flex-start;
+                flex: 1;
+                min-width: 0;
+            }
+
+            .home-nav-toggle {
+                display: inline-flex;
             }
 
             .header-actions {
-                width: 100%;
-                margin-inline-end: 0;
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none;
+                position: absolute;
+                top: calc(100% + 0.35rem);
+                left: 0;
+                right: 0;
+                z-index: 50;
+                flex-direction: column;
+                align-items: stretch;
                 gap: 0.5rem;
+                margin: 0;
+                padding: 0.75rem clamp(0.75rem, 3vw, 1.25rem) 1rem;
+                background: rgba(246, 245, 243, 0.98);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                box-shadow: 0 12px 28px rgba(22, 21, 20, 0.1);
+            }
+
+            .header-actions.open {
+                display: flex;
             }
 
             .header-actions .btn-pill {
                 display: inline-flex !important;
-                flex: 1 1 100%;
+                width: 100%;
                 justify-content: center;
                 min-height: 44px;
             }
@@ -785,7 +849,12 @@
             <a href="{% url 'home' %}" class="home-header-brand" aria-label="Beauty Manager — Accueil">
                 <span class="home-brand__beauty">Beauty</span><span class="home-brand__manager">Manager</span>
             </a>
-            <div class="header-actions">
+            <button type="button" class="home-nav-toggle" aria-label="Ouvrir le menu inscription" aria-expanded="false" aria-controls="homeHeaderMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-actions" id="homeHeaderMenu">
                 <a href="{% url 'register_coiffeuse' %}" class="btn-pill btn-pill--ghost">
                     <i class="fas fa-spa" aria-hidden="true"></i>
                     Inscription esthéticienne
@@ -963,6 +1032,42 @@
                 { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
             );
             io.observe(grid);
+        })();
+
+        (function () {
+            const toggle = document.querySelector('.home-nav-toggle');
+            const menu = document.getElementById('homeHeaderMenu');
+            if (!toggle || !menu) return;
+
+            function setMenuOpen(open) {
+                menu.classList.toggle('open', open);
+                toggle.classList.toggle('active', open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Fermer le menu inscription' : 'Ouvrir le menu inscription');
+            }
+
+            toggle.addEventListener('click', function (event) {
+                event.stopPropagation();
+                setMenuOpen(!menu.classList.contains('open'));
+            });
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () {
+                    setMenuOpen(false);
+                });
+            });
+
+            document.addEventListener('click', function (event) {
+                if (!event.target.closest('.site-header')) {
+                    setMenuOpen(false);
+                }
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    setMenuOpen(false);
+                }
+            });
         })();
     </script>
 </body>
