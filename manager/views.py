@@ -384,7 +384,7 @@ def reservation_client(request):
             except Exception as e:
                 print(f"Erreur lors de l'envoi de la notification: {e}")
             
-            messages.success(request, f'Réservation créée avec succès ! Montant : {reservation.montant}€')
+            messages.success(request, f'Réservation créée avec succès ! Montant : {int(reservation.montant)} FCFA')
             return redirect('dashboard_client')
     else:
         form = SecureReservationForm()
