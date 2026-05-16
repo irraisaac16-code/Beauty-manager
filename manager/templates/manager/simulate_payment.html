@@ -19,7 +19,6 @@
         <div class="header-content">
             <div class="header-left">
                 <h1><i class="fas fa-mobile-alt"></i> Paiement</h1>
-                <p>Simulation de paiement Wave</p>
             </div>
         </div>
     </div>
@@ -118,7 +117,7 @@
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary btn-admin-cta" id="submit-btn">
-                            <i class="fas fa-lock"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA
+                            <i class="fas fa-money-bill"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA
                         </button>
                         <a href="{% url 'dashboard_client' %}" class="btn btn-secondary">
                             <i class="fas fa-times"></i> Annuler
@@ -175,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (phoneInput) phoneInput.setAttribute('required', 'required');
             if (cashInfo) cashInfo.style.display = 'none';
             if (submitBtn) {
-                submitBtn.innerHTML = '<i class="fas fa-lock"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA';
+                submitBtn.innerHTML = '<i class="fas fa-money-bill"></i> Payer {{ reservation.montant|floatformat:0 }} FCFA';
             }
         }
     }
