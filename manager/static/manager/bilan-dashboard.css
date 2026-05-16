@@ -363,6 +363,55 @@
     margin-bottom: 0.75rem;
 }
 
+/* Bilan annuel — graphique 12 mois sur une seule ligne */
+.admin-dashboard .bilan-annuel-charts-grid {
+    grid-template-columns: 1fr;
+}
+
+.admin-dashboard .bilan-annuel-mois-card {
+    grid-column: 1 / -1;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .chart-container {
+    width: 100%;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .chart-bars {
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+    height: 300px;
+    min-width: 0;
+    width: 100%;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .chart-bar {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .bar-label {
+    font-size: 0.72rem;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .bar-container {
+    height: 200px;
+}
+
+.admin-dashboard .bilan-annuel-mois-card .bar-container .bar {
+    width: 100%;
+    min-height: 4px;
+    border-radius: 10px 10px 4px 4px;
+    background: linear-gradient(180deg, #2d6a66 0%, #3d8a84 100%);
+    box-shadow: 0 8px 16px rgba(45, 106, 102, 0.18);
+}
+
+.admin-dashboard .bilan-annuel-mois-card .bar-value {
+    font-size: 0.88rem;
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .admin-dashboard .content-grid { grid-template-columns: 1fr; }
@@ -388,5 +437,26 @@
     .admin-dashboard .bar-background { border-radius: 999px; }
     .admin-dashboard .bar-tooltip { display: none; }
     .admin-dashboard .services-grid { grid-template-columns: 1fr; }
+
+    /* Bilan annuel : défilement horizontal plutôt qu'empilement vertical */
+    .admin-dashboard .bilan-annuel-mois-card .chart-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .admin-dashboard .bilan-annuel-mois-card .chart-bars {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        height: 300px;
+        min-width: 720px;
+        padding-bottom: 0.35rem;
+    }
+    .admin-dashboard .bilan-annuel-mois-card .chart-bar {
+        flex-direction: column;
+        min-width: 52px;
+    }
+    .admin-dashboard .bilan-annuel-mois-card .bar-container {
+        height: 200px;
+        width: 100%;
+    }
 }
 
