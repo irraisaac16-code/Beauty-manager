@@ -399,6 +399,7 @@
 
 /* Modal (hors .admin-dashboard dans le template) */
 body.page-dashboard-neumorphic #reservationModal.modal {
+    display: none;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
 }
