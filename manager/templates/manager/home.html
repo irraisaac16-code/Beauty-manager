@@ -793,6 +793,37 @@
                 justify-content: center;
                 min-height: 44px;
             }
+
+            /* Carte « À propos de la plateforme » : pas de rotation sur mobile (évite cassures / clipping) */
+            .home-section[aria-labelledby="why-title"] {
+                overflow: visible;
+            }
+
+            .home-section[aria-labelledby="why-title"] .wrap {
+                width: min(1320px, 92%);
+            }
+
+            .home-section[aria-labelledby="why-title"] .why-prose,
+            .home-section[aria-labelledby="why-title"] .why-prose:hover {
+                transform: none;
+                width: 100%;
+                max-width: 100%;
+                margin-inline: auto;
+                box-shadow:
+                    0 2px 6px rgba(22, 21, 20, 0.06),
+                    0 10px 28px rgba(22, 21, 20, 0.1);
+            }
+
+            .why-prose {
+                padding: 1.25rem 1.15rem;
+                border-radius: 1.25rem;
+                overflow-wrap: anywhere;
+                word-break: break-word;
+            }
+
+            .why-prose p {
+                hyphens: auto;
+            }
         }
 
         @media (max-width: 480px) {
@@ -802,6 +833,16 @@
 
             .home-section-head {
                 margin-bottom: 1.75rem;
+            }
+
+            .home-section[aria-labelledby="why-title"] .why-prose {
+                padding: 1.15rem 1rem;
+            }
+
+            #why-title.home-section-title {
+                font-size: clamp(1.35rem, 6vw, 1.65rem);
+                word-spacing: normal;
+                letter-spacing: -0.02em;
             }
 
             .about-profile {
