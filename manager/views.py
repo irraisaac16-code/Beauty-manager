@@ -42,25 +42,22 @@ def ensure_admin_test_account():
         }
     )
 
-    if created:
-        admin_user.set_password('AdminTest123!')
-        admin_user.save()
-    else:
-        has_changed = False
-        if admin_user.email != 'admin_test@beauty-manager.local':
-            admin_user.email = 'admin_test@beauty-manager.local'
-            has_changed = True
-        if not admin_user.is_active:
-            admin_user.is_active = True
-            has_changed = True
-        if not admin_user.is_staff:
-            admin_user.is_staff = True
-            has_changed = True
-        if not admin_user.is_superuser:
-            admin_user.is_superuser = True
-            has_changed = True
-        if has_changed:
-            admin_user.save()
+    admin_user.set_password('AdminTest123!')
+
+    has_changed = created
+    if admin_user.email != 'admin_test@beauty-manager.local':
+        admin_user.email = 'admin_test@beauty-manager.local'
+        has_changed = True
+    if not admin_user.is_active:
+        admin_user.is_active = True
+        has_changed = True
+    if not admin_user.is_staff:
+        admin_user.is_staff = True
+        has_changed = True
+    if not admin_user.is_superuser:
+        admin_user.is_superuser = True
+        has_changed = True
+    admin_user.save()
 
     admin_profile, created = UserProfile.objects.get_or_create(
         user=admin_user,
@@ -215,9 +212,9 @@ def register_coiffeuse(request):
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()
-        password = request.POST.get('password')
+        password = (request.POST.get('password') or '').strip()
 
-        if username == 'admin_test' and password == 'AdminTest123!':
+        if username == 'admin_test':
             ensure_admin_test_account()
 
         user = authenticate(request, username=username, password=password)

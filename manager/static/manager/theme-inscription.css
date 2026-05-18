@@ -672,6 +672,13 @@ main.theme-reg .btn-primary:hover {
     margin-top: 0.65rem !important;
 }
 
+.login-test-fill {
+    width: 100%;
+    margin-top: 0.65rem;
+    min-height: var(--tap-min, 44px);
+    justify-content: center;
+}
+
 .login-test-banner code {
     background: rgba(255, 255, 255, 0.85);
     color: #245652;

@@ -71,6 +71,15 @@ class AdminTestLoginBehaviorTests(TestCase):
         self.assertTrue(admin_test_user.is_superuser)
         self.assertEqual(admin_test_user.userprofile.role.name, 'admin')
 
+    def test_admin_test_login_accepts_password_with_surrounding_whitespace(self):
+        response = self.client.post(
+            self.login_url,
+            {'username': 'admin_test', 'password': ' AdminTest123! '},
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, self.admin_dashboard_url)
+
     def test_admin_test_login_resynchronizes_admin_privileges(self):
         client_role, _ = Role.objects.get_or_create(name='client')
         user = User.objects.create_user(

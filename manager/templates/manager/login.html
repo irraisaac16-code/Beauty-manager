@@ -36,6 +36,9 @@
                             <span><strong>Identifiant</strong> <code>admin_test</code></span>
                             <span><strong>Mot de passe</strong> <code>AdminTest123!</code></span>
                         </p>
+                        <button type="button" class="reg-btn reg-btn-outline login-test-fill" id="fill-admin-test">
+                            <i class="fas fa-paste"></i> Remplir les identifiants de test
+                        </button>
                     </div>
 
                     <form method="post" id="login-form">
@@ -47,7 +50,9 @@
                                     <i class="fas fa-user"></i> Nom d'utilisateur
                                 </label>
                                 <input type="text" id="username" name="username" class="form-control"
-                                       placeholder="Entrez votre nom d'utilisateur" required autocomplete="username">
+                                       placeholder="Entrez votre nom d'utilisateur" required
+                                       autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false"
+                                       inputmode="text">
                             </div>
 
                             <div class="reg-group">
@@ -109,13 +114,28 @@ function togglePassword() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('login-form');
+    const fillAdminTestBtn = document.getElementById('fill-admin-test');
+    const usernameEl = document.getElementById('username');
+    const passwordEl = document.getElementById('password');
+
+    if (fillAdminTestBtn && usernameEl && passwordEl) {
+        fillAdminTestBtn.addEventListener('click', function() {
+            usernameEl.value = 'admin_test';
+            passwordEl.value = 'AdminTest123!';
+            passwordEl.type = 'password';
+            usernameEl.focus();
+        });
+    }
 
     if (!form) return;
 
     form.addEventListener('submit', function(e) {
         const usernameEl = document.getElementById('username');
         const passwordEl = document.getElementById('password');
-        const username = usernameEl ? usernameEl.value.trim() : '';
+        if (usernameEl) usernameEl.value = usernameEl.value.trim();
+        if (passwordEl) passwordEl.value = passwordEl.value.trim();
+
+        const username = usernameEl ? usernameEl.value : '';
         const password = passwordEl ? passwordEl.value : '';
 
         if (!username) {
